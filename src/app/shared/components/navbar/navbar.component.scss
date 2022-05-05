@@ -1,0 +1,107 @@
+@import "src/variables";
+
+:host {
+  .active {
+    font-weight: bold;
+  }
+
+  .header {
+    @include card-b;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 3;
+    padding: .5rem 2rem;
+
+    .logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 60px;
+      width: 60px;
+      margin-right: 1rem;
+
+      img {
+        width: 100%
+      }
+    }
+
+    .title {
+
+      h1, h3 {
+        margin: 0;
+      }
+
+      h3 {
+        color: $accent;
+      }
+    }
+
+    nav {
+      display: flex;
+      margin-left: auto;
+
+      .item {
+        font-size: 20px;
+        white-space: nowrap;
+        margin: 0 1rem;
+      }
+    }
+
+    .hamburger {
+      display: none;
+      align-items: center;
+      margin-left: auto;
+      padding-left: .5rem;
+
+      mat-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 40px;
+      }
+    }
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+
+
+  @include mobile {
+    .header {
+      padding: .5rem 1rem;
+
+      nav {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    .mobile-menu-container {
+      position: relative;
+
+      .mobile-menu {
+        @include card-b;
+        display: block;
+        position: absolute;
+        z-index: 2;
+        overflow: hidden;
+        top: -10px;
+
+        nav {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          .item {
+            font-size: 20px;
+            margin: .5rem auto;
+          }
+        }
+      }
+    }
+  }
+}

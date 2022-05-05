@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
 const COMPONENTS = [
@@ -7,7 +9,9 @@ const COMPONENTS = [
 ];
 
 const MODULES = [
-  CommonModule
+  CommonModule,
+  MatIconModule,
+  RouterModule,
 ];
 
 @NgModule({

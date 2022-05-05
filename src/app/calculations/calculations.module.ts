@@ -1,7 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
+import { HomeComponent } from './pages/home/home.component';
 
+
+const COMPONENTS = [
+  HomeComponent,
+];
 
 const MODULES = [
   CommonModule,
@@ -9,10 +14,14 @@ const MODULES = [
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ...COMPONENTS
+  ],
   imports: [
     ...MODULES
   ],
-  exports: []
+  exports: [
+    ...COMPONENTS
+  ]
 })
 export class CalculationsModule { }

@@ -1,0 +1,31 @@
+<div class="header">
+  <div class="logo">
+    <img src="/assets/logo.png" alt="RNApdbee">
+  </div>
+
+  <div class="title">
+    <h1>RNApdbee 3.0</h1>
+    <h3>RNA secondary structure annotation based on PDB/mmCIF files</h3>
+  </div>
+
+  <nav>
+    <a routerLink="/" class="item" [class.active]="isActive('')">Home</a>
+    <a routerLink="help" class="item" [class.active]="isActive('help')">Help</a>
+    <a routerLink="about" class="item" [class.active]="isActive('about')">About</a>
+    <a routerLink="cite-us" class="item" [class.active]="isActive('cite-us')">Cite Us</a>
+  </nav>
+
+  <div class="hamburger">
+    <mat-icon (click)="toggleMenu()">menu</mat-icon>
+  </div>
+</div>
+<div class="mobile-menu-container">
+  <div @slideDownUp *ngIf="menuExpanded" class="mobile-menu">
+    <nav>
+      <a routerLink="/" class="item" [class.active]="isActive('')">Home</a>
+      <a routerLink="help" class="item" [class.active]="isActive('help')">Help</a>
+      <a routerLink="about" class="item" [class.active]="isActive('about')">About</a>
+      <a routerLink="cite-us" class="item" [class.active]="isActive('cite-us')">Cite Us</a>
+    </nav>
+  </div>
+</div>

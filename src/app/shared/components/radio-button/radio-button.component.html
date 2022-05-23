@@ -1,13 +1,13 @@
-<div class="container" [class.active]="active">
+<div class="container" [class.active]="checked">
   <div class="radio">
-    <mat-radio-button [value]="value" [checked]="active" [color]="'primary'">
+    <mat-radio-button [value]="value" [checked]="checked" (change)="onChange()" color="primary">
       {{ label }}
     </mat-radio-button>
     <div class="inline">
       <ng-content select="[inline]"></ng-content>
     </div>
   </div>
-    <div @openClose *ngIf="active" class="content">
+    <div @openClose *ngIf="checked" class="content">
       <ng-content></ng-content>
     </div>
 </div>

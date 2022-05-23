@@ -8,7 +8,11 @@ import { OpenCloseAnimation } from 'src/app/shared/animations/open-close';
   animations: [OpenCloseAnimation],
 })
 export class RadioButtonComponent {
-  @Input() active = false;
+  @Input() checked = false;
   @Input() label = '';
   @Input() value: any;
+
+  onChange() {
+    this.checked = !this.checked;
+  }
 }

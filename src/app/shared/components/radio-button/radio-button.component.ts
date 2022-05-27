@@ -11,8 +11,4 @@ export class RadioButtonComponent {
   @Input() checked = false;
   @Input() label = '';
   @Input() value: any;
-
-  onChange() {
-    this.checked = !this.checked;
-  }
 }

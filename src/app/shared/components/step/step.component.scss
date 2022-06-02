@@ -1,0 +1,32 @@
+@import "src/variables";
+
+:host {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  .step-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+
+    padding: .5rem;
+    border-radius: 50%;
+    border: $border;
+
+    .step-value {
+      font-size: 20px;
+      font-weight: 500;
+    }
+  }
+
+  .header-wrapper {
+    width: 100%;
+    font-size: 20px;
+    margin-left: .5rem;
+    border-bottom: $border;
+    padding-bottom: 5px;
+  }
+}

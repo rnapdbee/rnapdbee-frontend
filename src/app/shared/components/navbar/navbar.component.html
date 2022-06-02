@@ -20,7 +20,7 @@
   </div>
 </div>
 <div class="mobile-menu-container">
-  <div @slideDownUp *ngIf="menuExpanded" class="mobile-menu">
+  <div @openClose *ngIf="menuExpanded" class="mobile-menu">
     <nav>
       <a routerLink="/" class="item" [class.active]="isActive('')">Home</a>
       <a routerLink="help" class="item" [class.active]="isActive('help')">Help</a>

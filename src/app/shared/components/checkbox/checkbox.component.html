@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="checkbox">
+    <mat-checkbox [checked]="checked" (change)="onChange()" color="primary">
+      {{ label }}
+    </mat-checkbox>
+    <div class="controls">
+      <div *ngIf="expanded; then hide else show"></div>
+      <ng-template #hide>
+        <button mat-button color="primary" [disableRipple]="true" (click)="toggleExpand()">
+          <mat-icon>keyboard_arrow_up</mat-icon>
+          hide
+        </button>
+      </ng-template>
+      <ng-template #show>
+        <button mat-button color="primary" [disableRipple]="true" (click)="toggleExpand()">
+          <mat-icon>keyboard_arrow_down</mat-icon>
+          show
+        </button>
+      </ng-template>
+    </div>
+  </div>
+  <div @openClose *ngIf="expanded" class="content">
+    <ng-content></ng-content>
+  </div>
+</div>

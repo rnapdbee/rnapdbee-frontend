@@ -1,0 +1,39 @@
+@import "src/variables";
+
+:host {
+  .container {
+    padding: .5rem;
+    margin: .5rem .5rem .5rem 34px;
+
+    .checkbox {
+      display: flex;
+      align-items: center;
+
+      mat-checkbox {
+        width: 100%;
+        font-size: 16px;
+      }
+
+      .controls button {
+          line-height: normal;
+
+          &:hover {
+            background: none;
+          }
+        }
+      }
+
+    .content {
+      overflow: hidden;
+
+      &:not(:empty) {
+        margin-top: .5rem;
+        margin-left: 28px;
+      }
+    }
+  }
+}
+
+::ng-deep .mat-checkbox-label {
+  margin-bottom: -1px;
+}

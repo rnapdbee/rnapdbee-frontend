@@ -10,5 +10,5 @@ import { OpenCloseAnimation } from 'src/app/shared/animations/open-close';
 export class RadioButtonComponent {
   @Input() checked = false;
   @Input() label = '';
-  @Input() value: any;
+  @Input() value: string | number = '';
 }

@@ -1,6 +1,6 @@
 export enum CalculationType {
-  ThreeDToDots,
-  TwoDToDots,
-  DotsToImage,
-  ThreeDToMultiTwoD,
+  TeriaryToDBN,
+  SecondaryToDBN,
+  DBNToImage,
+  TeriaryToMultiSecondary,
 }

@@ -8,7 +8,7 @@ import { CalculationType } from 'src/app/shared/models/calculation-type.enum';
 })
 export class HomeComponent {
   CalculationType: typeof CalculationType = CalculationType;
-  calculationType = CalculationType.ThreeDToDots;
+  calculationType = CalculationType.TeriaryToDBN;
 
   setCalculationType(type: CalculationType) {
     this.calculationType = type;

@@ -1,4 +1,4 @@
-export interface ThreeDToDotsPayload {
+export interface TeriaryToDBNPayload {
   fileContent: string,
   modelSelection: ModelSelection,
   analisysTool: AnalisysTool,

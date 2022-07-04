@@ -56,15 +56,6 @@
       .container {
         max-width: 1000px;
       }
-
-      .button {
-        display: flex;
-        margin: 1rem 0;
-
-        button {
-          padding: 0 3rem;
-        }
-      }
     }
 
     @include mobile {

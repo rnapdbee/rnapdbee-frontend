@@ -1,1 +1,20 @@
-<p>three-d-to-dots-input-form works!</p>
+<form (ngSubmit)="onSubmit()">
+  <app-step [value]="1">Upload RNA 3D structure</app-step>
+  <mat-radio-group [(ngModel)]="upload" name="step1">
+    <app-radio-button [value]="Upload.fromPDB" 
+      label="from Protein Data Bank" [checked]="upload === Upload.fromPDB">
+
+    </app-radio-button>
+    <app-radio-button [value]="Upload.fromLocalFile" 
+      label="from local file" [checked]="upload === Upload.fromLocalFile">
+
+    </app-radio-button>
+    <app-radio-button [value]="Upload.fromExample" 
+      label="from PDBx/mmCIF example" [checked]="upload === Upload.fromExample">
+
+    </app-radio-button>
+  </mat-radio-group>
+  <div class="button">
+    <button mat-raised-button color="primary" type="submit">Run</button>
+  </div>
+</form>

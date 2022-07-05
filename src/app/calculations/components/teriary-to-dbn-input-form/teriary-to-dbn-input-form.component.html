@@ -1,20 +1,32 @@
 <form (ngSubmit)="onSubmit()">
   <app-step [value]="1">Upload RNA 3D structure</app-step>
-  <mat-radio-group [(ngModel)]="upload" name="step1">
-    <app-radio-button [value]="Upload.fromPDB" 
-      label="from Protein Data Bank" [checked]="upload === Upload.fromPDB">
+  <mat-radio-group [(ngModel)]="uploadMethod" name="step1">
+    <app-radio-button [value]="UploadMethod.fromPDB" label="from Protein Data Bank"
+      [checked]="uploadMethod === UploadMethod.fromPDB">
+      <div inline class="clearable-input">
+        <input type="text" [(ngModel)]="pdbId" name="pdbId" placeholder="PDB ID">
+        <mat-icon (click)="pdbId=null">close</mat-icon>
+      </div>
+    </app-radio-button>
+
+    <app-radio-button [value]="UploadMethod.fromLocalFile" label="from local file"
+      [checked]="uploadMethod === UploadMethod.fromLocalFile">
+      <div inline class="file-upload">
+        <label for="file-input">Browse...</label>
+        <input type="file" accept="text/plain" (change)="uploadFile($event)" id="file-input" name="file">
+        <span>
+          {{ file ? file.name : 'no file selected' }}
+        </span>
+      </div>
+    </app-radio-button>
+
+    <app-radio-button [value]="UploadMethod.fromExample" label="from PDBx/mmCIF example"
+      [checked]="uploadMethod === UploadMethod.fromExample">
 
     </app-radio-button>
-    <app-radio-button [value]="Upload.fromLocalFile" 
-      label="from local file" [checked]="upload === Upload.fromLocalFile">
 
-    </app-radio-button>
-    <app-radio-button [value]="Upload.fromExample" 
-      label="from PDBx/mmCIF example" [checked]="upload === Upload.fromExample">
-
-    </app-radio-button>
   </mat-radio-group>
-  <div class="button">
+  <div class="submit">
     <button mat-raised-button color="primary" type="submit">Run</button>
   </div>
 </form>

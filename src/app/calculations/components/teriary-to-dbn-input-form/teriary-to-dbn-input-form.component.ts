@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-export enum Upload {
+export enum UploadMethod {
   fromPDB,
   fromLocalFile,
   fromExample
@@ -12,15 +12,30 @@ export enum Upload {
   styleUrls: ['./teriary-to-dbn-input-form.component.scss']
 })
 export class TeriaryToDBNInputFormComponent {
-  Upload: typeof Upload = Upload;
+  UploadMethod: typeof UploadMethod = UploadMethod;
   
-  get upload() { return this._upload }
-  set upload(value: Upload) {
-    this._upload = value;
+  get uploadMethod() { return this._upload; }
+  set uploadMethod(value: UploadMethod) { this._upload = value; }
+  private _upload = UploadMethod.fromPDB
+
+  get pdbId() { return this._pdbId; }
+  set pdbId(value: string | null) { this._pdbId = value; }
+  private _pdbId: string | null = null;
+
+  get file() { return this._file; }
+  set file(value: File | null) { this._file = value; }
+  private _file: File | null = null;
+
+
+  uploadFile(event: Event) {
+    let files = (event.target as HTMLInputElement).files
+    if (files && files?.length > 0) {
+      let file = files[0]
+      this.file = file;
+    }
   }
-  private _upload = Upload.fromPDB
 
   onSubmit() {
-    console.log(this.upload)
+    console.log(this.uploadMethod)
   }
 }

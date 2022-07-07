@@ -47,13 +47,13 @@ $border-radius: 10px;
 @mixin card-r {
   @include card();
   border-radius: 0px $border-radius $border-radius 0px;
-  margin-left: -1px;
+  @include desktop() { margin-left: -1px; }
 }
 
 @mixin card-l {
   @include card();
-  margin-right: -1px;
   border-radius: $border-radius 0px 0px $border-radius;
+  @include desktop() { margin-right: -1px; }
 }
 
 @mixin card-x {

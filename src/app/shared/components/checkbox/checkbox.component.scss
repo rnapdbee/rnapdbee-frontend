@@ -37,3 +37,7 @@
 ::ng-deep .mat-checkbox-label {
   margin-bottom: -1px;
 }
+
+::ng-deep .mat-checkbox-layout {
+  white-space: unset !important;
+}

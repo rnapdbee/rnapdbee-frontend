@@ -10,13 +10,13 @@
   </mat-radio-group>
 
   <app-step [value]="3">Identify base pairs using</app-step>
-  <mat-radio-group formControlName="analisysTool">
-    <app-radio-button *ngFor="let item of AnalisysTool" [value]="item.key" [label]="item.label"
-      [checked]="paramsForm.value.analisysTool === item.key">
+  <mat-radio-group formControlName="analysisTool">
+    <app-radio-button *ngFor="let item of AnalysisTool" [value]="item.key" [label]="item.label"
+      [checked]="paramsForm.value.analysisTool === item.key">
     </app-radio-button>
   </mat-radio-group>
 
-  <h3 class="subsection">Include non cannonical ones: </h3>
+  <h3 class="subsection">Include non-canonical ones: </h3>
   <mat-radio-group formControlName="nonCanonicalHandling">
     <app-radio-button *ngFor="let item of NonCanonicalHandling" [value]="item.key" [label]="item.label"
       [checked]="paramsForm.value.nonCanonicalHandling === item.key">

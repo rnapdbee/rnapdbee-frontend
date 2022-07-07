@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { AnalisysTool, ModelSelection, NonCanonicalHandling, StructuralElementsHandling, VisualizationTool } from 'src/app/shared/constants/param-options.const';
+import { AnalysisTool, ModelSelection, NonCanonicalHandling, StructuralElementsHandling, VisualizationTool } from 'src/app/shared/constants/param-options.const';
 import { UploadMethod } from 'src/app/shared/models/upload-type.model';
 
 @Component({
@@ -13,7 +13,7 @@ export class TertiaryToDBNInputFormComponent {
   constructor(private readonly fb: FormBuilder) {}
 
   ModelSelection = ModelSelection;
-  AnalisysTool = AnalisysTool;
+  AnalysisTool = AnalysisTool;
   NonCanonicalHandling = NonCanonicalHandling;
   StructuralElementsHandling = StructuralElementsHandling;
   VisualizationTool = VisualizationTool;
@@ -22,7 +22,7 @@ export class TertiaryToDBNInputFormComponent {
 
   paramsForm = this.fb.group({
     modelSelection: [ModelSelection[0].key],
-    analisysTool: [AnalisysTool[0].key],
+    analysisTool: [AnalysisTool[0].key],
     nonCanonicalHandling: [NonCanonicalHandling[0].key],
     removeIsolated: [true],
     structuralElementsHandling: [StructuralElementsHandling[0].key],

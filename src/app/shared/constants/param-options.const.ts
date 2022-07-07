@@ -3,7 +3,7 @@ import { Option } from "../models/option.model";
 export const ModelSelection: Option[] = [
   {
     key: 'First',
-    label: 'First models only',
+    label: 'First model only',
   },
   {
     key: 'All',
@@ -11,7 +11,7 @@ export const ModelSelection: Option[] = [
   },
 ];
 
-export const AnalisysTool: Option[] = [ 
+export const AnalysisTool: Option[] = [ 
   {
     key: 'fr3d-python', 
     label: 'FR3D',

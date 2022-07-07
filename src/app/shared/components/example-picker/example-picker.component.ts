@@ -14,6 +14,7 @@ export class ExamplePickerComponent implements OnInit {
   
   ngOnInit() {
     this.current = this.examples[0];
+    this.selected.emit(this.current);
   }
 
   select(item: Example) {

@@ -24,20 +24,20 @@
 <div class="calculations">
   <div class="sidebar">
     <p>Choose scenario:</p>
-    <div class="nav-item" [class.active]="calculationType === CalculationType.TeriaryToDBN"
-      (click)="setCalculationType(CalculationType.TeriaryToDBN)">3D → (...)</div>
+    <div class="nav-item" [class.active]="calculationType === CalculationType.TertiaryToDBN"
+      (click)="setCalculationType(CalculationType.TertiaryToDBN)">3D → (...)</div>
     <div class="nav-item" [class.active]="calculationType === CalculationType.SecondaryToDBN"
       (click)="setCalculationType(CalculationType.SecondaryToDBN)">2D → (...)</div>
     <div class="nav-item" [class.active]="calculationType === CalculationType.DBNToImage"
       (click)="setCalculationType(CalculationType.DBNToImage)">(...) → image</div>
-    <div class="nav-item" [class.active]="calculationType === CalculationType.TeriaryToMultiSecondary"
-      (click)="setCalculationType(CalculationType.TeriaryToMultiSecondary)">3D → multi 2D</div>
+    <div class="nav-item" [class.active]="calculationType === CalculationType.TertiaryToMultiSecondary"
+      (click)="setCalculationType(CalculationType.TertiaryToMultiSecondary)">3D → multi 2D</div>
   </div>
   <div class="content">
     <div class="container">
       <ng-container [ngSwitch]="calculationType">
-        <ng-container *ngSwitchCase="CalculationType.TeriaryToDBN">
-          <app-teriary-to-dbn-input-form></app-teriary-to-dbn-input-form>
+        <ng-container *ngSwitchCase="CalculationType.TertiaryToDBN">
+          <app-tertiary-to-dbn-input-form></app-tertiary-to-dbn-input-form>
         </ng-container>
         <ng-container *ngSwitchCase="CalculationType.SecondaryToDBN">
           <!-- TODO: SecondaryToDBNComponent -->
@@ -45,8 +45,8 @@
         <ng-container *ngSwitchCase="CalculationType.DBNToImage">
           <!-- TODO: DBNToImageComponent -->
         </ng-container>
-        <ng-container *ngSwitchCase="CalculationType.TeriaryToMultiSecondary">
-          <!-- TODO: TeriaryToMultiSecondaryComponent -->
+        <ng-container *ngSwitchCase="CalculationType.TertiaryToMultiSecondary">
+          <!-- TODO: TertiaryToMultiSecondaryComponent -->
         </ng-container>
       </ng-container>
     </div>

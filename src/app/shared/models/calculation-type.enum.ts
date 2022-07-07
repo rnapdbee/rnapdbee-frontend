@@ -1,6 +1,6 @@
 export enum CalculationType {
-  TeriaryToDBN,
+  TertiaryToDBN,
   SecondaryToDBN,
   DBNToImage,
-  TeriaryToMultiSecondary,
+  TertiaryToMultiSecondary,
 }

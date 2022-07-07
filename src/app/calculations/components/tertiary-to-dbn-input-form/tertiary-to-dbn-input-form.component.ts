@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { AnalisysTool, ModelSelection, NonCanonicalHandling, StructuralElementsHandling, VisualizationTool } from 'src/app/shared/constants/param-options.const';
-import { TERIARY_TO_DBN_EXAMPLES } from 'src/app/shared/constants/teriary-to-dbn-examples.const';
+import { TERTIARY_TO_DBN_EXAMPLES } from 'src/app/shared/constants/tertiary-to-dbn-examples.const';
 import { Example } from 'src/app/shared/models/example.model';
 
 export enum UploadMethod {
@@ -11,12 +11,12 @@ export enum UploadMethod {
 }
 
 @Component({
-  selector: 'app-teriary-to-dbn-input-form',
-  templateUrl: './teriary-to-dbn-input-form.component.html',
-  styleUrls: ['./teriary-to-dbn-input-form.component.scss']
+  selector: 'app-tertiary-to-dbn-input-form',
+  templateUrl: './tertiary-to-dbn-input-form.component.html',
+  styleUrls: ['./tertiary-to-dbn-input-form.component.scss']
 })
-export class TeriaryToDBNInputFormComponent {
-  examples = TERIARY_TO_DBN_EXAMPLES;
+export class TertiaryToDBNInputFormComponent {
+  examples = TERTIARY_TO_DBN_EXAMPLES;
   UploadMethod: typeof UploadMethod = UploadMethod;
   ModelSelection = ModelSelection;
   AnalisysTool = AnalisysTool;

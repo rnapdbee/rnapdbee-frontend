@@ -1,4 +1,4 @@
-export interface TeriaryToDBNParams {
+export interface TertiaryToDBNParams {
   modelSelection: string,
   analisysTool: string,
   nonCanonicalHandling: string,

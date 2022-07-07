@@ -1,31 +1,75 @@
-<form (ngSubmit)="onSubmit()">
+<form>
   <app-step [value]="1">Upload RNA 3D structure</app-step>
   <mat-radio-group [(ngModel)]="uploadMethod" name="step1">
-    <app-radio-button [value]="UploadMethod.fromPDB" label="from Protein Data Bank"
+
+    <app-radio-button [value]="UploadMethod.fromPDB" label="From Protein Data Bank"
       [checked]="uploadMethod === UploadMethod.fromPDB">
       <div inline class="clearable-input">
         <input type="text" [(ngModel)]="pdbId" name="pdbId" placeholder="PDB ID">
-        <mat-icon (click)="pdbId=null">close</mat-icon>
+        <mat-icon *ngIf="pdbId" (click)="pdbId=null">close</mat-icon>
       </div>
     </app-radio-button>
 
-    <app-radio-button [value]="UploadMethod.fromLocalFile" label="from local file"
+    <app-radio-button [value]="UploadMethod.fromLocalFile" label="From local file"
       [checked]="uploadMethod === UploadMethod.fromLocalFile">
       <div inline class="file-upload">
         <label for="file-input">Browse...</label>
-        <input type="file" accept="text/plain" (change)="uploadFile($event)" id="file-input" name="file">
+        <input type="file" (change)="uploadFile($event)" id="file-input" name="file">
         <span>
           {{ file ? file.name : 'no file selected' }}
         </span>
       </div>
     </app-radio-button>
 
-    <app-radio-button [value]="UploadMethod.fromExample" label="from PDBx/mmCIF example"
+    <app-radio-button [value]="UploadMethod.fromExample" label="From PDBx/mmCIF example"
       [checked]="uploadMethod === UploadMethod.fromExample">
-
+      <app-example-picker [examples]="examples" (selected)="onExampleSelect($event)"></app-example-picker>
     </app-radio-button>
 
   </mat-radio-group>
+</form>
+
+<form [formGroup]="paramsForm" (ngSubmit)="onSubmit()">
+
+  <app-step [value]="2">What to process</app-step>
+  <mat-radio-group formControlName="modelSelection">
+    <app-radio-button *ngFor="let item of ModelSelection" [value]="item.key" [label]="item.label"
+      [checked]="paramsForm.value.modelSelection === item.key">
+    </app-radio-button>
+  </mat-radio-group>
+
+  <app-step [value]="3">Identify base pairs using</app-step>
+  <mat-radio-group formControlName="analisysTool">
+    <app-radio-button *ngFor="let item of AnalisysTool" [value]="item.key" [label]="item.label"
+      [checked]="paramsForm.value.analisysTool === item.key">
+    </app-radio-button>
+  </mat-radio-group>
+
+  <h3 class="subsection">Include non cannonical ones: </h3>
+  <mat-radio-group formControlName="nonCanonicalHandling">
+    <app-radio-button *ngFor="let item of NonCanonicalHandling" [value]="item.key" [label]="item.label"
+      [checked]="paramsForm.value.nonCanonicalHandling === item.key">
+    </app-radio-button>
+  </mat-radio-group>
+
+  <app-checkbox formControlName="removeIsolated" label="Remove isolated, canonical base pairs"></app-checkbox>
+
+  <app-step [value]="4">How to handle structural elements</app-step>
+  <mat-radio-group formControlName="structuralElementsHandling">
+    <app-radio-button *ngFor="let item of StructuralElementsHandling" [value]="item.key" [label]="item.label"
+      [checked]="paramsForm.value.structuralElementsHandling === item.key">
+    </app-radio-button>
+  </mat-radio-group>
+
+  <app-step [value]="5">Visualize secondary structure using</app-step>
+  <mat-radio-group formControlName="visualizationTool">
+    <app-radio-button *ngFor="let item of VisualizationTool" [value]="item.key" [label]="item.label"
+      [checked]="paramsForm.value.visualizationTool === item.key">
+    </app-radio-button>
+  </mat-radio-group>
+
+  <mat-divider></mat-divider>
+
   <div class="submit">
     <button mat-raised-button color="primary" type="submit">Run</button>
   </div>

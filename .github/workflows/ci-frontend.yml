@@ -1,4 +1,4 @@
-name: Node.js CI
+name: CI Angular app
 
 on:
   push:
@@ -30,4 +30,4 @@ jobs:
       - run: npm ci
       - run: npm audit fix --force
       - run: npm run build --if-present
-      - run: npm test
+      - run: npm run test:prod

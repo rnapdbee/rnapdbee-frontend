@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { AnalysisTool, ModelSelection, NonCanonicalHandling, StructuralElementsHandling, VisualizationTool } from 'src/app/shared/constants/param-options.const';
+import { ANALYSIS_TOOL, MODEL_SELECTION, NON_CANONICAL_HANDLING, STRUCTURAL_ELEMENTS_HANDLING, VISUALISATION_TOOL } from 'src/app/shared/constants/param-options.const';
 import { UploadMethod } from 'src/app/shared/models/upload-type.model';
 
 @Component({
@@ -12,21 +12,21 @@ export class TertiaryToDBNInputFormComponent {
   
   constructor(private readonly fb: FormBuilder) {}
 
-  ModelSelection = ModelSelection;
-  AnalysisTool = AnalysisTool;
-  NonCanonicalHandling = NonCanonicalHandling;
-  StructuralElementsHandling = StructuralElementsHandling;
-  VisualizationTool = VisualizationTool;
+  MODEL_SELECTION = MODEL_SELECTION;
+  ANALYSIS_TOOL = ANALYSIS_TOOL;
+  NON_CANONICAL_HANDLING = NON_CANONICAL_HANDLING;
+  STRUCTURAL_ELEMENTS_HANDLING = STRUCTURAL_ELEMENTS_HANDLING;
+  VISUALISATION_TOOL = VISUALISATION_TOOL;
 
   uploadMethod: UploadMethod | undefined;
 
   paramsForm = this.fb.group({
-    modelSelection: [ModelSelection[0].key],
-    analysisTool: [AnalysisTool[0].key],
-    nonCanonicalHandling: [NonCanonicalHandling[0].key],
+    modelSelection: [MODEL_SELECTION[0].key],
+    analysisTool: [ANALYSIS_TOOL[0].key],
+    nonCanonicalHandling: [NON_CANONICAL_HANDLING[0].key],
     removeIsolated: [true],
-    structuralElementsHandling: [StructuralElementsHandling[0].key],
-    visualizationTool: [VisualizationTool[0].key],
+    structuralElementsHandling: [STRUCTURAL_ELEMENTS_HANDLING[0].key],
+    visualizationTool: [VISUALISATION_TOOL[0].key],
   });
 
   isValid() {

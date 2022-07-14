@@ -1,104 +1,104 @@
 import { Option } from "../models/option.model";
 
-export const ModelSelection: Option[] = [
+export const MODEL_SELECTION: Option[] = [
   {
-    key: 'First',
+    key: 'FIRST',
     label: 'First model only',
   },
   {
-    key: 'All',
+    key: 'ALL',
     label: 'All models',
   },
 ];
 
-export const AnalysisTool: Option[] = [ 
+export const ANALYSIS_TOOL: Option[] = [ 
   {
-    key: 'fr3d-python', 
+    key: 'FR3D_PYTHON', 
     label: 'FR3D',
   },
   {
-    key: 'bpnet',
+    key: 'BPNET',
     label: 'bpnet',
   },
   {
-    key: 'baRNAba', 
+    key: 'BARNABA', 
     label: 'baRNAba',
   },
   {
-    key: 'RNAView',
+    key: 'RNAVIEW',
     label: 'RNAView',
   },
   {
-    key: 'MC-Annotate',
+    key: 'MC_ANNOTATE',
     label: 'MC-Annotate',
   },
 ];
 
-export const NonCanonicalHandling = [
+export const NON_CANONICAL_HANDLING = [
   {
-    key: 'VisualizationOnly',
+    key: 'VISUALIZATION_ONLY',
     label: 'In visualization only',
   },
   {
-    key: 'TextAndVisualization',
+    key: 'TEXT_AND_VISUALIZATION',
     label: 'In text and visualization',
   },
   {
-    key: 'Ignore',
+    key: 'IGNORE',
     label: 'Do not include',
   },
 ];
 
-export const StructuralElementsHandling = [
+export const STRUCTURAL_ELEMENTS_HANDLING = [
   {
-    key: 'UsePseudoknots',
+    key: 'USE_PSEUDOKNOTS',
     label: 'Use pseudoknots',
   },
   {
-    key: 'IgnorePseudoknots',
+    key: 'IGNORE_PSEUDOKNOTS',
     label: 'Ignore pseudoknots',
   },
 ];
 
-export const VisualizationTool = [
+export const VISUALISATION_TOOL = [
   {
     key: 'VARNA',
     label: 'VARNA',
   },
   {
-    key: 'PseudoViewer',
+    key: 'PSEUDO_VIEWER',
     label: 'PseudoViewer',
   },
   {
-    key: 'R-Chie',
+    key: 'R_CHIE',
     label: 'R-Chie',
   },
   {
-    key: 'RNAglib',
+    key: 'RNA_GLIB',
     label: 'RNAglib',
   },
   {
-    key: 'forna',
+    key: 'FORNA',
     label: 'forna',
   },
   {
-    key: 'RNApuzzler',
+    key: 'RNA_PUZZLER',
     label: 'RNApuzzler',
   },
   {
-    key: 'RNAturtle',
+    key: 'RNA_TURTLE',
     label: 'RNAturtle',
   },
   {
-    key: 'RNAtraveler',
+    key: 'RNA_TRAVELER',
     label: 'RNAtraveler',
   },
   {
-    key: 'baRNAba',
+    key: 'BARNABA',
     label: 'baRNAba',
   },
   {
-    key: 'None',
+    key: 'NONE',
     label: 'No image',
   },
 ];

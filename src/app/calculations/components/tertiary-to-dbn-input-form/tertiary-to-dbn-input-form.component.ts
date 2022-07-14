@@ -24,7 +24,7 @@ export class TertiaryToDBNInputFormComponent {
     modelSelection: [MODEL_SELECTION[0].key],
     analysisTool: [ANALYSIS_TOOL[0].key],
     nonCanonicalHandling: [NON_CANONICAL_HANDLING[0].key],
-    removeIsolated: [true],
+    removeIsolated: [false],
     structuralElementsHandling: [STRUCTURAL_ELEMENTS_HANDLING[0].key],
     visualizationTool: [VISUALISATION_TOOL[0].key],
   });

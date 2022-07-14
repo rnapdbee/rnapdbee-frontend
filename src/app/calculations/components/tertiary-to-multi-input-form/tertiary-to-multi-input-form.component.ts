@@ -19,8 +19,8 @@ export class TertiaryToMultiInputFormComponent {
 
   paramsForm = this.fb.group({
     modelSelection: [MODEL_SELECTION[0].key],
-    includeNonCanonical: [true],
-    removeIsolated: [true],
+    includeNonCanonical: [false],
+    removeIsolated: [false],
     visualizationTool: [VISUALISATION_TOOL[0].key],
   });
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { STRUCTURAL_ELEMENTS_HANDLING, VISUALISATION_TOOL } from 'src/app/shared/constants/param-options.const';
 import { UploadMethod } from 'src/app/shared/models/upload-type.model';
@@ -18,7 +18,7 @@ export class SecondaryToDbnInputFormComponent {
   uploadMethod: UploadMethod | undefined;
 
   paramsForm = this.fb.group({
-    removeIsolated: [true],
+    removeIsolated: [false],
     structuralElementsHandling: [STRUCTURAL_ELEMENTS_HANDLING[0].key],
     visualizationTool: [VISUALISATION_TOOL[0].key]
   })

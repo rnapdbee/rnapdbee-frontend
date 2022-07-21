@@ -18,7 +18,9 @@ export class NavbarComponent {
   }
 
   isActive(path: string): boolean {
-    if (this.router.url === `/${path}`) return true;
+    if (this.router.url === `/${path}`) {
+      return true;
+    }
     return false;
   }
 }

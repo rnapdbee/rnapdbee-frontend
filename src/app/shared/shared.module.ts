@@ -38,6 +38,6 @@ const MODULES = [
   exports: [
     ...COMPONENTS,
     ...MODULES,
-  ]
+  ],
 })
 export class SharedModule { }

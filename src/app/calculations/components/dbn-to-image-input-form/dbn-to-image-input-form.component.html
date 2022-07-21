@@ -1,6 +1,6 @@
 <form [formGroup]="paramsForm" (ngSubmit)="onSubmit()">
   <app-step [value]="1">Upload dot-bracket</app-step>
-  <app-dbn-to-image-upload-form (uploadChange)="onUploadMethodChange($event)"></app-dbn-to-image-upload-form>
+  <app-dbn-upload-form (uploadChange)="onUploadMethodChange($event)"></app-dbn-upload-form>
 
   <app-step [value]="2">How to handle structural elements</app-step>
   <mat-radio-group formControlName="structuralElementsHandling">

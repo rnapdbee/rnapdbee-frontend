@@ -1,6 +1,6 @@
 <form [formGroup]="paramsForm" (ngSubmit)="onSubmit()">
   <app-step [value]="1">Upload RNA 3D structure</app-step>
-  <app-tertiary-to-dbn-upload-form (uploadChange)="onUploadMethodChange($event)"></app-tertiary-to-dbn-upload-form>
+  <app-tertiary-upload-form (uploadChange)="onUploadMethodChange($event)"></app-tertiary-upload-form>
 
   <app-step [value]="2">What to process</app-step>
   <mat-radio-group formControlName="modelSelection">

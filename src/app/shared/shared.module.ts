@@ -12,6 +12,9 @@ import { ExamplePickerComponent } from './components/example-picker/example-pick
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RadioButtonComponent } from './components/radio-button/radio-button.component';
 import { StepComponent } from './components/step/step.component';
+import { DbnUploadFormComponent } from './components/upload-forms/dbn-upload-form/dbn-upload-form.component';
+import { SecondaryUploadFormComponent } from './components/upload-forms/secondary-upload-form/secondary-upload-form.component';
+import { TertiaryUploadFormComponent } from './components/upload-forms/tertiary-upload-form/tertiary-upload-form.component';
 
 
 const COMPONENTS = [
@@ -20,6 +23,9 @@ const COMPONENTS = [
   NavbarComponent,
   RadioButtonComponent,
   StepComponent,
+  DbnUploadFormComponent,
+  SecondaryUploadFormComponent,
+  TertiaryUploadFormComponent,
 ];
 
 const MODULES = [

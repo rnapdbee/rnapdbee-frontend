@@ -4,11 +4,11 @@ import { Example } from 'src/app/shared/models/example.model';
 import { UploadMethod, UploadMethodType } from 'src/app/shared/models/upload-type.model';
 
 @Component({
-  selector: 'app-tertiary-to-dbn-upload-form',
-  templateUrl: './tertiary-to-dbn-upload-form.component.html',
-  styleUrls: ['./tertiary-to-dbn-upload-form.component.scss']
+  selector: 'app-tertiary-upload-form',
+  templateUrl: './tertiary-upload-form.component.html',
+  styleUrls: ['./tertiary-upload-form.component.scss']
 })
-export class TertiaryToDbnUploadFormComponent implements OnInit {
+export class TertiaryUploadFormComponent implements OnInit {
 
   @Output() uploadChange = new EventEmitter<UploadMethod>()
 

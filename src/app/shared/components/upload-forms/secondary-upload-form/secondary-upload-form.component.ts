@@ -1,30 +1,28 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { TERTIARY_TO_MULTI_EXAMPLES } from 'src/app/shared/constants/tertiary-to-multi-examples.const';
+import { SECONDARY_TO_DBN_BPSEQ_EXAMPLES, SECONDARY_TO_DBN_CT_EXAMPLES } from 'src/app/shared/constants/secondary-to-dbn-examples.const';
 import { Example } from 'src/app/shared/models/example.model';
 import { UploadMethod, UploadMethodType } from 'src/app/shared/models/upload-type.model';
 
 @Component({
-  selector: 'app-tertiary-to-multi-upload-form',
-  templateUrl: './tertiary-to-multi-upload-form.component.html',
-  styleUrls: ['./tertiary-to-multi-upload-form.component.scss']
+  selector: 'app-secondary-upload-form',
+  templateUrl: './secondary-upload-form.component.html',
+  styleUrls: ['./secondary-upload-form.component.scss']
 })
-export class TertiaryToMultiUploadFormComponent implements OnInit {
+export class SecondaryUploadFormComponent implements OnInit {
 
   @Output() uploadChange = new EventEmitter<UploadMethod>()
 
   UploadType: typeof UploadMethodType = UploadMethodType;
-  currentUploadType = this.UploadType.fromPDB;
-  examples = TERTIARY_TO_MULTI_EXAMPLES;
-
-  get pdbId() { return this._pdbId; }
-  set pdbId(value: string) { this.setAndValidatePdbId(value); }
-  private _pdbId = '';
-  _pdbIdError = '';
+  currentUploadType = this.UploadType.fromLocalFile;
+  bpseq_examples = SECONDARY_TO_DBN_BPSEQ_EXAMPLES;
+  ct_examples = SECONDARY_TO_DBN_CT_EXAMPLES;
 
   file: File | null = null;
   _fileError = '';
 
-  example: Example | null = null;
+  bpseqExample: Example | null = null;
+  ctExample: Example | null = null;
+  exampleType: string = '';
 
   ngOnInit(): void {
     this.notifyChanges();
@@ -38,20 +36,29 @@ export class TertiaryToMultiUploadFormComponent implements OnInit {
     }
   }
 
-  setAndValidatePdbId(value: string): void {
-    // TODO: implement validation for pdbId
-    this._pdbId = value;
-    this.notifyChanges();
-  }
-
   setAndValidateFile(file: File): void {
     // TODO: implement validation for file
     this.file = file;
     this.notifyChanges();
   }
 
-  onExampleSelect(event: Example): void {
-    this.example = event;
+  isExampleChecked(type: string): boolean {
+    return this.exampleType === type &&
+      this.currentUploadType === this.UploadType.fromExample;
+  }
+
+  onBpseqExampleSelect(event: Example): void {
+    this.bpseqExample = event;
+    this.notifyChanges();
+  }
+
+  onCtExampleSelect(event: Example): void {
+    this.ctExample = event;
+    this.notifyChanges();
+  }
+
+  onExampleTypeChange(type: string): void {
+    this.exampleType = type;
     this.notifyChanges();
   }
 
@@ -61,17 +68,12 @@ export class TertiaryToMultiUploadFormComponent implements OnInit {
 
   notifyChanges(): void {
     let payload: UploadMethod = {
-      type: UploadMethodType.fromPDB,
+      type: UploadMethodType.fromLocalFile,
       data: null,
       valid: false,
     };
 
     switch (this.currentUploadType) {
-      case UploadMethodType.fromPDB:
-        payload.type = UploadMethodType.fromPDB;
-        payload.data = this.pdbId;
-        payload.valid = !this._pdbIdError && !!this.pdbId;
-        break;
       case UploadMethodType.fromLocalFile:
         payload.type = UploadMethodType.fromLocalFile;
         payload.data = this.file;
@@ -79,8 +81,8 @@ export class TertiaryToMultiUploadFormComponent implements OnInit {
         break;
       case UploadMethodType.fromExample:
         payload.type = UploadMethodType.fromExample;
-        payload.data = this.example;
-        payload.valid = !!this.example;
+        payload.data = this.exampleType === 'bpseq' ? this.bpseqExample : this.ctExample;
+        payload.valid = this.exampleType === 'bpseq' ? !!this.bpseqExample : !!this.ctExample;
         break;
       default:
         return;

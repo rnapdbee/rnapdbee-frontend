@@ -4,12 +4,12 @@ import { Example } from 'src/app/shared/models/example.model';
 import { UploadMethod, UploadMethodType } from 'src/app/shared/models/upload-type.model';
 
 @Component({
-  selector: 'app-dbn-to-image-upload-form',
-  templateUrl: './dbn-to-image-upload-form.component.html',
-  styleUrls: ['./dbn-to-image-upload-form.component.scss']
+  selector: 'app-dbn-upload-form',
+  templateUrl: './dbn-upload-form.component.html',
+  styleUrls: ['./dbn-upload-form.component.scss']
 })
-export class DbnToImageUploadFormComponent implements OnInit {
-
+export class DbnUploadFormComponent implements OnInit {
+  
   @Output() uploadChange = new EventEmitter<UploadMethod>()
 
   UploadType: typeof UploadMethodType = UploadMethodType;

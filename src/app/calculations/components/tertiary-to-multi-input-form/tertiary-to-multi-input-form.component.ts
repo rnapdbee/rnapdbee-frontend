@@ -25,10 +25,7 @@ export class TertiaryToMultiInputFormComponent {
   });
 
   isValid(): boolean {
-    if (this.uploadMethod && this.uploadMethod.valid) {
-      return true;
-    }
-    return false;
+    return !!(this.uploadMethod && this.uploadMethod.valid);
   }
 
   onUploadMethodChange(event: UploadMethod) {

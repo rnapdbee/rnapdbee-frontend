@@ -10,7 +10,7 @@ import { UploadMethod } from 'src/app/shared/models/upload-type.model';
 })
 export class TertiaryToMultiInputFormComponent {
 
-  constructor(private readonly fb: FormBuilder) {}
+  constructor(private readonly fb: FormBuilder) { }
 
   MODEL_SELECTION = MODEL_SELECTION;
   VISUALISATION_TOOL = VISUALISATION_TOOL;
@@ -24,8 +24,8 @@ export class TertiaryToMultiInputFormComponent {
     visualizationTool: [VISUALISATION_TOOL[0].key],
   });
 
-  isValid() {
-    if(this.uploadMethod && this.uploadMethod.valid) {
+  isValid(): boolean {
+    if (this.uploadMethod && this.uploadMethod.valid) {
       return true;
     }
     return false;
@@ -34,8 +34,8 @@ export class TertiaryToMultiInputFormComponent {
   onUploadMethodChange(event: UploadMethod) {
     this.uploadMethod = event;
   }
-  
-  onSubmit() {
+
+  onSubmit(): void {
     // TODO: submit form to service
     console.log(this.paramsForm.value);
     console.log(this.uploadMethod);

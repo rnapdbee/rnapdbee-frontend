@@ -21,16 +21,16 @@ export class CheckboxComponent {
   @Input() expanded = false;
   val: boolean | undefined = undefined;
 
-  toggleExpand() {
+  toggleExpand(): void {
     this.expanded = !this.expanded;
   }
 
-  onChange(_: boolean) { }
+  onChange(_: boolean): void { }
 
-  onTouch(_: boolean) { }
+  onTouch(_: boolean): void { }
 
   set value(val: boolean) {
-    if( val !== undefined && this.val !== val){
+    if (val !== undefined && this.val !== val) {
       this.val = val;
       this.onChange(val);
       this.onTouch(val);
@@ -38,15 +38,15 @@ export class CheckboxComponent {
   }
   get value() { return !!this.val; }
 
-  writeValue(value: boolean){ 
+  writeValue(value: boolean): void {
     this.value = value;
   }
 
-  registerOnChange(fn: any){
+  registerOnChange(fn: any): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any){
+  registerOnTouched(fn: any): void {
     this.onTouch = fn;
   }
 }

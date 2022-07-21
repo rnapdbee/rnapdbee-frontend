@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { STRUCTURAL_ELEMENTS_HANDLING, VISUALISATION_TOOL } from 'src/app/shared/constants/param-options.const';
 import { UploadMethod } from 'src/app/shared/models/upload-type.model';
@@ -22,18 +22,18 @@ export class DbnToImageInputFormComponent {
     visualizationTool: [VISUALISATION_TOOL[0].key],
   });
 
-  isValid() {
-    if(this.uploadMethod && this.uploadMethod.valid) {
+  isValid(): boolean {
+    if (this.uploadMethod && this.uploadMethod.valid) {
       return true;
     }
     return false;
   }
 
-  onUploadMethodChange(event: UploadMethod) {
+  onUploadMethodChange(event: UploadMethod): void {
     this.uploadMethod = event;
   }
 
-  onSubmit() {
+  onSubmit(): void {
     // TODO: submit form to service
     console.log(this.paramsForm.value);
     console.log(this.uploadMethod);

@@ -23,12 +23,12 @@ export class SecondaryToDbnUploadFormComponent implements OnInit {
   bpseqExample: Example | null = null;
   ctExample: Example | null = null;
   exampleType: string = '';
-  
+
   ngOnInit(): void {
     this.notifyChanges();
   }
 
-  uploadFile(event: Event) {
+  uploadFile(event: Event): void {
     let files = (event.target as HTMLInputElement).files;
     if (files && files?.length > 0) {
       let file = files[0];
@@ -36,37 +36,37 @@ export class SecondaryToDbnUploadFormComponent implements OnInit {
     }
   }
 
-  setAndValidateFile(file: File) {
+  setAndValidateFile(file: File): void {
     // TODO: implement validation for file
     this.file = file;
     this.notifyChanges();
   }
 
-  isExampleChecked(type: string) {
+  isExampleChecked(type: string): boolean {
     return this.exampleType === type &&
       this.currentUploadType === this.UploadType.fromExample;
   }
 
-  onBpseqExampleSelect(event: Example) {
+  onBpseqExampleSelect(event: Example): void {
     this.bpseqExample = event;
     this.notifyChanges();
   }
 
-  onCtExampleSelect(event: Example) {
+  onCtExampleSelect(event: Example): void {
     this.ctExample = event;
     this.notifyChanges();
   }
 
-  onExampleTypeChange(type: string) {
+  onExampleTypeChange(type: string): void {
     this.exampleType = type;
     this.notifyChanges();
   }
 
-  onMethodChange() {
+  onMethodChange(): void {
     this.notifyChanges();
   }
 
-  notifyChanges() {
+  notifyChanges(): void {
     let payload: UploadMethod = {
       type: UploadMethodType.fromLocalFile,
       data: null,

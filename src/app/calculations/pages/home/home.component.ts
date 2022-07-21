@@ -10,7 +10,7 @@ export class HomeComponent {
   CalculationType: typeof CalculationType = CalculationType;
   calculationType = CalculationType.TertiaryToDBN;
 
-  setCalculationType(type: CalculationType) {
+  setCalculationType(type: CalculationType): void {
     this.calculationType = type;
   }
 }

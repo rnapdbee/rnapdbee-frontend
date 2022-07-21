@@ -23,18 +23,18 @@ export class SecondaryToDbnInputFormComponent {
     visualizationTool: [VISUALISATION_TOOL[0].key]
   })
 
-  isValid() {
-    if(this.uploadMethod && this.uploadMethod.valid) {
+  isValid(): boolean {
+    if (this.uploadMethod && this.uploadMethod.valid) {
       return true;
     }
     return false;
   }
 
-  onUploadMethodChange(event: UploadMethod) {
+  onUploadMethodChange(event: UploadMethod): void {
     this.uploadMethod = event;
   }
 
-  onSubmit() {
+  onSubmit(): void {
     // TODO: submit form to service
     console.log(this.paramsForm.value);
     console.log(this.uploadMethod);

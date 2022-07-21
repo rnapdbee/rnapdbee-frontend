@@ -26,11 +26,11 @@ export class TertiaryToMultiUploadFormComponent implements OnInit {
 
   example: Example | null = null;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.notifyChanges();
   }
 
-  uploadFile(event: Event) {
+  uploadFile(event: Event): void {
     let files = (event.target as HTMLInputElement).files;
     if (files && files?.length > 0) {
       let file = files[0];
@@ -38,28 +38,28 @@ export class TertiaryToMultiUploadFormComponent implements OnInit {
     }
   }
 
-  setAndValidatePdbId(value: string) {
+  setAndValidatePdbId(value: string): void {
     // TODO: implement validation for pdbId
     this._pdbId = value;
     this.notifyChanges();
   }
 
-  setAndValidateFile(file: File) {
+  setAndValidateFile(file: File): void {
     // TODO: implement validation for file
     this.file = file;
     this.notifyChanges();
   }
 
-  onExampleSelect(event: Example) {
+  onExampleSelect(event: Example): void {
     this.example = event;
     this.notifyChanges();
   }
 
-  onMethodChange() {
+  onMethodChange(): void {
     this.notifyChanges();
   }
 
-  notifyChanges() {
+  notifyChanges(): void {
     let payload: UploadMethod = {
       type: UploadMethodType.fromPDB,
       data: null,

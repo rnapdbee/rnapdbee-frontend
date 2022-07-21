@@ -11,13 +11,13 @@ export class ExamplePickerComponent implements OnInit {
   @Input() examples: Example[] = [];
   @Output() selected = new EventEmitter<Example>();
   current: Example | undefined;
-  
-  ngOnInit() {
+
+  ngOnInit(): void {
     this.current = this.examples[0];
     this.selected.emit(this.current);
   }
 
-  select(item: Example) {
+  select(item: Example): void {
     this.current = item;
     this.selected.emit(this.current);
   }

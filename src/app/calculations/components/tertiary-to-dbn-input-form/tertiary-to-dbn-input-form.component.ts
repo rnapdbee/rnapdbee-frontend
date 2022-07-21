@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ANALYSIS_TOOL, MODEL_SELECTION, NON_CANONICAL_HANDLING, STRUCTURAL_ELEMENTS_HANDLING, VISUALISATION_TOOL } from 'src/app/shared/constants/param-options.const';
+import {
+  ANALYSIS_TOOL,
+  MODEL_SELECTION,
+  NON_CANONICAL_HANDLING,
+  STRUCTURAL_ELEMENTS_HANDLING,
+  VISUALISATION_TOOL
+} from 'src/app/shared/constants/param-options.const';
 import { UploadMethod } from 'src/app/shared/models/upload-type.model';
 
 @Component({
@@ -9,8 +15,8 @@ import { UploadMethod } from 'src/app/shared/models/upload-type.model';
   styleUrls: ['./tertiary-to-dbn-input-form.component.scss']
 })
 export class TertiaryToDBNInputFormComponent {
-  
-  constructor(private readonly fb: FormBuilder) {}
+
+  constructor(private readonly fb: FormBuilder) { }
 
   MODEL_SELECTION = MODEL_SELECTION;
   ANALYSIS_TOOL = ANALYSIS_TOOL;
@@ -29,8 +35,8 @@ export class TertiaryToDBNInputFormComponent {
     visualizationTool: [VISUALISATION_TOOL[0].key],
   });
 
-  isValid() {
-    if(this.uploadMethod && this.uploadMethod.valid) {
+  isValid(): boolean {
+    if (this.uploadMethod && this.uploadMethod.valid) {
       return true;
     }
     return false;
@@ -39,8 +45,8 @@ export class TertiaryToDBNInputFormComponent {
   onUploadMethodChange(event: UploadMethod) {
     this.uploadMethod = event;
   }
-  
-  onSubmit() {
+
+  onSubmit(): void {
     // TODO: submit form to service
     console.log(this.paramsForm.value);
     console.log(this.uploadMethod);

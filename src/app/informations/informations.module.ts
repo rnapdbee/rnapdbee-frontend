@@ -10,8 +10,8 @@ const MODULES = [
 @NgModule({
   declarations: [],
   imports: [
-    ...MODULES
+    ...MODULES,
   ],
-  exports: []
+  exports: [],
 })
 export class InformationsModule { }

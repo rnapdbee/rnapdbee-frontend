@@ -1,0 +1,26 @@
+@import "src/variables";
+
+:host {
+  form {
+    .file-upload {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      label {
+        padding: 5px .75rem;
+        border-radius: 5px;
+        border: 1px solid $accent;
+      }
+
+      input[type=file] {
+        display: none;
+      }
+
+      span {
+        margin-left: .5rem;
+        color: $accent;
+      }
+    }
+  }
+}

@@ -55,3 +55,7 @@
     }
   }
 }
+
+::ng-deep .mat-radio-label {
+  white-space: unset !important;
+}

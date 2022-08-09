@@ -6,10 +6,9 @@ import { UploadMethod } from 'src/app/shared/models/upload-type.model';
 @Component({
   selector: 'app-dbn-to-image-input-form',
   templateUrl: './dbn-to-image-input-form.component.html',
-  styleUrls: ['./dbn-to-image-input-form.component.scss']
+  styleUrls: ['./dbn-to-image-input-form.component.scss'],
 })
 export class DbnToImageInputFormComponent {
-
   constructor(private readonly fb: FormBuilder) { }
 
   STRUCTURAL_ELEMENTS_HANDLING = STRUCTURAL_ELEMENTS_HANDLING;
@@ -32,7 +31,9 @@ export class DbnToImageInputFormComponent {
 
   onSubmit(): void {
     // TODO: submit form to service
+    // eslint-disable-next-line no-console
     console.log(this.paramsForm.value);
+    // eslint-disable-next-line no-console
     console.log(this.uploadMethod);
   }
 }

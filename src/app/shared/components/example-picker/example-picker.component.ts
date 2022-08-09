@@ -4,10 +4,9 @@ import { Example } from '../../models/example.model';
 @Component({
   selector: 'app-example-picker',
   templateUrl: './example-picker.component.html',
-  styleUrls: ['./example-picker.component.scss']
+  styleUrls: ['./example-picker.component.scss'],
 })
 export class ExamplePickerComponent implements OnInit {
-
   @Input() examples: Example[] = [];
   @Output() selected = new EventEmitter<Example>();
   current: Example | undefined;

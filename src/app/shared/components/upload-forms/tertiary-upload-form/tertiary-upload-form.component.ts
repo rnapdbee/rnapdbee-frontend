@@ -6,11 +6,10 @@ import { UploadMethod, UploadMethodType } from 'src/app/shared/models/upload-typ
 @Component({
   selector: 'app-tertiary-upload-form',
   templateUrl: './tertiary-upload-form.component.html',
-  styleUrls: ['./tertiary-upload-form.component.scss']
+  styleUrls: ['./tertiary-upload-form.component.scss'],
 })
 export class TertiaryUploadFormComponent implements OnInit {
-
-  @Output() uploadChange = new EventEmitter<UploadMethod>()
+  @Output() uploadChange = new EventEmitter<UploadMethod>();
 
   UploadType: typeof UploadMethodType = UploadMethodType;
   currentUploadType = this.UploadType.fromPDB;
@@ -31,9 +30,9 @@ export class TertiaryUploadFormComponent implements OnInit {
   }
 
   uploadFile(event: Event): void {
-    let files = (event.target as HTMLInputElement).files;
+    const { files } = event.target as HTMLInputElement;
     if (files && files?.length > 0) {
-      let file = files[0];
+      const file = files[0];
       this.setAndValidateFile(file);
     }
   }
@@ -60,7 +59,7 @@ export class TertiaryUploadFormComponent implements OnInit {
   }
 
   notifyChanges(): void {
-    let payload: UploadMethod = {
+    const payload: UploadMethod = {
       type: UploadMethodType.fromPDB,
       data: null,
       valid: false,

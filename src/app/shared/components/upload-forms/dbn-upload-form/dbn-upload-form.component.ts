@@ -6,11 +6,10 @@ import { UploadMethod, UploadMethodType } from 'src/app/shared/models/upload-typ
 @Component({
   selector: 'app-dbn-upload-form',
   templateUrl: './dbn-upload-form.component.html',
-  styleUrls: ['./dbn-upload-form.component.scss']
+  styleUrls: ['./dbn-upload-form.component.scss'],
 })
 export class DbnUploadFormComponent implements OnInit {
-  
-  @Output() uploadChange = new EventEmitter<UploadMethod>()
+  @Output() uploadChange = new EventEmitter<UploadMethod>();
 
   UploadType: typeof UploadMethodType = UploadMethodType;
   currentUploadType = this.UploadType.fromLocalFile;
@@ -26,9 +25,9 @@ export class DbnUploadFormComponent implements OnInit {
   }
 
   uploadFile(event: Event): void {
-    let files = (event.target as HTMLInputElement).files;
+    const { files } = event.target as HTMLInputElement;
     if (files && files?.length > 0) {
-      let file = files[0];
+      const file = files[0];
       this.setAndValidateFile(file);
     }
   }
@@ -49,7 +48,7 @@ export class DbnUploadFormComponent implements OnInit {
   }
 
   notifyChanges(): void {
-    let payload: UploadMethod = {
+    const payload: UploadMethod = {
       type: UploadMethodType.fromLocalFile,
       data: null,
       valid: false,

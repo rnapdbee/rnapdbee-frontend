@@ -6,10 +6,9 @@ import { UploadMethod } from 'src/app/shared/models/upload-type.model';
 @Component({
   selector: 'app-tertiary-to-multi-input-form',
   templateUrl: './tertiary-to-multi-input-form.component.html',
-  styleUrls: ['./tertiary-to-multi-input-form.component.scss']
+  styleUrls: ['./tertiary-to-multi-input-form.component.scss'],
 })
 export class TertiaryToMultiInputFormComponent {
-
   constructor(private readonly fb: FormBuilder) { }
 
   MODEL_SELECTION = MODEL_SELECTION;
@@ -34,7 +33,9 @@ export class TertiaryToMultiInputFormComponent {
 
   onSubmit(): void {
     // TODO: submit form to service
+    // eslint-disable-next-line no-console
     console.log(this.paramsForm.value);
+    // eslint-disable-next-line no-console
     console.log(this.uploadMethod);
   }
 }

@@ -1,4 +1,4 @@
-import { Option } from "../models/option.model";
+import { Option } from '../models/option.model';
 
 export const MODEL_SELECTION: Option[] = [
   {
@@ -11,9 +11,9 @@ export const MODEL_SELECTION: Option[] = [
   },
 ];
 
-export const ANALYSIS_TOOL: Option[] = [ 
+export const ANALYSIS_TOOL: Option[] = [
   {
-    key: 'FR3D_PYTHON', 
+    key: 'FR3D_PYTHON',
     label: 'FR3D',
   },
   {
@@ -21,7 +21,7 @@ export const ANALYSIS_TOOL: Option[] = [
     label: 'bpnet',
   },
   {
-    key: 'BARNABA', 
+    key: 'BARNABA',
     label: 'baRNAba',
   },
   {

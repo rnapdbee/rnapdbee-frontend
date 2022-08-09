@@ -5,17 +5,16 @@ import {
   MODEL_SELECTION,
   NON_CANONICAL_HANDLING,
   STRUCTURAL_ELEMENTS_HANDLING,
-  VISUALISATION_TOOL
+  VISUALISATION_TOOL,
 } from 'src/app/shared/constants/param-options.const';
 import { UploadMethod } from 'src/app/shared/models/upload-type.model';
 
 @Component({
   selector: 'app-tertiary-to-dbn-input-form',
   templateUrl: './tertiary-to-dbn-input-form.component.html',
-  styleUrls: ['./tertiary-to-dbn-input-form.component.scss']
+  styleUrls: ['./tertiary-to-dbn-input-form.component.scss'],
 })
 export class TertiaryToDBNInputFormComponent {
-
   constructor(private readonly fb: FormBuilder) { }
 
   MODEL_SELECTION = MODEL_SELECTION;
@@ -45,7 +44,9 @@ export class TertiaryToDBNInputFormComponent {
 
   onSubmit(): void {
     // TODO: submit form to service
+    // eslint-disable-next-line no-console
     console.log(this.paramsForm.value);
+    // eslint-disable-next-line no-console
     console.log(this.uploadMethod);
   }
 }

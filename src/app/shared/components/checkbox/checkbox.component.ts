@@ -10,10 +10,11 @@ import { OpenCloseAnimation } from '../../animations/open-close';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
+      // eslint-disable-next-line no-use-before-define
       useExisting: forwardRef(() => CheckboxComponent),
       multi: true,
     },
-  ]
+  ],
 })
 export class CheckboxComponent {
   @Input() label = '';
@@ -25,9 +26,13 @@ export class CheckboxComponent {
     this.expanded = !this.expanded;
   }
 
-  onChange(_: boolean): void { }
+  onChange(_: boolean): void {
+    // do nothing.
+  }
 
-  onTouch(_: boolean): void { }
+  onTouch(_: boolean): void {
+    // do nothing.
+  }
 
   set value(val: boolean) {
     if (val !== undefined && this.val !== val) {
@@ -42,11 +47,11 @@ export class CheckboxComponent {
     this.value = value;
   }
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: never): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: never): void {
     this.onTouch = fn;
   }
 }

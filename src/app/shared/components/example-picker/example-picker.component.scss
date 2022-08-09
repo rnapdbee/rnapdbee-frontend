@@ -1,0 +1,30 @@
+@import "src/variables";
+
+:host {
+  p {
+    color: $accent;
+    margin-bottom: .5rem;
+  }
+
+  .example-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: .5rem;
+
+    .example {
+      margin-right: .5rem;
+      margin-bottom: .5rem;
+
+      button {
+        padding: 0;
+        min-width: 30px;
+        line-height: 30px;
+
+        @include mobile {
+          min-width: 40px;
+          line-height: 40px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,75 @@
+@import "src/variables";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+
+  .description {
+    @include card;
+
+    h2 {
+      margin-bottom: .5rem;
+    }
+
+    ul {
+      margin: 12px auto;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .calculations {
+    display: flex;
+    margin-top: 1rem;
+
+    .sidebar {
+      @include card-l;
+      padding: 0;
+      flex-basis: 300px;
+
+      * {
+        margin: 0;
+        padding: 1rem;
+        border-bottom: $border;
+      }
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        cursor: pointer;
+
+        &.active {
+          font-weight: bold;
+          background-color: $backdrop;
+        }
+      }
+    }
+
+    .content {
+      @include card-r;
+
+      .container {
+        max-width: 1000px;
+      }
+    }
+
+    @include mobile {
+      flex-direction: column;
+
+      .sidebar {
+        @include card-t;
+        padding: 0;
+        flex-basis: unset;
+      }
+
+      .content {
+        @include card-b;
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+<form [formGroup]="paramsForm" (ngSubmit)="onSubmit()">
+  <app-step [value]="1">Upload RNA base pair list</app-step>
+  <app-secondary-upload-form (uploadChange)="onUploadMethodChange($event)"></app-secondary-upload-form>
+
+  <app-checkbox formControlName="removeIsolated" label="Remove isolated, canonical base pairs"></app-checkbox>
+
+  <app-step [value]="2">How to handle structural elements</app-step>
+  <mat-radio-group formControlName="structuralElementsHandling">
+    <app-radio-button *ngFor="let item of STRUCTURAL_ELEMENTS_HANDLING" [value]="item.key" [label]="item.label"
+      [checked]="paramsForm.value.structuralElementsHandling === item.key">
+    </app-radio-button>
+  </mat-radio-group>
+
+  <app-step [value]="3">Visualize secondary structure using</app-step>
+  <mat-radio-group formControlName="visualizationTool">
+    <app-radio-button *ngFor="let item of VISUALISATION_TOOL" [value]="item.key" [label]="item.label"
+      [checked]="paramsForm.value.visualizationTool === item.key">
+    </app-radio-button>
+  </mat-radio-group>
+  
+  <mat-divider></mat-divider>
+
+  <div class="submit">
+    <button mat-raised-button color="primary" type="submit" [disabled]="!isValid()">Run</button>
+  </div>
+</form>

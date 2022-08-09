@@ -6,10 +6,9 @@ import { UploadMethod } from 'src/app/shared/models/upload-type.model';
 @Component({
   selector: 'app-secondary-to-dbn-input-form',
   templateUrl: './secondary-to-dbn-input-form.component.html',
-  styleUrls: ['./secondary-to-dbn-input-form.component.scss']
+  styleUrls: ['./secondary-to-dbn-input-form.component.scss'],
 })
 export class SecondaryToDbnInputFormComponent {
-
   constructor(private readonly fb: FormBuilder) { }
 
   STRUCTURAL_ELEMENTS_HANDLING = STRUCTURAL_ELEMENTS_HANDLING;
@@ -20,8 +19,8 @@ export class SecondaryToDbnInputFormComponent {
   paramsForm = this.fb.group({
     removeIsolated: [false],
     structuralElementsHandling: [STRUCTURAL_ELEMENTS_HANDLING[0].key],
-    visualizationTool: [VISUALISATION_TOOL[0].key]
-  })
+    visualizationTool: [VISUALISATION_TOOL[0].key],
+  });
 
   isValid(): boolean {
     return !!(this.uploadMethod && this.uploadMethod.valid);
@@ -33,7 +32,9 @@ export class SecondaryToDbnInputFormComponent {
 
   onSubmit(): void {
     // TODO: submit form to service
+    // eslint-disable-next-line no-console
     console.log(this.paramsForm.value);
+    // eslint-disable-next-line no-console
     console.log(this.uploadMethod);
   }
 }

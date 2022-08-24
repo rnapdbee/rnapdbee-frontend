@@ -18,7 +18,7 @@ export class DbnUploadFormComponent implements OnInit {
   examples = DBN_TO_IMAGE_EXAMPLES;
 
   file: File | null = null;
-  fileError = '';
+  fileError: string | null = null;
 
   example: Example | null = null;
 
@@ -45,12 +45,12 @@ export class DbnUploadFormComponent implements OnInit {
     this.notifyChanges();
   }
 
-  private setAndValidateFile(file: File): void {
+  setAndValidateFile(file: File): void {
     this.fileValidatorService.validate(file, ['dbn']).subscribe({
       next: (data: ValidationPayload) => {
         if (data.valid) {
           this.file = file;
-          this.fileError = '';
+          this.fileError = null;
           this.notifyChanges();
         } else {
           this.raiseFileError(data.message);
@@ -66,6 +66,7 @@ export class DbnUploadFormComponent implements OnInit {
     this.fileError = error;
     this.file = null;
     this.clearFileInput();
+    this.notifyChanges();
   }
 
   private clearFileInput() {
@@ -85,7 +86,7 @@ export class DbnUploadFormComponent implements OnInit {
       case UploadMethodType.fromLocalFile:
         payload.type = UploadMethodType.fromLocalFile;
         payload.data = this.file;
-        payload.valid = !this.fileError && !!this.file;
+        payload.valid = this.fileError === null && !!this.file;
         break;
       case UploadMethodType.fromExample:
         payload.type = UploadMethodType.fromExample;

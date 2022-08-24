@@ -19,7 +19,7 @@ export class SecondaryUploadFormComponent implements OnInit {
   ct_examples = SECONDARY_TO_DBN_CT_EXAMPLES;
 
   file: File | null = null;
-  fileError = '';
+  fileError: string | null = null;
 
   bpseqExample: Example | null = null;
   ctExample: Example | null = null;
@@ -63,12 +63,12 @@ export class SecondaryUploadFormComponent implements OnInit {
     this.notifyChanges();
   }
 
-  private setAndValidateFile(file: File): void {
+  setAndValidateFile(file: File): void {
     this.fileValidatorService.validate(file, ['bpseq', 'ct']).subscribe({
       next: (data: ValidationPayload) => {
         if (data.valid) {
           this.file = file;
-          this.fileError = '';
+          this.fileError = null;
           this.notifyChanges();
         } else {
           this.raiseFileError(data.message);
@@ -84,6 +84,7 @@ export class SecondaryUploadFormComponent implements OnInit {
     this.fileError = error;
     this.file = null;
     this.clearFileInput();
+    this.notifyChanges();
   }
 
   private clearFileInput() {
@@ -103,7 +104,7 @@ export class SecondaryUploadFormComponent implements OnInit {
       case UploadMethodType.fromLocalFile:
         payload.type = UploadMethodType.fromLocalFile;
         payload.data = this.file;
-        payload.valid = !this.fileError && !!this.file;
+        payload.valid = this.fileError === null && !!this.file;
         break;
       case UploadMethodType.fromExample:
         payload.type = UploadMethodType.fromExample;

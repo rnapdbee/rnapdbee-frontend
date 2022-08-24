@@ -20,10 +20,10 @@ export class TertiaryUploadFormComponent implements OnInit {
   get pdbId() { return this._pdbId; }
   set pdbId(value: string) { this.setAndValidatePdbId(value); }
   private _pdbId = '';
-  pdbIdError = '';
+  pdbIdError: string | null = null;
 
   file: File | null = null;
-  fileError = '';
+  fileError: string | null = null;
 
   example: Example | null = null;
 
@@ -50,18 +50,12 @@ export class TertiaryUploadFormComponent implements OnInit {
     this.notifyChanges();
   }
 
-  private setAndValidatePdbId(value: string): void {
-    // TODO: implement validation for pdbId
-    this._pdbId = value;
-    this.notifyChanges();
-  }
-
-  private setAndValidateFile(file: File): void {
+  setAndValidateFile(file: File): void {
     this.fileValidatorService.validate(file, ['cif']).subscribe({
       next: (data: ValidationPayload) => {
         if (data.valid) {
           this.file = file;
-          this.fileError = '';
+          this.fileError = null;
           this.notifyChanges();
         } else {
           this.raiseFileError(data.message);
@@ -77,12 +71,19 @@ export class TertiaryUploadFormComponent implements OnInit {
     this.fileError = error;
     this.file = null;
     this.clearFileInput();
+    this.notifyChanges();
   }
 
   private clearFileInput() {
     if (this.fileInputRef?.nativeElement) {
       this.fileInputRef.nativeElement.value = '';
     }
+  }
+
+  private setAndValidatePdbId(value: string): void {
+    // TODO: implement validation for pdbId
+    this._pdbId = value;
+    this.notifyChanges();
   }
 
   private notifyChanges(): void {
@@ -101,7 +102,7 @@ export class TertiaryUploadFormComponent implements OnInit {
       case UploadMethodType.fromLocalFile:
         payload.type = UploadMethodType.fromLocalFile;
         payload.data = this.file;
-        payload.valid = !this.fileError && !!this.file;
+        payload.valid = this.fileError === null && !!this.file;
         break;
       case UploadMethodType.fromExample:
         payload.type = UploadMethodType.fromExample;

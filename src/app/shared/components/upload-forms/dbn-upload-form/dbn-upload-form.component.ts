@@ -1,7 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { DBN_TO_IMAGE_EXAMPLES } from 'src/app/shared/constants/dbn-to-image-examples.const';
 import { Example } from 'src/app/shared/models/example.model';
 import { UploadMethod, UploadMethodType } from 'src/app/shared/models/upload-type.model';
+import { FileValidatorService, ValidationPayload } from 'src/app/shared/services/file-validator.service';
 
 @Component({
   selector: 'app-dbn-upload-form',
@@ -10,15 +11,18 @@ import { UploadMethod, UploadMethodType } from 'src/app/shared/models/upload-typ
 })
 export class DbnUploadFormComponent implements OnInit {
   @Output() uploadChange = new EventEmitter<UploadMethod>();
+  @ViewChild('fileInput') fileInputRef: ElementRef<HTMLInputElement> | undefined;
 
   UploadType: typeof UploadMethodType = UploadMethodType;
   currentUploadType = this.UploadType.fromLocalFile;
   examples = DBN_TO_IMAGE_EXAMPLES;
 
   file: File | null = null;
-  _fileError = '';
+  fileError = '';
 
   example: Example | null = null;
+
+  constructor(private readonly fileValidatorService: FileValidatorService) { }
 
   ngOnInit(): void {
     this.notifyChanges();
@@ -32,12 +36,6 @@ export class DbnUploadFormComponent implements OnInit {
     }
   }
 
-  setAndValidateFile(file: File): void {
-    // TODO: implement validation for file
-    this.file = file;
-    this.notifyChanges();
-  }
-
   onExampleSelect(event: Example): void {
     this.example = event;
     this.notifyChanges();
@@ -47,7 +45,36 @@ export class DbnUploadFormComponent implements OnInit {
     this.notifyChanges();
   }
 
-  notifyChanges(): void {
+  private setAndValidateFile(file: File): void {
+    this.fileValidatorService.validate(file, ['dbn']).subscribe({
+      next: (data: ValidationPayload) => {
+        if (data.valid) {
+          this.file = file;
+          this.fileError = '';
+          this.notifyChanges();
+        } else {
+          this.raiseFileError(data.message);
+        }
+      },
+      error: (error: string) => {
+        this.raiseFileError(error);
+      },
+    });
+  }
+
+  private raiseFileError(error: string) {
+    this.fileError = error;
+    this.file = null;
+    this.clearFileInput();
+  }
+
+  private clearFileInput() {
+    if (this.fileInputRef?.nativeElement) {
+      this.fileInputRef.nativeElement.value = '';
+    }
+  }
+
+  private notifyChanges(): void {
     const payload: UploadMethod = {
       type: UploadMethodType.fromLocalFile,
       data: null,
@@ -58,7 +85,7 @@ export class DbnUploadFormComponent implements OnInit {
       case UploadMethodType.fromLocalFile:
         payload.type = UploadMethodType.fromLocalFile;
         payload.data = this.file;
-        payload.valid = !this._fileError && !!this.file;
+        payload.valid = !this.fileError && !!this.file;
         break;
       case UploadMethodType.fromExample:
         payload.type = UploadMethodType.fromExample;

@@ -2,7 +2,8 @@ import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '
 import { DBN_TO_IMAGE_EXAMPLES } from 'src/app/shared/constants/dbn-to-image-examples.const';
 import { Example } from 'src/app/shared/models/example.model';
 import { UploadMethod, UploadMethodType } from 'src/app/shared/models/upload-type.model';
-import { FileValidatorService, ValidationPayload } from 'src/app/shared/services/file-validator.service';
+import { ValidationPayload } from 'src/app/shared/models/validation-payload.model';
+import { FileValidatorService } from 'src/app/shared/services/file-validator/file-validator.service';
 
 @Component({
   selector: 'app-dbn-upload-form',

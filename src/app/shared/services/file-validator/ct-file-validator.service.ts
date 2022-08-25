@@ -84,7 +84,7 @@ export class CtFileValidatorService {
 
       if (previousThirdCollumnVal !== -1) {
         if (columns[2] !== '0') {
-          if (+columns[2] < previousThirdCollumnVal) {
+          if (+columns[2] - 1 !== previousThirdCollumnVal) {
             thirdCollumCountsUpFromZeroManyTimes = false;
             return false;
           }

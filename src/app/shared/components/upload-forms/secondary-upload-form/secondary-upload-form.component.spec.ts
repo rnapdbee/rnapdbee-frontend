@@ -6,7 +6,8 @@ import { of } from 'rxjs';
 import { SECONDARY_TO_DBN_BPSEQ_EXAMPLES, SECONDARY_TO_DBN_CT_EXAMPLES } from 'src/app/shared/constants/secondary-to-dbn-examples.const';
 import { Example } from 'src/app/shared/models/example.model';
 import { UploadMethodType } from 'src/app/shared/models/upload-type.model';
-import { FileValidatorService, ValidationPayload } from 'src/app/shared/services/file-validator.service';
+import { ValidationPayload } from 'src/app/shared/models/validation-payload.model';
+import { FileValidatorService } from 'src/app/shared/services/file-validator/file-validator.service';
 import { SecondaryUploadFormComponent } from './secondary-upload-form.component';
 
 describe('SecondaryUploadFormComponent', () => {

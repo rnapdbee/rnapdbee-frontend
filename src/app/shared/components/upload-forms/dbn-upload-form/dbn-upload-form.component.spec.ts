@@ -6,7 +6,8 @@ import { of } from 'rxjs';
 import { DBN_TO_IMAGE_EXAMPLES } from 'src/app/shared/constants/dbn-to-image-examples.const';
 import { Example } from 'src/app/shared/models/example.model';
 import { UploadMethodType } from 'src/app/shared/models/upload-type.model';
-import { FileValidatorService, ValidationPayload } from 'src/app/shared/services/file-validator.service';
+import { ValidationPayload } from 'src/app/shared/models/validation-payload.model';
+import { FileValidatorService } from 'src/app/shared/services/file-validator/file-validator.service';
 import { DbnUploadFormComponent } from './dbn-upload-form.component';
 
 

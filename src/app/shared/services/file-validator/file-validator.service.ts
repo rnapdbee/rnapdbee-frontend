@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, of, Subscriber } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { ValidationPayload } from '../../models/validation-payload.model';
 import { BpseqFileValidatorService } from './bpseq-file-validator.service';
 import { CifFileValidatorService } from './cif-file-validator.service';
 import { CtFileValidatorService } from './ct-file-validator.service';
 import { DbnFileValidatorService } from './dbn-file-validator.service';
 import { Extension, EXTENSIONS, ExtensionValidatorService } from './extension-validator.service';
+import { FileReaderService } from './file-reader.service';
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class FileValidatorService {
-  private readonly reader = new FileReader();
-
   constructor(
+    private readonly fileReader: FileReaderService,
     private readonly extensionValidatorService: ExtensionValidatorService,
     private readonly cifValidator: CifFileValidatorService,
     private readonly bpseqValidator: BpseqFileValidatorService,
@@ -45,26 +45,6 @@ export class FileValidatorService {
   }
 
   private validateWith(file: File, validator: (fileContent: string[]) => ValidationPayload): Observable<ValidationPayload> {
-    return this.readFileContent(file).pipe(map((data: string[]) => validator(data)));
-  }
-
-  private readFileContent(file: File): Observable<string[]> {
-    this.reader.readAsText(file);
-
-    return new Observable<string[]>((observer: Subscriber<string[]>): void => {
-      this.reader.onload = (progressEvent: ProgressEvent<FileReader>): void => {
-        const result = progressEvent.target?.result?.toString();
-        if (result) {
-          observer.next(result.split(/\r\n|\n/));
-          observer.complete();
-        } else {
-          observer.error('File could not be read properly');
-        }
-      };
-
-      this.reader.onerror = (): void => {
-        observer.error('File could not be loaded properly');
-      };
-    });
+    return this.fileReader.readFileContent(file).pipe(map((data: string[]) => validator(data)));
   }
 }

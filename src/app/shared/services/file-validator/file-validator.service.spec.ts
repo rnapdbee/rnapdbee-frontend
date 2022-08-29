@@ -8,12 +8,14 @@ import { DbnFileValidatorService } from './dbn-file-validator.service';
 import { ExtensionValidatorService } from './extension-validator.service';
 import { FileReaderService } from './file-reader.service';
 import { FileValidatorService } from './file-validator.service';
+import { PdbFileValidatorService } from './pdb-file-validator.service';
 
 describe('FileValidatorService', () => {
   let service: FileValidatorService;
   let fileReaderSpy: jasmine.SpyObj<FileReaderService>;
   let extensionValidatorSpy: jasmine.SpyObj<ExtensionValidatorService>;
   let cifValidatorSpy: jasmine.SpyObj<CifFileValidatorService>;
+  let pdbValidatorSpy: jasmine.SpyObj<PdbFileValidatorService>;
   let bpseqValidatorSpy: jasmine.SpyObj<BpseqFileValidatorService>;
   let ctValidatorSpy: jasmine.SpyObj<CtFileValidatorService>;
   let dbnValidatorSpy: jasmine.SpyObj<DbnFileValidatorService>;
@@ -32,6 +34,7 @@ describe('FileValidatorService', () => {
     fileReaderSpy = jasmine.createSpyObj<FileReaderService>('FileReaderService', ['readFileContent']);
     extensionValidatorSpy = jasmine.createSpyObj<ExtensionValidatorService>('ExtensionValidatorService', ['validate']);
     cifValidatorSpy = jasmine.createSpyObj<CifFileValidatorService>('CifFileValidatorService', ['validator']);
+    pdbValidatorSpy = jasmine.createSpyObj<PdbFileValidatorService>('PdbFileValidatorService', ['validator']);
     bpseqValidatorSpy = jasmine.createSpyObj<BpseqFileValidatorService>('BpseqFileValidatorService', ['validator']);
     ctValidatorSpy = jasmine.createSpyObj<CtFileValidatorService>('CtFileValidatorService', ['validator']);
     dbnValidatorSpy = jasmine.createSpyObj<DbnFileValidatorService>('DbnFileValidatorService', ['validator']);
@@ -39,6 +42,7 @@ describe('FileValidatorService', () => {
     fileReaderSpy.readFileContent.and.returnValue(of([]));
     extensionValidatorSpy.validate.and.returnValue(validPayload);
     cifValidatorSpy.validator.and.returnValue(invalidPayload);
+    pdbValidatorSpy.validator.and.returnValue(invalidPayload);
     bpseqValidatorSpy.validator.and.returnValue(invalidPayload);
     ctValidatorSpy.validator.and.returnValue(invalidPayload);
     dbnValidatorSpy.validator.and.returnValue(invalidPayload);
@@ -49,6 +53,7 @@ describe('FileValidatorService', () => {
         { provide: FileReaderService, useValue: fileReaderSpy },
         { provide: ExtensionValidatorService, useValue: extensionValidatorSpy },
         { provide: CifFileValidatorService, useValue: cifValidatorSpy },
+        { provide: PdbFileValidatorService, useValue: pdbValidatorSpy },
         { provide: BpseqFileValidatorService, useValue: bpseqValidatorSpy },
         { provide: CtFileValidatorService, useValue: ctValidatorSpy },
         { provide: DbnFileValidatorService, useValue: dbnValidatorSpy },
@@ -76,6 +81,15 @@ describe('FileValidatorService', () => {
   it('uses cif validator for .cif files', (done: DoneFn) => {
     cifValidatorSpy.validator.and.returnValue(validPayload);
     const file = new File([], 'file.cif');
+    service.validate(file).subscribe(data => {
+      expect(data).toBe(validPayload);
+      done();
+    });
+  });
+
+  it('uses pdb validator for .pdb files', (done: DoneFn) => {
+    pdbValidatorSpy.validator.and.returnValue(validPayload);
+    const file = new File([], 'file.pdb');
     service.validate(file).subscribe(data => {
       expect(data).toBe(validPayload);
       done();

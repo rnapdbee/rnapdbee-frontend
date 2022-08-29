@@ -7,6 +7,7 @@ import { CtFileValidatorService } from './ct-file-validator.service';
 import { DbnFileValidatorService } from './dbn-file-validator.service';
 import { Extension, EXTENSIONS, ExtensionValidatorService } from './extension-validator.service';
 import { FileReaderService } from './file-reader.service';
+import { PdbFileValidatorService } from './pdb-file-validator.service';
 
 
 @Injectable({
@@ -17,6 +18,7 @@ export class FileValidatorService {
     private readonly fileReader: FileReaderService,
     private readonly extensionValidatorService: ExtensionValidatorService,
     private readonly cifValidator: CifFileValidatorService,
+    private readonly pdbValidator: PdbFileValidatorService,
     private readonly bpseqValidator: BpseqFileValidatorService,
     private readonly ctValidator: CtFileValidatorService,
     private readonly dbnValidator: DbnFileValidatorService,
@@ -33,6 +35,8 @@ export class FileValidatorService {
     switch (fileExtesion) {
       case 'cif':
         return this.validateWith(file, this.cifValidator.validator);
+      case 'pdb':
+        return this.validateWith(file, this.pdbValidator.validator);
       case 'bpseq':
         return this.validateWith(file, this.bpseqValidator.validator);
       case 'ct':

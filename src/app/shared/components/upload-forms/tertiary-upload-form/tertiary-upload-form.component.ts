@@ -52,7 +52,7 @@ export class TertiaryUploadFormComponent implements OnInit {
   }
 
   setAndValidateFile(file: File): void {
-    this.fileValidatorService.validate(file, ['cif']).subscribe({
+    this.fileValidatorService.validate(file, ['cif', 'pdb']).subscribe({
       next: (data: ValidationPayload) => {
         if (data.valid) {
           this.file = file;

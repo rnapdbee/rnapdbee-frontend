@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ValidationPayload } from '../../models/validation-payload.model';
 
-export const EXTENSIONS = ['cif', 'bpseq', 'ct', 'dbn'] as const;
+export const EXTENSIONS = ['cif', 'pdb', 'bpseq', 'ct', 'dbn'] as const;
 export type Extension = typeof EXTENSIONS[number];
 
 @Injectable({

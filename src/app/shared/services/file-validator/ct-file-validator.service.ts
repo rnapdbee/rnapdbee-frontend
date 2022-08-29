@@ -29,7 +29,6 @@ export class CtFileValidatorService {
     }
 
     fileContent.every(line => {
-      // TODO: ignore empty lines?
       if (this.utils.isComment(line) || this.utils.isEmpty(line)) {
         return true;
       }

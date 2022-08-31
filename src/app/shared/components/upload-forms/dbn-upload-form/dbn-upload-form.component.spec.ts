@@ -2,9 +2,12 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { of } from 'rxjs';
 import { DBN_TO_IMAGE_EXAMPLES } from 'src/app/shared/constants/dbn-to-image-examples.const';
 import { Example } from 'src/app/shared/models/example.model';
 import { UploadMethodType } from 'src/app/shared/models/upload-type.model';
+import { ValidationPayload } from 'src/app/shared/models/validation-payload.model';
+import { FileValidatorService } from 'src/app/shared/services/file-validator/file-validator.service';
 import { DbnUploadFormComponent } from './dbn-upload-form.component';
 
 
@@ -25,7 +28,7 @@ describe('DbnUploadFormComponent', () => {
 
   it('emits invalid empty payload on init', () => {
     spyOn(component.uploadChange, 'emit');
-    component.notifyChanges();
+    component.ngOnInit();
     expect(component.uploadChange.emit).toHaveBeenCalledOnceWith(jasmine.objectContaining({
       data: null,
       valid: false,
@@ -35,7 +38,7 @@ describe('DbnUploadFormComponent', () => {
   it('not emits when uploadMethod is out of scope', () => {
     spyOn(component.uploadChange, 'emit');
     component.currentUploadType = UploadMethodType.fromPDB;
-    component.notifyChanges();
+    component.onMethodChange();
     expect(component.uploadChange.emit).toHaveBeenCalledTimes(0);
   });
 
@@ -62,25 +65,52 @@ describe('DbnUploadFormComponent', () => {
   });
 
   describe('File upload method', () => {
+    let mockFileValidatorService: FileValidatorService;
     let mockFile: File;
+    let validMockValidationPayload: ValidationPayload;
+    let invalidMockValidationPayload: ValidationPayload;
 
     beforeEach(() => {
       component.currentUploadType = UploadMethodType.fromLocalFile;
+      mockFileValidatorService = TestBed.inject(FileValidatorService);
       mockFile = new File([], 'mocked file');
+      validMockValidationPayload = {
+        valid: true,
+        message: 'validation passes',
+      };
+      invalidMockValidationPayload = {
+        valid: false,
+        message: 'validation failed',
+      };
+
       spyOn(component.uploadChange, 'emit');
     });
 
     it('emits invalid payload when file not provided', () => {
       component.file = null;
-      component.notifyChanges();
+      component.onMethodChange();
       expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
         valid: false,
       }));
     });
 
-    // TODO: it('emits invalid payload when file provided and validation fails', () => {});
+    it('emits invalid payload when file provided and validation fails', () => {
+      spyOn(mockFileValidatorService, 'validate').and.returnValue(of(invalidMockValidationPayload));
 
-    // TODO: it('emits valid payload when file provided and validation passes', () => {});
+      component.setAndValidateFile(mockFile);
+      expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+        valid: false,
+      }));
+    });
+
+    it('emits valid payload when file provided and validation passes', () => {
+      spyOn(mockFileValidatorService, 'validate').and.returnValue(of(validMockValidationPayload));
+
+      component.setAndValidateFile(mockFile);
+      expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+        valid: true,
+      }));
+    });
 
     it('emits new value when file changed', () => {
       const mockFile2 = new File([], 'mocked file 2');
@@ -89,7 +119,9 @@ describe('DbnUploadFormComponent', () => {
       expect(component.uploadChange.emit).toHaveBeenCalledTimes(2);
     });
 
-    it('includes file object in payload', () => {
+    it('includes valid file object in payload', () => {
+      spyOn(mockFileValidatorService, 'validate').and.returnValue(of(validMockValidationPayload));
+
       component.setAndValidateFile(mockFile);
       expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
         data: mockFile,
@@ -114,7 +146,7 @@ describe('DbnUploadFormComponent', () => {
 
     it('emits invalid payload when example not provided', () => {
       component.example = null;
-      component.notifyChanges();
+      component.onMethodChange();
       expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
         valid: false,
       }));

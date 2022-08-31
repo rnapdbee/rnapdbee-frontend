@@ -1,7 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { SECONDARY_TO_DBN_BPSEQ_EXAMPLES, SECONDARY_TO_DBN_CT_EXAMPLES } from 'src/app/shared/constants/secondary-to-dbn-examples.const';
 import { Example } from 'src/app/shared/models/example.model';
 import { UploadMethod, UploadMethodType } from 'src/app/shared/models/upload-type.model';
+import { ValidationPayload } from 'src/app/shared/models/validation-payload.model';
+import { FileValidatorService } from 'src/app/shared/services/file-validator/file-validator.service';
 
 @Component({
   selector: 'app-secondary-upload-form',
@@ -10,6 +12,7 @@ import { UploadMethod, UploadMethodType } from 'src/app/shared/models/upload-typ
 })
 export class SecondaryUploadFormComponent implements OnInit {
   @Output() uploadChange = new EventEmitter<UploadMethod>();
+  @ViewChild('fileInput') fileInputRef: ElementRef<HTMLInputElement> | undefined;
 
   UploadType: typeof UploadMethodType = UploadMethodType;
   currentUploadType = this.UploadType.fromLocalFile;
@@ -17,11 +20,13 @@ export class SecondaryUploadFormComponent implements OnInit {
   ct_examples = SECONDARY_TO_DBN_CT_EXAMPLES;
 
   file: File | null = null;
-  _fileError = '';
+  fileError: string | null = null;
 
   bpseqExample: Example | null = null;
   ctExample: Example | null = null;
   exampleType = '';
+
+  constructor(private readonly fileValidatorService: FileValidatorService) { }
 
   ngOnInit(): void {
     this.notifyChanges();
@@ -33,12 +38,6 @@ export class SecondaryUploadFormComponent implements OnInit {
       const file = files[0];
       this.setAndValidateFile(file);
     }
-  }
-
-  setAndValidateFile(file: File): void {
-    // TODO: implement validation for file
-    this.file = file;
-    this.notifyChanges();
   }
 
   isExampleChecked(type: string): boolean {
@@ -65,7 +64,37 @@ export class SecondaryUploadFormComponent implements OnInit {
     this.notifyChanges();
   }
 
-  notifyChanges(): void {
+  setAndValidateFile(file: File): void {
+    this.fileValidatorService.validate(file, ['bpseq', 'ct']).subscribe({
+      next: (data: ValidationPayload) => {
+        if (data.valid) {
+          this.file = file;
+          this.fileError = null;
+          this.notifyChanges();
+        } else {
+          this.raiseFileError(data.message);
+        }
+      },
+      error: (error: string) => {
+        this.raiseFileError(error);
+      },
+    });
+  }
+
+  private raiseFileError(error: string) {
+    this.fileError = error;
+    this.file = null;
+    this.clearFileInput();
+    this.notifyChanges();
+  }
+
+  private clearFileInput() {
+    if (this.fileInputRef?.nativeElement) {
+      this.fileInputRef.nativeElement.value = '';
+    }
+  }
+
+  private notifyChanges(): void {
     const payload: UploadMethod = {
       type: UploadMethodType.fromLocalFile,
       data: null,
@@ -76,7 +105,7 @@ export class SecondaryUploadFormComponent implements OnInit {
       case UploadMethodType.fromLocalFile:
         payload.type = UploadMethodType.fromLocalFile;
         payload.data = this.file;
-        payload.valid = !this._fileError && !!this.file;
+        payload.valid = this.fileError === null && !!this.file;
         break;
       case UploadMethodType.fromExample:
         payload.type = UploadMethodType.fromExample;

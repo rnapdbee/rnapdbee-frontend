@@ -17,9 +17,15 @@
         display: none;
       }
 
-      span {
+      .file-name {
         margin-left: .5rem;
         color: $accent;
+      }
+
+      .file-error {
+        flex: 0 0 100%;
+        margin-top: .5rem;
+        color: red;
       }
     }
   }

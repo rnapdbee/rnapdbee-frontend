@@ -2,9 +2,12 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { of } from 'rxjs';
 import { SECONDARY_TO_DBN_BPSEQ_EXAMPLES, SECONDARY_TO_DBN_CT_EXAMPLES } from 'src/app/shared/constants/secondary-to-dbn-examples.const';
 import { Example } from 'src/app/shared/models/example.model';
 import { UploadMethodType } from 'src/app/shared/models/upload-type.model';
+import { ValidationPayload } from 'src/app/shared/models/validation-payload.model';
+import { FileValidatorService } from 'src/app/shared/services/file-validator/file-validator.service';
 import { SecondaryUploadFormComponent } from './secondary-upload-form.component';
 
 describe('SecondaryUploadFormComponent', () => {
@@ -24,7 +27,7 @@ describe('SecondaryUploadFormComponent', () => {
 
   it('emits invalid empty payload on init', () => {
     spyOn(component.uploadChange, 'emit');
-    component.notifyChanges();
+    component.ngOnInit();
     expect(component.uploadChange.emit).toHaveBeenCalledOnceWith(jasmine.objectContaining({
       data: null,
       valid: false,
@@ -54,25 +57,52 @@ describe('SecondaryUploadFormComponent', () => {
   });
 
   describe('File upload method', () => {
+    let mockFileValidatorService: FileValidatorService;
     let mockFile: File;
+    let validMockValidationPayload: ValidationPayload;
+    let invalidMockValidationPayload: ValidationPayload;
 
     beforeEach(() => {
       component.currentUploadType = UploadMethodType.fromLocalFile;
+      mockFileValidatorService = TestBed.inject(FileValidatorService);
       mockFile = new File([], 'mocked file');
+      validMockValidationPayload = {
+        valid: true,
+        message: 'validation passes',
+      };
+      invalidMockValidationPayload = {
+        valid: false,
+        message: 'validation failed',
+      };
+
       spyOn(component.uploadChange, 'emit');
     });
 
     it('emits invalid payload when file not provided', () => {
       component.file = null;
-      component.notifyChanges();
+      component.onMethodChange();
       expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
         valid: false,
       }));
     });
 
-    // TODO: it('emits invalid payload when file provided and validation fails', () => {});
+    it('emits invalid payload when file provided and validation fails', () => {
+      spyOn(mockFileValidatorService, 'validate').and.returnValue(of(invalidMockValidationPayload));
 
-    // TODO: it('emits valid payload when file provided and validation passes', () => {});
+      component.setAndValidateFile(mockFile);
+      expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+        valid: false,
+      }));
+    });
+
+    it('emits valid payload when file provided and validation passes', () => {
+      spyOn(mockFileValidatorService, 'validate').and.returnValue(of(validMockValidationPayload));
+
+      component.setAndValidateFile(mockFile);
+      expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+        valid: true,
+      }));
+    });
 
     it('emits new value when file changed', () => {
       const mockFile2 = new File([], 'mocked file 2');
@@ -81,7 +111,9 @@ describe('SecondaryUploadFormComponent', () => {
       expect(component.uploadChange.emit).toHaveBeenCalledTimes(2);
     });
 
-    it('includes file object in payload', () => {
+    it('includes valid file object in payload', () => {
+      spyOn(mockFileValidatorService, 'validate').and.returnValue(of(validMockValidationPayload));
+
       component.setAndValidateFile(mockFile);
       expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
         data: mockFile,
@@ -118,7 +150,7 @@ describe('SecondaryUploadFormComponent', () => {
 
       it('emits invalid payload when bpseq example not provided', () => {
         component.bpseqExample = null;
-        component.notifyChanges();
+        component.onMethodChange();
         expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
           valid: false,
         }));
@@ -149,7 +181,7 @@ describe('SecondaryUploadFormComponent', () => {
         const dummyExample = { name: '', no: -1, path: '' };
         component.bpseqExample = mockExample;
         component.ctExample = dummyExample;
-        component.notifyChanges();
+        component.onMethodChange();
         expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
           data: component.bpseqExample,
         }));
@@ -167,7 +199,7 @@ describe('SecondaryUploadFormComponent', () => {
 
       it('emits invalid payload when ct example not provided', () => {
         component.ctExample = null;
-        component.notifyChanges();
+        component.onMethodChange();
         expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
           valid: false,
         }));
@@ -198,7 +230,7 @@ describe('SecondaryUploadFormComponent', () => {
         const dummyExample = { name: '', no: -1, path: '' };
         component.ctExample = mockExample;
         component.bpseqExample = dummyExample;
-        component.notifyChanges();
+        component.onMethodChange();
         expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
           data: component.ctExample,
         }));

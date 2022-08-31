@@ -7,9 +7,12 @@
 
       <div inline class="file-upload">
         <label for="file-input">Browse...</label>
-        <input type="file" (change)="uploadFile($event)" id="file-input" name="file">
-        <span>
+        <input #fileInput type="file" (change)="uploadFile($event)" id="file-input" name="file">
+        <span class="file-name">
           {{ file ? file.name : 'no file selected' }}
+        </span>
+        <span class="file-error">
+          {{ fileError }}
         </span>
       </div>
     </app-radio-button>

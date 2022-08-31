@@ -68,6 +68,10 @@ export class TertiaryUploadFormComponent implements OnInit {
     });
   }
 
+  clearPdbIdInput() {
+    this.pdbId = '';
+  }
+
   private raiseFileError(error: string) {
     this.fileError = error;
     this.file = null;
@@ -82,8 +86,17 @@ export class TertiaryUploadFormComponent implements OnInit {
   }
 
   private setAndValidatePdbId(value: string): void {
-    // TODO: implement validation for pdbId
+    const pdbRegExp = /^[a-zA-Z0-9]{4}$/;
     this._pdbId = value;
+
+    if (value.match(pdbRegExp)) {
+      this.pdbIdError = null;
+    } else if (value === '') {
+      this.pdbIdError = '';
+    } else {
+      this.pdbIdError = 'PDB ID must contain of 4 characters (letters or digits)';
+    }
+
     this.notifyChanges();
   }
 
@@ -98,7 +111,7 @@ export class TertiaryUploadFormComponent implements OnInit {
       case UploadMethodType.fromPDB:
         payload.type = UploadMethodType.fromPDB;
         payload.data = this.pdbId;
-        payload.valid = !this.pdbIdError && !!this.pdbId;
+        payload.valid = this.pdbIdError === null && !!this.pdbId;
         break;
       case UploadMethodType.fromLocalFile:
         payload.type = UploadMethodType.fromLocalFile;

@@ -5,10 +5,13 @@
       [value]="UploadType.fromPDB"
       [checked]="currentUploadType === UploadType.fromPDB">
 
-      <div inline class="clearable-input">
-        <input type="text" [(ngModel)]="pdbId" name="pdbId" placeholder="4 digit PDB ID">
-        <mat-icon *ngIf="pdbId" (click)="pdbId = ''">close</mat-icon>
-      </div>
+        <div inline class="pdbid-input">
+          <input type="text" [(ngModel)]="pdbId" name="pdbId" placeholder="4 character PDB ID">
+          <mat-icon *ngIf="pdbId" (click)="clearPdbIdInput()">close</mat-icon>
+          <span class="pdbid-error">
+            {{ pdbIdError }}
+          </span>
+        </div>
     </app-radio-button>
 
     <app-radio-button 

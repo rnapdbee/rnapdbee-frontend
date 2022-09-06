@@ -80,12 +80,25 @@ describe('TertiaryUploadFormComponent', () => {
       }));
     });
 
-    // TODO: it('emits invalid payload when pdbId provided and validation fails', () => {});
+    const invalidIds = ['aa2', 'AB48E', 'A_C4', '#123', ' a b c d ', ''];
+    invalidIds.forEach(id => {
+      it(`emits invalid payload when pdbId provided and validation fails (${id})`, () => {
+        component.pdbId = id;
+        expect(component.uploadChange.emit).toHaveBeenCalledOnceWith(jasmine.objectContaining({
+          valid: false,
+        }));
+      });
+    });
 
-    // TODO: it('emits valid payload when pdbId provided and validation passes', () => {});
+    it('emits valid payload when pdbId provided and validation passes', () => {
+      component.pdbId = 'a1b2';
+      expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+        valid: true,
+      }));
+    });
 
     it('emits new value when file changed', () => {
-      const mockPdbId2 = 'XXXX';
+      const mockPdbId2 = 'a1b2';
       component.pdbId = mockPdbId;
       component.pdbId = mockPdbId2;
       expect(component.uploadChange.emit).toHaveBeenCalledTimes(2);

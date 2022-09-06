@@ -2,9 +2,10 @@
 
 :host {
   form {
-    .clearable-input {
+    .pdbid-input {
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
 
       input {
         width: 100%;
@@ -18,6 +19,12 @@
         cursor: pointer;
         color: $accent;
         margin-left: -28px;
+      }
+
+      .pdbid-error {
+        flex: 0 0 100%;
+        margin-top: .5rem;
+        color: red;
       }
     }
 

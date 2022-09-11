@@ -33,5 +33,5 @@ To get prism Docker image use `docker pull stoplight/prism`.
 
 Then, You can run the Prism mocks via command:
  - on BASH terminal: `docker run -v $(pwd)/api/api-spec-mock.yaml:/api-spec.yaml -p 4010:4010 stoplight/prism mock -h 0.0.0.0 "/api-spec.yaml"`
- - on POWERSHELL terminal: `docker run -v $(pwd)/api/api-spec-mock.yaml:/api-spec.yaml -p 4010:4010 stoplight/prism mock -h 0.0.0.0 "/api-spec.yaml"`
+ - on POWERSHELL terminal: `docker run -v ${pwd}/api/api-spec-mock.yaml:/api-spec.yaml -p 4010:4010 stoplight/prism mock -h 0.0.0.0 "/api-spec.yaml"`
  - on CMD terminal: `docker run -v %cd%/api/api-spec-mock.yaml:/api-spec.yaml -p 4010:4010 stoplight/prism mock -h 0.0.0.0 "/api-spec.yaml"`

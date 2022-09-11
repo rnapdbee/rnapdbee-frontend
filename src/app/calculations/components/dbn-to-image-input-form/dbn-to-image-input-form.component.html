@@ -9,7 +9,7 @@
     </app-radio-button>
   </mat-radio-group>
 
-  <app-step [value]="5">Visualize secondary structure using</app-step>
+  <app-step [value]="3">Visualize secondary structure using</app-step>
   <mat-radio-group formControlName="visualizationTool">
     <app-radio-button *ngFor="let item of VISUALISATION_TOOL" [value]="item.key" [label]="item.label"
       [checked]="paramsForm.value.visualizationTool === item.key">

@@ -13,7 +13,7 @@
   <app-checkbox formControlName="includeNonCanonical" label="Include non-canonical base pairs"></app-checkbox>
   <app-checkbox formControlName="removeIsolated" label="Remove isolated, canonical base pairs"></app-checkbox>
 
-  <app-step [value]="5">Visualize secondary structure using</app-step>
+  <app-step [value]="4">Visualize secondary structure using</app-step>
   <mat-radio-group formControlName="visualizationTool">
     <app-radio-button *ngFor="let item of VISUALISATION_TOOL" [value]="item.key" [label]="item.label"
       [checked]="paramsForm.value.visualizationTool === item.key">

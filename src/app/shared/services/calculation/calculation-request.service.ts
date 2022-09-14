@@ -1,32 +1,44 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { mergeMap, Observable } from 'rxjs';
 import { ApiPaths, environment } from 'src/environments/environment';
 import { Calculation } from '../../models/calculation.model';
 import { Example } from '../../models/example.model';
 import { Params } from '../../models/params.model';
+import { FileReaderService } from '../file-validator/file-reader.service';
 
 export abstract class CalculationRequestService<P extends Params, O> {
-  private readonly path: ApiPaths;
   get url() { return `${environment.baseUrl}${this.path}`; }
 
-  constructor(private readonly http: HttpClient, private readonly _path: ApiPaths) {
-    this.path = _path;
-  }
+  constructor(
+    private readonly http: HttpClient,
+    private readonly fileReader: FileReaderService,
+    private readonly path: ApiPaths,
+  ) {}
 
   calculateFromPdb(id: string, paramObject: P): Observable<Calculation<P, O>> {
     const params = new HttpParams({ fromObject: paramObject });
-    return this.http.post<Calculation<P, O>>(`${this.url}/pdb/${id}`, null, { params });
+    return this.http.post<Calculation<P, O>>(`${this.url}pdb/${id}`, null, { params });
   }
 
   calculateFromFile(file: File, paramObject: P): Observable<Calculation<P, O>> {
+    const headers = this.getRequestHeaders(file.name);
     const params = new HttpParams({ fromObject: paramObject });
-    const fileText = file.name; // TODO: read file as text
-    return this.http.post<Calculation<P, O>>(this.url, fileText, { params });
+    return this.fileReader.readAsTextFromFile(file).pipe(
+      mergeMap(data => this.http.post<Calculation<P, O>>(this.url, data, { params, headers })),
+    );
   }
 
   calculateFromExample(example: Example, paramObject: P): Observable<Calculation<P, O>> {
+    const headers = this.getRequestHeaders(example.name);
     const params = new HttpParams({ fromObject: paramObject });
-    const exampleText = example.name; // TODO: read example as text
-    return this.http.post<Calculation<P, O>>(this.url, exampleText, { params });
+    return this.fileReader.readAsTextFromPath(example.path).pipe(
+      mergeMap(data => this.http.post<Calculation<P, O>>(this.url, data, { params, headers })),
+    );
+  }
+
+  private getRequestHeaders(filename: string): HttpHeaders {
+    return new HttpHeaders({
+      'Content-Disposition': `attachment; filename="${filename}"`,
+    });
   }
 }

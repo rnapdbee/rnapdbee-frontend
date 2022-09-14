@@ -7,6 +7,7 @@ import { Example } from '../../models/example.model';
 import { SecondaryOutput } from '../../models/secondary-output.model';
 import { SecondaryToDbnParams } from '../../models/secondary-to-dbn-params.module';
 import { UploadMethod, UploadMethodType } from '../../models/upload-type.model';
+import { FileReaderService } from '../file-validator/file-reader.service';
 import { CalculationRequestService } from './calculation-request.service';
 
 
@@ -14,8 +15,8 @@ import { CalculationRequestService } from './calculation-request.service';
   providedIn: 'root',
 })
 export class SecondaryToDbnService extends CalculationRequestService<SecondaryToDbnParams, SecondaryOutput> {
-  constructor(http: HttpClient) {
-    super(http, ApiPaths.Secondary);
+  constructor(http: HttpClient, fileReader: FileReaderService) {
+    super(http, fileReader, ApiPaths.Secondary);
   }
 
   calculate(params: SecondaryToDbnParams, content: UploadMethod): Observable<Calculation<SecondaryToDbnParams, SecondaryOutput>> {

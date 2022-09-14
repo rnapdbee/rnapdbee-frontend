@@ -8,18 +8,19 @@ import { SecondaryToDbnService } from './secondary-to-dbn.service';
   providedIn: 'root',
 })
 export class CalculationService {
-  constructor(private readonly secondaryToDbnService: SecondaryToDbnService) {}
+  constructor(private readonly secondaryToDbnService: SecondaryToDbnService) { }
 
   calculateSecondaryToDbn(params: SecondaryToDbnParams, content: UploadMethod) {
     defer(() => {
       this.navigateToLoadingScreen();
       return this.secondaryToDbnService.calculate(params, content);
-    }).subscribe(data => {
-      if (data) {
-        // TODO: this.navigateToResultsScreen(data.id, data.results);
-      } else {
-        // TODO: this.navigateToErrorScreen(data.id, 'errormsg');
-      }
+    }).subscribe({
+      next: _ => {
+        // TODO: this.navigateToResultsScreen(data);
+      },
+      error: _ => {
+        // TODO: this.navigateToErrorScreen(data);
+      },
     });
   }
 

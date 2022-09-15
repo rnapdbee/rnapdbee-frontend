@@ -1,7 +1,10 @@
 import { Params } from './params.model';
 
 export interface Result<P extends Params, O> {
-  params: P,
+  meta: {
+    filename: string
+    params: P,
+  }
   output: O,
 }
 

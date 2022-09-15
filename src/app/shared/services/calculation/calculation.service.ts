@@ -27,7 +27,21 @@ export class CalculationService {
       return this.tertiaryToDbnService.calculate(params, content);
     }).subscribe({
       next: _ => {
-        // TODO: this.navigateToResultsScreen(data);
+        // TODO: this.navigateTo3DResultsScreen(data);
+      },
+      error: _ => {
+        // TODO: this.navigateToErrorScreen(data);
+      },
+    });
+  }
+
+  findTertiaryToDbnById(id: string) {
+    defer(() => {
+      this.navigateToLoadingScreen();
+      return this.tertiaryToDbnService.findById(id);
+    }).subscribe({
+      next: _ => {
+        // TODO: this.navigateTo3DResultsScreen(data);
       },
       error: _ => {
         // TODO: this.navigateToErrorScreen(data);
@@ -41,7 +55,21 @@ export class CalculationService {
       return this.secondaryToDbnService.calculate(params, content);
     }).subscribe({
       next: _ => {
-        // TODO: this.navigateToResultsScreen(data);
+        // TODO: this.navigateTo2DResultsScreen(data);
+      },
+      error: _ => {
+        // TODO: this.navigateToErrorScreen(data);
+      },
+    });
+  }
+
+  findSecondaryToDbnById(id: string) {
+    defer(() => {
+      this.navigateToLoadingScreen();
+      return this.secondaryToDbnService.findById(id);
+    }).subscribe({
+      next: _ => {
+        // TODO: this.navigateTo2DResultsScreen(data);
       },
       error: _ => {
         // TODO: this.navigateToErrorScreen(data);
@@ -55,7 +83,21 @@ export class CalculationService {
       return this.dbnToImageService.calculate(params, content);
     }).subscribe({
       next: _ => {
-        // TODO: this.navigateToResultsScreen(data);
+        // TODO: this.navigateTo2DResultsScreen(data);
+      },
+      error: _ => {
+        // TODO: this.navigateToErrorScreen(data);
+      },
+    });
+  }
+
+  findDbnToImageById(id: string) {
+    defer(() => {
+      this.navigateToLoadingScreen();
+      return this.dbnToImageService.findById(id);
+    }).subscribe({
+      next: _ => {
+        // TODO: this.navigateTo2DResultsScreen(data);
       },
       error: _ => {
         // TODO: this.navigateToErrorScreen(data);
@@ -69,7 +111,21 @@ export class CalculationService {
       return this.tertiaryToMultiService.calculate(params, content);
     }).subscribe({
       next: _ => {
-        // TODO: this.navigateToResultsScreen(data);
+        // TODO: this.navigateToMutliResultsScreen(data);
+      },
+      error: _ => {
+        // TODO: this.navigateToErrorScreen(data);
+      },
+    });
+  }
+
+  findTertiaryToMultiById(id: string) {
+    defer(() => {
+      this.navigateToLoadingScreen();
+      return this.tertiaryToMultiService.findById(id);
+    }).subscribe({
+      next: _ => {
+        // TODO: this.navigateToMultiResultsScreen(data);
       },
       error: _ => {
         // TODO: this.navigateToErrorScreen(data);

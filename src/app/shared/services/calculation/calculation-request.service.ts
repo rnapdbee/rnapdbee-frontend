@@ -36,6 +36,10 @@ export abstract class CalculationRequestService<P extends Params, O> {
     );
   }
 
+  findById(id: string) {
+    return this.http.get<Calculation<P, O>>(`${this.url}/${id}`);
+  }
+
   private getRequestHeaders(filename: string): HttpHeaders {
     return new HttpHeaders({
       'Content-Disposition': `attachment; filename="${filename}"`,

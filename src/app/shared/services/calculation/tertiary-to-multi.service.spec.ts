@@ -24,12 +24,10 @@ const mockParams: TertiaryToMultiParams = {
 
 const mockResponse: Calculation<TertiaryToMultiParams, MultiOutput> = {
   id: mockUuid,
+  filename,
   results: [
     {
-      meta: {
-        filename,
-        params: mockParams,
-      },
+      params: mockParams,
       output: {
         out: 'output',
       },

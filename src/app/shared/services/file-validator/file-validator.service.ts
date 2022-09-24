@@ -49,6 +49,6 @@ export class FileValidatorService {
   }
 
   private validateWith(file: File, validator: (fileContent: string[]) => ValidationPayload): Observable<ValidationPayload> {
-    return this.fileReader.readFileContent(file).pipe(map((data: string[]) => validator(data)));
+    return this.fileReader.readAsArray(file).pipe(map((data: string[]) => validator(data)));
   }
 }

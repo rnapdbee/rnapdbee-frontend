@@ -31,7 +31,7 @@ describe('FileValidatorService', () => {
   };
 
   beforeEach(() => {
-    fileReaderSpy = jasmine.createSpyObj<FileReaderService>('FileReaderService', ['readFileContent']);
+    fileReaderSpy = jasmine.createSpyObj<FileReaderService>('FileReaderService', ['readAsArray']);
     extensionValidatorSpy = jasmine.createSpyObj<ExtensionValidatorService>('ExtensionValidatorService', ['validate']);
     cifValidatorSpy = jasmine.createSpyObj<CifFileValidatorService>('CifFileValidatorService', ['validator']);
     pdbValidatorSpy = jasmine.createSpyObj<PdbFileValidatorService>('PdbFileValidatorService', ['validator']);
@@ -39,7 +39,7 @@ describe('FileValidatorService', () => {
     ctValidatorSpy = jasmine.createSpyObj<CtFileValidatorService>('CtFileValidatorService', ['validator']);
     dbnValidatorSpy = jasmine.createSpyObj<DbnFileValidatorService>('DbnFileValidatorService', ['validator']);
 
-    fileReaderSpy.readFileContent.and.returnValue(of([]));
+    fileReaderSpy.readAsArray.and.returnValue(of([]));
     extensionValidatorSpy.validate.and.returnValue(validPayload);
     cifValidatorSpy.validator.and.returnValue(invalidPayload);
     pdbValidatorSpy.validator.and.returnValue(invalidPayload);

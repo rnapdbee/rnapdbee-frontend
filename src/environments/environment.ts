@@ -4,7 +4,15 @@
 
 export const environment = {
   production: false,
+  baseUrl: 'http://localhost:4010/api/v1/engine',
 };
+
+export enum ApiPaths {
+  Tertiary = '/3d/',
+  Secondary = '/2d/',
+  Image = '/image/',
+  Multi = '/multi/'
+}
 
 /*
  * For easier debugging in development mode, you can import the following file

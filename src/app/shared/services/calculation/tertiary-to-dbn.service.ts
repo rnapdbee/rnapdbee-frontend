@@ -30,4 +30,10 @@ export class TertiaryToDbnService extends CalculationRequestService<TertiaryToDb
         throw new Error('Upload method type could not be recognized.');
     }
   }
+
+  find(id: string): Observable<Calculation<TertiaryToDbnParams, TertiaryOutput>> {
+    return this.findById(id);
+  }
+
+  // TODO: reanalyze(id, params) {...}
 }

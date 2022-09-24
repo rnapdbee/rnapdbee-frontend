@@ -15,12 +15,12 @@ export abstract class CalculationRequestService<P extends Params, O> {
     private readonly path: ApiPaths,
   ) {}
 
-  calculateFromPdb(id: string, paramObject: P): Observable<Calculation<P, O>> {
+  protected calculateFromPdb(id: string, paramObject: P): Observable<Calculation<P, O>> {
     const params = new HttpParams({ fromObject: paramObject });
     return this.http.post<Calculation<P, O>>(`${this.url}pdb/${id}`, null, { params });
   }
 
-  calculateFromFile(file: File, paramObject: P): Observable<Calculation<P, O>> {
+  protected calculateFromFile(file: File, paramObject: P): Observable<Calculation<P, O>> {
     const headers = this.getRequestHeaders(file.name);
     const params = new HttpParams({ fromObject: paramObject });
     return this.fileReader.readAsTextFromFile(file).pipe(
@@ -28,7 +28,7 @@ export abstract class CalculationRequestService<P extends Params, O> {
     );
   }
 
-  calculateFromExample(example: Example, paramObject: P): Observable<Calculation<P, O>> {
+  protected calculateFromExample(example: Example, paramObject: P): Observable<Calculation<P, O>> {
     const headers = this.getRequestHeaders(example.name);
     const params = new HttpParams({ fromObject: paramObject });
     return this.fileReader.readAsTextFromPath(example.path).pipe(
@@ -36,8 +36,8 @@ export abstract class CalculationRequestService<P extends Params, O> {
     );
   }
 
-  findById(id: string) {
-    return this.http.get<Calculation<P, O>>(`${this.url}/${id}`);
+  protected findById(id: string) {
+    return this.http.get<Calculation<P, O>>(`${this.url}${id}`);
   }
 
   private getRequestHeaders(filename: string): HttpHeaders {

@@ -30,4 +30,10 @@ export class TertiaryToMultiService extends CalculationRequestService<TertiaryTo
         throw new Error('Upload method type could not be recognized.');
     }
   }
+
+  find(id: string): Observable<Calculation<TertiaryToMultiParams, MultiOutput>> {
+    return this.findById(id);
+  }
+
+  // TODO: reanalyze(id, params) {...}
 }

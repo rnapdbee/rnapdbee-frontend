@@ -28,4 +28,10 @@ export class DbnToImageService extends CalculationRequestService<DbnToImageParam
         throw new Error('Upload method type could not be recognized.');
     }
   }
+
+  find(id: string): Observable<Calculation<DbnToImageParams, SecondaryOutput>> {
+    return this.findById(id);
+  }
+
+  // TODO: reanalyze(id, params) {...}
 }

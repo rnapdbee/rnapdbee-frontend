@@ -38,7 +38,7 @@ export class CalculationService {
   findTertiaryToDbnById(id: string) {
     defer(() => {
       this.navigateToLoadingScreen();
-      return this.tertiaryToDbnService.findById(id);
+      return this.tertiaryToDbnService.find(id);
     }).subscribe({
       next: _ => {
         // TODO: this.navigateTo3DResultsScreen(data);
@@ -66,7 +66,7 @@ export class CalculationService {
   findSecondaryToDbnById(id: string) {
     defer(() => {
       this.navigateToLoadingScreen();
-      return this.secondaryToDbnService.findById(id);
+      return this.secondaryToDbnService.find(id);
     }).subscribe({
       next: _ => {
         // TODO: this.navigateTo2DResultsScreen(data);
@@ -94,7 +94,7 @@ export class CalculationService {
   findDbnToImageById(id: string) {
     defer(() => {
       this.navigateToLoadingScreen();
-      return this.dbnToImageService.findById(id);
+      return this.dbnToImageService.find(id);
     }).subscribe({
       next: _ => {
         // TODO: this.navigateTo2DResultsScreen(data);
@@ -122,7 +122,7 @@ export class CalculationService {
   findTertiaryToMultiById(id: string) {
     defer(() => {
       this.navigateToLoadingScreen();
-      return this.tertiaryToMultiService.findById(id);
+      return this.tertiaryToMultiService.find(id);
     }).subscribe({
       next: _ => {
         // TODO: this.navigateToMultiResultsScreen(data);

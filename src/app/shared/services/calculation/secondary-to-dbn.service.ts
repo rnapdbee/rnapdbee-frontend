@@ -29,4 +29,10 @@ export class SecondaryToDbnService extends CalculationRequestService<SecondaryTo
         throw new Error('Upload method type could not be recognized.');
     }
   }
+
+  find(id: string): Observable<Calculation<SecondaryToDbnParams, SecondaryOutput>> {
+    return this.findById(id);
+  }
+
+  // TODO: reanalyze(id, params) {...}
 }

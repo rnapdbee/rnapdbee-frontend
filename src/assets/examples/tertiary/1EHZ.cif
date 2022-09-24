@@ -3335,4 +3335,4 @@ _pdbx_entity_nonpoly.comp_id
 2 'MAGNESIUM ION'      MG  
 3 'MANGANESE (II) ION' MN  
 4 water                HOH 
-# 
+#

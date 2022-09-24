@@ -4861,4 +4861,4 @@ _pdbx_version.details
 2LBK 2012-04-04 4 0000 'Initial release' 'Initial release' 
 2LBK 2012-04-04 4 0000 Citation          'Citation update' 
 2LBK 2012-05-16 4 0001 Citation          'Citation update' 
-# 
+#

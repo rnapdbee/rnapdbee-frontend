@@ -1,9 +1,6 @@
 import { Params } from './params.model';
 
-export interface TertiaryToDbnParams extends Params {
-  modelSelection: string,
-  analysisTool: string,
-  nonCanonicalHandling: string,
+export interface SecondaryToDbnParams extends Params {
   removeIsolated: boolean,
   structuralElementsHandling: string,
   visualizationTool: string,

@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -31,6 +32,7 @@ const COMPONENTS = [
 const MODULES = [
   CommonModule,
   FormsModule,
+  HttpClientModule,
   MatButtonModule,
   MatCheckboxModule,
   MatDividerModule,

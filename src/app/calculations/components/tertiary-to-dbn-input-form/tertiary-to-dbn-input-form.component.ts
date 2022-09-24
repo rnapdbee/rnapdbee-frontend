@@ -7,7 +7,9 @@ import {
   STRUCTURAL_ELEMENTS_HANDLING,
   VISUALISATION_TOOL,
 } from 'src/app/shared/constants/param-options.const';
+import { TertiaryToDbnParams } from 'src/app/shared/models/tertiary-to-dbn-params.model';
 import { UploadMethod } from 'src/app/shared/models/upload-type.model';
+import { CalculationService } from 'src/app/shared/services/calculation/calculation.service';
 
 @Component({
   selector: 'app-tertiary-to-dbn-input-form',
@@ -15,7 +17,10 @@ import { UploadMethod } from 'src/app/shared/models/upload-type.model';
   styleUrls: ['./tertiary-to-dbn-input-form.component.scss'],
 })
 export class TertiaryToDBNInputFormComponent {
-  constructor(private readonly fb: FormBuilder) { }
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly calculationService: CalculationService,
+  ) { }
 
   MODEL_SELECTION = MODEL_SELECTION;
   ANALYSIS_TOOL = ANALYSIS_TOOL;
@@ -43,10 +48,11 @@ export class TertiaryToDBNInputFormComponent {
   }
 
   onSubmit(): void {
-    // TODO: submit form to service
-    // eslint-disable-next-line no-console
-    console.log(this.paramsForm.value);
-    // eslint-disable-next-line no-console
-    console.log(this.uploadMethod);
+    if (!this.uploadMethod) {
+      throw new Error('Upload method could not be defined.');
+    }
+    if (this.uploadMethod.valid) {
+      this.calculationService.calculateTertiaryToDbn(this.paramsForm.value as TertiaryToDbnParams, this.uploadMethod);
+    }
   }
 }

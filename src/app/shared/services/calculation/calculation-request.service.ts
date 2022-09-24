@@ -1,0 +1,48 @@
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { mergeMap, Observable } from 'rxjs';
+import { ApiPaths, environment } from 'src/environments/environment';
+import { Calculation } from '../../models/calculation.model';
+import { Example } from '../../models/example.model';
+import { Params } from '../../models/params.model';
+import { FileReaderService } from '../file-validator/file-reader.service';
+
+export abstract class CalculationRequestService<P extends Params, O> {
+  get url() { return `${environment.baseUrl}${this.path}`; }
+
+  constructor(
+    private readonly http: HttpClient,
+    private readonly fileReader: FileReaderService,
+    private readonly path: ApiPaths,
+  ) {}
+
+  protected calculateFromPdb(id: string, paramObject: P): Observable<Calculation<P, O>> {
+    const params = new HttpParams({ fromObject: paramObject });
+    return this.http.post<Calculation<P, O>>(`${this.url}pdb/${id}`, null, { params });
+  }
+
+  protected calculateFromFile(file: File, paramObject: P): Observable<Calculation<P, O>> {
+    const headers = this.getRequestHeaders(file.name);
+    const params = new HttpParams({ fromObject: paramObject });
+    return this.fileReader.readAsTextFromFile(file).pipe(
+      mergeMap(data => this.http.post<Calculation<P, O>>(this.url, data, { params, headers })),
+    );
+  }
+
+  protected calculateFromExample(example: Example, paramObject: P): Observable<Calculation<P, O>> {
+    const headers = this.getRequestHeaders(example.name);
+    const params = new HttpParams({ fromObject: paramObject });
+    return this.fileReader.readAsTextFromPath(example.path).pipe(
+      mergeMap(data => this.http.post<Calculation<P, O>>(this.url, data, { params, headers })),
+    );
+  }
+
+  protected findById(id: string) {
+    return this.http.get<Calculation<P, O>>(`${this.url}${id}`);
+  }
+
+  private getRequestHeaders(filename: string): HttpHeaders {
+    return new HttpHeaders({
+      'Content-Disposition': `attachment; filename="${filename}"`,
+    });
+  }
+}

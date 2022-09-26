@@ -30,7 +30,7 @@
       padding: 0;
       flex-basis: 300px;
 
-      * {
+      .bordered {
         margin: 0;
         padding: 1rem;
         border-bottom: $border;
@@ -46,6 +46,18 @@
         &.active {
           font-weight: bold;
           background-color: $backdrop;
+        }
+      }
+
+      .tips {
+        padding: .8rem;
+        font-size: 14px;
+        font-weight: 300;
+
+        a {
+          text-decoration: underline;
+          color: $primary;
+          white-space: nowrap;
         }
       }
     }

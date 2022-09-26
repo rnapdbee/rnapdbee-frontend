@@ -4,7 +4,11 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
-import { SECONDARY_TO_DBN_BPSEQ_EXAMPLES, SECONDARY_TO_DBN_CT_EXAMPLES } from 'src/app/shared/constants/secondary-to-dbn-examples.const';
+import {
+  SECONDARY_TO_DBN_BPSEQ_EXAMPLES,
+  SECONDARY_TO_DBN_CT_EXAMPLES,
+  SECONDARY_TO_DBN_DBN_EXAMPLES,
+} from 'src/app/shared/constants/secondary-to-dbn-examples.const';
 import { Example } from 'src/app/shared/models/example.model';
 import { UploadMethodType } from 'src/app/shared/models/upload-type.model';
 import { ValidationPayload } from 'src/app/shared/models/validation-payload.model';
@@ -183,6 +187,7 @@ describe('SecondaryUploadFormComponent', () => {
         const dummyExample = { name: '', no: -1, path: '' };
         component.bpseqExample = mockExample;
         component.ctExample = dummyExample;
+        component.dbnExample = dummyExample;
         component.onMethodChange();
         expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
           data: component.bpseqExample,
@@ -216,8 +221,8 @@ describe('SecondaryUploadFormComponent', () => {
 
       it('emits new value when example changed', () => {
         const mockedExample2 = SECONDARY_TO_DBN_CT_EXAMPLES[1];
-        component.onBpseqExampleSelect(mockExample);
-        component.onBpseqExampleSelect(mockedExample2);
+        component.onCtExampleSelect(mockExample);
+        component.onCtExampleSelect(mockedExample2);
         expect(component.uploadChange.emit).toHaveBeenCalledTimes(2);
       });
 
@@ -232,9 +237,60 @@ describe('SecondaryUploadFormComponent', () => {
         const dummyExample = { name: '', no: -1, path: '' };
         component.ctExample = mockExample;
         component.bpseqExample = dummyExample;
+        component.dbnExample = dummyExample;
         component.onMethodChange();
         expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
           data: component.ctExample,
+        }));
+      });
+    });
+
+    describe('Dbn example type', () => {
+      let mockExample: Example;
+
+      beforeEach(() => {
+        component.onExampleTypeChange('dbn');
+        mockExample = SECONDARY_TO_DBN_DBN_EXAMPLES[0];
+        spyOn(component.uploadChange, 'emit');
+      });
+
+      it('emits invalid payload when dbn example not provided', () => {
+        component.dbnExample = null;
+        component.onMethodChange();
+        expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+          valid: false,
+        }));
+      });
+
+      it('emits valid payload when dbn example provided', () => {
+        component.onDbnExampleSelect(mockExample);
+        expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+          valid: true,
+        }));
+      });
+
+      it('emits new value when example changed', () => {
+        const mockedExample2 = SECONDARY_TO_DBN_DBN_EXAMPLES[1];
+        component.onDbnExampleSelect(mockExample);
+        component.onDbnExampleSelect(mockedExample2);
+        expect(component.uploadChange.emit).toHaveBeenCalledTimes(2);
+      });
+
+      it('includes example object in payload', () => {
+        component.onDbnExampleSelect(mockExample);
+        expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+          data: mockExample,
+        }));
+      });
+
+      it('emits dbn example', () => {
+        const dummyExample = { name: '', no: -1, path: '' };
+        component.dbnExample = mockExample;
+        component.bpseqExample = dummyExample;
+        component.ctExample = dummyExample;
+        component.onMethodChange();
+        expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+          data: component.dbnExample,
         }));
       });
     });

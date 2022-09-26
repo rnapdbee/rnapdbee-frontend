@@ -1,7 +1,7 @@
 <form>
   <mat-radio-group [(ngModel)]="currentUploadType" (ngModelChange)="onMethodChange()" name="upload-type">
     <app-radio-button 
-      label="From local file (BPSEQ/CT)" 
+      label="From local file (BPSEQ/CT/DBN)" 
       [value]="UploadType.fromLocalFile"
       [checked]="currentUploadType === UploadType.fromLocalFile">
 
@@ -33,6 +33,15 @@
       (click)="onExampleTypeChange('ct')">
 
       <app-example-picker [examples]="ct_examples" (selected)="onCtExampleSelect($event)"></app-example-picker>
+    </app-radio-button>
+
+    <app-radio-button 
+      label="From DBN example"
+      [value]="UploadType.fromExample" 
+      [checked]="isExampleChecked('dbn')"
+      (click)="onExampleTypeChange('dbn')">
+
+      <app-example-picker [examples]="dbn_examples" (selected)="onDbnExampleSelect($event)"></app-example-picker>
     </app-radio-button>
   </mat-radio-group>
 </form>

@@ -6,7 +6,6 @@ import { HomeComponent } from './home.component';
 
 const tertiaryToDBNInputForm = 'app-tertiary-to-dbn-input-form';
 const secondaryToDBNInputForm = 'app-secondary-to-dbn-input-form';
-const dbnToImageInputForm = 'app-dbn-to-image-input-form';
 const tertiaryToMultiInputForm = 'app-tertiary-to-multi-input-form';
 
 describe('HomeComponent', () => {
@@ -45,13 +44,6 @@ describe('HomeComponent', () => {
       component.setCalculationType(CalculationType.SecondaryToDBN);
       fixture.detectChanges();
       const form = debugElement.query(By.css(secondaryToDBNInputForm));
-      expect(form).toBeTruthy();
-    });
-
-    it('renders DBNToImageInputForm when set to DBNToImage', () => {
-      component.setCalculationType(CalculationType.DBNToImage);
-      fixture.detectChanges();
-      const form = debugElement.query(By.css(dbnToImageInputForm));
       expect(form).toBeTruthy();
     });
 

@@ -1,9 +1,15 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { SECONDARY_TO_DBN_BPSEQ_EXAMPLES, SECONDARY_TO_DBN_CT_EXAMPLES } from 'src/app/shared/constants/secondary-to-dbn-examples.const';
+import {
+  SECONDARY_TO_DBN_BPSEQ_EXAMPLES,
+  SECONDARY_TO_DBN_CT_EXAMPLES,
+  SECONDARY_TO_DBN_DBN_EXAMPLES,
+} from 'src/app/shared/constants/secondary-to-dbn-examples.const';
 import { Example } from 'src/app/shared/models/example.model';
 import { UploadMethod, UploadMethodType } from 'src/app/shared/models/upload-type.model';
 import { ValidationPayload } from 'src/app/shared/models/validation-payload.model';
 import { FileValidatorService } from 'src/app/shared/services/file-validator/file-validator.service';
+
+type ExampleType = 'bpseq' | 'ct' | 'dbn' | null;
 
 @Component({
   selector: 'app-secondary-upload-form',
@@ -18,13 +24,15 @@ export class SecondaryUploadFormComponent implements OnInit {
   currentUploadType = this.UploadType.fromLocalFile;
   bpseq_examples = SECONDARY_TO_DBN_BPSEQ_EXAMPLES;
   ct_examples = SECONDARY_TO_DBN_CT_EXAMPLES;
+  dbn_examples = SECONDARY_TO_DBN_DBN_EXAMPLES;
 
   file: File | null = null;
   fileError: string | null = null;
 
   bpseqExample: Example | null = null;
   ctExample: Example | null = null;
-  exampleType = '';
+  dbnExample: Example | null = null;
+  exampleType: ExampleType = null;
 
   constructor(private readonly fileValidatorService: FileValidatorService) { }
 
@@ -40,7 +48,7 @@ export class SecondaryUploadFormComponent implements OnInit {
     }
   }
 
-  isExampleChecked(type: string): boolean {
+  isExampleChecked(type: ExampleType): boolean {
     return this.exampleType === type
       && this.currentUploadType === this.UploadType.fromExample;
   }
@@ -55,7 +63,12 @@ export class SecondaryUploadFormComponent implements OnInit {
     this.notifyChanges();
   }
 
-  onExampleTypeChange(type: string): void {
+  onDbnExampleSelect(event: Example): void {
+    this.dbnExample = event;
+    this.notifyChanges();
+  }
+
+  onExampleTypeChange(type: ExampleType): void {
     this.exampleType = type;
     this.notifyChanges();
   }
@@ -65,7 +78,7 @@ export class SecondaryUploadFormComponent implements OnInit {
   }
 
   setAndValidateFile(file: File): void {
-    this.fileValidatorService.validate(file, ['bpseq', 'ct']).subscribe({
+    this.fileValidatorService.validate(file, ['bpseq', 'ct', 'dbn']).subscribe({
       next: (data: ValidationPayload) => {
         if (data.valid) {
           this.file = file;
@@ -109,13 +122,29 @@ export class SecondaryUploadFormComponent implements OnInit {
         break;
       case UploadMethodType.fromExample:
         payload.type = UploadMethodType.fromExample;
-        payload.data = this.exampleType === 'bpseq' ? this.bpseqExample : this.ctExample;
-        payload.valid = this.exampleType === 'bpseq' ? !!this.bpseqExample : !!this.ctExample;
+        payload.data = this.getCurrentExample();
+        payload.valid = !!this.getCurrentExample();
         break;
       default:
         return;
     }
 
     this.uploadChange.emit(payload);
+  }
+
+  private getCurrentExample() {
+    if (this.exampleType === 'bpseq') {
+      return this.bpseqExample;
+    }
+
+    if (this.exampleType === 'ct') {
+      return this.ctExample;
+    }
+
+    if (this.exampleType === 'dbn') {
+      return this.dbnExample;
+    }
+
+    return null;
   }
 }

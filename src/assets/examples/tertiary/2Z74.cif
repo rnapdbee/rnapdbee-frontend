@@ -4767,4 +4767,4 @@ _pdbx_entity_nonpoly.comp_id
 3 'SUGAR (ALPHA-D-GLUCOSE-6-PHOSPHATE)' G6P 
 4 'MAGNESIUM ION'                       MG  
 5 water                                 HOH 
-# 
+#

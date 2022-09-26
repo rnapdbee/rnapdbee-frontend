@@ -23,12 +23,10 @@ const mockParams: SecondaryToDbnParams = {
 
 const mockResponse: Calculation<SecondaryToDbnParams, SecondaryOutput> = {
   id: mockUuid,
+  filename,
   results: [
     {
-      meta: {
-        filename,
-        params: mockParams,
-      },
+      params: mockParams,
       output: {
         out: 'output',
       },

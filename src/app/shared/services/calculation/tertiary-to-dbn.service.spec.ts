@@ -26,12 +26,10 @@ const mockParams: TertiaryToDbnParams = {
 
 const mockResponse: Calculation<TertiaryToDbnParams, TertiaryOutput> = {
   id: mockUuid,
+  filename,
   results: [
     {
-      meta: {
-        filename,
-        params: mockParams,
-      },
+      params: mockParams,
       output: {
         out: 'output',
       },

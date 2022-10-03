@@ -1,8 +1,9 @@
-import { EXTENSIONS, ExtensionValidatorService } from './extension-validator.service';
+import { FileExtension } from '../../models/file-extension.model';
+import { ExtensionValidatorService } from './extension-validator.service';
 
 describe('ExtensionValidatorService', () => {
   let service: ExtensionValidatorService;
-  const validExtensions = EXTENSIONS.flat();
+  const validExtensions = Object.values(FileExtension);
 
   beforeEach(() => {
     service = new ExtensionValidatorService();

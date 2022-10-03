@@ -2,8 +2,8 @@
   <mat-radio-group [(ngModel)]="currentUploadType" (ngModelChange)="onMethodChange()" name="upload-type">
     <app-radio-button 
       label="From Protein Data Bank" 
-      [value]="UploadType.fromPDB"
-      [checked]="currentUploadType === UploadType.fromPDB">
+      [value]="UploadType.FromPDB"
+      [checked]="currentUploadType === UploadType.FromPDB">
 
         <div inline class="pdbid-input">
           <input maxlength="4" type="text" [(ngModel)]="pdbId" name="pdbId" placeholder="4 character PDB ID">
@@ -16,8 +16,8 @@
 
     <app-radio-button 
       label="From local file" 
-      [value]="UploadType.fromLocalFile"
-      [checked]="currentUploadType === UploadType.fromLocalFile">
+      [value]="UploadType.FromLocalFile"
+      [checked]="currentUploadType === UploadType.FromLocalFile">
 
       <div inline class="file-upload">
         <label for="file-input">Browse...</label>
@@ -33,8 +33,8 @@
 
     <app-radio-button 
       label="From PDBx/mmCIF example"
-      [value]="UploadType.fromExample" 
-      [checked]="currentUploadType === UploadType.fromExample">
+      [value]="UploadType.FromExample" 
+      [checked]="currentUploadType === UploadType.FromExample">
 
       <app-example-picker [examples]="examples" (selected)="onExampleSelect($event)"></app-example-picker>
     </app-radio-button>

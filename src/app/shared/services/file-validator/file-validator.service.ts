@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
+import { FileExtension } from '../../models/file-extension.model';
 import { ValidationPayload } from '../../models/validation-payload.model';
 import { BpseqFileValidatorService } from './bpseq-file-validator.service';
 import { CifFileValidatorService } from './cif-file-validator.service';
 import { CtFileValidatorService } from './ct-file-validator.service';
 import { DbnFileValidatorService } from './dbn-file-validator.service';
-import { Extension, EXTENSIONS, ExtensionValidatorService } from './extension-validator.service';
+import { ExtensionValidatorService } from './extension-validator.service';
 import { FileReaderService } from './file-reader.service';
 import { PdbFileValidatorService } from './pdb-file-validator.service';
 
@@ -24,7 +25,7 @@ export class FileValidatorService {
     private readonly dbnValidator: DbnFileValidatorService,
   ) {}
 
-  validate(file: File, enabledExtensions: Extension[] = EXTENSIONS.flat()): Observable<ValidationPayload> {
+  validate(file: File, enabledExtensions: FileExtension[] = Object.values(FileExtension)): Observable<ValidationPayload> {
     const fileExtesion = file.name.split('.').pop();
 
     const extensionValidation = this.extensionValidatorService.validate(fileExtesion, enabledExtensions);

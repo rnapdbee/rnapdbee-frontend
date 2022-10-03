@@ -13,7 +13,7 @@ import { Example } from 'src/app/shared/models/example.model';
 import { UploadMethodType } from 'src/app/shared/models/upload-type.model';
 import { ValidationPayload } from 'src/app/shared/models/validation-payload.model';
 import { FileValidatorService } from 'src/app/shared/services/file-validator/file-validator.service';
-import { SecondaryUploadFormComponent } from './secondary-upload-form.component';
+import { ExampleType, SecondaryUploadFormComponent } from './secondary-upload-form.component';
 
 describe('SecondaryUploadFormComponent', () => {
   let fixture: ComponentFixture<SecondaryUploadFormComponent>;
@@ -46,18 +46,18 @@ describe('SecondaryUploadFormComponent', () => {
     });
 
     it('emits object of type file when set to file', () => {
-      component.currentUploadType = UploadMethodType.fromLocalFile;
+      component.currentUploadType = UploadMethodType.FromLocalFile;
       component.onMethodChange();
       expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
-        type: UploadMethodType.fromLocalFile,
+        type: UploadMethodType.FromLocalFile,
       }));
     });
 
     it('emits object of type example when set to example', () => {
-      component.currentUploadType = UploadMethodType.fromExample;
+      component.currentUploadType = UploadMethodType.FromExample;
       component.onMethodChange();
       expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
-        type: UploadMethodType.fromExample,
+        type: UploadMethodType.FromExample,
       }));
     });
   });
@@ -69,7 +69,7 @@ describe('SecondaryUploadFormComponent', () => {
     let invalidMockValidationPayload: ValidationPayload;
 
     beforeEach(() => {
-      component.currentUploadType = UploadMethodType.fromLocalFile;
+      component.currentUploadType = UploadMethodType.FromLocalFile;
       mockFileValidatorService = TestBed.inject(FileValidatorService);
       mockFile = new File([], 'mocked file');
       validMockValidationPayload = {
@@ -129,7 +129,7 @@ describe('SecondaryUploadFormComponent', () => {
 
   describe('Example upload method', () => {
     beforeEach(() => {
-      component.currentUploadType = UploadMethodType.fromExample;
+      component.currentUploadType = UploadMethodType.FromExample;
     });
 
     it('renders example picker', () => {
@@ -140,8 +140,8 @@ describe('SecondaryUploadFormComponent', () => {
 
     it('emits new payload when example type changed', () => {
       spyOn(component.uploadChange, 'emit');
-      component.onExampleTypeChange('bpseq');
-      component.onExampleTypeChange('ct');
+      component.onExampleTypeChange(ExampleType.BpseqExample);
+      component.onExampleTypeChange(ExampleType.CtExample);
       expect(component.uploadChange.emit).toHaveBeenCalledTimes(2);
     });
 
@@ -149,7 +149,7 @@ describe('SecondaryUploadFormComponent', () => {
       let mockExample: Example;
 
       beforeEach(() => {
-        component.onExampleTypeChange('bpseq');
+        component.onExampleTypeChange(ExampleType.BpseqExample);
         mockExample = SECONDARY_TO_DBN_BPSEQ_EXAMPLES[0];
         spyOn(component.uploadChange, 'emit');
       });
@@ -199,7 +199,7 @@ describe('SecondaryUploadFormComponent', () => {
       let mockExample: Example;
 
       beforeEach(() => {
-        component.onExampleTypeChange('ct');
+        component.onExampleTypeChange(ExampleType.CtExample);
         mockExample = SECONDARY_TO_DBN_CT_EXAMPLES[0];
         spyOn(component.uploadChange, 'emit');
       });
@@ -249,7 +249,7 @@ describe('SecondaryUploadFormComponent', () => {
       let mockExample: Example;
 
       beforeEach(() => {
-        component.onExampleTypeChange('dbn');
+        component.onExampleTypeChange(ExampleType.DbnExample);
         mockExample = SECONDARY_TO_DBN_DBN_EXAMPLES[0];
         spyOn(component.uploadChange, 'emit');
       });

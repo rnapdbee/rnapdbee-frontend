@@ -79,7 +79,7 @@ describe('TertiaryToMultiService', () => {
       mockPdbId = 'XXXX';
       requestUrl = `${service.url}pdb/${mockPdbId}`;
       mockContent = {
-        type: UploadMethodType.fromPDB,
+        type: UploadMethodType.FromPDB,
         data: mockPdbId,
         valid: true,
       };
@@ -110,7 +110,7 @@ describe('TertiaryToMultiService', () => {
       mockFile = new File([fileContent], filename);
       requestUrl = `${service.url}`;
       mockContent = {
-        type: UploadMethodType.fromLocalFile,
+        type: UploadMethodType.FromLocalFile,
         data: mockFile,
         valid: true,
       };
@@ -160,7 +160,7 @@ describe('TertiaryToMultiService', () => {
       };
       requestUrl = `${service.url}`;
       mockContent = {
-        type: UploadMethodType.fromExample,
+        type: UploadMethodType.FromExample,
         data: mockExample,
         valid: true,
       };

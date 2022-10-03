@@ -2,8 +2,8 @@
   <mat-radio-group [(ngModel)]="currentUploadType" (ngModelChange)="onMethodChange()" name="upload-type">
     <app-radio-button 
       label="From local file (BPSEQ/CT/DBN)" 
-      [value]="UploadType.fromLocalFile"
-      [checked]="currentUploadType === UploadType.fromLocalFile">
+      [value]="UploadType.FromLocalFile"
+      [checked]="currentUploadType === UploadType.FromLocalFile">
 
       <div inline class="file-upload">
         <label for="file-input">Browse...</label>
@@ -19,27 +19,27 @@
 
     <app-radio-button 
       label="From BPSEQ example"
-      [value]="UploadType.fromExample" 
-      [checked]="isExampleChecked('bpseq')"
-      (click)="onExampleTypeChange('bpseq')">
+      [value]="UploadType.FromExample" 
+      [checked]="isExampleChecked(ExampleType.BpseqExample)"
+      (click)="onExampleTypeChange(ExampleType.BpseqExample)">
 
       <app-example-picker [examples]="bpseq_examples" (selected)="onBpseqExampleSelect($event)"></app-example-picker>
     </app-radio-button>
     
     <app-radio-button 
       label="From CT example"
-      [value]="UploadType.fromExample" 
-      [checked]="isExampleChecked('ct')"
-      (click)="onExampleTypeChange('ct')">
+      [value]="UploadType.FromExample" 
+      [checked]="isExampleChecked(ExampleType.CtExample)"
+      (click)="onExampleTypeChange(ExampleType.CtExample)">
 
       <app-example-picker [examples]="ct_examples" (selected)="onCtExampleSelect($event)"></app-example-picker>
     </app-radio-button>
 
     <app-radio-button 
       label="From DBN example"
-      [value]="UploadType.fromExample" 
-      [checked]="isExampleChecked('dbn')"
-      (click)="onExampleTypeChange('dbn')">
+      [value]="UploadType.FromExample" 
+      [checked]="isExampleChecked(ExampleType.DbnExample)"
+      (click)="onExampleTypeChange(ExampleType.DbnExample)">
 
       <app-example-picker [examples]="dbn_examples" (selected)="onDbnExampleSelect($event)"></app-example-picker>
     </app-radio-button>

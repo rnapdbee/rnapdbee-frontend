@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
+import { FileExtension } from '../../models/file-extension.model';
 import { ValidationPayload } from '../../models/validation-payload.model';
 
-export const EXTENSIONS = ['cif', 'pdb', 'bpseq', 'ct', 'dbn'] as const;
-export type Extension = typeof EXTENSIONS[number];
 
 @Injectable({
   providedIn: 'root',
 })
 export class ExtensionValidatorService {
-  validate(fileExtesion: string | undefined, extensions: Extension[]): ValidationPayload {
+  validate(fileExtesion: string | undefined, extensions: FileExtension[]): ValidationPayload {
     if (!fileExtesion) {
       return {
         valid: false,
@@ -37,10 +36,10 @@ export class ExtensionValidatorService {
   }
 
   private isFileExtensionSupported(fileExtesion: string): boolean {
-    return EXTENSIONS.indexOf(fileExtesion as Extension) > -1;
+    return Object.values(FileExtension).indexOf(fileExtesion as FileExtension) > -1;
   }
 
-  private isInEnabledExtensions(fileExtesion: string, enabledExtensions: Extension[]): boolean {
-    return enabledExtensions.indexOf(fileExtesion as Extension) > -1;
+  private isInEnabledExtensions(fileExtesion: string, enabledExtensions: FileExtension[]): boolean {
+    return enabledExtensions.indexOf(fileExtesion as FileExtension) > -1;
   }
 }

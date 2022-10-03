@@ -5,11 +5,17 @@ import {
   SECONDARY_TO_DBN_DBN_EXAMPLES,
 } from 'src/app/shared/constants/secondary-to-dbn-examples.const';
 import { Example } from 'src/app/shared/models/example.model';
+import { FileExtension } from 'src/app/shared/models/file-extension.model';
 import { UploadMethod, UploadMethodType } from 'src/app/shared/models/upload-type.model';
 import { ValidationPayload } from 'src/app/shared/models/validation-payload.model';
 import { FileValidatorService } from 'src/app/shared/services/file-validator/file-validator.service';
 
-type ExampleType = 'bpseq' | 'ct' | 'dbn' | null;
+export enum ExampleType {
+  None,
+  BpseqExample,
+  CtExample,
+  DbnExample,
+}
 
 @Component({
   selector: 'app-secondary-upload-form',
@@ -21,18 +27,20 @@ export class SecondaryUploadFormComponent implements OnInit {
   @ViewChild('fileInput') fileInputRef: ElementRef<HTMLInputElement> | undefined;
 
   UploadType: typeof UploadMethodType = UploadMethodType;
-  currentUploadType = this.UploadType.fromLocalFile;
+  ExampleType: typeof ExampleType = ExampleType;
+  currentUploadType = this.UploadType.FromLocalFile;
   bpseq_examples = SECONDARY_TO_DBN_BPSEQ_EXAMPLES;
   ct_examples = SECONDARY_TO_DBN_CT_EXAMPLES;
   dbn_examples = SECONDARY_TO_DBN_DBN_EXAMPLES;
 
+  allowedFileExtensions = [FileExtension.Bpseq, FileExtension.Ct, FileExtension.Dbn];
   file: File | null = null;
   fileError: string | null = null;
 
   bpseqExample: Example | null = null;
   ctExample: Example | null = null;
   dbnExample: Example | null = null;
-  exampleType: ExampleType = null;
+  selectedExample: ExampleType = ExampleType.None;
 
   constructor(private readonly fileValidatorService: FileValidatorService) { }
 
@@ -48,9 +56,9 @@ export class SecondaryUploadFormComponent implements OnInit {
     }
   }
 
-  isExampleChecked(type: ExampleType): boolean {
-    return this.exampleType === type
-      && this.currentUploadType === this.UploadType.fromExample;
+  isExampleChecked(selected: ExampleType): boolean {
+    return this.selectedExample === selected
+      && this.currentUploadType === this.UploadType.FromExample;
   }
 
   onBpseqExampleSelect(event: Example): void {
@@ -69,7 +77,7 @@ export class SecondaryUploadFormComponent implements OnInit {
   }
 
   onExampleTypeChange(type: ExampleType): void {
-    this.exampleType = type;
+    this.selectedExample = type;
     this.notifyChanges();
   }
 
@@ -78,7 +86,7 @@ export class SecondaryUploadFormComponent implements OnInit {
   }
 
   setAndValidateFile(file: File): void {
-    this.fileValidatorService.validate(file, ['bpseq', 'ct', 'dbn']).subscribe({
+    this.fileValidatorService.validate(file, this.allowedFileExtensions).subscribe({
       next: (data: ValidationPayload) => {
         if (data.valid) {
           this.file = file;
@@ -109,39 +117,38 @@ export class SecondaryUploadFormComponent implements OnInit {
 
   private notifyChanges(): void {
     const payload: UploadMethod = {
-      type: UploadMethodType.fromLocalFile,
+      type: UploadMethodType.FromLocalFile,
       data: null,
       valid: false,
     };
 
     switch (this.currentUploadType) {
-      case UploadMethodType.fromLocalFile:
-        payload.type = UploadMethodType.fromLocalFile;
+      case UploadMethodType.FromLocalFile:
+        payload.type = UploadMethodType.FromLocalFile;
         payload.data = this.file;
         payload.valid = this.fileError === null && !!this.file;
         break;
-      case UploadMethodType.fromExample:
-        payload.type = UploadMethodType.fromExample;
+      case UploadMethodType.FromExample:
+        payload.type = UploadMethodType.FromExample;
         payload.data = this.getCurrentExample();
         payload.valid = !!this.getCurrentExample();
         break;
       default:
         return;
     }
-
     this.uploadChange.emit(payload);
   }
 
   private getCurrentExample() {
-    if (this.exampleType === 'bpseq') {
+    if (this.selectedExample === ExampleType.BpseqExample) {
       return this.bpseqExample;
     }
 
-    if (this.exampleType === 'ct') {
+    if (this.selectedExample === ExampleType.CtExample) {
       return this.ctExample;
     }
 
-    if (this.exampleType === 'dbn') {
+    if (this.selectedExample === ExampleType.DbnExample) {
       return this.dbnExample;
     }
 

@@ -78,7 +78,7 @@ describe('SecondaryToDbnService', () => {
       mockFile = new File([fileContent], filename);
       requestUrl = `${service.url}`;
       mockContent = {
-        type: UploadMethodType.fromLocalFile,
+        type: UploadMethodType.FromLocalFile,
         data: mockFile,
         valid: true,
       };
@@ -128,7 +128,7 @@ describe('SecondaryToDbnService', () => {
       };
       requestUrl = `${service.url}`;
       mockContent = {
-        type: UploadMethodType.fromExample,
+        type: UploadMethodType.FromExample,
         data: mockExample,
         valid: true,
       };

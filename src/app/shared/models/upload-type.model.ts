@@ -1,9 +1,9 @@
 import { Example } from './example.model';
 
 export enum UploadMethodType {
-  fromPDB = 'pdb',
-  fromLocalFile = 'file',
-  fromExample = 'example'
+  FromPDB = 'pdb',
+  FromLocalFile = 'file',
+  FromExample = 'example'
 }
 
 export interface UploadMethod {

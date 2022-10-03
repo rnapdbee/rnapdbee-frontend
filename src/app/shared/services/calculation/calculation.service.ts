@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { defer } from 'rxjs';
-import { DbnToImageParams } from '../../models/dbn-to-image-params.model';
 import { SecondaryToDbnParams } from '../../models/secondary-to-dbn-params.module';
 import { TertiaryToDbnParams } from '../../models/tertiary-to-dbn-params.model';
 import { TertiaryToMultiParams } from '../../models/tertiary-to-multi-params.model';
 import { UploadMethod } from '../../models/upload-type.model';
-import { DbnToImageService } from './dbn-to-image.service';
 import { SecondaryToDbnService } from './secondary-to-dbn.service';
 import { TertiaryToDbnService } from './tertiary-to-dbn.service';
 import { TertiaryToMultiService } from './tertiary-to-multi.service';
@@ -17,7 +15,6 @@ export class CalculationService {
   constructor(
     private readonly tertiaryToDbnService: TertiaryToDbnService,
     private readonly secondaryToDbnService: SecondaryToDbnService,
-    private readonly dbnToImageService: DbnToImageService,
     private readonly tertiaryToMultiService: TertiaryToMultiService,
   ) { }
 
@@ -67,34 +64,6 @@ export class CalculationService {
     defer(() => {
       this.navigateToLoadingScreen();
       return this.secondaryToDbnService.find(id);
-    }).subscribe({
-      next: _ => {
-        // TODO: this.navigateTo2DResultsScreen(data);
-      },
-      error: _ => {
-        // TODO: this.navigateToErrorScreen(data);
-      },
-    });
-  }
-
-  calculateDbnToImage(params: DbnToImageParams, content: UploadMethod) {
-    defer(() => {
-      this.navigateToLoadingScreen();
-      return this.dbnToImageService.calculate(params, content);
-    }).subscribe({
-      next: _ => {
-        // TODO: this.navigateTo2DResultsScreen(data);
-      },
-      error: _ => {
-        // TODO: this.navigateToErrorScreen(data);
-      },
-    });
-  }
-
-  findDbnToImageById(id: string) {
-    defer(() => {
-      this.navigateToLoadingScreen();
-      return this.dbnToImageService.find(id);
     }).subscribe({
       next: _ => {
         // TODO: this.navigateTo2DResultsScreen(data);

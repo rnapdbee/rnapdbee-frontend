@@ -20,11 +20,11 @@ export class TertiaryToDbnService extends CalculationRequestService<TertiaryToDb
 
   calculate(params: TertiaryToDbnParams, content: UploadMethod): Observable<Calculation<TertiaryToDbnParams, TertiaryOutput>> {
     switch (content.type) {
-      case UploadMethodType.fromPDB:
+      case UploadMethodType.FromPDB:
         return this.calculateFromPdb(content.data as string, params);
-      case UploadMethodType.fromExample:
+      case UploadMethodType.FromExample:
         return this.calculateFromExample(content.data as Example, params);
-      case UploadMethodType.fromLocalFile:
+      case UploadMethodType.FromLocalFile:
         return this.calculateFromFile(content.data as File, params);
       default:
         throw new Error('Upload method type could not be recognized.');

@@ -42,26 +42,26 @@ describe('TertiaryUploadFormComponent', () => {
     });
 
     it('emits object of type pdb when set to pdb', () => {
-      component.currentUploadType = UploadMethodType.fromPDB;
+      component.currentUploadType = UploadMethodType.FromPDB;
       component.onMethodChange();
       expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
-        type: UploadMethodType.fromPDB,
+        type: UploadMethodType.FromPDB,
       }));
     });
 
     it('emits object of type file when set to file', () => {
-      component.currentUploadType = UploadMethodType.fromLocalFile;
+      component.currentUploadType = UploadMethodType.FromLocalFile;
       component.onMethodChange();
       expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
-        type: UploadMethodType.fromLocalFile,
+        type: UploadMethodType.FromLocalFile,
       }));
     });
 
     it('emits object of type example when set to example', () => {
-      component.currentUploadType = UploadMethodType.fromExample;
+      component.currentUploadType = UploadMethodType.FromExample;
       component.onMethodChange();
       expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
-        type: UploadMethodType.fromExample,
+        type: UploadMethodType.FromExample,
       }));
     });
   });
@@ -70,7 +70,7 @@ describe('TertiaryUploadFormComponent', () => {
     let mockPdbId: string;
 
     beforeEach(() => {
-      component.currentUploadType = UploadMethodType.fromPDB;
+      component.currentUploadType = UploadMethodType.FromPDB;
       mockPdbId = '4R30';
       spyOn(component.uploadChange, 'emit');
     });
@@ -121,7 +121,7 @@ describe('TertiaryUploadFormComponent', () => {
     let invalidMockValidationPayload: ValidationPayload;
 
     beforeEach(() => {
-      component.currentUploadType = UploadMethodType.fromLocalFile;
+      component.currentUploadType = UploadMethodType.FromLocalFile;
       mockFileValidatorService = TestBed.inject(FileValidatorService);
       mockFile = new File([], 'mocked file');
       validMockValidationPayload = {
@@ -183,7 +183,7 @@ describe('TertiaryUploadFormComponent', () => {
     let mockExample: Example;
 
     beforeEach(() => {
-      component.currentUploadType = UploadMethodType.fromExample;
+      component.currentUploadType = UploadMethodType.FromExample;
       mockExample = TERTIARY_TO_DBN_EXAMPLES[0];
       spyOn(component.uploadChange, 'emit');
     });

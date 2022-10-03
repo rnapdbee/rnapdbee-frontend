@@ -8,11 +8,8 @@
     </li>
     <li>
       in <strong>"2D → (...)"</strong> the secondary structure topology of RNA is derived from base pair list provided
-      in BPSEQ or CT,
+      in BPSEQ, CT or DBN,
     </li>
-    <li>
-      in <strong>"(...) → image"</strong> the image is generated based on the secondary structure provided in
-      dot-bracket notation,
     <li>
       in <strong>"3D → multi 2D"</strong> a set of multiple secondary structures of RNA is derived from its tertiary
       structure provided in PDB or PDBx/mmCIF file, based on various results of intermediate processing steps.
@@ -23,15 +20,17 @@
 </div>
 <div class="calculations">
   <div class="sidebar">
-    <p>Choose scenario:</p>
-    <div class="nav-item" [class.active]="calculationType === CalculationType.TertiaryToDBN"
+    <p class="bordered">Choose scenario:</p>
+    <div class="nav-item bordered" [class.active]="calculationType === CalculationType.TertiaryToDBN"
       (click)="setCalculationType(CalculationType.TertiaryToDBN)">3D → (...)</div>
-    <div class="nav-item" [class.active]="calculationType === CalculationType.SecondaryToDBN"
+    <div class="nav-item bordered" [class.active]="calculationType === CalculationType.SecondaryToDBN"
       (click)="setCalculationType(CalculationType.SecondaryToDBN)">2D → (...)</div>
-    <div class="nav-item" [class.active]="calculationType === CalculationType.DBNToImage"
-      (click)="setCalculationType(CalculationType.DBNToImage)">(...) → image</div>
-    <div class="nav-item" [class.active]="calculationType === CalculationType.TertiaryToMultiSecondary"
+    <div class="nav-item bordered" [class.active]="calculationType === CalculationType.TertiaryToMultiSecondary"
       (click)="setCalculationType(CalculationType.TertiaryToMultiSecondary)">3D → multi 2D</div>
+    <div class="tips">
+      Looking for (...) -> Image?
+      See the <a href="#">3.0 changes</a>  
+    </div>
   </div>
   <div class="content">
     <div class="container">
@@ -41,9 +40,6 @@
         </ng-container>
         <ng-container *ngSwitchCase="CalculationType.SecondaryToDBN">
           <app-secondary-to-dbn-input-form></app-secondary-to-dbn-input-form>
-        </ng-container>
-        <ng-container *ngSwitchCase="CalculationType.DBNToImage">
-          <app-dbn-to-image-input-form></app-dbn-to-image-input-form>
         </ng-container>
         <ng-container *ngSwitchCase="CalculationType.TertiaryToMultiSecondary">
           <app-tertiary-to-multi-input-form></app-tertiary-to-multi-input-form>

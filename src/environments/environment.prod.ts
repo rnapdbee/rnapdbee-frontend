@@ -6,6 +6,5 @@ export const environment = {
 export enum ApiPaths {
   Tertiary = '/3d/',
   Secondary = '/2d/',
-  Image = '/image/',
   Multi = '/multi/'
 }

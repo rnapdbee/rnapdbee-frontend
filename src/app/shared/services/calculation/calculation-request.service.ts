@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { mergeMap, Observable } from 'rxjs';
+import { BehaviorSubject, mergeMap, Observable } from 'rxjs';
 import { ApiPaths, environment } from 'src/environments/environment';
 import { Calculation } from '../../models/calculation.model';
 import { Example } from '../../models/example.model';
@@ -8,6 +8,11 @@ import { FileReaderService } from '../file-validator/file-reader.service';
 
 export abstract class CalculationRequestService<P extends Params, O> {
   get url() { return `${environment.baseUrl}${this.path}`; }
+
+  private readonly _results$ = new BehaviorSubject<Calculation<P, O> | null>(null);
+  results$ = this._results$.asObservable();
+  get results() { return this._results$.getValue(); }
+  set results(value: Calculation<P, O> | null) { this._results$.next(value); }
 
   constructor(
     private readonly http: HttpClient,

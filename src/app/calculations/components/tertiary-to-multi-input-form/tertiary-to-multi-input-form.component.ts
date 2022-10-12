@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { MODEL_SELECTION, VISUALISATION_TOOL } from 'src/app/shared/constants/param-options.const';
 import { TertiaryToMultiParams } from 'src/app/shared/models/tertiary-to-multi-params.model';
 import { UploadMethod } from 'src/app/shared/models/upload-type.model';
-import { CalculationService } from 'src/app/shared/services/calculation/calculation.service';
+import { TertiaryToMultiService } from 'src/app/shared/services/calculation/tertiary-to-multi.service';
 
 @Component({
   selector: 'app-tertiary-to-multi-input-form',
@@ -13,7 +13,7 @@ import { CalculationService } from 'src/app/shared/services/calculation/calculat
 export class TertiaryToMultiInputFormComponent {
   constructor(
     private readonly fb: FormBuilder,
-    private readonly calculationService: CalculationService,
+    private readonly tertiaryToMultiService: TertiaryToMultiService,
   ) { }
 
   MODEL_SELECTION = MODEL_SELECTION;
@@ -41,7 +41,7 @@ export class TertiaryToMultiInputFormComponent {
       throw new Error('Upload method could not be defined.');
     }
     if (this.uploadMethod.valid) {
-      this.calculationService.calculateTertiaryToMulti(this.paramsForm.value as TertiaryToMultiParams, this.uploadMethod);
+      this.tertiaryToMultiService.calculate(this.paramsForm.value as TertiaryToMultiParams, this.uploadMethod);
     }
   }
 }

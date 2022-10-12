@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { STRUCTURAL_ELEMENTS_HANDLING, VISUALISATION_TOOL } from 'src/app/shared/constants/param-options.const';
 import { SecondaryToDbnParams } from 'src/app/shared/models/secondary-to-dbn-params.module';
 import { UploadMethod } from 'src/app/shared/models/upload-type.model';
-import { CalculationService } from 'src/app/shared/services/calculation/calculation.service';
+import { SecondaryToDbnService } from 'src/app/shared/services/calculation/secondary-to-dbn.service';
 
 @Component({
   selector: 'app-secondary-to-dbn-input-form',
@@ -13,7 +13,7 @@ import { CalculationService } from 'src/app/shared/services/calculation/calculat
 export class SecondaryToDbnInputFormComponent {
   constructor(
     private readonly fb: FormBuilder,
-    private readonly calculationService: CalculationService,
+    private readonly secondaryToDbnService: SecondaryToDbnService,
   ) { }
 
   STRUCTURAL_ELEMENTS_HANDLING = STRUCTURAL_ELEMENTS_HANDLING;
@@ -40,7 +40,7 @@ export class SecondaryToDbnInputFormComponent {
       throw new Error('Upload method could not be defined.');
     }
     if (this.uploadMethod.valid) {
-      this.calculationService.calculateSecondaryToDbn(this.paramsForm.value as SecondaryToDbnParams, this.uploadMethod);
+      this.secondaryToDbnService.calculate(this.paramsForm.value as SecondaryToDbnParams, this.uploadMethod);
     }
   }
 }

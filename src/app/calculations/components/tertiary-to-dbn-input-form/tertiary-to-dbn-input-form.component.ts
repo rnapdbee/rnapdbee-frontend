@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   ANALYSIS_TOOL,
   MODEL_SELECTION,
@@ -9,7 +10,7 @@ import {
 } from 'src/app/shared/constants/param-options.const';
 import { TertiaryToDbnParams } from 'src/app/shared/models/tertiary-to-dbn-params.model';
 import { UploadMethod } from 'src/app/shared/models/upload-type.model';
-import { CalculationService } from 'src/app/shared/services/calculation/calculation.service';
+import { TertiaryToDbnService } from 'src/app/shared/services/calculation/tertiary-to-dbn.service';
 
 @Component({
   selector: 'app-tertiary-to-dbn-input-form',
@@ -19,7 +20,8 @@ import { CalculationService } from 'src/app/shared/services/calculation/calculat
 export class TertiaryToDBNInputFormComponent {
   constructor(
     private readonly fb: FormBuilder,
-    private readonly calculationService: CalculationService,
+    private readonly router: Router,
+    private readonly tertiaryToDbnService: TertiaryToDbnService,
   ) { }
 
   MODEL_SELECTION = MODEL_SELECTION;
@@ -52,7 +54,20 @@ export class TertiaryToDBNInputFormComponent {
       throw new Error('Upload method could not be defined.');
     }
     if (this.uploadMethod.valid) {
-      this.calculationService.calculateTertiaryToDbn(this.paramsForm.value as TertiaryToDbnParams, this.uploadMethod);
+      // TODO: add loading on the button
+      this.tertiaryToDbnService.calculate(this.paramsForm.value as TertiaryToDbnParams, this.uploadMethod).subscribe({
+        next: data => {
+          // eslint-disable-next-line no-void
+          void this.router.navigate(['results/3d', data.id]);
+        },
+        error: (error: Error) => {
+          this.handleError(error);
+        },
+      });
     }
+  }
+
+  private handleError(_: Error) {
+    // TODO: handle errors and show it to user
   }
 }

@@ -5,6 +5,7 @@ import { SecondaryToDbnInputFormComponent } from './components/secondary-to-dbn-
 import { TertiaryToDBNInputFormComponent } from './components/tertiary-to-dbn-input-form/tertiary-to-dbn-input-form.component';
 import { TertiaryToMultiInputFormComponent } from './components/tertiary-to-multi-input-form/tertiary-to-multi-input-form.component';
 import { HomeComponent } from './pages/home/home.component';
+import { TertiaryResultsComponent } from './pages/tertiary-results/tertiary-results.component';
 
 
 const COMPONENTS = [
@@ -12,6 +13,7 @@ const COMPONENTS = [
   TertiaryToDBNInputFormComponent,
   SecondaryToDbnInputFormComponent,
   TertiaryToMultiInputFormComponent,
+  TertiaryResultsComponent,
 ];
 
 const MODULES = [

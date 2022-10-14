@@ -23,8 +23,11 @@
 
       .pdbid-error {
         flex: 0 0 100%;
-        margin-top: .5rem;
         color: red;
+        
+        &:not(:empty) {
+          margin-top: .5rem;
+        }
       }
     }
 
@@ -50,8 +53,11 @@
 
       .file-error {
         flex: 0 0 100%;
-        margin-top: .5rem;
         color: red;
+
+        &:not(:empty) {
+          margin-top: .5rem;
+        }
       }
     }
   }

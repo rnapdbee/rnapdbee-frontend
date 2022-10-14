@@ -1,28 +1,14 @@
-<form [formGroup]="paramsForm" (ngSubmit)="onSubmit()">
-  <app-step [value]="1">Upload RNA 3D structure</app-step>
-  <app-tertiary-upload-form (uploadChange)="onUploadMethodChange($event)"></app-tertiary-upload-form>
+<app-step [value]="1">Upload RNA 3D structure</app-step>
+<app-tertiary-upload-form (uploadChange)="onUploadMethodChange($event)">
+</app-tertiary-upload-form>
 
-  <app-step [value]="2">What to process</app-step>
-  <mat-radio-group formControlName="modelSelection">
-    <app-radio-button *ngFor="let item of MODEL_SELECTION" [value]="item.key" [label]="item.label"
-      [checked]="paramsForm.value.modelSelection === item.key">
-    </app-radio-button>
-  </mat-radio-group>
+<app-tertiary-to-multi-params-form [startWith]="2" (paramChange)="onParamsChange($event)">
+</app-tertiary-to-multi-params-form>
 
-  <app-step [value]="3">During base pair identification</app-step>
-  <app-checkbox formControlName="includeNonCanonical" label="Include non-canonical base pairs"></app-checkbox>
-  <app-checkbox formControlName="removeIsolated" label="Remove isolated, canonical base pairs"></app-checkbox>
+<mat-divider></mat-divider>
 
-  <app-step [value]="4">Visualize secondary structure using</app-step>
-  <mat-radio-group formControlName="visualizationTool">
-    <app-radio-button *ngFor="let item of VISUALISATION_TOOL" [value]="item.key" [label]="item.label"
-      [checked]="paramsForm.value.visualizationTool === item.key">
-    </app-radio-button>
-  </mat-radio-group>
-
-  <mat-divider></mat-divider>
-
-  <div class="submit">
-    <button mat-raised-button color="primary" type="submit" [disabled]="!isValid()">Run</button>
-  </div>
-</form>
+<div class="submit">
+  <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!isValid()">
+    Run
+  </button>
+</div>

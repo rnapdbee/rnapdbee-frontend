@@ -11,6 +11,15 @@ import { RouterModule } from '@angular/router';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { ExamplePickerComponent } from './components/example-picker/example-picker.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import {
+  SecondaryToDbnParamsFormComponent,
+} from './components/params-forms/secondary-to-dbn-params-form/secondary-to-dbn-params-form.component';
+import {
+  TertiaryToDbnParamsFormComponent,
+} from './components/params-forms/tertiary-to-dbn-params-form/tertiary-to-dbn-params-form.component';
+import {
+  TertiaryToMultiParamsFormComponent,
+} from './components/params-forms/tertiary-to-multi-params-form/tertiary-to-multi-params-form.component';
 import { RadioButtonComponent } from './components/radio-button/radio-button.component';
 import { StepComponent } from './components/step/step.component';
 import { SecondaryUploadFormComponent } from './components/upload-forms/secondary-upload-form/secondary-upload-form.component';
@@ -24,7 +33,10 @@ const COMPONENTS = [
   RadioButtonComponent,
   StepComponent,
   SecondaryUploadFormComponent,
+  SecondaryToDbnParamsFormComponent,
   TertiaryUploadFormComponent,
+  TertiaryToDbnParamsFormComponent,
+  TertiaryToMultiParamsFormComponent,
 ];
 
 const MODULES = [

@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { STRUCTURAL_ELEMENTS_HANDLING, VISUALISATION_TOOL } from 'src/app/shared/constants/param-options.const';
 import { SecondaryToDbnParams } from 'src/app/shared/models/secondary-to-dbn-params.module';
 import { UploadMethod } from 'src/app/shared/models/upload-type.model';
 import { SecondaryToDbnService } from 'src/app/shared/services/calculation/secondary-to-dbn.service';
@@ -12,23 +10,18 @@ import { SecondaryToDbnService } from 'src/app/shared/services/calculation/secon
 })
 export class SecondaryToDbnInputFormComponent {
   constructor(
-    private readonly fb: FormBuilder,
     private readonly secondaryToDbnService: SecondaryToDbnService,
   ) { }
 
-  STRUCTURAL_ELEMENTS_HANDLING = STRUCTURAL_ELEMENTS_HANDLING;
-  VISUALISATION_TOOL = VISUALISATION_TOOL;
-
   uploadMethod: UploadMethod | undefined;
-
-  paramsForm = this.fb.group({
-    removeIsolated: [false],
-    structuralElementsHandling: [STRUCTURAL_ELEMENTS_HANDLING[0].key],
-    visualizationTool: [VISUALISATION_TOOL[0].key],
-  });
+  params: SecondaryToDbnParams | undefined;
 
   isValid(): boolean {
     return !!(this.uploadMethod && this.uploadMethod.valid);
+  }
+
+  onParamsChange(event: SecondaryToDbnParams) {
+    this.params = event;
   }
 
   onUploadMethodChange(event: UploadMethod): void {
@@ -39,8 +32,11 @@ export class SecondaryToDbnInputFormComponent {
     if (!this.uploadMethod) {
       throw new Error('Upload method could not be defined.');
     }
+    if (!this.params) {
+      throw new Error('Parameters could not be defined.');
+    }
     if (this.uploadMethod.valid) {
-      this.secondaryToDbnService.calculate(this.paramsForm.value as SecondaryToDbnParams, this.uploadMethod);
+      this.secondaryToDbnService.calculate(this.params, this.uploadMethod);
     }
   }
 }

@@ -8,12 +8,12 @@ import { TertiaryToDbnParams } from 'src/app/shared/models/tertiary-to-dbn-param
 import { TertiaryToDbnService } from 'src/app/shared/services/calculation/tertiary-to-dbn.service';
 
 @Component({
-  selector: 'app-tertiary-results',
-  templateUrl: './tertiary-results.component.html',
-  styleUrls: ['./tertiary-results.component.scss'],
+  selector: 'app-tertiary-to-dbn-results',
+  templateUrl: './tertiary-to-dbn-results.component.html',
+  styleUrls: ['./tertiary-to-dbn-results.component.scss'],
   animations: [OpenCloseAnimation],
 })
-export class TertiaryResultsComponent {
+export class TertiaryToDbnResultsComponent {
   results$: Observable<Calculation<TertiaryToDbnParams, TertiaryOutput> | null>;
 
   constructor(

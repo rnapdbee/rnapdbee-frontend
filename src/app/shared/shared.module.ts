@@ -6,7 +6,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { ExamplePickerComponent } from './components/example-picker/example-picker.component';
@@ -47,7 +49,9 @@ const MODULES = [
   MatCheckboxModule,
   MatDividerModule,
   MatIconModule,
+  MatProgressSpinnerModule,
   MatRadioModule,
+  MatSnackBarModule,
   RouterModule,
   ReactiveFormsModule,
 ];

@@ -12,3 +12,12 @@ a, a:hover, a:active, a:visited { text-decoration: none; color: inherit; }
 @include mobile {
   h2 { font-size: 1rem; font-weight: 400; }
 }
+
+.snack-error {
+  background-color: red;
+  color: $white;
+
+  .mat-simple-snackbar-action {
+    color: $white;
+  }
+}

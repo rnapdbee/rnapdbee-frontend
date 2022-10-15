@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { defer, finalize } from 'rxjs';
+import { Calculation } from 'src/app/shared/models/calculation.model';
+import { TertiaryOutput } from 'src/app/shared/models/tertiary-output.model';
 import { TertiaryToDbnParams } from 'src/app/shared/models/tertiary-to-dbn-params.model';
 import { UploadMethod } from 'src/app/shared/models/upload-type.model';
 import { TertiaryToDbnService } from 'src/app/shared/services/calculation/tertiary-to-dbn.service';
+import { SnackBarService } from 'src/app/shared/services/notifications/snack-bar.service';
 
 @Component({
   selector: 'app-tertiary-to-dbn-input-form',
@@ -13,10 +17,12 @@ export class TertiaryToDBNInputFormComponent {
   constructor(
     private readonly router: Router,
     private readonly tertiaryToDbnService: TertiaryToDbnService,
+    private readonly snackBar: SnackBarService,
   ) { }
 
   uploadMethod: UploadMethod | undefined;
   params: TertiaryToDbnParams | undefined;
+  loading = false;
 
 
   isValid(): boolean {
@@ -32,27 +38,32 @@ export class TertiaryToDBNInputFormComponent {
   }
 
   onSubmit(): void {
-    if (!this.uploadMethod) {
-      throw new Error('Upload method could not be defined.');
-    }
-    if (!this.params) {
-      throw new Error('Parameters could not be defined.');
-    }
-    if (this.uploadMethod.valid) {
-      // TODO: add loading on the button
-      this.tertiaryToDbnService.calculate(this.params, this.uploadMethod).subscribe({
-        next: data => {
-          // eslint-disable-next-line no-void
-          void this.router.navigate(['results/3d', data.id]);
-        },
-        error: (error: Error) => {
-          this.handleError(error);
-        },
-      });
-    }
-  }
+    if (this.isValid()) {
+      defer(() => {
+        this.loading = true;
 
-  private handleError(_: Error) {
-    // TODO: handle errors and show it to user
+        if (!this.uploadMethod) {
+          throw new Error('Upload method could not be defined.');
+        }
+
+        if (!this.params) {
+          throw new Error('Parameters could not be defined.');
+        }
+
+        return this.tertiaryToDbnService.calculate(this.params, this.uploadMethod);
+      })
+        .pipe(
+          finalize(() => { this.loading = false; }),
+        )
+        .subscribe({
+          next: (data: Calculation<TertiaryToDbnParams, TertiaryOutput>) => {
+            // eslint-disable-next-line no-void
+            void this.router.navigate(['results/3d', data.id]);
+          },
+          error: (error: Error) => {
+            this.snackBar.error(error.message);
+          },
+        });
+    }
   }
 }

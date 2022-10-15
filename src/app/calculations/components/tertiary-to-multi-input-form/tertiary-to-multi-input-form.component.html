@@ -8,7 +8,12 @@
 <mat-divider></mat-divider>
 
 <div class="submit">
-  <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!isValid()">
-    Run
+  <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!isValid() || loading">
+    <div class="btn-content">
+      <span *ngIf="!loading; else spinner">Run</span>
+      <ng-template #spinner>
+        <mat-spinner [diameter]="20"></mat-spinner>
+      </ng-template>
+    </div>
   </button>
 </div>

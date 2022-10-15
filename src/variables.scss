@@ -22,6 +22,10 @@ $border-radius: 10px;
   }
 }
 
+@mixin gray-spinner {
+  ::ng-deep .mat-progress-spinner circle, .mat-spinner circle { stroke: $accent; }
+}
+
 @mixin card {
   display: inline-block;
   box-sizing: border-box;

@@ -58,7 +58,7 @@ export class TertiaryToMultiInputFormComponent {
         .subscribe({
           next: (data: Calculation<TertiaryToMultiParams, MultiOutput>) => {
             // eslint-disable-next-line no-void
-            void this.router.navigate(['results/3d', data.id]);
+            void this.router.navigate(['results/multi', data.id]);
           },
           error: (error: Error) => {
             this.snackBar.error(error.message);

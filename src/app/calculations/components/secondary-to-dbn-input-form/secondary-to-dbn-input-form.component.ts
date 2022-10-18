@@ -58,7 +58,7 @@ export class SecondaryToDbnInputFormComponent {
         .subscribe({
           next: (data: Calculation<SecondaryToDbnParams, SecondaryOutput>) => {
             // eslint-disable-next-line no-void
-            void this.router.navigate(['results/3d', data.id]);
+            void this.router.navigate(['results/2d', data.id]);
           },
           error: (error: Error) => {
             this.snackBar.error(error.message);

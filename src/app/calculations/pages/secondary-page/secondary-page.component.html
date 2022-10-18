@@ -1,0 +1,15 @@
+<ng-container *ngIf="results$ | async as res; else status">
+  <app-secondary-to-dbn-results [results]="res"></app-secondary-to-dbn-results>
+</ng-container>
+
+<ng-template #status>
+  <div class="centered">
+    <ng-container *ngIf="error; else loading">
+      <app-error [message]="error"></app-error>
+    </ng-container>
+
+    <ng-template #loading>
+      <app-loading></app-loading>
+    </ng-template>
+  </div>
+</ng-template>

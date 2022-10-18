@@ -14,7 +14,7 @@ a, a:hover, a:active, a:visited { text-decoration: none; color: inherit; }
 }
 
 .snack-error {
-  background-color: red;
+  background-color: $error;
   color: $white;
 
   .mat-simple-snackbar-action {

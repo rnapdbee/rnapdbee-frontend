@@ -23,7 +23,7 @@
 
       .pdbid-error {
         flex: 0 0 100%;
-        color: red;
+        color: $error;
         
         &:not(:empty) {
           margin-top: .5rem;
@@ -53,7 +53,7 @@
 
       .file-error {
         flex: 0 0 100%;
-        color: red;
+        color: $error;
 
         &:not(:empty) {
           margin-top: .5rem;

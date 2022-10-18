@@ -11,7 +11,9 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { ErrorComponent } from './components/error/error.component';
 import { ExamplePickerComponent } from './components/example-picker/example-picker.component';
+import { LoadingComponent } from './components/loading/loading.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {
   SecondaryToDbnParamsFormComponent,
@@ -30,7 +32,9 @@ import { TertiaryUploadFormComponent } from './components/upload-forms/tertiary-
 
 const COMPONENTS = [
   CheckboxComponent,
+  ErrorComponent,
   ExamplePickerComponent,
+  LoadingComponent,
   NavbarComponent,
   RadioButtonComponent,
   StepComponent,

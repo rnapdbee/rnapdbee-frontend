@@ -1,0 +1,13 @@
+@import "src/variables";
+
+:host {
+  .container {
+    box-sizing: border-box;
+    max-width: 600px;
+    padding: 2rem;
+
+    .message {
+      color: $error;
+    }
+  }
+}

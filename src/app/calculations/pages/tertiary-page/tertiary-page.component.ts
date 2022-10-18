@@ -8,13 +8,14 @@ import { TertiaryToDbnParams } from 'src/app/shared/models/tertiary-to-dbn-param
 import { TertiaryToDbnService } from 'src/app/shared/services/calculation/tertiary-to-dbn.service';
 
 @Component({
-  selector: 'app-tertiary-to-dbn-results',
-  templateUrl: './tertiary-to-dbn-results.component.html',
-  styleUrls: ['./tertiary-to-dbn-results.component.scss'],
+  selector: 'app-tertiary-page',
+  templateUrl: './tertiary-page.component.html',
+  styleUrls: ['./tertiary-page.component.scss'],
   animations: [OpenCloseAnimation],
 })
-export class TertiaryToDbnResultsComponent {
+export class TertiaryPageComponent {
   results$: Observable<Calculation<TertiaryToDbnParams, TertiaryOutput> | null>;
+  error: string | null = null;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -52,7 +53,7 @@ export class TertiaryToDbnResultsComponent {
     });
   }
 
-  private handleError(_: Error) {
-    // TODO: handle errors;
+  private handleError(error: Error) {
+    this.error = error.message;
   }
 }

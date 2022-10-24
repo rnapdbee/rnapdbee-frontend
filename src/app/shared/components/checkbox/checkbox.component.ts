@@ -20,6 +20,8 @@ export class CheckboxComponent {
   @Input() label = '';
   @Input() showControls = false;
   @Input() expanded = false;
+  @Input() indentation = true;
+
   val: boolean | undefined = undefined;
 
   toggleExpand(): void {

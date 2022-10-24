@@ -3,7 +3,7 @@
 :host {
   .container {
     padding: .5rem;
-    margin: 0 0 0 34px;
+    margin: 0;
 
     .checkbox {
       display: flex;
@@ -24,13 +24,25 @@
       }
 
     .content {
-      overflow: hidden;
+      height: 150px;
+      overflow: auto;
+      padding: 1rem;
+      font-family: monospace;
+      word-break: break-all;
+      line-break: anywhere;
+      border: $border;
+      border-radius: 5px;
+      resize: vertical;
 
       &:not(:empty) {
         margin-top: .5rem;
         margin-left: 28px;
       }
     }
+  }
+
+  .indentation {
+    margin-left: 34px;
   }
 }
 

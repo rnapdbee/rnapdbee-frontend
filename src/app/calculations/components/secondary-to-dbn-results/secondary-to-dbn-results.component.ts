@@ -10,4 +10,15 @@ import { SecondaryToDbnParams } from 'src/app/shared/models/secondary-to-dbn-par
 })
 export class SecondaryToDbnResultsComponent {
   @Input() results: Calculation<SecondaryToDbnParams, SecondaryOutput> | undefined;
+  reanalyzeParams: SecondaryToDbnParams | undefined;
+  loading = false;
+
+  onParamsChange(event: SecondaryToDbnParams) {
+    this.reanalyzeParams = event;
+  }
+
+  reanalyze() {
+    // TODO: reanalyze with different parameters
+    this.loading = true;
+  }
 }

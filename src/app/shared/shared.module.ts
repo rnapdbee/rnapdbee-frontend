@@ -25,6 +25,7 @@ import {
   TertiaryToMultiParamsFormComponent,
 } from './components/params-forms/tertiary-to-multi-params-form/tertiary-to-multi-params-form.component';
 import { RadioButtonComponent } from './components/radio-button/radio-button.component';
+import { ReanalyzePanelComponent } from './components/reanalyze-panel/reanalyze-panel.component';
 import { StepComponent } from './components/step/step.component';
 import { SecondaryUploadFormComponent } from './components/upload-forms/secondary-upload-form/secondary-upload-form.component';
 import { TertiaryUploadFormComponent } from './components/upload-forms/tertiary-upload-form/tertiary-upload-form.component';
@@ -37,6 +38,7 @@ const COMPONENTS = [
   LoadingComponent,
   NavbarComponent,
   RadioButtonComponent,
+  ReanalyzePanelComponent,
   StepComponent,
   SecondaryUploadFormComponent,
   SecondaryToDbnParamsFormComponent,

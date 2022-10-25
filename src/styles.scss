@@ -1,3 +1,4 @@
+@import '~viewerjs/dist/viewer.css';
 @import "src/variables";
 
 html, body { height: 100%; }
@@ -20,4 +21,8 @@ a, a:hover, a:active, a:visited { text-decoration: none; color: inherit; }
   .mat-simple-snackbar-action {
     color: $white;
   }
+}
+
+.img-viewer {
+  background: $white !important;
 }

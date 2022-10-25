@@ -70,13 +70,6 @@
           display: flex;
           flex-direction: column;
 
-          img {
-            box-sizing: border-box;
-            max-width: 880px;
-            max-height: 880px;
-            padding: 0 4rem;
-          }
-
           p {
             margin-left: 32px;
           }
@@ -98,10 +91,6 @@
             padding: 1rem;
             display: flex;
             flex-direction: column;
-
-            img {
-              padding: 0;
-            }
           }
         }
       }

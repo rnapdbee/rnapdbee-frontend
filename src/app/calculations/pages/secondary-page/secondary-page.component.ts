@@ -12,18 +12,18 @@ import { SecondaryToDbnService } from 'src/app/shared/services/calculation/secon
   styleUrls: ['./secondary-page.component.scss'],
 })
 export class SecondaryPageComponent {
-  results$: Observable<Calculation<SecondaryToDbnParams, SecondaryOutput> | null>;
+  calculationResults$: Observable<Calculation<SecondaryToDbnParams, SecondaryOutput> | null>;
   error: string | null = null;
 
   constructor(
     private readonly route: ActivatedRoute,
     private readonly secondaryToDbnService: SecondaryToDbnService,
   ) {
-    this.results$ = this.secondaryToDbnService.results$;
+    this.calculationResults$ = this.secondaryToDbnService.calculationResults$;
 
     this.getId().subscribe({
       next: id => {
-        if (this.secondaryToDbnService.results?.id !== id) {
+        if (this.secondaryToDbnService.calculationResults?.id !== id) {
           this.findById(id);
         }
       },

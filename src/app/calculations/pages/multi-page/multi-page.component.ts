@@ -12,18 +12,18 @@ import { TertiaryToMultiService } from 'src/app/shared/services/calculation/tert
   styleUrls: ['./multi-page.component.scss'],
 })
 export class MultiPageComponent {
-  results$: Observable<Calculation<TertiaryToMultiParams, MultiOutput> | null>;
+  calculationResults$: Observable<Calculation<TertiaryToMultiParams, MultiOutput> | null>;
   error: string | null = null;
 
   constructor(
     private readonly route: ActivatedRoute,
     private readonly tertiaryToMultiService: TertiaryToMultiService,
   ) {
-    this.results$ = this.tertiaryToMultiService.results$;
+    this.calculationResults$ = this.tertiaryToMultiService.calculationResults$;
 
     this.getId().subscribe({
       next: id => {
-        if (this.tertiaryToMultiService.results?.id !== id) {
+        if (this.tertiaryToMultiService.calculationResults?.id !== id) {
           this.findById(id);
         }
       },

@@ -14,18 +14,18 @@ import { TertiaryToDbnService } from 'src/app/shared/services/calculation/tertia
   animations: [OpenCloseAnimation],
 })
 export class TertiaryPageComponent {
-  results$: Observable<Calculation<TertiaryToDbnParams, TertiaryOutput> | null>;
+  calculationResults$: Observable<Calculation<TertiaryToDbnParams, TertiaryOutput> | null>;
   error: string | null = null;
 
   constructor(
     private readonly route: ActivatedRoute,
     private readonly tertiaryToDbnService: TertiaryToDbnService,
   ) {
-    this.results$ = this.tertiaryToDbnService.results$;
+    this.calculationResults$ = this.tertiaryToDbnService.calculationResults$;
 
     this.getId().subscribe({
       next: id => {
-        if (this.tertiaryToDbnService.results?.id !== id) {
+        if (this.tertiaryToDbnService.calculationResults?.id !== id) {
           this.findById(id);
         }
       },

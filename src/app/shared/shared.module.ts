@@ -17,6 +17,7 @@ import { ExamplePickerComponent } from './components/example-picker/example-pick
 import { ImageViewerComponent } from './components/image-viewer/image-viewer.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SecondaryOutputComponent } from './components/output/secondary-output/secondary-output.component';
 import {
   SecondaryToDbnParamsFormComponent,
 } from './components/params-forms/secondary-to-dbn-params-form/secondary-to-dbn-params-form.component';
@@ -43,6 +44,7 @@ const COMPONENTS = [
   RadioButtonComponent,
   ReanalyzePanelComponent,
   StepComponent,
+  SecondaryOutputComponent,
   SecondaryUploadFormComponent,
   SecondaryToDbnParamsFormComponent,
   TertiaryUploadFormComponent,

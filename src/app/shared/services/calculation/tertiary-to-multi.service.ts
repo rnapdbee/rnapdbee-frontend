@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { ApiPaths } from 'src/environments/environment';
 import { Calculation } from '../../models/calculation.model';
 import { Example } from '../../models/example.model';
@@ -19,6 +19,15 @@ export class TertiaryToMultiService extends CalculationRequestService<TertiaryTo
   }
 
   calculate(params: TertiaryToMultiParams, content: UploadMethod): Observable<Calculation<TertiaryToMultiParams, MultiOutput>> {
+    return this.performCalculationBasedOnContent(params, content).pipe(tap(data => { this.calculationResults = data; }));
+  }
+
+  find(id: string): Observable<Calculation<TertiaryToMultiParams, MultiOutput>> {
+    return this.findById(id).pipe(tap(data => { this.calculationResults = data; }));
+  }
+
+  private performCalculationBasedOnContent(params: TertiaryToMultiParams, content: UploadMethod)
+    : Observable<Calculation<TertiaryToMultiParams, MultiOutput>> {
     switch (content.type) {
       case UploadMethodType.FromPDB:
         return this.calculateFromPdb(content.data as string, params);
@@ -29,10 +38,6 @@ export class TertiaryToMultiService extends CalculationRequestService<TertiaryTo
       default:
         throw new Error('Upload method type could not be recognized.');
     }
-  }
-
-  find(id: string): Observable<Calculation<TertiaryToMultiParams, MultiOutput>> {
-    return this.findById(id);
   }
 
   // TODO: reanalyze(id, params) {...}

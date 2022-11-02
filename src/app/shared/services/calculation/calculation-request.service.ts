@@ -10,9 +10,9 @@ export abstract class CalculationRequestService<P extends Params, O> {
   get url() { return `${environment.baseUrl}${this.path}`; }
 
   private readonly _results$ = new BehaviorSubject<Calculation<P, O> | null>(null);
-  results$ = this._results$.asObservable();
-  get results() { return this._results$.getValue(); }
-  set results(value: Calculation<P, O> | null) { this._results$.next(value); }
+  calculationResults$ = this._results$.asObservable();
+  get calculationResults() { return this._results$.getValue(); }
+  set calculationResults(value: Calculation<P, O> | null) { this._results$.next(value); }
 
   constructor(
     private readonly http: HttpClient,

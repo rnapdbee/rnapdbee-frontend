@@ -1,0 +1,45 @@
+<ng-container *ngIf="output">
+  <app-checkbox [(ngModel)]="_selected.dotBracket" label="Dot Bracket" [showControls]="true" [indentation]="false">
+    <div *ngFor="let strand of output.analysis[0].strands">
+      {{ strand.name }} <br>
+      {{ strand.sequence }} <br>
+      {{ strand.structure }} <br> <br>
+    </div>
+  </app-checkbox>
+
+  <app-checkbox [(ngModel)]="_selected.bpSeq" label="BPSEQ" [showControls]="true" [indentation]="false">
+    <div *ngFor="let line of output.analysis[0].bpSeq">
+      {{ line }} <br>
+    </div>
+  </app-checkbox>
+
+  <app-checkbox [(ngModel)]="_selected.ct" label="Ct" [showControls]="true" [indentation]="false">
+    <div *ngFor="let line of output.analysis[0].ct">
+      {{ line }} <br>
+    </div>
+  </app-checkbox>
+
+  <app-checkbox [(ngModel)]="_selected.interactions" label="Interactions" [showControls]="true" [indentation]="false">
+    <div *ngFor="let line of output.analysis[0].interactions">
+      {{ line }} <br>
+    </div>
+  </app-checkbox>
+
+  <app-checkbox [(ngModel)]="_selected.structuralElements" label="Structural elements" [showControls]="true" [indentation]="false">
+    <div *ngFor="let line of output.analysis[0].structuralElements.stems">
+      Stem {{ line }} <br>
+    </div>
+    <div *ngFor="let line of output.analysis[0].structuralElements.loops">
+      Loop {{ line }} <br>
+    </div>
+    <div *ngFor="let line of output.analysis[0].structuralElements.singleStrands">
+      Single strand {{ line }} <br>
+    </div>
+    <div *ngFor="let line of output.analysis[0].structuralElements.singleStrands5p">
+      Single strand 5' {{ line }} <br>
+    </div>
+    <div *ngFor="let line of output.analysis[0].structuralElements.singleStrands3p">
+      Single strand 3' {{ line }} <br>
+    </div>
+  </app-checkbox>
+</ng-container>

@@ -1,5 +1,5 @@
-<ng-container *ngIf="results$ | async as res; else status">
-  <app-tertiary-to-multi-results [results]="res"></app-tertiary-to-multi-results>
+<ng-container *ngIf="calculationResults$ | async as calcRes; else status">
+  <app-tertiary-to-multi-results [calculation]="calcRes"></app-tertiary-to-multi-results>
 </ng-container>
 
 <ng-template #status>

@@ -1,5 +1,5 @@
-<ng-container *ngIf="results$ | async as res; else status">
-  <app-secondary-to-dbn-results [results]="res"></app-secondary-to-dbn-results>
+<ng-container *ngIf="calculationResults$ | async as calcRes; else status">
+  <app-secondary-to-dbn-results [calculation]="calcRes"></app-secondary-to-dbn-results>
 </ng-container>
 
 <ng-template #status>

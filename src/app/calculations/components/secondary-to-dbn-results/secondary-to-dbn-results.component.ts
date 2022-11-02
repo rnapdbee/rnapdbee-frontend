@@ -1,24 +1,49 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Calculation } from 'src/app/shared/models/calculation.model';
+import { SecondaryFlags } from 'src/app/shared/models/secondary-flags.model';
 import { SecondaryOutput } from 'src/app/shared/models/secondary-output.model';
 import { SecondaryToDbnParams } from 'src/app/shared/models/secondary-to-dbn-params.module';
 
 @Component({
-  selector: 'app-secondary-to-dbn-results',
+  selector: 'app-secondary-to-dbn-results[calculation]',
   templateUrl: './secondary-to-dbn-results.component.html',
   styleUrls: ['./secondary-to-dbn-results.component.scss'],
 })
-export class SecondaryToDbnResultsComponent {
-  @Input() results: Calculation<SecondaryToDbnParams, SecondaryOutput> | undefined;
+export class SecondaryToDbnResultsComponent implements OnInit {
+  @Input() calculation: Calculation<SecondaryToDbnParams, SecondaryOutput> | undefined;
   reanalyzeParams: SecondaryToDbnParams | undefined;
   loading = false;
 
-  onParamsChange(event: SecondaryToDbnParams) {
+  selected: SecondaryFlags[] = [];
+
+  ngOnInit(): void {
+    if (!this.calculation) {
+      throw new Error('Provide calculation parameter');
+    }
+
+    for (let i = 0; i < this.calculation.results.length; i += 1) {
+      this.selected.push(new SecondaryFlags());
+    }
+  }
+
+  onParamsChange(event: SecondaryToDbnParams): void {
     this.reanalyzeParams = event;
   }
 
-  reanalyze() {
+  reanalyze(): void {
     // TODO: reanalyze with different parameters
     this.loading = true;
+  }
+
+  selectAll(): void {
+    for (let i = 0; i < this.selected.length; i += 1) {
+      this.selectThis(i);
+    }
+  }
+
+  selectThis(index: number): void {
+    Object.keys(this.selected[index]).forEach((e: string) => {
+      this.selected[index][e as keyof typeof this.selected[number]] = true;
+    });
   }
 }

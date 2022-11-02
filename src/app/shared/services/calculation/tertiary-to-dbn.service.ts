@@ -19,11 +19,11 @@ export class TertiaryToDbnService extends CalculationRequestService<TertiaryToDb
   }
 
   calculate(params: TertiaryToDbnParams, content: UploadMethod): Observable<Calculation<TertiaryToDbnParams, TertiaryOutput>> {
-    return this.performCalculationBasedOnContent(params, content).pipe(tap(data => { this.results = data; }));
+    return this.performCalculationBasedOnContent(params, content).pipe(tap(data => { this.calculationResults = data; }));
   }
 
   find(id: string): Observable<Calculation<TertiaryToDbnParams, TertiaryOutput>> {
-    return this.findById(id).pipe(tap(data => { this.results = data; }));
+    return this.findById(id).pipe(tap(data => { this.calculationResults = data; }));
   }
 
   private performCalculationBasedOnContent(params: TertiaryToDbnParams, content: UploadMethod)

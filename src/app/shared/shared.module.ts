@@ -14,7 +14,6 @@ import { NgxViewerModule } from 'ngx-viewer';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ExamplePickerComponent } from './components/example-picker/example-picker.component';
-import { ImageViewerComponent } from './components/image-viewer/image-viewer.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SecondaryOutputComponent } from './components/output/secondary-output/secondary-output.component';
@@ -30,6 +29,7 @@ import {
 import { RadioButtonComponent } from './components/radio-button/radio-button.component';
 import { ReanalyzePanelComponent } from './components/reanalyze-panel/reanalyze-panel.component';
 import { StepComponent } from './components/step/step.component';
+import { SvgViewerComponent } from './components/svg-viewer/svg-viewer.component';
 import { SecondaryUploadFormComponent } from './components/upload-forms/secondary-upload-form/secondary-upload-form.component';
 import { TertiaryUploadFormComponent } from './components/upload-forms/tertiary-upload-form/tertiary-upload-form.component';
 
@@ -38,12 +38,12 @@ const COMPONENTS = [
   CheckboxComponent,
   ErrorComponent,
   ExamplePickerComponent,
-  ImageViewerComponent,
   LoadingComponent,
   NavbarComponent,
   RadioButtonComponent,
   ReanalyzePanelComponent,
   StepComponent,
+  SvgViewerComponent,
   SecondaryOutputComponent,
   SecondaryUploadFormComponent,
   SecondaryToDbnParamsFormComponent,

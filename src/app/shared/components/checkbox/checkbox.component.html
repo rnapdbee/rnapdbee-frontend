@@ -19,7 +19,7 @@
       </ng-template>
     </div>
   </div>
-  <div @openClose *ngIf="expanded" class="content">
+  <div @openClose *ngIf="expanded" class="content" [class.text-view]="textView">
     <ng-content></ng-content>
   </div>
 </div>

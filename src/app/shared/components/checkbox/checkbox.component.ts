@@ -21,6 +21,7 @@ export class CheckboxComponent {
   @Input() showControls = false;
   @Input() expanded = false;
   @Input() indentation = true;
+  @Input() textView = false;
 
   val: boolean | undefined = undefined;
 

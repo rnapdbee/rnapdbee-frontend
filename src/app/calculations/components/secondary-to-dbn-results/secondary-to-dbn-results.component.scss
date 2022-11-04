@@ -69,10 +69,6 @@
           padding: 1rem;
           display: flex;
           flex-direction: column;
-
-          p {
-            margin-left: 32px;
-          }
         }
 
         @include mobile {

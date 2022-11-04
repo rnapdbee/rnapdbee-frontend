@@ -24,8 +24,17 @@
       }
 
     .content {
-      height: 150px;
       overflow: auto;
+
+      &:not(:empty) {
+        margin-top: .5rem;
+        margin-left: 28px;
+      }
+    }
+    
+    .text-view {
+      overflow: auto;
+      height: 150px;
       padding: 1rem;
       font-family: monospace;
       word-break: break-all;
@@ -33,11 +42,6 @@
       border: $border;
       border-radius: 5px;
       resize: vertical;
-
-      &:not(:empty) {
-        margin-top: .5rem;
-        margin-left: 28px;
-      }
     }
   }
 

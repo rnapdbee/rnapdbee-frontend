@@ -32,7 +32,7 @@
       <div class="result" *ngFor="let result of calculation.results; let i = index">
         <div class="data-panel">
           <div><button mat-stroked-button (click)="selectThis(i)">Select this</button></div>
-          <p>{{ result.params | json }}</p>
+          <p>{{ getDescription(result.params) }}</p>
           <app-secondary-output [(ngModel)]="selected[i]" [output]="result.output"></app-secondary-output>
         </div>
         <div class="image-panel">

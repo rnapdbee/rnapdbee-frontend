@@ -10,7 +10,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
-import { NgxViewerModule } from 'ngx-viewer';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ExamplePickerComponent } from './components/example-picker/example-picker.component';
@@ -63,7 +62,6 @@ const MODULES = [
   MatProgressSpinnerModule,
   MatRadioModule,
   MatSnackBarModule,
-  NgxViewerModule,
   RouterModule,
   ReactiveFormsModule,
 ];

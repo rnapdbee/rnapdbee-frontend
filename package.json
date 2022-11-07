@@ -23,13 +23,12 @@
     "@angular/platform-browser-dynamic": "~13.0.0",
     "@angular/router": "~13.0.0",
     "leaflet": "^1.9.2",
-    "ngx-viewer": "^1.0.8",
     "rxjs": "~7.5.7",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~13.0.4",
+    "@angular-devkit/build-angular": "^13.3.9",
     "@angular-eslint/builder": "14.0.4",
     "@angular-eslint/eslint-plugin": "14.1.2",
     "@angular-eslint/eslint-plugin-template": "14.0.4",

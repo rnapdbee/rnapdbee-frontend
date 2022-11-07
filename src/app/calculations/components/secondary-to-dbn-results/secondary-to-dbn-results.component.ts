@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Calculation } from 'src/app/shared/models/calculation.model';
 import { SecondaryFlags } from 'src/app/shared/models/secondary-flags.model';
-import { SecondaryOutput } from 'src/app/shared/models/secondary-output.model';
+import { DrawingResult, SecondaryOutput } from 'src/app/shared/models/secondary-output.model';
 import { SecondaryToDbnParams } from 'src/app/shared/models/secondary-to-dbn-params.module';
 import { DescriptionService } from 'src/app/shared/services/result/description.service';
 
@@ -15,6 +15,7 @@ export class SecondaryToDbnResultsComponent implements OnInit {
   reanalyzeParams: SecondaryToDbnParams | undefined;
   loading = false;
   selected: SecondaryFlags[] = [];
+  DrawingResult: typeof DrawingResult = DrawingResult;
 
   constructor(private readonly descriptionService: DescriptionService) {}
 
@@ -47,6 +48,10 @@ export class SecondaryToDbnResultsComponent implements OnInit {
     Object.keys(this.selected[index]).forEach((e: string) => {
       this.selected[index][e as keyof typeof this.selected[number]] = true;
     });
+    if (this.calculation?.results[index].output.imageInformation.drawingResult === DrawingResult.FailedByBothDrawers
+      || this.calculation?.results[index].output.imageInformation.drawingResult === DrawingResult.NotDrawn) {
+      this.selected[index].imageInformation = false;
+    }
   }
 
   getDescription(params: SecondaryToDbnParams) {

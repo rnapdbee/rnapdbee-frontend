@@ -8,6 +8,5 @@ export interface Result<P extends Params, O> {
 export interface Calculation<P extends Params, O> {
   id: string,
   filename: string,
-  title: string,
   results: Result<P, O>[],
 }

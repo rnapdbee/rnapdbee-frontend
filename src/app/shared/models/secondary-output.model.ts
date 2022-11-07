@@ -10,24 +10,28 @@ interface StructuralElements {
   singleStrands: string[],
   singleStrands5p: string[],
   singleStrands3p: string[],
+  coordinates?: string,
+}
+
+export enum DrawingResult {
+  DoneByMainDrawer = 'DONE_BY_MAIN_DRAWER',
+  DoneByBackupDrawer = 'DONE_BY_BACKUP_DRAWER',
+  FailedByBothDrawers = 'FAILED_BY_BOTH_DRAWERS',
+  NotDrawn = 'NOT_DRAWN'
 }
 
 interface ImageInformation {
-  pathToPNGImage: string,
   pathToSVGImage: string,
-  successfulDrawer: string,
-  failedDrawer: string,
+  successfulVisualizationTool: string,
+  failedVisualizationTool: string,
+  drawingResult: DrawingResult,
 }
 
-interface SecondaryOutputEntry {
+export interface SecondaryOutput {
   strands: StrandEntry[],
   bpSeq: string[],
   ct: string[],
   interactions: string[],
   structuralElements: StructuralElements,
   imageInformation: ImageInformation,
-}
-
-export interface SecondaryOutput {
-  analysis: SecondaryOutputEntry[],
 }

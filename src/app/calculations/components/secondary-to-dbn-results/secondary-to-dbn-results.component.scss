@@ -8,10 +8,6 @@
   .title {
     @include card;
     margin-bottom: 1rem;
-
-    h2 {
-      margin-bottom: .5rem;
-    }
   }
 
   .reanalyze {

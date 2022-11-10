@@ -1,10 +1,10 @@
-interface StrandEntry {
+export interface StrandEntry {
   name: string,
   sequence: string,
   structure: string,
 }
 
-interface StructuralElements {
+export interface StructuralElements {
   stems: string[],
   loops: string[],
   singleStrands: string[],
@@ -20,7 +20,7 @@ export enum DrawingResult {
   NotDrawn = 'NOT_DRAWN'
 }
 
-interface ImageInformation {
+export interface ImageInformation {
   pathToSVGImage: string,
   successfulVisualizationTool: string,
   failedVisualizationTool: string,

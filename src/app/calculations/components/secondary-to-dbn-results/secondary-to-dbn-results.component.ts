@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Calculation } from 'src/app/shared/models/calculation.model';
 import { SecondaryFlags } from 'src/app/shared/models/secondary-flags.model';
-import { DrawingResult, SecondaryOutput } from 'src/app/shared/models/secondary-output.model';
+import { SecondaryOutput } from 'src/app/shared/models/secondary-output.model';
 import { SecondaryToDbnParams } from 'src/app/shared/models/secondary-to-dbn-params.module';
 import { DescriptionService } from 'src/app/shared/services/result/description.service';
 
@@ -15,7 +15,6 @@ export class SecondaryToDbnResultsComponent implements OnInit {
   reanalyzeParams: SecondaryToDbnParams | undefined;
   loading = false;
   selected: SecondaryFlags[] = [];
-  DrawingResult: typeof DrawingResult = DrawingResult;
 
   constructor(private readonly descriptionService: DescriptionService) {}
 
@@ -38,23 +37,57 @@ export class SecondaryToDbnResultsComponent implements OnInit {
     this.loading = true;
   }
 
+  getDescription(params: SecondaryToDbnParams) {
+    return this.descriptionService.generateSecondaryDescription(params);
+  }
+
   selectAll(): void {
-    for (let i = 0; i < this.selected.length; i += 1) {
-      this.selectThis(i);
+    if (this.isAllSelected()) {
+      for (let i = 0; i < this.selected.length; i += 1) {
+        this.unSelectThis(i);
+      }
+    } else {
+      for (let i = 0; i < this.selected.length; i += 1) {
+        this.selectThis(i);
+      }
     }
   }
 
-  selectThis(index: number): void {
+  select(index: number): void {
+    if (this.isSelected(index)) {
+      this.unSelectThis(index);
+    } else {
+      this.selectThis(index);
+    }
+  }
+
+  isAllSelected(): boolean {
+    let isAllSelected = true;
+    for (let i = 0; i < this.selected.length; i += 1) {
+      isAllSelected = isAllSelected && this.isSelected(i);
+    }
+    return isAllSelected;
+  }
+
+  isSelected(index: number): boolean {
+    let isSelected = true;
+    Object.keys(this.selected[index]).forEach((e: string) => {
+      if (!this.selected[index][e as keyof typeof this.selected[number]]) {
+        isSelected = false;
+      }
+    });
+    return isSelected;
+  }
+
+  private selectThis(index: number): void {
     Object.keys(this.selected[index]).forEach((e: string) => {
       this.selected[index][e as keyof typeof this.selected[number]] = true;
     });
-    if (this.calculation?.results[index].output.imageInformation.drawingResult === DrawingResult.FailedByBothDrawers
-      || this.calculation?.results[index].output.imageInformation.drawingResult === DrawingResult.NotDrawn) {
-      this.selected[index].imageInformation = false;
-    }
   }
 
-  getDescription(params: SecondaryToDbnParams) {
-    return this.descriptionService.generateSecondaryDescription(params);
+  private unSelectThis(index: number): void {
+    Object.keys(this.selected[index]).forEach((e: string) => {
+      this.selected[index][e as keyof typeof this.selected[number]] = false;
+    });
   }
 }

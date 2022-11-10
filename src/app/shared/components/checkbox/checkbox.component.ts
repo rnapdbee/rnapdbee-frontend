@@ -1,5 +1,5 @@
 import { Component, forwardRef, Input } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OpenCloseAnimation } from '../../animations/open-close';
 
 @Component({
@@ -16,35 +16,27 @@ import { OpenCloseAnimation } from '../../animations/open-close';
     },
   ],
 })
-export class CheckboxComponent {
+export class CheckboxComponent implements ControlValueAccessor {
   @Input() label = '';
   @Input() showControls = false;
   @Input() expanded = false;
   @Input() indentation = true;
   @Input() textView = false;
 
-  val: boolean | undefined = undefined;
-
-  toggleExpand(): void {
-    this.expanded = !this.expanded;
-  }
-
-  onChange(_: boolean): void {
-    // do nothing.
-  }
-
-  onTouch(_: boolean): void {
-    // do nothing.
-  }
+  private _value = false;
+  get value() { return this._value; }
 
   set value(val: boolean) {
-    if (val !== undefined && this.val !== val) {
-      this.val = val;
+    if (val !== undefined && this._value !== val) {
+      this._value = val;
       this.onChange(val);
       this.onTouch(val);
     }
   }
-  get value() { return !!this.val; }
+
+  toggleExpand(): void {
+    this.expanded = !this.expanded;
+  }
 
   writeValue(value: boolean): void {
     this.value = value;
@@ -56,5 +48,13 @@ export class CheckboxComponent {
 
   registerOnTouched(fn: never): void {
     this.onTouch = fn;
+  }
+
+  onChange(_: boolean): void {
+    // do nothing.
+  }
+
+  onTouch(_: boolean): void {
+    // do nothing.
   }
 }

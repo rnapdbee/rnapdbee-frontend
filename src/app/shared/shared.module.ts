@@ -15,6 +15,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { ExamplePickerComponent } from './components/example-picker/example-picker.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SecondaryImageComponent } from './components/output/secondary-image/secondary-image.component';
 import { SecondaryOutputComponent } from './components/output/secondary-output/secondary-output.component';
 import {
   SecondaryToDbnParamsFormComponent,
@@ -43,6 +44,7 @@ const COMPONENTS = [
   ReanalyzePanelComponent,
   StepComponent,
   SvgViewerComponent,
+  SecondaryImageComponent,
   SecondaryOutputComponent,
   SecondaryUploadFormComponent,
   SecondaryToDbnParamsFormComponent,

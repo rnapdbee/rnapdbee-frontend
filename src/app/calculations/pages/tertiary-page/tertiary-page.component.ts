@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, Observable } from 'rxjs';
 import { OpenCloseAnimation } from 'src/app/shared/animations/open-close';
-import { Calculation } from 'src/app/shared/models/calculation.model';
+import { CalculationPageComponent } from 'src/app/shared/components/calculation-page/calculation-page.component';
 import { TertiaryOutput } from 'src/app/shared/models/tertiary-output.model';
 import { TertiaryToDbnParams } from 'src/app/shared/models/tertiary-to-dbn-params.model';
 import { TertiaryToDbnService } from 'src/app/shared/services/calculation/tertiary-to-dbn.service';
@@ -13,47 +12,12 @@ import { TertiaryToDbnService } from 'src/app/shared/services/calculation/tertia
   styleUrls: ['./tertiary-page.component.scss'],
   animations: [OpenCloseAnimation],
 })
-export class TertiaryPageComponent {
-  calculationResults$: Observable<Calculation<TertiaryToDbnParams, TertiaryOutput> | null>;
-  error: string | null = null;
-
+export class TertiaryPageComponent extends CalculationPageComponent<TertiaryToDbnParams, TertiaryOutput> {
+  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
   constructor(
-    private readonly route: ActivatedRoute,
-    private readonly tertiaryToDbnService: TertiaryToDbnService,
+    route: ActivatedRoute,
+    calculationService: TertiaryToDbnService,
   ) {
-    this.calculationResults$ = this.tertiaryToDbnService.calculationResults$;
-
-    this.getId().subscribe({
-      next: id => {
-        if (this.tertiaryToDbnService.calculationResults?.id !== id) {
-          this.findById(id);
-        }
-      },
-      error: (error: Error) => {
-        this.handleError(error);
-      },
-    });
-  }
-
-  private getId(): Observable<string> {
-    return this.route.params.pipe(map(params => {
-      const { id } = params;
-      if (id) {
-        return id as string;
-      }
-      throw new Error('Calculation ID could not be read. Please provide valid ID in url path');
-    }));
-  }
-
-  private findById(id: string) {
-    this.tertiaryToDbnService.find(id).subscribe({
-      error: (error: Error) => {
-        this.handleError(error);
-      },
-    });
-  }
-
-  private handleError(error: Error) {
-    this.error = error.message;
+    super(route, calculationService);
   }
 }

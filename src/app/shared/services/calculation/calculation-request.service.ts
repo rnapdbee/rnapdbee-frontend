@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { BehaviorSubject, mergeMap, Observable } from 'rxjs';
+import { BehaviorSubject, mergeMap, Observable, tap } from 'rxjs';
 import { ApiPaths, environment } from 'src/environments/environment';
 import { Calculation } from '../../models/calculation.model';
 import { Example } from '../../models/example.model';
 import { Params } from '../../models/params.model';
+import { UploadMethod } from '../../models/upload-type.model';
 import { FileReaderService } from '../file-validator/file-reader.service';
 
 export abstract class CalculationRequestService<P extends Params, O> {
@@ -19,6 +20,16 @@ export abstract class CalculationRequestService<P extends Params, O> {
     private readonly fileReader: FileReaderService,
     private readonly path: ApiPaths,
   ) {}
+
+  calculate(params: P, content: UploadMethod): Observable<Calculation<P, O>> {
+    return this.performCalculationBasedOnContent(params, content).pipe(tap(data => { this.calculationResults = data; }));
+  }
+
+  find(id: string): Observable<Calculation<P, O>> {
+    return this.findById(id).pipe(tap(data => { this.calculationResults = data; }));
+  }
+
+  protected abstract performCalculationBasedOnContent(params: P, content: UploadMethod): Observable<Calculation<P, O>>;
 
   protected calculateFromPdb(id: string, paramObject: P): Observable<Calculation<P, O>> {
     const params = new HttpParams({ fromObject: paramObject });
@@ -41,7 +52,7 @@ export abstract class CalculationRequestService<P extends Params, O> {
     );
   }
 
-  protected findById(id: string) {
+  private findById(id: string) {
     return this.http.get<Calculation<P, O>>(`${this.url}${id}`);
   }
 

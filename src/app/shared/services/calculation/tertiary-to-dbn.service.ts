@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ApiPaths } from 'src/environments/environment';
 import { Calculation } from '../../models/calculation.model';
 import { Example } from '../../models/example.model';
@@ -18,15 +18,7 @@ export class TertiaryToDbnService extends CalculationRequestService<TertiaryToDb
     super(http, fileReader, ApiPaths.Tertiary);
   }
 
-  calculate(params: TertiaryToDbnParams, content: UploadMethod): Observable<Calculation<TertiaryToDbnParams, TertiaryOutput>> {
-    return this.performCalculationBasedOnContent(params, content).pipe(tap(data => { this.calculationResults = data; }));
-  }
-
-  find(id: string): Observable<Calculation<TertiaryToDbnParams, TertiaryOutput>> {
-    return this.findById(id).pipe(tap(data => { this.calculationResults = data; }));
-  }
-
-  private performCalculationBasedOnContent(params: TertiaryToDbnParams, content: UploadMethod)
+  performCalculationBasedOnContent(params: TertiaryToDbnParams, content: UploadMethod)
     : Observable<Calculation<TertiaryToDbnParams, TertiaryOutput>> {
     switch (content.type) {
       case UploadMethodType.FromPDB:

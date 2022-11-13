@@ -8,22 +8,27 @@ import { SecondaryToDbnParams } from '../../models/secondary-to-dbn-params.modul
 })
 export class DescriptionService {
   generateSecondaryDescription(params: SecondaryToDbnParams): string {
-    let handling = '';
-    let removeIsolated = '';
-
-    if (params.structuralElementsHandling === STRUCTURAL_ELEMENTS_HANDLING[0].key) {
-      handling = 'using';
-    } else if (params.structuralElementsHandling === STRUCTURAL_ELEMENTS_HANDLING[1].key) {
-      handling = 'ignoring';
-    }
-
-    if (params.removeIsolated) {
-      removeIsolated = 'have been removed';
-    } else {
-      removeIsolated = 'were not removed';
-    }
+    const handling = this.determineStructuralElementsHandling(params.structuralElementsHandling);
+    const removeIsolated = this.determineRemoveIsolated(params.removeIsolated);
 
     return `Structural elements handled ${handling} pseudoknots. 
             Isolated, cannonical base pairs ${removeIsolated}.`;
+  }
+
+  private determineStructuralElementsHandling(param: string): string {
+    if (param === STRUCTURAL_ELEMENTS_HANDLING[0].key) {
+      return 'using';
+    }
+    if (param === STRUCTURAL_ELEMENTS_HANDLING[1].key) {
+      return 'ignoring';
+    }
+    throw new Error('Parameter could not be determined');
+  }
+
+  private determineRemoveIsolated(param: boolean): string {
+    if (param) {
+      return 'have been removed';
+    }
+    return 'were not removed';
   }
 }

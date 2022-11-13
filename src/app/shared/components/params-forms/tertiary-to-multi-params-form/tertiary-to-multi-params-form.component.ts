@@ -13,8 +13,8 @@ export class TertiaryToMultiParamsFormComponent implements OnInit {
   @Input() params: TertiaryToMultiParams | undefined;
   @Output() paramChange = new EventEmitter<TertiaryToMultiParams>();
 
-  MODEL_SELECTION = MODEL_SELECTION;
-  VISUALISATION_TOOL = VISUALISATION_TOOL;
+  readonly MODEL_SELECTION = MODEL_SELECTION;
+  readonly VISUALISATION_TOOL = VISUALISATION_TOOL;
 
   paramsForm = this.fb.group({
     modelSelection: [MODEL_SELECTION[0].key],

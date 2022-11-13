@@ -13,8 +13,8 @@ export class SecondaryToDbnParamsFormComponent implements OnInit {
   @Input() params: SecondaryToDbnParams | undefined;
   @Output() paramChange = new EventEmitter<SecondaryToDbnParams>();
 
-  STRUCTURAL_ELEMENTS_HANDLING = STRUCTURAL_ELEMENTS_HANDLING;
-  VISUALISATION_TOOL = VISUALISATION_TOOL;
+  readonly STRUCTURAL_ELEMENTS_HANDLING = STRUCTURAL_ELEMENTS_HANDLING;
+  readonly VISUALISATION_TOOL = VISUALISATION_TOOL;
 
   paramsForm = this.fb.group({
     removeIsolated: [false],

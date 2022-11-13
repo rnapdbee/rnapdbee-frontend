@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { ApiPaths } from 'src/environments/environment';
 import { Calculation } from '../../models/calculation.model';
 import { Example } from '../../models/example.model';
@@ -19,15 +19,7 @@ export class SecondaryToDbnService extends CalculationRequestService<SecondaryTo
     super(http, fileReader, ApiPaths.Secondary);
   }
 
-  calculate(params: SecondaryToDbnParams, content: UploadMethod): Observable<Calculation<SecondaryToDbnParams, SecondaryOutput>> {
-    return this.performCalculationBasedOnContent(params, content).pipe(tap(data => { this.calculationResults = data; }));
-  }
-
-  find(id: string): Observable<Calculation<SecondaryToDbnParams, SecondaryOutput>> {
-    return this.findById(id).pipe(tap(data => { this.calculationResults = data; }));
-  }
-
-  private performCalculationBasedOnContent(params: SecondaryToDbnParams, content: UploadMethod)
+  performCalculationBasedOnContent(params: SecondaryToDbnParams, content: UploadMethod)
     : Observable<Calculation<SecondaryToDbnParams, SecondaryOutput>> {
     switch (content.type) {
       case UploadMethodType.FromExample:

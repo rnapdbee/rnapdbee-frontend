@@ -70,24 +70,20 @@ export class SecondaryToDbnResultsComponent implements OnInit {
   }
 
   isSelected(index: number): boolean {
-    let isSelected = true;
-    Object.keys(this.selected[index]).forEach((e: string) => {
-      if (!this.selected[index][e as keyof typeof this.selected[number]]) {
-        isSelected = false;
-      }
-    });
-    return isSelected;
+    return Object.keys(this.selected[index])
+      .map((item: string) => !!this.selected[index][item as keyof typeof this.selected[number]])
+      .reduce((previous: boolean, current: boolean) => previous && current, true);
   }
 
   private selectThis(index: number): void {
-    Object.keys(this.selected[index]).forEach((e: string) => {
-      this.selected[index][e as keyof typeof this.selected[number]] = true;
+    Object.keys(this.selected[index]).forEach((item: string) => {
+      this.selected[index][item as keyof typeof this.selected[number]] = true;
     });
   }
 
   private unSelectThis(index: number): void {
-    Object.keys(this.selected[index]).forEach((e: string) => {
-      this.selected[index][e as keyof typeof this.selected[number]] = false;
+    Object.keys(this.selected[index]).forEach((item: string) => {
+      this.selected[index][item as keyof typeof this.selected[number]] = false;
     });
   }
 }

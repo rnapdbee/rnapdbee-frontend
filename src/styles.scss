@@ -2,13 +2,22 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-h1 { font-size: 1.5rem; font-weight: 500; }
-h2 { font-size: 1.25rem; font-weight: 400; }
-h3 { font-size: 1rem; font-weight: 400; }
-p, ul, ol { font-size: 1rem; font-weight: 300; }
+h1 { font-size: 1.25rem; font-weight: 500; margin: 0;}
+h2 { font-size: 1.25rem; font-weight: 400; margin: 0;}
+h3 { font-size: 1rem; font-weight: 400; margin: 0;}
+p, ul, ol { font-size: 1rem; font-weight: 300; margin: 0 0 .75rem; }
 a, a:hover, a:active, a:visited { text-decoration: none; color: inherit; }
 .mat-divider { border-top-color: $border-color; }
 
 @include mobile {
   h2 { font-size: 1rem; font-weight: 400; }
+}
+
+.snack-error {
+  background-color: $error;
+  color: $white;
+
+  .mat-simple-snackbar-action {
+    color: $white;
+  }
 }

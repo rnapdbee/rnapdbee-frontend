@@ -1,17 +1,27 @@
 @import "src/variables";
 
 :host {
-  form {
-    margin: 1rem auto;
+  .submit {
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem 0;
 
-    .submit {
+    button {
       display: flex;
-      justify-content: flex-end;
-      margin: 1rem 0;
+      align-items: center;
+      justify-content: center;
+      padding: 0 3.5rem;
+      line-height: normal;
 
-      button {
-        padding: 0 3.5rem;
+      .btn-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px
       }
+      
+      @include gray-spinner;    
     }
   }
 }

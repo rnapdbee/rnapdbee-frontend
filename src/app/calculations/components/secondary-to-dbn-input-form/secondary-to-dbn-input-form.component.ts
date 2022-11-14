@@ -1,46 +1,22 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { STRUCTURAL_ELEMENTS_HANDLING, VISUALISATION_TOOL } from 'src/app/shared/constants/param-options.const';
+import { Router } from '@angular/router';
+import { InputFormComponent } from 'src/app/shared/components/input-form/input-form.component';
+import { SecondaryOutput } from 'src/app/shared/models/secondary-output.model';
 import { SecondaryToDbnParams } from 'src/app/shared/models/secondary-to-dbn-params.module';
-import { UploadMethod } from 'src/app/shared/models/upload-type.model';
-import { CalculationService } from 'src/app/shared/services/calculation/calculation.service';
+import { SecondaryToDbnService } from 'src/app/shared/services/calculation/secondary-to-dbn.service';
+import { SnackBarService } from 'src/app/shared/services/notifications/snack-bar.service';
 
 @Component({
   selector: 'app-secondary-to-dbn-input-form',
   templateUrl: './secondary-to-dbn-input-form.component.html',
   styleUrls: ['./secondary-to-dbn-input-form.component.scss'],
 })
-export class SecondaryToDbnInputFormComponent {
+export class SecondaryToDbnInputFormComponent extends InputFormComponent<SecondaryToDbnParams, SecondaryOutput> {
   constructor(
-    private readonly fb: FormBuilder,
-    private readonly calculationService: CalculationService,
-  ) { }
-
-  STRUCTURAL_ELEMENTS_HANDLING = STRUCTURAL_ELEMENTS_HANDLING;
-  VISUALISATION_TOOL = VISUALISATION_TOOL;
-
-  uploadMethod: UploadMethod | undefined;
-
-  paramsForm = this.fb.group({
-    removeIsolated: [false],
-    structuralElementsHandling: [STRUCTURAL_ELEMENTS_HANDLING[0].key],
-    visualizationTool: [VISUALISATION_TOOL[0].key],
-  });
-
-  isValid(): boolean {
-    return !!(this.uploadMethod && this.uploadMethod.valid);
-  }
-
-  onUploadMethodChange(event: UploadMethod): void {
-    this.uploadMethod = event;
-  }
-
-  onSubmit(): void {
-    if (!this.uploadMethod) {
-      throw new Error('Upload method could not be defined.');
-    }
-    if (this.uploadMethod.valid) {
-      this.calculationService.calculateSecondaryToDbn(this.paramsForm.value as SecondaryToDbnParams, this.uploadMethod);
-    }
+    router: Router,
+    snackBar: SnackBarService,
+    calculationService: SecondaryToDbnService,
+  ) {
+    super(router, snackBar, calculationService, 'results/2d');
   }
 }

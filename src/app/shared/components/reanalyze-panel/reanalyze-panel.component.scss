@@ -1,0 +1,30 @@
+@import "src/variables";
+
+:host {
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    @include card-t;
+    padding: .5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+
+    .text {
+      color: $primary;
+      text-decoration: underline;
+    }
+  }
+
+  .container {
+    @include card-x;
+    padding: 1rem;
+    overflow: hidden;
+
+    .content {
+      max-width: 1000px;
+    }
+  }
+}

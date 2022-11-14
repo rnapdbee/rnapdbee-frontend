@@ -5,7 +5,7 @@ import { of, throwError } from 'rxjs';
 import { ApiPaths } from 'src/environments/environment';
 import { Calculation } from '../../models/calculation.model';
 import { Example } from '../../models/example.model';
-import { SecondaryOutput } from '../../models/secondary-output.model';
+import { DrawingResult, SecondaryOutput } from '../../models/secondary-output.model';
 import { SecondaryToDbnParams } from '../../models/secondary-to-dbn-params.module';
 import { UploadMethod, UploadMethodType } from '../../models/upload-type.model';
 import { FileReaderService } from '../file-validator/file-reader.service';
@@ -28,7 +28,23 @@ const mockResponse: Calculation<SecondaryToDbnParams, SecondaryOutput> = {
     {
       params: mockParams,
       output: {
-        out: 'output',
+        strands: [{ name: '', sequence: '', structure: '' }],
+        bpSeq: [''],
+        ct: [''],
+        interactions: [''],
+        structuralElements: {
+          stems: [''],
+          loops: [''],
+          singleStrands: [''],
+          singleStrands5p: [''],
+          singleStrands3p: [''],
+        },
+        imageInformation: {
+          pathToSVGImage: '',
+          successfulVisualizationTool: '',
+          failedVisualizationTool: '',
+          drawingResult: DrawingResult.DoneByMainDrawer,
+        },
       },
     },
   ],

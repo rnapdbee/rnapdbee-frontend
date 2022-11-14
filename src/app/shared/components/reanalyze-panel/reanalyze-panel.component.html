@@ -1,0 +1,10 @@
+<div class="header" (click)="toggleExpand()">
+  <span class="text">Reanalyze with different parameters</span>
+  <mat-icon *ngIf="!expanded">expand_more</mat-icon>
+  <mat-icon *ngIf="expanded">expand_less</mat-icon>
+</div>
+<div class="container" @openClose *ngIf="expanded">
+  <div class="content">
+    <ng-content></ng-content>
+  </div>
+</div>

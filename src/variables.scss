@@ -5,9 +5,13 @@ $backdrop: #F9F6F6;
 $border-color: #C4C4C4;
 $primary: #5D5FEF;
 $accent: #676666;
+$error: #FF0000;
 
 $border: 1px solid $border-color;
 $border-radius: 10px;
+
+$navbar-height: 60px;
+$navbar-height-mobile: 80px;
 
 @mixin mobile {
   @media (max-width: 769px) {
@@ -19,6 +23,17 @@ $border-radius: 10px;
 @mixin desktop {
   @media (min-width: 770px) {
     @content;
+  }
+}
+
+@mixin gray-spinner {
+  ::ng-deep .mat-progress-spinner circle, .mat-spinner circle { stroke: $accent; }
+}
+
+@mixin full-height {
+  height: calc(100% - #{$navbar-height});
+  @include mobile {
+    height: calc(100% - #{$navbar-height-mobile});
   }
 }
 

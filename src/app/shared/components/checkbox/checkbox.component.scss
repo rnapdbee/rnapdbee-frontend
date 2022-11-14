@@ -3,7 +3,7 @@
 :host {
   .container {
     padding: .5rem;
-    margin: .5rem .5rem .5rem 34px;
+    margin: 0;
 
     .checkbox {
       display: flex;
@@ -11,7 +11,7 @@
 
       mat-checkbox {
         width: 100%;
-        font-size: 16px;
+        font-size: 15px;
       }
 
       .controls button {
@@ -24,13 +24,29 @@
       }
 
     .content {
-      overflow: hidden;
+      overflow: auto;
 
       &:not(:empty) {
         margin-top: .5rem;
         margin-left: 28px;
       }
     }
+    
+    .text-view {
+      overflow: auto;
+      height: 150px;
+      padding: 1rem;
+      font-family: monospace;
+      word-break: break-all;
+      line-break: anywhere;
+      border: $border;
+      border-radius: 5px;
+      resize: vertical;
+    }
+  }
+
+  .indentation {
+    margin-left: 34px;
   }
 }
 

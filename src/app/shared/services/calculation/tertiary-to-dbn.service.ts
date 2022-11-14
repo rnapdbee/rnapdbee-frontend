@@ -18,7 +18,8 @@ export class TertiaryToDbnService extends CalculationRequestService<TertiaryToDb
     super(http, fileReader, ApiPaths.Tertiary);
   }
 
-  calculate(params: TertiaryToDbnParams, content: UploadMethod): Observable<Calculation<TertiaryToDbnParams, TertiaryOutput>> {
+  performCalculationBasedOnContent(params: TertiaryToDbnParams, content: UploadMethod)
+    : Observable<Calculation<TertiaryToDbnParams, TertiaryOutput>> {
     switch (content.type) {
       case UploadMethodType.FromPDB:
         return this.calculateFromPdb(content.data as string, params);
@@ -29,10 +30,6 @@ export class TertiaryToDbnService extends CalculationRequestService<TertiaryToDb
       default:
         throw new Error('Upload method type could not be recognized.');
     }
-  }
-
-  find(id: string): Observable<Calculation<TertiaryToDbnParams, TertiaryOutput>> {
-    return this.findById(id);
   }
 
   // TODO: reanalyze(id, params) {...}

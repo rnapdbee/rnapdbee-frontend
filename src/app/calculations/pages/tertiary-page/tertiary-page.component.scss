@@ -1,0 +1,10 @@
+@import "src/variables";
+
+:host {  
+  .centered {
+    @include full-height;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

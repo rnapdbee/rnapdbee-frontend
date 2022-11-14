@@ -19,7 +19,8 @@ export class SecondaryToDbnService extends CalculationRequestService<SecondaryTo
     super(http, fileReader, ApiPaths.Secondary);
   }
 
-  calculate(params: SecondaryToDbnParams, content: UploadMethod): Observable<Calculation<SecondaryToDbnParams, SecondaryOutput>> {
+  performCalculationBasedOnContent(params: SecondaryToDbnParams, content: UploadMethod)
+    : Observable<Calculation<SecondaryToDbnParams, SecondaryOutput>> {
     switch (content.type) {
       case UploadMethodType.FromExample:
         return this.calculateFromExample(content.data as Example, params);
@@ -28,10 +29,6 @@ export class SecondaryToDbnService extends CalculationRequestService<SecondaryTo
       default:
         throw new Error('Upload method type could not be recognized.');
     }
-  }
-
-  find(id: string): Observable<Calculation<SecondaryToDbnParams, SecondaryOutput>> {
-    return this.findById(id);
   }
 
   // TODO: reanalyze(id, params) {...}

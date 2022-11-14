@@ -1,0 +1,9 @@
+@import "src/variables";
+
+:host {
+  .map {
+    resize: vertical;
+    height: 600px;
+    background: $white;
+  }
+}

@@ -52,7 +52,7 @@ export abstract class CalculationRequestService<P extends Params, O> {
     );
   }
 
-  private findById(id: string) {
+  private findById(id: string): Observable<Calculation<P, O>> {
     return this.http.get<Calculation<P, O>>(`${this.url}${id}`);
   }
 

@@ -1,16 +1,9 @@
 <form [formGroup]="paramsForm">
-  <app-step [value]="getStepNumber(1)">What to process</app-step>
-  <mat-radio-group formControlName="modelSelection">
-    <app-radio-button *ngFor="let item of MODEL_SELECTION" [value]="item.key" [label]="item.label"
-      [checked]="paramsForm.value.modelSelection === item.key">
-    </app-radio-button>
-  </mat-radio-group>
-
-  <app-step [value]="getStepNumber(2)">During base pair identification</app-step>
+  <app-step [value]="getStepNumber(1)">During base pair identification</app-step>
   <app-checkbox formControlName="includeNonCanonical" label="Include non-canonical base pairs"></app-checkbox>
   <app-checkbox formControlName="removeIsolated" label="Remove isolated, canonical base pairs"></app-checkbox>
 
-  <app-step [value]="getStepNumber(3)">Visualize secondary structure using</app-step>
+  <app-step [value]="getStepNumber(2)">Visualize secondary structure using</app-step>
   <mat-radio-group formControlName="visualizationTool">
     <app-radio-button *ngFor="let item of VISUALISATION_TOOL" [value]="item.key" [label]="item.label"
       [checked]="paramsForm.value.visualizationTool === item.key">

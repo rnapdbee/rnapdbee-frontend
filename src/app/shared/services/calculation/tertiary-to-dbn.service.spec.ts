@@ -79,7 +79,7 @@ describe('TertiaryToDbnService', () => {
 
     beforeEach(() => {
       mockPdbId = 'XXXX';
-      requestUrl = `${service.url}pdb/${mockPdbId}`;
+      requestUrl = `${service.url}/pdb/${mockPdbId}`;
       mockContent = {
         type: UploadMethodType.FromPDB,
         data: mockPdbId,
@@ -203,7 +203,7 @@ describe('TertiaryToDbnService', () => {
     let requestUrl: string;
 
     beforeEach(() => {
-      requestUrl = `${service.url}${mockUuid}`;
+      requestUrl = `${service.url}/${mockUuid}`;
     });
 
     it('sends valid request', () => {

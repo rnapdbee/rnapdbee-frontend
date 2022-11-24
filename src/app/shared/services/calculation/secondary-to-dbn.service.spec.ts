@@ -185,7 +185,7 @@ describe('SecondaryToDbnService', () => {
     let requestUrl: string;
 
     beforeEach(() => {
-      requestUrl = `${service.url}${mockUuid}`;
+      requestUrl = `${service.url}/${mockUuid}`;
     });
 
     it('sends valid request', () => {

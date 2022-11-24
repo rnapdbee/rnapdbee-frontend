@@ -29,6 +29,10 @@ export abstract class CalculationRequestService<P extends Params, O> {
     return this.findById(id).pipe(tap(data => { this.calculationResults = data; }));
   }
 
+  reanalyze(id: string, params: P): Observable<Calculation<P, O>> {
+    return this.reanalyzeWithDifferentParameters(id, params).pipe(tap(data => { this.calculationResults = data; }));
+  }
+
   protected abstract performCalculationBasedOnContent(params: P, content: UploadMethod): Observable<Calculation<P, O>>;
 
   protected calculateFromPdb(id: string, paramObject: P): Observable<Calculation<P, O>> {
@@ -54,6 +58,11 @@ export abstract class CalculationRequestService<P extends Params, O> {
 
   private findById(id: string): Observable<Calculation<P, O>> {
     return this.http.get<Calculation<P, O>>(`${this.url}/${id}`);
+  }
+
+  private reanalyzeWithDifferentParameters(id: string, paramObject: P): Observable<Calculation<P, O>> {
+    const params = new HttpParams({ fromObject: paramObject });
+    return this.http.get<Calculation<P, O>>(`${this.url}/${id}`, { params });
   }
 
   private getRequestHeaders(filename: string): HttpHeaders {

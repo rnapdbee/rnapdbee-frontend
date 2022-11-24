@@ -4,7 +4,7 @@ export const environment = {
 };
 
 export enum ApiPaths {
-  Tertiary = '/3d/',
-  Secondary = '/2d/',
-  Multi = '/multi/'
+  Tertiary = '/3d',
+  Secondary = '/2d',
+  Multi = '/multi'
 }

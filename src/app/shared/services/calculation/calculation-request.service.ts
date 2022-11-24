@@ -33,7 +33,7 @@ export abstract class CalculationRequestService<P extends Params, O> {
 
   protected calculateFromPdb(id: string, paramObject: P): Observable<Calculation<P, O>> {
     const params = new HttpParams({ fromObject: paramObject });
-    return this.http.post<Calculation<P, O>>(`${this.url}pdb/${id}`, null, { params });
+    return this.http.post<Calculation<P, O>>(`${this.url}/pdb/${id}`, null, { params });
   }
 
   protected calculateFromFile(file: File, paramObject: P): Observable<Calculation<P, O>> {
@@ -53,7 +53,7 @@ export abstract class CalculationRequestService<P extends Params, O> {
   }
 
   private findById(id: string): Observable<Calculation<P, O>> {
-    return this.http.get<Calculation<P, O>>(`${this.url}${id}`);
+    return this.http.get<Calculation<P, O>>(`${this.url}/${id}`);
   }
 
   private getRequestHeaders(filename: string): HttpHeaders {

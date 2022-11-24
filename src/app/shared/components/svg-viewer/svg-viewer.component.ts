@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import * as L from 'leaflet';
 
 @Component({
@@ -8,13 +8,19 @@ import * as L from 'leaflet';
 })
 export class SvgViewerComponent implements AfterViewInit {
   @Input() src = '';
-  @Input() id: number | undefined;
+  @ViewChild('map') mapElementRef: ElementRef<HTMLElement> | undefined;
+  get mapElement() { return this.mapElementRef?.nativeElement; }
 
   private map: L.Map | undefined;
   private readonly bounds: L.LatLngBoundsExpression = [[0, 0], [150, 150]];
 
+
   ngAfterViewInit(): void {
-    this.map = new L.Map(`map${this.id ?? ''}`, {
+    if (!this.mapElement) {
+      throw new Error("Cannot initialize map. 'mapElement' is undefined.");
+    }
+
+    this.map = new L.Map(this.mapElement, {
       crs: L.CRS.Simple,
     });
     L.imageOverlay(this.src, this.bounds).addTo(this.map);

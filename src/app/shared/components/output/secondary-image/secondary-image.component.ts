@@ -19,7 +19,6 @@ import { DrawingResult, ImageInformation } from 'src/app/shared/models/secondary
 })
 export class SecondaryImageComponent implements ControlValueAccessor {
   @Input() imageInformation: ImageInformation | undefined;
-  @Input() id: number | undefined;
   DrawingResult: typeof DrawingResult = DrawingResult;
 
   private _value: SecondaryFlags = new SecondaryFlags();

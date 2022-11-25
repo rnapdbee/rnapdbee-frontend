@@ -14,7 +14,16 @@ import { DescriptionService } from 'src/app/shared/services/result/description.s
   styleUrls: ['./secondary-to-dbn-results.component.scss'],
 })
 export class SecondaryToDbnResultsComponent implements OnInit {
-  @Input() calculation: Calculation<SecondaryToDbnParams, SecondaryOutput> | undefined;
+  private _calculation: Calculation<SecondaryToDbnParams, SecondaryOutput> | undefined;
+  @Input() set calculation(value: Calculation<SecondaryToDbnParams, SecondaryOutput> | undefined) {
+    if (value) {
+      this.populateSelectedList(value.results.length);
+    }
+    this._calculation = value;
+  }
+  get calculation() {
+    return this._calculation;
+  }
   reanalyzeParams: SecondaryToDbnParams | undefined;
   loading = false;
   selected: SecondaryFlags[] = [];
@@ -28,10 +37,6 @@ export class SecondaryToDbnResultsComponent implements OnInit {
   ngOnInit(): void {
     if (!this.calculation) {
       throw new Error('Provide calculation parameter');
-    }
-
-    for (let i = 0; i < this.calculation.results.length; i += 1) {
-      this.selected.push(new SecondaryFlags());
     }
   }
 
@@ -99,6 +104,13 @@ export class SecondaryToDbnResultsComponent implements OnInit {
     return Object.keys(this.selected[index])
       .map((item: string) => !!this.selected[index][item as keyof typeof this.selected[number]])
       .reduce((previous: boolean, current: boolean) => previous && current, true);
+  }
+
+  private populateSelectedList(length: number) {
+    this.selected = [];
+    for (let i = 0; i < length; i += 1) {
+      this.selected.push(new SecondaryFlags());
+    }
   }
 
   private selectThis(index: number): void {

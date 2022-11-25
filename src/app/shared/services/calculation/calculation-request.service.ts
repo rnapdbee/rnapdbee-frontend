@@ -62,7 +62,7 @@ export abstract class CalculationRequestService<P extends Params, O> {
 
   private reanalyzeWithDifferentParameters(id: string, paramObject: P): Observable<Calculation<P, O>> {
     const params = new HttpParams({ fromObject: paramObject });
-    return this.http.get<Calculation<P, O>>(`${this.url}/${id}`, { params });
+    return this.http.post<Calculation<P, O>>(`${this.url}/${id}`, null, { params });
   }
 
   private getRequestHeaders(filename: string): HttpHeaders {

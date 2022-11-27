@@ -84,6 +84,22 @@ describe('SecondaryToDbnResultsComponent', () => {
     fixture.detectChanges();
   });
 
+  it('ensures that every result has its selection flags instance', () => {
+    component.calculation = mockResponse;
+    expect(component.selected.length).toEqual(mockResponse.results.length);
+  });
+
+  it('updates selection flags when calculation results changes', () => {
+    const mockWithOneResult = { ...mockResponse };
+    mockWithOneResult.results = [mockWithOneResult.results[0]];
+
+    component.calculation = mockWithOneResult;
+    expect(component.selected.length).toEqual(mockWithOneResult.results.length);
+
+    component.calculation = mockResponse;
+    expect(component.selected.length).toEqual(mockResponse.results.length);
+  });
+
   describe('Particular result', () => {
     it('is selected when selectThis clicked', () => {
       component.select(0);

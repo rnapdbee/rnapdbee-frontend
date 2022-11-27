@@ -26,6 +26,7 @@ export class SecondaryToDbnResultsComponent implements OnInit {
   }
   reanalyzeParams: SecondaryToDbnParams | undefined;
   loading = false;
+  reanalyzePanelExpanded = false;
   selected: SecondaryFlags[] = [];
 
   constructor(
@@ -59,9 +60,14 @@ export class SecondaryToDbnResultsComponent implements OnInit {
       return this.calculationService.reanalyze(this.calculation.id, this.reanalyzeParams);
     })
       .pipe(
-        finalize(() => { this.loading = false; }),
+        finalize(() => {
+          this.loading = false;
+        }),
       )
       .subscribe({
+        next: () => {
+          this.reanalyzePanelExpanded = false;
+        },
         error: (error: Error) => {
           this.snackBar.error(error.message);
         },

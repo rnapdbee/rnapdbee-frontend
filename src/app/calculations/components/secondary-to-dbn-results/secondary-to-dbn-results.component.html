@@ -4,7 +4,7 @@
   </div>
 
   <div class="reanalyze">
-    <app-reanalyze-panel>
+    <app-reanalyze-panel [(ngModel)]="reanalyzePanelExpanded">
       <app-secondary-to-dbn-params-form [params]="calculation.results[0].params" (paramChange)="onParamsChange($event)">
       </app-secondary-to-dbn-params-form>
       <mat-divider></mat-divider>

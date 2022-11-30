@@ -1,5 +1,5 @@
 import { Component, forwardRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { OpenCloseAnimation } from '../../animations/open-close';
 
 @Component({
@@ -16,7 +16,7 @@ import { OpenCloseAnimation } from '../../animations/open-close';
     },
   ],
 })
-export class ReanalyzePanelComponent {
+export class ReanalyzePanelComponent implements ControlValueAccessor {
   private _expanded = false;
 
   get expanded() { return this._expanded; }

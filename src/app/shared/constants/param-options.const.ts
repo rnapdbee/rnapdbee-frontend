@@ -32,9 +32,13 @@ export const ANALYSIS_TOOL: Option[] = [
     key: 'MC_ANNOTATE',
     label: 'MC-Annotate',
   },
+  {
+    key: 'RNAPOLIS',
+    label: 'RNApolis',
+  },
 ];
 
-export const NON_CANONICAL_HANDLING = [
+export const NON_CANONICAL_HANDLING: Option[] = [
   {
     key: 'VISUALIZATION_ONLY',
     label: 'In visualization only',
@@ -49,7 +53,7 @@ export const NON_CANONICAL_HANDLING = [
   },
 ];
 
-export const STRUCTURAL_ELEMENTS_HANDLING = [
+export const STRUCTURAL_ELEMENTS_HANDLING: Option[] = [
   {
     key: 'USE_PSEUDOKNOTS',
     label: 'Use pseudoknots',
@@ -60,7 +64,7 @@ export const STRUCTURAL_ELEMENTS_HANDLING = [
   },
 ];
 
-export const VISUALISATION_TOOL = [
+export const VISUALISATION_TOOL: Option[] = [
   {
     key: 'VARNA',
     label: 'VARNA',
@@ -74,28 +78,8 @@ export const VISUALISATION_TOOL = [
     label: 'R-Chie',
   },
   {
-    key: 'RNA_GLIB',
-    label: 'RNAglib',
-  },
-  {
-    key: 'FORNA',
-    label: 'forna',
-  },
-  {
     key: 'RNA_PUZZLER',
     label: 'RNApuzzler',
-  },
-  {
-    key: 'RNA_TURTLE',
-    label: 'RNAturtle',
-  },
-  {
-    key: 'RNA_TRAVELER',
-    label: 'RNAtraveler',
-  },
-  {
-    key: 'BARNABA',
-    label: 'baRNAba',
   },
   {
     key: 'NONE',

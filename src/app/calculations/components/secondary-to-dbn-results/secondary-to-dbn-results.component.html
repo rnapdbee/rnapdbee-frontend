@@ -26,7 +26,7 @@
       <button mat-stroked-button (click)="selectAll()">{{ isAllSelected() ? 'Unselect' : 'Select' }} all data</button>
       <button mat-stroked-button>Download selected</button>
     </div>
-    <div class="result-panels">
+    <div>
       <div class="result" *ngFor="let result of calculation.results; let i = index">
         <div class="data-panel">
           <div><button mat-stroked-button (click)="select(i)">{{ isSelected(i) ? 'Unselect' : 'Select' }} this</button></div>

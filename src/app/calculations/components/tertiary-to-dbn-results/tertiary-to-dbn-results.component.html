@@ -1,1 +1,24 @@
-{{ calculation | json }}
+<ng-container *ngIf="calculation">
+  <div class="title">
+    <h2>Sequence & secondary structure topology derived from file {{ calculation.filename }}</h2>
+    <h3>{{ calculation.results[0].output.title }}</h3>
+  </div>
+
+  <div class="reanalyze">
+    <app-reanalyze-panel>
+      <!-- TODO -->
+    </app-reanalyze-panel>
+  </div>
+
+  <div class="results">
+    <div class="top-btns">
+      <button mat-stroked-button (click)="selectAll()">{{ isAllSelected() ? 'Unselect' : 'Select' }} all data</button>
+      <button mat-stroked-button>Download selected</button>
+    </div>
+    <div>
+      <div class="result" *ngFor="let result of calculation.results; let i = index">
+        {{ result | json }}
+      </div>
+    </div>
+  </div>
+</ng-container>

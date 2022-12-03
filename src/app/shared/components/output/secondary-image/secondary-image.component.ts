@@ -1,7 +1,8 @@
 import { Component, forwardRef, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { SecondaryFlags } from 'src/app/shared/models/flags/secondary-flags.model';
 import { DrawingResult, ImageInformation } from 'src/app/shared/models/output/secondary-output.model';
+import { ControlValueComponent } from '../control-value.component';
 
 
 @Component({
@@ -17,38 +18,11 @@ import { DrawingResult, ImageInformation } from 'src/app/shared/models/output/se
     },
   ],
 })
-export class SecondaryImageComponent implements ControlValueAccessor {
+export class SecondaryImageComponent extends ControlValueComponent<SecondaryFlags> {
   @Input() imageInformation: ImageInformation | undefined;
   DrawingResult: typeof DrawingResult = DrawingResult;
 
-  private _value: SecondaryFlags = new SecondaryFlags();
-  get value() { return this._value; }
-
-  set value(value: SecondaryFlags) {
-    if (value && this._value !== value) {
-      this._value = value;
-      this.onChange(value);
-      this.onTouch(value);
-    }
-  }
-
-  writeValue(value: SecondaryFlags): void {
-    this.value = value;
-  }
-
-  registerOnChange(fn: never): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: never): void {
-    this.onTouch = fn;
-  }
-
-  onChange(_: SecondaryFlags): void {
-    // do nothing.
-  }
-
-  onTouch(_: SecondaryFlags): void {
-    // do nothing.
+  constructor() {
+    super(SecondaryFlags);
   }
 }

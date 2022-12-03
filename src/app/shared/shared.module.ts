@@ -17,6 +17,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SecondaryImageComponent } from './components/output/secondary-image/secondary-image.component';
 import { SecondaryOutputComponent } from './components/output/secondary-output/secondary-output.component';
+import { TertiaryOutputComponent } from './components/output/tertiary-output/tertiary-output.component';
 import {
   SecondaryToDbnParamsFormComponent,
 } from './components/params-forms/secondary-to-dbn-params-form/secondary-to-dbn-params-form.component';
@@ -48,6 +49,7 @@ const COMPONENTS = [
   SecondaryOutputComponent,
   SecondaryUploadFormComponent,
   SecondaryToDbnParamsFormComponent,
+  TertiaryOutputComponent,
   TertiaryUploadFormComponent,
   TertiaryToDbnParamsFormComponent,
   TertiaryToMultiParamsFormComponent,

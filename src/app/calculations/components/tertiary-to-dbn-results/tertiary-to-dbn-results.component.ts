@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Calculation } from 'src/app/shared/models/calculation.model';
-import { TertiaryOutput } from 'src/app/shared/models/tertiary-output.model';
-import { TertiaryToDbnParams } from 'src/app/shared/models/tertiary-to-dbn-params.model';
+import { Calculation } from 'src/app/shared/models/calculation/calculation.model';
+import { TertiaryOutput } from 'src/app/shared/models/output/tertiary-output.model';
+import { TertiaryToDbnParams } from 'src/app/shared/models/params/tertiary-to-dbn-params.model';
 import { TertiaryToDbnService } from 'src/app/shared/services/calculation/tertiary-to-dbn.service';
 
 @Component({

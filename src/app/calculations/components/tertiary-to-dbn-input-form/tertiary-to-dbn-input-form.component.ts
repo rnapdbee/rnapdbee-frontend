@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { InputFormComponent } from 'src/app/shared/components/input-form/input-form.component';
-import { TertiaryOutput } from 'src/app/shared/models/tertiary-output.model';
-import { TertiaryToDbnParams } from 'src/app/shared/models/tertiary-to-dbn-params.model';
+import { TertiaryOutput } from 'src/app/shared/models/output/tertiary-output.model';
+import { TertiaryToDbnParams } from 'src/app/shared/models/params/tertiary-to-dbn-params.model';
 import { TertiaryToDbnService } from 'src/app/shared/services/calculation/tertiary-to-dbn.service';
 import { SnackBarService } from 'src/app/shared/services/notifications/snack-bar.service';
 

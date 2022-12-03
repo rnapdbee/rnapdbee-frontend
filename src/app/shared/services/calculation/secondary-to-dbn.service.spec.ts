@@ -3,11 +3,11 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { of, throwError } from 'rxjs';
 import { ApiPaths } from 'src/environments/environment';
-import { Calculation } from '../../models/calculation.model';
-import { Example } from '../../models/example.model';
-import { DrawingResult, SecondaryOutput } from '../../models/secondary-output.model';
-import { SecondaryToDbnParams } from '../../models/secondary-to-dbn-params.module';
-import { UploadMethod, UploadMethodType } from '../../models/upload-type.model';
+import { Calculation } from '../../models/calculation/calculation.model';
+import { DrawingResult, SecondaryOutput } from '../../models/output/secondary-output.model';
+import { SecondaryToDbnParams } from '../../models/params/secondary-to-dbn-params.module';
+import { Example } from '../../models/upload/example.model';
+import { UploadMethod, UploadMethodType } from '../../models/upload/upload-type.model';
 import { FileReaderService } from '../file-validator/file-reader.service';
 import { SecondaryToDbnService } from './secondary-to-dbn.service';
 

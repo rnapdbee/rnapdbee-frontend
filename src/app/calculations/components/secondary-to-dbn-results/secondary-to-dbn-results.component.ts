@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { defer, finalize } from 'rxjs';
-import { Calculation } from 'src/app/shared/models/calculation.model';
-import { SecondaryFlags } from 'src/app/shared/models/secondary-flags.model';
-import { SecondaryOutput } from 'src/app/shared/models/secondary-output.model';
-import { SecondaryToDbnParams } from 'src/app/shared/models/secondary-to-dbn-params.module';
+import { Calculation } from 'src/app/shared/models/calculation/calculation.model';
+import { SecondaryFlags } from 'src/app/shared/models/flags/secondary-flags.model';
+import { SecondaryOutput } from 'src/app/shared/models/output/secondary-output.model';
+import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-dbn-params.module';
 import { SecondaryToDbnService } from 'src/app/shared/services/calculation/secondary-to-dbn.service';
 import { SnackBarService } from 'src/app/shared/services/notifications/snack-bar.service';
 import { DescriptionService } from 'src/app/shared/services/result/description.service';

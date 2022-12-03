@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CalculationType } from 'src/app/shared/models/calculation-type.enum';
+import { CalculationType } from 'src/app/shared/models/calculation/calculation-type.enum';
 
 @Component({
   selector: 'app-home',

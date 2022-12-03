@@ -1,4 +1,4 @@
-import { Params } from './params.model';
+import { Params } from '../params/params.model';
 
 export interface Result<P extends Params, O> {
   params: P,

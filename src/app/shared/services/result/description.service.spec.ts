@@ -1,5 +1,5 @@
 import { STRUCTURAL_ELEMENTS_HANDLING, VISUALISATION_TOOL } from '../../constants/param-options.const';
-import { SecondaryToDbnParams } from '../../models/secondary-to-dbn-params.module';
+import { SecondaryToDbnParams } from '../../models/params/secondary-to-dbn-params.module';
 import { DescriptionService } from './description.service';
 
 describe('DescriptionService', () => {

@@ -1,7 +1,7 @@
 import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { SecondaryFlags } from 'src/app/shared/models/secondary-flags.model';
-import { DrawingResult, ImageInformation } from 'src/app/shared/models/secondary-output.model';
+import { SecondaryFlags } from 'src/app/shared/models/flags/secondary-flags.model';
+import { DrawingResult, ImageInformation } from 'src/app/shared/models/output/secondary-output.model';
 
 
 @Component({

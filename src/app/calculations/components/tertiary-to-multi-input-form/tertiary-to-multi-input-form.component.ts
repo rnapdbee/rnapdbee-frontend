@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { InputFormComponent } from 'src/app/shared/components/input-form/input-form.component';
-import { MultiOutput } from 'src/app/shared/models/multi-output.model';
-import { TertiaryToMultiParams } from 'src/app/shared/models/tertiary-to-multi-params.model';
+import { MultiOutput } from 'src/app/shared/models/output/multi-output.model';
+import { TertiaryToMultiParams } from 'src/app/shared/models/params/tertiary-to-multi-params.model';
 import { TertiaryToMultiService } from 'src/app/shared/services/calculation/tertiary-to-multi.service';
 import { SnackBarService } from 'src/app/shared/services/notifications/snack-bar.service';
 

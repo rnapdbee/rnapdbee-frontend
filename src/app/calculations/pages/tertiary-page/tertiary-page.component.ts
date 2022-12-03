@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OpenCloseAnimation } from 'src/app/shared/animations/open-close';
 import { CalculationPageComponent } from 'src/app/shared/components/calculation-page/calculation-page.component';
-import { TertiaryOutput } from 'src/app/shared/models/tertiary-output.model';
-import { TertiaryToDbnParams } from 'src/app/shared/models/tertiary-to-dbn-params.model';
+import { TertiaryOutput } from 'src/app/shared/models/output/tertiary-output.model';
+import { TertiaryToDbnParams } from 'src/app/shared/models/params/tertiary-to-dbn-params.model';
 import { TertiaryToDbnService } from 'src/app/shared/services/calculation/tertiary-to-dbn.service';
 
 @Component({

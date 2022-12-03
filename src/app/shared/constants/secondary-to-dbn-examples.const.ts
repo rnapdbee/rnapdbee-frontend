@@ -1,4 +1,4 @@
-import { Example } from '../models/example.model';
+import { Example } from '../models/upload/example.model';
 
 export const SECONDARY_TO_DBN_BPSEQ_EXAMPLES: Example[] = [
   {

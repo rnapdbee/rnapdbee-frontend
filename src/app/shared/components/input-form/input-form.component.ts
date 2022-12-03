@@ -1,8 +1,8 @@
 import { Router } from '@angular/router';
 import { defer, finalize } from 'rxjs';
-import { Calculation } from '../../models/calculation.model';
-import { Params } from '../../models/params.model';
-import { UploadMethod } from '../../models/upload-type.model';
+import { Calculation } from '../../models/calculation/calculation.model';
+import { Params } from '../../models/params/params.model';
+import { UploadMethod } from '../../models/upload/upload-type.model';
 import { CalculationRequestService } from '../../services/calculation/calculation-request.service';
 import { SnackBarService } from '../../services/notifications/snack-bar.service';
 

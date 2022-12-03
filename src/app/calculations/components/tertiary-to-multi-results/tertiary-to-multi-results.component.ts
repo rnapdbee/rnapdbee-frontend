@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { Calculation } from 'src/app/shared/models/calculation.model';
-import { MultiOutput } from 'src/app/shared/models/multi-output.model';
-import { TertiaryToMultiParams } from 'src/app/shared/models/tertiary-to-multi-params.model';
+import { Calculation } from 'src/app/shared/models/calculation/calculation.model';
+import { MultiOutput } from 'src/app/shared/models/output/multi-output.model';
+import { TertiaryToMultiParams } from 'src/app/shared/models/params/tertiary-to-multi-params.model';
 
 @Component({
   selector: 'app-tertiary-to-multi-results[calculation]',

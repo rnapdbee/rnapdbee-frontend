@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { VISUALISATION_TOOL } from 'src/app/shared/constants/param-options.const';
-import { TertiaryToMultiParams } from 'src/app/shared/models/tertiary-to-multi-params.model';
+import { TertiaryToMultiParams } from 'src/app/shared/models/params/tertiary-to-multi-params.model';
 
 @Component({
   selector: 'app-tertiary-to-multi-params-form',

@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { Calculation } from '../../models/calculation.model';
-import { Params } from '../../models/params.model';
+import { Calculation } from '../../models/calculation/calculation.model';
+import { Params } from '../../models/params/params.model';
 import { CalculationRequestService } from '../../services/calculation/calculation-request.service';
 
 export abstract class CalculationPageComponent<P extends Params, O> {

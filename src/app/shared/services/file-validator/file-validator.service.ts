@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
-import { FileExtension } from '../../models/file-extension.model';
-import { ValidationPayload } from '../../models/validation-payload.model';
+import { FileExtension } from '../../models/file/file-extension.model';
+import { ValidationPayload } from '../../models/upload/validation-payload.model';
 import { BpseqFileValidatorService } from './bpseq-file-validator.service';
 import { CifFileValidatorService } from './cif-file-validator.service';
 import { CtFileValidatorService } from './ct-file-validator.service';

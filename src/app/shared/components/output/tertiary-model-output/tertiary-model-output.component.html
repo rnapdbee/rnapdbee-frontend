@@ -2,5 +2,5 @@
   <h3>Model {{ output.modelNumber }}</h3>
   <span *ngFor="let message of output.messages">{{ message }}. </span>
   <app-secondary-output [output]="output.output2D" [(ngModel)]="value.output2D"></app-secondary-output>
-  <app-tertiary-interactions [interactions]="output.canonicalInteractions" [(ngModel)]="value"></app-tertiary-interactions>
+  <app-tertiary-interactions [interactions]="output.canonicalInteractions" [(ngModel)]="value.canonicalInteractions"></app-tertiary-interactions>
 </ng-container>

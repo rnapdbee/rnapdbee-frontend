@@ -17,8 +17,10 @@
     </div>
     <div>
       <div class="result" *ngFor="let result of calculation.results; let i = index">
-        {{ result | json }}
+        <!-- TODO -->
       </div>
+      <!-- TODO: for development only -->
+      <app-tertiary-model-output [output]="calculation.results[0].output.models[0]"></app-tertiary-model-output>
     </div>
   </div>
 </ng-container>

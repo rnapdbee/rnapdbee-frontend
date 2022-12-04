@@ -10,7 +10,6 @@ export interface StructuralElements {
   singleStrands: string[],
   singleStrands5p: string[],
   singleStrands3p: string[],
-  coordinates?: string,
 }
 
 export enum DrawingResult {

@@ -17,7 +17,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SecondaryImageComponent } from './components/output/secondary-image/secondary-image.component';
 import { SecondaryOutputComponent } from './components/output/secondary-output/secondary-output.component';
-import { TertiaryOutputComponent } from './components/output/tertiary-output/tertiary-output.component';
+import { TertiaryModelOutputComponent } from './components/output/tertiary-model-output/tertiary-model-output.component';
 import {
   SecondaryToDbnParamsFormComponent,
 } from './components/params-forms/secondary-to-dbn-params-form/secondary-to-dbn-params-form.component';
@@ -33,6 +33,7 @@ import { StepComponent } from './components/step/step.component';
 import { SvgViewerComponent } from './components/svg-viewer/svg-viewer.component';
 import { SecondaryUploadFormComponent } from './components/upload-forms/secondary-upload-form/secondary-upload-form.component';
 import { TertiaryUploadFormComponent } from './components/upload-forms/tertiary-upload-form/tertiary-upload-form.component';
+import { TertiaryInteractionsComponent } from './components/output/tertiary-interactions/tertiary-interactions.component';
 
 
 const COMPONENTS = [
@@ -49,7 +50,7 @@ const COMPONENTS = [
   SecondaryOutputComponent,
   SecondaryUploadFormComponent,
   SecondaryToDbnParamsFormComponent,
-  TertiaryOutputComponent,
+  TertiaryModelOutputComponent,
   TertiaryUploadFormComponent,
   TertiaryToDbnParamsFormComponent,
   TertiaryToMultiParamsFormComponent,
@@ -73,6 +74,7 @@ const MODULES = [
 @NgModule({
   declarations: [
     ...COMPONENTS,
+    TertiaryInteractionsComponent,
   ],
   imports: [
     ...MODULES,

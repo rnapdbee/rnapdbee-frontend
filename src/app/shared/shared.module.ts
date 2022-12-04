@@ -17,6 +17,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SecondaryImageComponent } from './components/output/secondary-image/secondary-image.component';
 import { SecondaryOutputComponent } from './components/output/secondary-output/secondary-output.component';
+import { TertiaryInteractionsComponent } from './components/output/tertiary-interactions/tertiary-interactions.component';
 import { TertiaryModelOutputComponent } from './components/output/tertiary-model-output/tertiary-model-output.component';
 import {
   SecondaryToDbnParamsFormComponent,
@@ -30,10 +31,10 @@ import {
 import { RadioButtonComponent } from './components/radio-button/radio-button.component';
 import { ReanalyzePanelComponent } from './components/reanalyze-panel/reanalyze-panel.component';
 import { StepComponent } from './components/step/step.component';
+import { SubmitButtonComponent } from './components/submit-button/submit-button.component';
 import { SvgViewerComponent } from './components/svg-viewer/svg-viewer.component';
 import { SecondaryUploadFormComponent } from './components/upload-forms/secondary-upload-form/secondary-upload-form.component';
 import { TertiaryUploadFormComponent } from './components/upload-forms/tertiary-upload-form/tertiary-upload-form.component';
-import { TertiaryInteractionsComponent } from './components/output/tertiary-interactions/tertiary-interactions.component';
 
 
 const COMPONENTS = [
@@ -45,11 +46,13 @@ const COMPONENTS = [
   RadioButtonComponent,
   ReanalyzePanelComponent,
   StepComponent,
+  SubmitButtonComponent,
   SvgViewerComponent,
   SecondaryImageComponent,
   SecondaryOutputComponent,
   SecondaryUploadFormComponent,
   SecondaryToDbnParamsFormComponent,
+  TertiaryInteractionsComponent,
   TertiaryModelOutputComponent,
   TertiaryUploadFormComponent,
   TertiaryToDbnParamsFormComponent,
@@ -74,7 +77,6 @@ const MODULES = [
 @NgModule({
   declarations: [
     ...COMPONENTS,
-    TertiaryInteractionsComponent,
   ],
   imports: [
     ...MODULES,

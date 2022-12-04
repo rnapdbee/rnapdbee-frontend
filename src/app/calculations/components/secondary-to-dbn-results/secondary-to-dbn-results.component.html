@@ -3,21 +3,12 @@
     <h2>Sequence & secondary structure topology derived from file {{ calculation.filename }}</h2>
   </div>
 
-  <div class="reanalyze">
+  <div>
     <app-reanalyze-panel [(ngModel)]="reanalyzePanelExpanded">
       <app-secondary-to-dbn-params-form [params]="calculation.results[0].params" (paramChange)="onParamsChange($event)">
       </app-secondary-to-dbn-params-form>
       <mat-divider></mat-divider>
-      <div class="submit">
-        <button mat-raised-button color="primary" (click)="reanalyze()" [disabled]="loading">
-          <div class="btn-content">
-            <span *ngIf="!loading; else spinner">Run</span>
-            <ng-template #spinner>
-              <mat-spinner [diameter]="20"></mat-spinner>
-            </ng-template>
-          </div>
-        </button>
-      </div>
+      <app-submit-button [callback]="reanalyzeCallback" (buttonSubmit)="onSubmit($event)"></app-submit-button>
     </app-reanalyze-panel>
   </div>
 

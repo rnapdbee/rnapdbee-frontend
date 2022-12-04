@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { defer, finalize } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Calculation } from 'src/app/shared/models/calculation/calculation.model';
 import { SecondaryFlags } from 'src/app/shared/models/flags/secondary-flags.model';
 import { SecondaryOutput } from 'src/app/shared/models/output/secondary-output.model';
+import { Params } from 'src/app/shared/models/params/params.model';
 import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-dbn-params.module';
 import { SecondaryToDbnService } from 'src/app/shared/services/calculation/secondary-to-dbn.service';
-import { SnackBarService } from 'src/app/shared/services/notifications/snack-bar.service';
 import { DescriptionService } from 'src/app/shared/services/result/description.service';
 
 @Component({
@@ -28,11 +28,19 @@ export class SecondaryToDbnResultsComponent implements OnInit {
   loading = false;
   reanalyzePanelExpanded = false;
   selected: SecondaryFlags[] = [];
+  reanalyzeCallback = () => {
+    if (!this.calculation?.id) {
+      throw new Error('Calculation ID could not be determined.');
+    }
+    if (!this.reanalyzeParams) {
+      throw new Error('Reznalyze parameters could not be determined.');
+    }
+    return this.calculationService.reanalyze(this.calculation.id, this.reanalyzeParams);
+  };
 
   constructor(
     private readonly descriptionService: DescriptionService,
     private readonly calculationService: SecondaryToDbnService,
-    private readonly snackBar: SnackBarService,
   ) {}
 
   ngOnInit(): void {
@@ -45,33 +53,8 @@ export class SecondaryToDbnResultsComponent implements OnInit {
     this.reanalyzeParams = event;
   }
 
-  reanalyze(): void {
-    defer(() => {
-      this.loading = true;
-
-      if (!this.calculation?.id) {
-        throw new Error('Calculation ID could not be defined.');
-      }
-
-      if (!this.reanalyzeParams) {
-        throw new Error('Reanalyze parameters could not be defined.');
-      }
-
-      return this.calculationService.reanalyze(this.calculation.id, this.reanalyzeParams);
-    })
-      .pipe(
-        finalize(() => {
-          this.loading = false;
-        }),
-      )
-      .subscribe({
-        next: () => {
-          this.reanalyzePanelExpanded = false;
-        },
-        error: (error: Error) => {
-          this.snackBar.error(error.message);
-        },
-      });
+  onSubmit(event: Observable<Calculation<Params, unknown>>) {
+    event.pipe(tap(() => { this.reanalyzePanelExpanded = false; })).subscribe();
   }
 
   getDescription(params: SecondaryToDbnParams) {

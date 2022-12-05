@@ -5,7 +5,7 @@ import {
   MODEL_SELECTION,
   NON_CANONICAL_HANDLING,
   STRUCTURAL_ELEMENTS_HANDLING,
-  VISUALISATION_TOOL
+  VISUALISATION_TOOL,
 } from 'src/app/shared/constants/param-options.const';
 import { TertiaryToDbnParams } from 'src/app/shared/models/params/tertiary-to-dbn-params.model';
 

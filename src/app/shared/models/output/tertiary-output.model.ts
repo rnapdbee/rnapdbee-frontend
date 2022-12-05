@@ -31,6 +31,6 @@ export interface TertiaryModel {
 }
 
 export interface TertiaryOutput {
-  title: string,
+  title?: string,
   models: TertiaryModel[],
 }

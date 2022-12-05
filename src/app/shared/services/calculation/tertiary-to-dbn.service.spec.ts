@@ -4,7 +4,8 @@ import { TestBed } from '@angular/core/testing';
 import { of, throwError } from 'rxjs';
 import { ApiPaths } from 'src/environments/environment';
 import { Calculation } from '../../models/calculation/calculation.model';
-import { TertiaryOutput } from '../../models/output/tertiary-output.model';
+import { DrawingResult, SecondaryOutput } from '../../models/output/secondary-output.model';
+import { Residue, TertiaryInteractions, TertiaryOutput } from '../../models/output/tertiary-output.model';
 import { TertiaryToDbnParams } from '../../models/params/tertiary-to-dbn-params.model';
 import { Example } from '../../models/upload/example.model';
 import { UploadMethod, UploadMethodType } from '../../models/upload/upload-type.model';
@@ -24,6 +25,46 @@ const mockParams: TertiaryToDbnParams = {
   visualizationTool: 'VARNA',
 };
 
+const mock2DOutput: SecondaryOutput = {
+  strands: [{ name: '', sequence: '', structure: '' }],
+  bpSeq: [''],
+  ct: [''],
+  interactions: [''],
+  structuralElements: {
+    stems: [''],
+    loops: [''],
+    singleStrands: [''],
+    singleStrands5p: [''],
+    singleStrands3p: [''],
+  },
+  imageInformation: {
+    pathToSVGImage: '',
+    successfulVisualizationTool: '',
+    failedVisualizationTool: '',
+    drawingResult: DrawingResult.DoneByMainDrawer,
+  },
+};
+
+const mockResidue: Residue = {
+  chainIdentifier: '',
+  residueNumber: 0,
+  insertionCode: null,
+  oneLetterName: '',
+};
+
+const mockInteractions: TertiaryInteractions[] = [
+  {
+    interactionType: '',
+    saenger: '',
+    leontisWesthof: '',
+    bPh: 0,
+    br: 0,
+    leftResidue: mockResidue,
+    rightResidue: mockResidue,
+    stackingTopology: '',
+  },
+];
+
 const mockResponse: Calculation<TertiaryToDbnParams, TertiaryOutput> = {
   id: mockUuid,
   filename,
@@ -31,7 +72,19 @@ const mockResponse: Calculation<TertiaryToDbnParams, TertiaryOutput> = {
     {
       params: mockParams,
       output: {
-        out: 'output',
+        models: [
+          {
+            modelNumber: 1,
+            output2D: mock2DOutput,
+            messages: [],
+            canonicalInteractions: mockInteractions,
+            nonCanonicalInteractions: mockInteractions,
+            interStrandInteractions: mockInteractions,
+            stackingInteractions: mockInteractions,
+            basePhosphateInteractions: mockInteractions,
+            baseRiboseInteractions: mockInteractions,
+          },
+        ],
       },
     },
   ],
@@ -222,5 +275,27 @@ describe('TertiaryToDbnService', () => {
     });
   });
 
-  // TODO: describe('Reanalyze with different parameters', () => {});
+  describe('Reanalyze with different parameters', () => {
+    let requestUrl: string;
+
+    beforeEach(() => {
+      requestUrl = `${service.url}/${mockUuid}`;
+    });
+
+    it('sends valid request', () => {
+      service.reanalyze(mockUuid, mockParams).subscribe(data => {
+        response = data;
+      });
+
+      const req = controller.expectOne(`${requestUrl}?${httpParams.toString()}`);
+      req.flush(mockResponse);
+
+      expect(response?.id).toEqual(mockUuid);
+      expect(response).toEqual(mockResponse);
+      expect(req.request.url).toEqual(requestUrl);
+      expect(req.request.method).toEqual('POST');
+      expect(req.request.body).toEqual(null);
+      expect(req.request.params).toEqual(httpParams);
+    });
+  });
 });

@@ -30,6 +30,4 @@ export class SecondaryToDbnService extends CalculationRequestService<SecondaryTo
         throw new Error('Upload method type could not be recognized.');
     }
   }
-
-  // TODO: reanalyze(id, params) {...}
 }

@@ -31,6 +31,4 @@ export class TertiaryToDbnService extends CalculationRequestService<TertiaryToDb
         throw new Error('Upload method type could not be recognized.');
     }
   }
-
-  // TODO: reanalyze(id, params) {...}
 }

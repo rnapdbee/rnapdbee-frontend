@@ -31,6 +31,4 @@ export class TertiaryToMultiService extends CalculationRequestService<TertiaryTo
         throw new Error('Upload method type could not be recognized.');
     }
   }
-
-  // TODO: reanalyze(id, params) {...}
 }

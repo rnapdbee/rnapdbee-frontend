@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { of, throwError } from 'rxjs';
 import { Calculation } from 'src/app/shared/models/calculation/calculation.model';
 import { DrawingResult, SecondaryOutput } from 'src/app/shared/models/output/secondary-output.model';
-import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-dbn-params.module';
+import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-dbn-params.model';
 import { CalculationRequestService } from 'src/app/shared/services/calculation/calculation-request.service';
 import { SecondaryToDbnService } from 'src/app/shared/services/calculation/secondary-to-dbn.service';
 import { SecondaryPageComponent } from './secondary-page.component';

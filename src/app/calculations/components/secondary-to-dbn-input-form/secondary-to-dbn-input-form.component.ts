@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { InputFormComponent } from 'src/app/shared/components/input-form/input-form.component';
 import { SecondaryOutput } from 'src/app/shared/models/output/secondary-output.model';
-import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-dbn-params.module';
+import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-dbn-params.model';
 import { SecondaryToDbnService } from 'src/app/shared/services/calculation/secondary-to-dbn.service';
 import { SnackBarService } from 'src/app/shared/services/notifications/snack-bar.service';
 

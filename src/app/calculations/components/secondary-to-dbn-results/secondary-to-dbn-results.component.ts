@@ -4,7 +4,7 @@ import { Calculation } from 'src/app/shared/models/calculation/calculation.model
 import { SecondaryFlags } from 'src/app/shared/models/flags/secondary-flags.model';
 import { SecondaryOutput } from 'src/app/shared/models/output/secondary-output.model';
 import { Params } from 'src/app/shared/models/params/params.model';
-import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-dbn-params.module';
+import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-dbn-params.model';
 import { SecondaryToDbnService } from 'src/app/shared/services/calculation/secondary-to-dbn.service';
 import { DescriptionService } from 'src/app/shared/services/result/description.service';
 

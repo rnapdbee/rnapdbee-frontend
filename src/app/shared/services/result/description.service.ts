@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { STRUCTURAL_ELEMENTS_HANDLING } from '../../constants/param-options.const';
-import { SecondaryToDbnParams } from '../../models/params/secondary-to-dbn-params.module';
+import { SecondaryToDbnParams } from '../../models/params/secondary-to-dbn-params.model';
 
 
 @Injectable({

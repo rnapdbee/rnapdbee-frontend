@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { Calculation } from 'src/app/shared/models/calculation/calculation.model';
 import { DrawingResult, SecondaryOutput } from 'src/app/shared/models/output/secondary-output.model';
-import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-dbn-params.module';
+import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-dbn-params.model';
 import { SecondaryToDbnResultsComponent } from './secondary-to-dbn-results.component';
 
 const mockUuid = 'mock-uuid-1234-5678';

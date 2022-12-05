@@ -5,7 +5,7 @@ import { of, throwError } from 'rxjs';
 import { ApiPaths } from 'src/environments/environment';
 import { Calculation } from '../../models/calculation/calculation.model';
 import { DrawingResult, SecondaryOutput } from '../../models/output/secondary-output.model';
-import { SecondaryToDbnParams } from '../../models/params/secondary-to-dbn-params.module';
+import { SecondaryToDbnParams } from '../../models/params/secondary-to-dbn-params.model';
 import { Example } from '../../models/upload/example.model';
 import { UploadMethod, UploadMethodType } from '../../models/upload/upload-type.model';
 import { FileReaderService } from '../file-validator/file-reader.service';

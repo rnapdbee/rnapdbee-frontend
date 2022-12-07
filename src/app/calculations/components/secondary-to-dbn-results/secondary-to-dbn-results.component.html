@@ -14,18 +14,18 @@
 
   <div class="results">
     <div class="top-btns">
-      <button mat-stroked-button (click)="selectAll()">{{ isAllSelected() ? 'Unselect' : 'Select' }} all data</button>
+      <button mat-stroked-button (click)="selectAll()">{{ allSelected() ? 'Unselect' : 'Select' }} all data</button>
       <button mat-stroked-button>Download selected</button>
     </div>
     <div>
       <div class="result" *ngFor="let result of calculation.results; let i = index">
         <div class="data-panel">
-          <div><button mat-stroked-button (click)="select(i)">{{ isSelected(i) ? 'Unselect' : 'Select' }} this</button></div>
+          <div><button mat-stroked-button (click)="selectOne(i)">{{ isSelected(i) ? 'Unselect' : 'Select' }} this</button></div>
           <p>{{ getDescription(result.params) }}</p>
           <app-secondary-output [(ngModel)]="selected[i]" [output]="result.output"></app-secondary-output>
         </div>
         <div class="image-panel">
-          <app-secondary-image [(ngModel)]="selected[i].imageInformation" [imageInformation]="result.output.imageInformation"></app-secondary-image>
+          <app-secondary-image [(ngModel)]="selected[i].fields.imageInformation" [imageInformation]="result.output.imageInformation"></app-secondary-image>
         </div>
       </div>
     </div>

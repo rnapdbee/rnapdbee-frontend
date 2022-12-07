@@ -5,6 +5,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { Calculation } from 'src/app/shared/models/calculation/calculation.model';
 import { DrawingResult, SecondaryOutput } from 'src/app/shared/models/output/secondary-output.model';
 import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-dbn-params.model';
+import { SelectFields } from 'src/app/shared/models/select/select.model';
 import { SecondaryToDbnResultsComponent } from './secondary-to-dbn-results.component';
 
 const mockUuid = 'mock-uuid-1234-5678';
@@ -102,101 +103,101 @@ describe('SecondaryToDbnResultsComponent', () => {
 
   describe('Particular result', () => {
     it('is selected when selectThis clicked', () => {
-      component.select(0);
-      expect(component.isSelected(0)).toBeTrue();
+      component.selectOne(0);
+      expect(component.selected[0].isSelected()).toBeTrue();
     });
 
     it('is selected when selectAll clicked', () => {
       component.selectAll();
-      expect(component.isSelected(0)).toBeTrue();
+      expect(component.selected[0].isSelected()).toBeTrue();
     });
 
     it('is selected when all checkboxes checked', () => {
-      Object.keys(component.selected[0]).forEach(item => {
-        component.selected[0][item as keyof typeof component.selected[number]] = true;
+      Object.keys(component.selected[0].fields).forEach(item => {
+        component.selected[0].fields[item as keyof SelectFields<SecondaryOutput>] = true;
       });
-      expect(component.isSelected(0)).toBeTrue();
+      expect(component.selected[0].isSelected()).toBeTrue();
     });
 
     it('is not fully selected when selectThis clicked and some checkboxes unchecked', () => {
-      component.select(0);
-      component.selected[0].bpSeq = false;
-      expect(component.isSelected(0)).toBeFalse();
+      component.selectOne(0);
+      component.selected[0].fields.bpSeq = false;
+      expect(component.selected[0].isSelected()).toBeFalse();
     });
 
     it('is not fully selected when not all checkboxes checked', () => {
-      component.selected[0].bpSeq = true;
-      component.selected[0].ct = true;
-      expect(component.isSelected(0)).toBeFalse();
+      component.selected[0].fields.bpSeq = true;
+      component.selected[0].fields.ct = true;
+      expect(component.selected[0].isSelected()).toBeFalse();
     });
 
     it('is not selected when selectThis and then unselectThis clicked', () => {
-      component.select(0);
-      component.select(0);
-      expect(component.isSelected(0)).toBeFalse();
+      component.selectOne(0);
+      component.selectOne(0);
+      expect(component.selected[0].isSelected()).toBeFalse();
     });
 
     it('is not selected when unselectAll clicked', () => {
       component.selectAll();
       component.selectAll();
-      expect(component.isSelected(0)).toBeFalse();
+      expect(component.selected[0].isSelected()).toBeFalse();
     });
   });
 
   describe('All results', () => {
     it('are selected when selectAll clicked', () => {
       component.selectAll();
-      expect(component.isAllSelected()).toBeTrue();
+      expect(component.allSelected()).toBeTrue();
     });
 
     it('are selected when all checkboxes in all results checked', () => {
       const selectResultCheckboxes = (i: number) => {
-        Object.keys(component.selected[i]).forEach(item => {
-          component.selected[i][item as keyof typeof component.selected[number]] = true;
+        Object.keys(component.selected[i].fields).forEach(item => {
+          component.selected[i].fields[item as keyof SelectFields<SecondaryOutput>] = true;
         });
       };
       for (let i = 0; i < component.selected.length; i += 1) {
         selectResultCheckboxes(i);
       }
-      expect(component.isAllSelected()).toBeTrue();
+      expect(component.allSelected()).toBeTrue();
     });
 
     it('are selected when selectThis clicked for all results', () => {
       for (let i = 0; i < component.selected.length; i += 1) {
-        component.select(i);
+        component.selectOne(i);
       }
-      expect(component.isAllSelected()).toBeTrue();
+      expect(component.allSelected()).toBeTrue();
     });
 
     it('are not fully selected when selectAll clicked and some checkboxes unchecked', () => {
       component.selectAll();
-      component.selected[0].bpSeq = false;
-      expect(component.isAllSelected()).toBeFalse();
+      component.selected[0].fields.bpSeq = false;
+      expect(component.allSelected()).toBeFalse();
     });
 
     it('are not fully selected when not all checkboxes checked', () => {
       for (let i = 0; i < component.selected.length; i += 1) {
-        component.selected[i].bpSeq = true;
-        component.selected[i].ct = true;
+        component.selected[i].fields.bpSeq = true;
+        component.selected[i].fields.ct = true;
       }
-      expect(component.isAllSelected()).toBeFalse();
+      expect(component.allSelected()).toBeFalse();
     });
 
     it('are not fully selected when selectThis clicked but for only one result', () => {
-      component.select(0);
-      expect(component.isAllSelected()).toBeFalse();
+      component.selectOne(0);
+      expect(component.allSelected()).toBeFalse();
     });
 
     it('are not fully selected when selectAll clicked and unselectThis clicked', () => {
       component.selectAll();
-      component.select(0);
-      expect(component.isAllSelected()).toBeFalse();
+      component.selectOne(0);
+      expect(component.allSelected()).toBeFalse();
     });
 
     it('are not selected when selectAll and then unselectAll clicked', () => {
       component.selectAll();
       component.selectAll();
-      expect(component.isAllSelected()).toBeFalse();
+      expect(component.allSelected()).toBeFalse();
     });
   });
 });

@@ -1,5 +1,5 @@
 <ng-container *ngIf="output">
-  <app-checkbox [(ngModel)]="value.dotBracket" label="Dot Bracket" [showControls]="true" [textView]="true" [indentation]="false">
+  <app-checkbox [(ngModel)]="value.fields.strands" label="Dot Bracket" [showControls]="true" [textView]="true" [indentation]="false">
     <div *ngFor="let strand of output.strands">
       {{ strand.name }} <br>
       {{ strand.sequence }} <br>
@@ -7,25 +7,25 @@
     </div>
   </app-checkbox>
 
-  <app-checkbox [(ngModel)]="value.bpSeq" label="BPSEQ" [showControls]="true" [textView]="true" [indentation]="false">
+  <app-checkbox [(ngModel)]="value.fields.bpSeq" label="BPSEQ" [showControls]="true" [textView]="true" [indentation]="false">
     <div *ngFor="let line of output.bpSeq">
       {{ line }} <br>
     </div>
   </app-checkbox>
 
-  <app-checkbox [(ngModel)]="value.ct" label="Ct" [showControls]="true" [textView]="true" [indentation]="false">
+  <app-checkbox [(ngModel)]="value.fields.ct" label="Ct" [showControls]="true" [textView]="true" [indentation]="false">
     <div *ngFor="let line of output.ct">
       {{ line }} <br>
     </div>
   </app-checkbox>
 
-  <app-checkbox [(ngModel)]="value.interactions" label="RNA to RNA interactions" [showControls]="true" [textView]="true" [indentation]="false">
+  <app-checkbox [(ngModel)]="value.fields.interactions" label="RNA to RNA Interactions" [showControls]="true" [textView]="true" [indentation]="false">
     <div *ngFor="let line of output.interactions">
       {{ line }} <br>
     </div>
   </app-checkbox>
 
-  <app-checkbox [(ngModel)]="value.structuralElements" label="Structural elements" [showControls]="true" [textView]="true" [indentation]="false">
+  <app-checkbox [(ngModel)]="value.fields.structuralElements" label="Structural elements" [showControls]="true" [textView]="true" [indentation]="false">
     <div *ngFor="let line of output.structuralElements.stems">
       Stem {{ line }} <br>
     </div>

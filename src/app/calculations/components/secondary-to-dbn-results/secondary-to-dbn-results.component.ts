@@ -1,10 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Observable, tap } from 'rxjs';
-import { Calculation } from 'src/app/shared/models/calculation/calculation.model';
-import { SecondaryFlags } from 'src/app/shared/models/flags/secondary-flags.model';
+import { Component } from '@angular/core';
+import { ResultsComponent } from 'src/app/shared/components/results/results.component';
 import { SecondaryOutput } from 'src/app/shared/models/output/secondary-output.model';
-import { Params } from 'src/app/shared/models/params/params.model';
 import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-dbn-params.model';
+import { SecondarySelect } from 'src/app/shared/models/select/secondary-select.model';
 import { SecondaryToDbnService } from 'src/app/shared/services/calculation/secondary-to-dbn.service';
 import { DescriptionService } from 'src/app/shared/services/result/description.service';
 
@@ -13,104 +11,15 @@ import { DescriptionService } from 'src/app/shared/services/result/description.s
   templateUrl: './secondary-to-dbn-results.component.html',
   styleUrls: ['./secondary-to-dbn-results.component.scss'],
 })
-export class SecondaryToDbnResultsComponent implements OnInit {
-  private _calculation: Calculation<SecondaryToDbnParams, SecondaryOutput> | undefined;
-  @Input() set calculation(value: Calculation<SecondaryToDbnParams, SecondaryOutput> | undefined) {
-    if (value) {
-      this.populateSelectedList(value.results.length);
-    }
-    this._calculation = value;
-  }
-  get calculation() {
-    return this._calculation;
-  }
-  reanalyzeParams: SecondaryToDbnParams | undefined;
-  loading = false;
-  reanalyzePanelExpanded = false;
-  selected: SecondaryFlags[] = [];
-  reanalyzeCallback = () => {
-    if (!this.calculation?.id) {
-      throw new Error('Calculation ID could not be determined.');
-    }
-    if (!this.reanalyzeParams) {
-      throw new Error('Reznalyze parameters could not be determined.');
-    }
-    return this.calculationService.reanalyze(this.calculation.id, this.reanalyzeParams);
-  };
-
+export class SecondaryToDbnResultsComponent extends ResultsComponent<SecondaryToDbnParams, SecondaryOutput, SecondarySelect> {
   constructor(
+    calculationService: SecondaryToDbnService,
     private readonly descriptionService: DescriptionService,
-    private readonly calculationService: SecondaryToDbnService,
-  ) {}
-
-  ngOnInit(): void {
-    if (!this.calculation) {
-      throw new Error('Provide calculation parameter');
-    }
-  }
-
-  onParamsChange(event: SecondaryToDbnParams): void {
-    this.reanalyzeParams = event;
-  }
-
-  onSubmit(event: Observable<Calculation<Params, unknown>>) {
-    event.pipe(tap(() => { this.reanalyzePanelExpanded = false; })).subscribe();
+  ) {
+    super(calculationService, SecondarySelect);
   }
 
   getDescription(params: SecondaryToDbnParams) {
     return this.descriptionService.generateSecondaryDescription(params);
-  }
-
-  selectAll(): void {
-    if (this.isAllSelected()) {
-      for (let i = 0; i < this.selected.length; i += 1) {
-        this.unSelectThis(i);
-      }
-    } else {
-      for (let i = 0; i < this.selected.length; i += 1) {
-        this.selectThis(i);
-      }
-    }
-  }
-
-  select(index: number): void {
-    if (this.isSelected(index)) {
-      this.unSelectThis(index);
-    } else {
-      this.selectThis(index);
-    }
-  }
-
-  isAllSelected(): boolean {
-    let isAllSelected = true;
-    for (let i = 0; i < this.selected.length; i += 1) {
-      isAllSelected = isAllSelected && this.isSelected(i);
-    }
-    return isAllSelected;
-  }
-
-  isSelected(index: number): boolean {
-    return Object.keys(this.selected[index])
-      .map((item: string) => !!this.selected[index][item as keyof typeof this.selected[number]])
-      .reduce((previous: boolean, current: boolean) => previous && current, true);
-  }
-
-  private populateSelectedList(length: number) {
-    this.selected = [];
-    for (let i = 0; i < length; i += 1) {
-      this.selected.push(new SecondaryFlags());
-    }
-  }
-
-  private selectThis(index: number): void {
-    Object.keys(this.selected[index]).forEach((item: string) => {
-      this.selected[index][item as keyof typeof this.selected[number]] = true;
-    });
-  }
-
-  private unSelectThis(index: number): void {
-    Object.keys(this.selected[index]).forEach((item: string) => {
-      this.selected[index][item as keyof typeof this.selected[number]] = false;
-    });
   }
 }

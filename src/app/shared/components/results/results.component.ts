@@ -2,11 +2,11 @@ import { Directive, Input, OnInit } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { Calculation } from '../../models/calculation/calculation.model';
 import { Params } from '../../models/params/params.model';
-import { Select } from '../../models/select/select.model';
+import { Select, SelectFields } from '../../models/select/select.model';
 import { CalculationRequestService } from '../../services/calculation/calculation-request.service';
 
 @Directive()
-export abstract class ResultsComponent<P extends Params, O, S extends Select<O>> implements OnInit {
+export abstract class ResultsComponent<P extends Params, O, S extends Select<SelectFields>> implements OnInit {
   private _calculation: Calculation<P, O> | undefined;
   @Input() set calculation(value: Calculation<P, O> | undefined) {
     if (value !== undefined) {

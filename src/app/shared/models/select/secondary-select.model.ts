@@ -1,7 +1,15 @@
-import { SecondaryOutput } from '../output/secondary-output.model';
-import { Select } from './select.model';
+import { Select, SelectFields } from './select.model';
 
-export class SecondarySelect extends Select<SecondaryOutput> {
+export interface SecondarySelectFields extends SelectFields {
+  strands: boolean,
+  bpSeq: boolean,
+  ct: boolean,
+  interactions: boolean,
+  structuralElements: boolean,
+  imageInformation: boolean,
+}
+
+export class SecondarySelect extends Select<SecondarySelectFields> {
   constructor() {
     super({
       strands: false,

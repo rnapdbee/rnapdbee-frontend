@@ -43,6 +43,14 @@
       border-radius: 5px;
       resize: vertical;
     }
+
+    .table-view {
+      overflow: auto;
+      height: 310px;
+      border: $border;
+      border-radius: 5px;
+      resize: vertical;
+    }
   }
 
   .indentation {

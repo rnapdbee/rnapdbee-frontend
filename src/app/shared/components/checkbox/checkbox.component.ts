@@ -16,6 +16,7 @@ export class CheckboxComponent extends ControlValueComponent<boolean> {
   @Input() expanded = false;
   @Input() indentation = true;
   @Input() textView = false;
+  @Input() tableView = false;
 
   constructor() { super(false); }
 

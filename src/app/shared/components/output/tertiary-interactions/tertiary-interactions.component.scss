@@ -1,0 +1,52 @@
+@import "src/variables";
+
+:host {
+  .filter {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: .5rem;
+
+    input {
+      width: 100%;
+      max-width: 150px;
+      padding: .5rem .75rem;
+      border-radius: 5px;
+      border: $border;
+    }
+
+    mat-icon {
+      cursor: pointer;
+      color: $accent;
+      margin-left: -28px;
+    }
+  }
+
+  .table-container {
+    display: flex;
+    overflow: auto;
+    height: calc(100% - 49px);
+
+    mat-table {
+      flex: 1;
+
+      .mat-row, .mat-header-row {
+        min-height: 35px;
+      }
+
+      .mat-cell, .mat-header-cell {
+        min-width: 100px;
+      }
+
+      .no-data-row {
+        padding: 2rem 1rem;
+        text-align: center;
+        font-size: 15px;
+
+        @include mobile {
+          text-align: start;
+        }
+      }
+    }
+  }
+}

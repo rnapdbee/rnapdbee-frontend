@@ -3,19 +3,19 @@ import { SecondaryOutput } from './secondary-output.model';
 export interface Residue {
   chainIdentifier: string,
   residueNumber: number,
-  insertionCode: string | null,
+  insertionCode?: string,
   oneLetterName: string,
 }
 
 export interface TertiaryInteractions {
   interactionType: string,
-  saenger: string,
-  leontisWesthof: string,
-  bPh: number,
-  br: number,
+  saenger?: string,
+  leontisWesthof?: string,
+  bPh?: number,
+  br?: number,
   leftResidue: Residue,
   rightResidue: Residue,
-  stackingTopology: string,
+  stackingTopology?: string,
 }
 
 export interface TertiaryModel {

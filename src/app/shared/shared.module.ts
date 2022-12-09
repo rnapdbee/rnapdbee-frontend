@@ -9,6 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { ErrorComponent } from './components/error/error.component';
@@ -36,7 +38,6 @@ import { SubmitButtonComponent } from './components/submit-button/submit-button.
 import { SvgViewerComponent } from './components/svg-viewer/svg-viewer.component';
 import { SecondaryUploadFormComponent } from './components/upload-forms/secondary-upload-form/secondary-upload-form.component';
 import { TertiaryUploadFormComponent } from './components/upload-forms/tertiary-upload-form/tertiary-upload-form.component';
-
 
 const COMPONENTS = [
   CheckboxComponent,
@@ -72,6 +73,8 @@ const MODULES = [
   MatProgressSpinnerModule,
   MatRadioModule,
   MatSnackBarModule,
+  MatSortModule,
+  MatTableModule,
   RouterModule,
   ReactiveFormsModule,
 ];

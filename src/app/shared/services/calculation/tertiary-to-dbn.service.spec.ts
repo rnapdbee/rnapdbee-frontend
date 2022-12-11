@@ -48,7 +48,7 @@ const mock2DOutput: SecondaryOutput = {
 const mockResidue: Residue = {
   chainIdentifier: '',
   residueNumber: 0,
-  insertionCode: null,
+  insertionCode: 'a',
   oneLetterName: '',
 };
 

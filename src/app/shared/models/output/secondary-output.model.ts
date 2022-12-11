@@ -10,6 +10,7 @@ export interface StructuralElements {
   singleStrands: string[],
   singleStrands5p: string[],
   singleStrands3p: string[],
+  coordinates?: string,
 }
 
 export enum DrawingResult {
@@ -30,7 +31,7 @@ export interface SecondaryOutput {
   strands: StrandEntry[],
   bpSeq: string[],
   ct: string[],
-  interactions: string[],
+  interactions?: string[],
   structuralElements: StructuralElements,
   imageInformation: ImageInformation,
 }

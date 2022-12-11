@@ -1,5 +1,6 @@
 <ng-container *ngIf="output">
-  <app-checkbox [(ngModel)]="value.fields.strands" label="Dot Bracket" [textView]="true">
+  <app-checkbox *ngIf="output.strands && output.strands.length > 0" 
+    [(ngModel)]="value.fields.strands" label="Dot Bracket" [textView]="true">
     <div *ngFor="let strand of output.strands">
       {{ strand.name }} <br>
       {{ strand.sequence }} <br>
@@ -7,25 +8,29 @@
     </div>
   </app-checkbox>
 
-  <app-checkbox [(ngModel)]="value.fields.bpSeq" label="BPSEQ" [textView]="true">
+  <app-checkbox *ngIf="output.bpSeq && output.bpSeq.length > 0" 
+    [(ngModel)]="value.fields.bpSeq" label="BPSEQ" [textView]="true">
     <div *ngFor="let line of output.bpSeq">
       {{ line }} <br>
     </div>
   </app-checkbox>
 
-  <app-checkbox [(ngModel)]="value.fields.ct" label="Ct" [textView]="true">
+  <app-checkbox *ngIf="output.ct && output.ct.length > 0" 
+    [(ngModel)]="value.fields.ct" label="Ct" [textView]="true">
     <div *ngFor="let line of output.ct">
       {{ line }} <br>
     </div>
   </app-checkbox>
 
-  <app-checkbox *ngIf="output.interactions" [(ngModel)]="value.fields.interactions" label="RNA to RNA Interactions" [textView]="true">
+  <app-checkbox *ngIf="output.interactions && output.interactions.length > 0" 
+    [(ngModel)]="value.fields.interactions" label="RNA to RNA Interactions" [textView]="true">
     <div *ngFor="let line of output.interactions">
       {{ line }} <br>
     </div>
   </app-checkbox>
 
-  <app-checkbox [(ngModel)]="value.fields.structuralElements" label="Structural elements" [textView]="true">
+  <app-checkbox *ngIf="output.structuralElements && notEmpty(output.structuralElements)" 
+    [(ngModel)]="value.fields.structuralElements" label="Structural elements" [textView]="true">
     <div *ngFor="let line of output.structuralElements.stems">
       Stem {{ line }} <br>
     </div>
@@ -40,6 +45,9 @@
     </div>
     <div *ngFor="let line of output.structuralElements.singleStrands3p">
       Single strand 3' {{ line }} <br>
+    </div>
+    <div>
+      {{ output.structuralElements.coordinates }}
     </div>
   </app-checkbox>
 </ng-container>

@@ -5,7 +5,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { Calculation } from 'src/app/shared/models/calculation/calculation.model';
 import { DrawingResult, SecondaryOutput } from 'src/app/shared/models/output/secondary-output.model';
 import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-dbn-params.model';
-import { SelectFields } from 'src/app/shared/models/select/select.model';
 import { SecondaryToDbnResultsComponent } from './secondary-to-dbn-results.component';
 
 const mockUuid = 'mock-uuid-1234-5678';
@@ -85,12 +84,12 @@ describe('SecondaryToDbnResultsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('ensures that every result has its selection flags instance', () => {
+  it('ensures that every result has its selection object instance', () => {
     component.calculation = mockResponse;
     expect(component.selected.length).toEqual(mockResponse.results.length);
   });
 
-  it('updates selection flags when calculation results changes', () => {
+  it('updates selection objects when calculation results changes', () => {
     const mockWithOneResult = { ...mockResponse };
     mockWithOneResult.results = [mockWithOneResult.results[0]];
 
@@ -102,49 +101,71 @@ describe('SecondaryToDbnResultsComponent', () => {
   });
 
   describe('Particular result', () => {
+    beforeEach(() => {
+      component.selected.forEach(item => {
+        item.fields.bpSeq.activateField();
+        item.fields.ct.activateField();
+        item.fields.imageInformation.activateField();
+        item.fields.interactions.activateField();
+        item.fields.strands.activateField();
+        item.fields.structuralElements.activateField();
+      });
+    });
+
     it('is selected when selectThis clicked', () => {
       component.selectOne(0);
-      expect(component.selected[0].isSelected()).toBeTrue();
+      expect(component.selected[0].isSelectedOrUnactive()).toBeTrue();
     });
 
     it('is selected when selectAll clicked', () => {
       component.selectAll();
-      expect(component.selected[0].isSelected()).toBeTrue();
+      expect(component.selected[0].isSelectedOrUnactive()).toBeTrue();
     });
 
     it('is selected when all checkboxes checked', () => {
       Object.keys(component.selected[0].fields).forEach(item => {
-        component.selected[0].fields[item as keyof SelectFields<SecondaryOutput>] = true;
+        component.selected[0].fields[item].set(true);
       });
-      expect(component.selected[0].isSelected()).toBeTrue();
+      expect(component.selected[0].isSelectedOrUnactive()).toBeTrue();
     });
 
     it('is not fully selected when selectThis clicked and some checkboxes unchecked', () => {
       component.selectOne(0);
-      component.selected[0].fields.bpSeq = false;
-      expect(component.selected[0].isSelected()).toBeFalse();
+      component.selected[0].fields.bpSeq.value = false;
+      expect(component.selected[0].isSelectedOrUnactive()).toBeFalse();
     });
 
     it('is not fully selected when not all checkboxes checked', () => {
-      component.selected[0].fields.bpSeq = true;
-      component.selected[0].fields.ct = true;
-      expect(component.selected[0].isSelected()).toBeFalse();
+      component.selected[0].fields.bpSeq.value = true;
+      component.selected[0].fields.ct.value = true;
+      expect(component.selected[0].isSelectedOrUnactive()).toBeFalse();
     });
 
     it('is not selected when selectThis and then unselectThis clicked', () => {
       component.selectOne(0);
       component.selectOne(0);
-      expect(component.selected[0].isSelected()).toBeFalse();
+      expect(component.selected[0].isSelectedOrUnactive()).toBeFalse();
     });
 
     it('is not selected when unselectAll clicked', () => {
       component.selectAll();
       component.selectAll();
-      expect(component.selected[0].isSelected()).toBeFalse();
+      expect(component.selected[0].isSelectedOrUnactive()).toBeFalse();
     });
   });
 
   describe('All results', () => {
+    beforeEach(() => {
+      component.selected.forEach(item => {
+        item.fields.bpSeq.activateField();
+        item.fields.ct.activateField();
+        item.fields.imageInformation.activateField();
+        item.fields.interactions.activateField();
+        item.fields.strands.activateField();
+        item.fields.structuralElements.activateField();
+      });
+    });
+
     it('are selected when selectAll clicked', () => {
       component.selectAll();
       expect(component.allSelected()).toBeTrue();
@@ -153,7 +174,7 @@ describe('SecondaryToDbnResultsComponent', () => {
     it('are selected when all checkboxes in all results checked', () => {
       const selectResultCheckboxes = (i: number) => {
         Object.keys(component.selected[i].fields).forEach(item => {
-          component.selected[i].fields[item as keyof SelectFields<SecondaryOutput>] = true;
+          component.selected[i].fields[item].set(true);
         });
       };
       for (let i = 0; i < component.selected.length; i += 1) {
@@ -171,14 +192,14 @@ describe('SecondaryToDbnResultsComponent', () => {
 
     it('are not fully selected when selectAll clicked and some checkboxes unchecked', () => {
       component.selectAll();
-      component.selected[0].fields.bpSeq = false;
+      component.selected[0].fields.bpSeq.value = false;
       expect(component.allSelected()).toBeFalse();
     });
 
     it('are not fully selected when not all checkboxes checked', () => {
       for (let i = 0; i < component.selected.length; i += 1) {
-        component.selected[i].fields.bpSeq = true;
-        component.selected[i].fields.ct = true;
+        component.selected[i].fields.bpSeq.value = true;
+        component.selected[i].fields.ct.value = true;
       }
       expect(component.allSelected()).toBeFalse();
     });

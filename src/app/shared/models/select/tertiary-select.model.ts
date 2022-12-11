@@ -1,28 +1,30 @@
 import { SecondarySelect } from './secondary-select.model';
-import { Select, SelectFields } from './select.model';
+import { SelectField } from './select-field.model';
+import { SelectFields } from './select-fields.model';
+import { SelectObject } from './select-object.model';
 
 export interface TertiaryModelSelectFields extends SelectFields {
   output2D: SecondarySelect,
-  messages: boolean,
-  canonicalInteractions: boolean,
-  nonCanonicalInteractions: boolean,
-  interStrandInteractions: boolean,
-  stackingInteractions: boolean,
-  basePhosphateInteractions: boolean,
-  baseRiboseInteractions: boolean,
+  messages: SelectField,
+  canonicalInteractions: SelectField,
+  nonCanonicalInteractions: SelectField,
+  interStrandInteractions: SelectField,
+  stackingInteractions: SelectField,
+  basePhosphateInteractions: SelectField,
+  baseRiboseInteractions: SelectField,
 }
 
-export class TertiaryModelSelect extends Select<TertiaryModelSelectFields> {
+export class TertiaryModelSelect extends SelectObject<TertiaryModelSelectFields> {
   constructor() {
     super({
       output2D: new SecondarySelect(),
-      messages: false,
-      canonicalInteractions: false,
-      nonCanonicalInteractions: false,
-      interStrandInteractions: false,
-      stackingInteractions: false,
-      basePhosphateInteractions: false,
-      baseRiboseInteractions: false,
+      messages: new SelectField(false),
+      canonicalInteractions: new SelectField(false),
+      nonCanonicalInteractions: new SelectField(false),
+      interStrandInteractions: new SelectField(false),
+      stackingInteractions: new SelectField(false),
+      basePhosphateInteractions: new SelectField(false),
+      baseRiboseInteractions: new SelectField(false),
     });
   }
 }

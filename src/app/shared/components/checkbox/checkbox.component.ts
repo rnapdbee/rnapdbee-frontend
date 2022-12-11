@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { OpenCloseAnimation } from '../../animations/open-close';
+import { SelectField } from '../../models/select/select-field.model';
 import { ControlValueComponent, ControlValueProvider } from '../control-value/control-value.component';
 
 @Component({
@@ -10,14 +11,19 @@ import { ControlValueComponent, ControlValueProvider } from '../control-value/co
   // eslint-disable-next-line no-use-before-define
   providers: [ControlValueProvider(CheckboxComponent)],
 })
-export class CheckboxComponent extends ControlValueComponent<boolean> {
+export class CheckboxComponent extends ControlValueComponent<SelectField> {
   @Input() label = '';
   @Input() showControls = true;
   @Input() expanded = false;
   @Input() textView = false;
   @Input() tableView = false;
 
-  constructor() { super(false); }
+  constructor() { super(new SelectField(false)); }
+
+  override writeValue(value: SelectField): void {
+    this.value = value;
+    this.value.activateField();
+  }
 
   toggleExpand(): void {
     this.expanded = !this.expanded;

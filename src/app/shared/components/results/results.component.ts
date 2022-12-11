@@ -2,11 +2,12 @@ import { Directive, Input, OnInit } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { Calculation } from '../../models/calculation/calculation.model';
 import { Params } from '../../models/params/params.model';
-import { Select, SelectFields } from '../../models/select/select.model';
+import { SelectFields } from '../../models/select/select-fields.model';
+import { SelectObject } from '../../models/select/select-object.model';
 import { CalculationRequestService } from '../../services/calculation/calculation-request.service';
 
 @Directive()
-export abstract class ResultsComponent<P extends Params, O, S extends Select<SelectFields>> implements OnInit {
+export abstract class ResultsComponent<P extends Params, O, S extends SelectObject<SelectFields>> implements OnInit {
   private _calculation: Calculation<P, O> | undefined;
   @Input() set calculation(value: Calculation<P, O> | undefined) {
     if (value !== undefined) {
@@ -58,7 +59,7 @@ export abstract class ResultsComponent<P extends Params, O, S extends Select<Sel
 
   allSelected(): boolean {
     return this.selected
-      .map(item => item.isSelected())
+      .map(item => item.isSelectedOrUnactive())
       .reduce((previous: boolean, next: boolean) => previous && next, true);
   }
 
@@ -67,7 +68,7 @@ export abstract class ResultsComponent<P extends Params, O, S extends Select<Sel
   }
 
   isSelected(index: number): boolean {
-    return this.selected[index].isSelected();
+    return this.selected[index].isSelectedOrUnactive();
   }
 
   private populateSelectedList(length: number) {

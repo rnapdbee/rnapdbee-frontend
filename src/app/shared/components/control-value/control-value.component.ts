@@ -13,7 +13,7 @@ export abstract class ControlValueComponent<F> implements ControlValueAccessor {
   private _value: F;
   get value(): F { return this._value; }
   set value(value: F) {
-    if (value !== null && this._value !== value) {
+    if (value !== null) {
       this._value = value;
       this.onChange(value);
     }

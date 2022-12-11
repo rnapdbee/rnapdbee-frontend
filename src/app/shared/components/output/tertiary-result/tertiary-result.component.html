@@ -1,0 +1,10 @@
+<div *ngIf="result" class="container">
+  <div class="select-btn">
+    <button mat-stroked-button (click)="select()">{{ isSelected() ? 'Unselect' : 'Select' }} this</button>
+  </div>
+  <p>{{ getDescription(result.params) }}</p>
+  <app-tertiary-model-output *ngFor="let model of result.output.models; let i = index"
+    [(ngModel)]="value.fields[i]"
+    [model]="model">
+  </app-tertiary-model-output>
+</div>

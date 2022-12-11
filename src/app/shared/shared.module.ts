@@ -21,7 +21,7 @@ import { SecondaryImageComponent } from './components/output/secondary-image/sec
 import { SecondaryOutputComponent } from './components/output/secondary-output/secondary-output.component';
 import { TertiaryInteractionsComponent } from './components/output/tertiary-interactions/tertiary-interactions.component';
 import { TertiaryModelOutputComponent } from './components/output/tertiary-model-output/tertiary-model-output.component';
-import { TertiaryOutputComponent } from './components/output/tertiary-output/tertiary-output.component';
+import { TertiaryResultComponent } from './components/output/tertiary-result/tertiary-result.component';
 import {
   SecondaryToDbnParamsFormComponent,
 } from './components/params-forms/secondary-to-dbn-params-form/secondary-to-dbn-params-form.component';
@@ -56,7 +56,7 @@ const COMPONENTS = [
   SecondaryToDbnParamsFormComponent,
   TertiaryInteractionsComponent,
   TertiaryModelOutputComponent,
-  TertiaryOutputComponent,
+  TertiaryResultComponent,
   TertiaryUploadFormComponent,
   TertiaryToDbnParamsFormComponent,
   TertiaryToMultiParamsFormComponent,

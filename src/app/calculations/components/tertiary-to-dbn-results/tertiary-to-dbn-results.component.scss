@@ -1,0 +1,35 @@
+@import "src/variables";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+
+  .title {
+    @include card;
+    margin-bottom: 1rem;
+
+    p {
+      margin: 0;
+      &:not(:empty) {
+        margin-top: .5rem;
+      }
+    }
+  }
+
+  .results {
+    @include card-b;
+    padding: 1rem;
+
+    .top-btns {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .result {
+      margin-top: 1rem;
+    }
+  }
+}

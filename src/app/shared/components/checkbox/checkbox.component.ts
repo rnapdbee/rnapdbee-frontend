@@ -12,9 +12,8 @@ import { ControlValueComponent, ControlValueProvider } from '../control-value/co
 })
 export class CheckboxComponent extends ControlValueComponent<boolean> {
   @Input() label = '';
-  @Input() showControls = false;
+  @Input() showControls = true;
   @Input() expanded = false;
-  @Input() indentation = true;
   @Input() textView = false;
   @Input() tableView = false;
 

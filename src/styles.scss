@@ -21,3 +21,11 @@ a, a:hover, a:active, a:visited { text-decoration: none; color: inherit; }
     color: $white;
   }
 }
+
+.mat-checkbox-layout {
+  white-space: normal !important;
+}
+
+.mat-checkbox-label {
+  margin-bottom: -1px;
+}

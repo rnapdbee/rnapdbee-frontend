@@ -9,7 +9,9 @@ export class SelectField implements Selectable {
   }
 
   set(value: boolean): void {
-    this.value = value;
+    if (this.active) {
+      this.value = value;
+    }
   }
 
   isSelectedOrUnactive(): boolean {
@@ -17,6 +19,10 @@ export class SelectField implements Selectable {
       return this.value;
     }
     return true;
+  }
+
+  isAnythingSelected(): boolean {
+    return this.value;
   }
 
   activateField() {

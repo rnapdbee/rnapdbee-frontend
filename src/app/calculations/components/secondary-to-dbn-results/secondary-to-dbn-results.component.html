@@ -22,10 +22,16 @@
         <div class="data-panel">
           <div><button mat-stroked-button (click)="selectOne(i)">{{ isSelected(i) ? 'Unselect' : 'Select' }} this</button></div>
           <p>{{ getDescription(result.params) }}</p>
-          <app-secondary-output [(ngModel)]="selected[i]" [output]="result.output"></app-secondary-output>
+          <app-secondary-output
+            [(ngModel)]="selected[i]"
+            [output]="result.output">
+          </app-secondary-output>
         </div>
         <div class="image-panel">
-          <app-secondary-image [(ngModel)]="selected[i].fields.imageInformation" [imageInformation]="result.output.imageInformation"></app-secondary-image>
+          <app-secondary-image
+            [(ngModel)]="selected[i].fields.imageInformation"
+            [imageInformation]="result.output.imageInformation">
+          </app-secondary-image>
         </div>
       </div>
     </div>

@@ -2,6 +2,8 @@ import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/cor
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Residue, TertiaryInteractions } from 'src/app/shared/models/output/tertiary-output.model';
+import { SelectField } from 'src/app/shared/models/select/select-field.model';
+import { ControlValueComponent, ControlValueProvider } from '../../control-value/control-value.component';
 
 type InteractionColumn = {
   [Property: string]: {
@@ -68,9 +70,12 @@ const INTERACTION_COLUMNS: InteractionColumn = {
   selector: 'app-tertiary-interactions[interactions]',
   templateUrl: './tertiary-interactions.component.html',
   styleUrls: ['./tertiary-interactions.component.scss'],
+  // eslint-disable-next-line no-use-before-define
+  providers: [ControlValueProvider(TertiaryInteractionsComponent)],
 })
-export class TertiaryInteractionsComponent implements OnInit, AfterViewInit {
+export class TertiaryInteractionsComponent extends ControlValueComponent<SelectField> implements OnInit, AfterViewInit {
   @Input() interactions: TertiaryInteractions[] | undefined;
+  @Input() label = '';
   @ViewChild(MatSort) sort: MatSort | undefined;
 
   displayedColumns: string[] = [];
@@ -86,12 +91,12 @@ export class TertiaryInteractionsComponent implements OnInit, AfterViewInit {
     return this._filterValue;
   }
 
+  constructor() { super(new SelectField(false)); }
+
   ngOnInit(): void {
     if (this.interactions && this.interactions.length > 0) {
       this.displayedColumns = this.getColumnsToDisplay(this.interactions[0]);
       this.dataSource = new MatTableDataSource(this.interactions);
-    } else {
-      throw new Error('Interactions are not provided');
     }
   }
 

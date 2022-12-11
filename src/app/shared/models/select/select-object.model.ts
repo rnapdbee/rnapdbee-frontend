@@ -20,4 +20,10 @@ export abstract class SelectObject<F extends SelectFields> implements Selectable
       .map(item => this.fields[item].isSelectedOrUnactive())
       .reduce((previous: boolean, current: boolean) => previous && current, true);
   }
+
+  isAnythingSelected(): boolean {
+    return Object.keys(this.fields)
+      .map(item => this.fields[item].isAnythingSelected())
+      .reduce((previous: boolean, current: boolean) => previous || current, false);
+  }
 }

@@ -9,5 +9,6 @@ RUN npm run build -- -c development
 
 FROM nginx:${NGINX_VERSION} AS runtime
 COPY --from=build /app/dist/rnapdbee-frontend /usr/share/nginx/html
+COPY --from=build /app/nginx/default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80

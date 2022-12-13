@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://localhost:8080/api/v1/engine',
+  baseUrl: 'https://mcq.cs.put.poznan.pl/api/v1/engine',
 };
 
 export enum ApiPaths {

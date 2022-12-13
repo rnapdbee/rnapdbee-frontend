@@ -9,12 +9,14 @@ import { TertiaryToMultiInputFormComponent } from './components/tertiary-to-mult
 import { TertiaryToMultiResultsComponent } from './components/tertiary-to-multi-results/tertiary-to-multi-results.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MultiPageComponent } from './pages/multi-page/multi-page.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { SecondaryPageComponent } from './pages/secondary-page/secondary-page.component';
 import { TertiaryPageComponent } from './pages/tertiary-page/tertiary-page.component';
 
 
 const COMPONENTS = [
   HomeComponent,
+  PageNotFoundComponent,
   TertiaryPageComponent,
   TertiaryToDBNInputFormComponent,
   TertiaryToDbnResultsComponent,

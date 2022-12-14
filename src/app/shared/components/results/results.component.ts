@@ -1,17 +1,18 @@
-import { Directive, Input, OnInit } from '@angular/core';
+import { Directive, Input } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { Calculation } from '../../models/calculation/calculation.model';
 import { Params } from '../../models/params/params.model';
-import { SelectFields } from '../../models/select/select-fields.model';
-import { SelectObject } from '../../models/select/select-object.model';
+import { SelectArray } from '../../models/select/select-array.model';
+import { SelectSubObject } from '../../models/select/select-fields.model';
 import { CalculationRequestService } from '../../services/calculation/calculation-request.service';
 
 @Directive()
-export abstract class ResultsComponent<P extends Params, O, S extends SelectObject<SelectFields>> implements OnInit {
+export abstract class ResultsComponent
+  <P extends Params, O, S extends SelectArray<SelectSubObject>> {
   private _calculation: Calculation<P, O> | undefined;
   @Input() set calculation(value: Calculation<P, O> | undefined) {
     if (value !== undefined) {
-      this.populateSelectedList(value.results.length);
+      this.populateSelectedList(value);
     }
     this._calculation = value;
   }
@@ -19,7 +20,7 @@ export abstract class ResultsComponent<P extends Params, O, S extends SelectObje
 
   reanalyzeParams: P | undefined;
   reanalyzePanelExpanded = false;
-  selected: S[] = [];
+  selected: S | undefined;
 
   reanalyzeCallback = () => {
     if (!this.calculation?.id) {
@@ -31,50 +32,23 @@ export abstract class ResultsComponent<P extends Params, O, S extends SelectObje
     return this.calculationService.reanalyze(this.calculation.id, this.reanalyzeParams);
   };
 
-  constructor(
-    protected calculationService: CalculationRequestService<P, O>,
-    protected SelectObj: new () => S,
-  ) {}
-
-  ngOnInit(): void {
-    if (!this.calculation) {
-      throw new Error('Provide calculation parameter');
-    }
-  }
+  constructor(protected calculationService: CalculationRequestService<P, O>) {}
 
   onParamsChange(event: P): void {
     this.reanalyzeParams = event;
   }
 
-  onSubmit(event: Observable<Calculation<Params, unknown>>) {
+  onSubmit(event: Observable<Calculation<Params, unknown>>): void {
     event.pipe(tap(() => { this.reanalyzePanelExpanded = false; })).subscribe();
   }
 
   selectAll(): void {
-    const allSelected = this.allSelected();
-    this.selected.forEach(item => {
-      item.set(!allSelected);
-    });
+    this.selected?.set(!this.allSelected());
   }
 
   allSelected(): boolean {
-    return this.selected
-      .map(item => item.isSelectedOrUnactive())
-      .reduce((previous: boolean, next: boolean) => previous && next, true);
+    return this.selected?.isSelectedOrUnactive() ?? false;
   }
 
-  selectOne(index: number): void {
-    this.selected[index].set(!this.isSelected(index));
-  }
-
-  isSelected(index: number): boolean {
-    return this.selected[index].isSelectedOrUnactive();
-  }
-
-  private populateSelectedList(length: number) {
-    this.selected = [];
-    for (let i = 0; i < length; i += 1) {
-      this.selected.push(new this.SelectObj());
-    }
-  }
+  protected abstract populateSelectedList(calculation: Calculation<P, O>): void;
 }

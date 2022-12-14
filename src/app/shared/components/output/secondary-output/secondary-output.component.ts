@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { SecondaryOutput, StructuralElements } from 'src/app/shared/models/output/secondary-output.model';
-import { SecondarySelect } from 'src/app/shared/models/select/secondary-select.model';
+import { SecondaryResultSelect } from 'src/app/shared/models/select/secondary-result-select.model';
 import { ControlValueComponent, ControlValueProvider } from '../../control-value/control-value.component';
 
 
@@ -11,10 +11,10 @@ import { ControlValueComponent, ControlValueProvider } from '../../control-value
   // eslint-disable-next-line no-use-before-define
   providers: [ControlValueProvider(SecondaryOutputComponent)],
 })
-export class SecondaryOutputComponent extends ControlValueComponent<SecondarySelect> {
+export class SecondaryOutputComponent extends ControlValueComponent<SecondaryResultSelect> {
   @Input() output: SecondaryOutput | undefined;
 
-  constructor() { super(new SecondarySelect()); }
+  constructor() { super(new SecondaryResultSelect()); }
 
   notEmpty(structuralElements: StructuralElements): boolean {
     if (

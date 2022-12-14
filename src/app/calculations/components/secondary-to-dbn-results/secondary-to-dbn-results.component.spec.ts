@@ -86,7 +86,7 @@ describe('SecondaryToDbnResultsComponent', () => {
 
   it('ensures that every result has its selection object instance', () => {
     component.calculation = mockResponse;
-    expect(component.selected.length).toEqual(mockResponse.results.length);
+    expect(component.selected?.fields.length).toEqual(mockResponse.results.length);
   });
 
   it('updates selection objects when calculation results changes', () => {
@@ -94,15 +94,15 @@ describe('SecondaryToDbnResultsComponent', () => {
     mockWithOneResult.results = [mockWithOneResult.results[0]];
 
     component.calculation = mockWithOneResult;
-    expect(component.selected.length).toEqual(mockWithOneResult.results.length);
+    expect(component.selected?.fields.length).toEqual(mockWithOneResult.results.length);
 
     component.calculation = mockResponse;
-    expect(component.selected.length).toEqual(mockResponse.results.length);
+    expect(component.selected?.fields.length).toEqual(mockResponse.results.length);
   });
 
   describe('Particular result', () => {
     beforeEach(() => {
-      component.selected.forEach(item => {
+      component.selected?.fields.forEach(item => {
         item.fields.bpSeq.activateField();
         item.fields.ct.activateField();
         item.fields.imageInformation.activateField();
@@ -113,50 +113,52 @@ describe('SecondaryToDbnResultsComponent', () => {
     });
 
     it('is selected when selectThis clicked', () => {
-      component.selectOne(0);
-      expect(component.selected[0].isSelectedOrUnactive()).toBeTrue();
+      component.selected?.fields[0].set(true);
+      expect(component.selected?.fields[0].isSelectedOrUnactive()).toBeTrue();
     });
 
     it('is selected when selectAll clicked', () => {
       component.selectAll();
-      expect(component.selected[0].isSelectedOrUnactive()).toBeTrue();
+      expect(component.selected?.fields[0].isSelectedOrUnactive()).toBeTrue();
     });
 
     it('is selected when all checkboxes checked', () => {
-      Object.keys(component.selected[0].fields).forEach(item => {
-        component.selected[0].fields[item].set(true);
-      });
-      expect(component.selected[0].isSelectedOrUnactive()).toBeTrue();
+      if (component.selected) {
+        Object.keys(component.selected?.fields[0].fields).forEach(item => {
+          component.selected?.fields[0].fields[item].set(true);
+        });
+      }
+      expect(component.selected?.fields[0].isSelectedOrUnactive()).toBeTrue();
     });
 
     it('is not fully selected when selectThis clicked and some checkboxes unchecked', () => {
-      component.selectOne(0);
-      component.selected[0].fields.bpSeq.value = false;
-      expect(component.selected[0].isSelectedOrUnactive()).toBeFalse();
+      component.selected?.fields[0].set(true);
+      component.selected?.fields[0].fields.bpSeq.set(false);
+      expect(component.selected?.fields[0].isSelectedOrUnactive()).toBeFalse();
     });
 
     it('is not fully selected when not all checkboxes checked', () => {
-      component.selected[0].fields.bpSeq.value = true;
-      component.selected[0].fields.ct.value = true;
-      expect(component.selected[0].isSelectedOrUnactive()).toBeFalse();
+      component.selected?.fields[0].fields.bpSeq.set(true);
+      component.selected?.fields[0].fields.ct.set(true);
+      expect(component.selected?.fields[0].isSelectedOrUnactive()).toBeFalse();
     });
 
     it('is not selected when selectThis and then unselectThis clicked', () => {
-      component.selectOne(0);
-      component.selectOne(0);
-      expect(component.selected[0].isSelectedOrUnactive()).toBeFalse();
+      component.selected?.fields[0].set(true);
+      component.selected?.fields[0].set(false);
+      expect(component.selected?.fields[0].isSelectedOrUnactive()).toBeFalse();
     });
 
     it('is not selected when unselectAll clicked', () => {
       component.selectAll();
       component.selectAll();
-      expect(component.selected[0].isSelectedOrUnactive()).toBeFalse();
+      expect(component.selected?.fields[0].isSelectedOrUnactive()).toBeFalse();
     });
   });
 
   describe('All results', () => {
     beforeEach(() => {
-      component.selected.forEach(item => {
+      component.selected?.fields.forEach(item => {
         item.fields.bpSeq.activateField();
         item.fields.ct.activateField();
         item.fields.imageInformation.activateField();
@@ -172,46 +174,41 @@ describe('SecondaryToDbnResultsComponent', () => {
     });
 
     it('are selected when all checkboxes in all results checked', () => {
-      const selectResultCheckboxes = (i: number) => {
-        Object.keys(component.selected[i].fields).forEach(item => {
-          component.selected[i].fields[item].set(true);
-        });
-      };
-      for (let i = 0; i < component.selected.length; i += 1) {
-        selectResultCheckboxes(i);
-      }
+      component.selected?.fields.forEach(item => {
+        item.set(true);
+      });
       expect(component.allSelected()).toBeTrue();
     });
 
     it('are selected when selectThis clicked for all results', () => {
-      for (let i = 0; i < component.selected.length; i += 1) {
-        component.selectOne(i);
-      }
+      component.selected?.fields.forEach(item => {
+        item.set(true);
+      });
       expect(component.allSelected()).toBeTrue();
     });
 
     it('are not fully selected when selectAll clicked and some checkboxes unchecked', () => {
       component.selectAll();
-      component.selected[0].fields.bpSeq.value = false;
+      component.selected?.fields[0].fields.bpSeq.set(false);
       expect(component.allSelected()).toBeFalse();
     });
 
     it('are not fully selected when not all checkboxes checked', () => {
-      for (let i = 0; i < component.selected.length; i += 1) {
-        component.selected[i].fields.bpSeq.value = true;
-        component.selected[i].fields.ct.value = true;
-      }
+      component.selected?.fields.forEach(item => {
+        item.fields.bpSeq.set(true);
+        item.fields.ct.set(true);
+      });
       expect(component.allSelected()).toBeFalse();
     });
 
     it('are not fully selected when selectThis clicked but for only one result', () => {
-      component.selectOne(0);
+      component.selected?.fields[0].set(true);
       expect(component.allSelected()).toBeFalse();
     });
 
     it('are not fully selected when selectAll clicked and unselectThis clicked', () => {
       component.selectAll();
-      component.selectOne(0);
+      component.selected?.fields[0].set(false);
       expect(component.allSelected()).toBeFalse();
     });
 

@@ -19,6 +19,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SecondaryImageComponent } from './components/output/secondary-image/secondary-image.component';
 import { SecondaryOutputComponent } from './components/output/secondary-output/secondary-output.component';
+import { SecondaryResultComponent } from './components/output/secondary-result/secondary-result.component';
 import { TertiaryInteractionsComponent } from './components/output/tertiary-interactions/tertiary-interactions.component';
 import { TertiaryModelOutputComponent } from './components/output/tertiary-model-output/tertiary-model-output.component';
 import { TertiaryResultComponent } from './components/output/tertiary-result/tertiary-result.component';
@@ -52,6 +53,7 @@ const COMPONENTS = [
   SvgViewerComponent,
   SecondaryImageComponent,
   SecondaryOutputComponent,
+  SecondaryResultComponent,
   SecondaryUploadFormComponent,
   SecondaryToDbnParamsFormComponent,
   TertiaryInteractionsComponent,

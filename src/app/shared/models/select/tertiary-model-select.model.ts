@@ -1,10 +1,10 @@
-import { SecondarySelect } from './secondary-select.model';
+import { SecondaryResultSelect } from './secondary-result-select.model';
 import { SelectField } from './select-field.model';
 import { SelectFields } from './select-fields.model';
 import { SelectObject } from './select-object.model';
 
 export interface TertiaryModelSelectFields extends SelectFields {
-  output2D: SecondarySelect,
+  output2D: SecondaryResultSelect,
   messages: SelectField,
   canonicalInteractions: SelectField,
   nonCanonicalInteractions: SelectField,
@@ -17,7 +17,7 @@ export interface TertiaryModelSelectFields extends SelectFields {
 export class TertiaryModelSelect extends SelectObject<TertiaryModelSelectFields> {
   constructor() {
     super({
-      output2D: new SecondarySelect(),
+      output2D: new SecondaryResultSelect(),
       messages: new SelectField(false),
       canonicalInteractions: new SelectField(false),
       nonCanonicalInteractions: new SelectField(false),

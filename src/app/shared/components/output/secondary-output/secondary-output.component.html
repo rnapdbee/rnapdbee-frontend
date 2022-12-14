@@ -19,7 +19,7 @@
     </div>
   </app-checkbox>
 
-  <app-checkbox [(ngModel)]="value.interactions" label="Interactions" [showControls]="true" [textView]="true" [indentation]="false">
+  <app-checkbox [(ngModel)]="value.interactions" label="RNA to RNA interactions" [showControls]="true" [textView]="true" [indentation]="false">
     <div *ngFor="let line of output.interactions">
       {{ line }} <br>
     </div>

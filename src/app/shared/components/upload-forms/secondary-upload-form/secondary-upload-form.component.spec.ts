@@ -9,9 +9,9 @@ import {
   SECONDARY_TO_DBN_CT_EXAMPLES,
   SECONDARY_TO_DBN_DBN_EXAMPLES,
 } from 'src/app/shared/constants/secondary-to-dbn-examples.const';
-import { Example } from 'src/app/shared/models/example.model';
-import { UploadMethodType } from 'src/app/shared/models/upload-type.model';
-import { ValidationPayload } from 'src/app/shared/models/validation-payload.model';
+import { Example } from 'src/app/shared/models/upload/example.model';
+import { UploadMethodType } from 'src/app/shared/models/upload/upload-type.model';
+import { ValidationPayload } from 'src/app/shared/models/upload/validation-payload.model';
 import { FileValidatorService } from 'src/app/shared/services/file-validator/file-validator.service';
 import { ExampleType, SecondaryUploadFormComponent } from './secondary-upload-form.component';
 

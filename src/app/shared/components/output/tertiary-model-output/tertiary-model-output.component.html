@@ -1,0 +1,46 @@
+<div *ngIf="model">
+  <mat-checkbox
+    [checked]="value.isSelectedOrUnactive()"
+    [indeterminate]="value.isAnythingSelected() && !value.isSelectedOrUnactive()"
+    (change)="value.set($event.checked)" color="primary">
+    Model {{ model.modelNumber }}
+  </mat-checkbox>
+  <div class="container">
+    <div class="data-panel">
+      <app-secondary-output [(ngModel)]="value.fields.output2D" [output]="model.output2D"></app-secondary-output>
+      <app-checkbox label="Messages" [(ngModel)]="value.fields.messages" [textView]="true">
+        <div *ngFor="let message of model.messages">{{ message }}<br></div>
+      </app-checkbox>
+      <app-tertiary-interactions label="Canonical interactions" 
+        [(ngModel)]="value.fields.canonicalInteractions"
+        [interactions]="model.canonicalInteractions">
+      </app-tertiary-interactions>
+      <app-tertiary-interactions label="Non-canonical interactions" 
+        [(ngModel)]="value.fields.nonCanonicalInteractions"
+        [interactions]="model.nonCanonicalInteractions">
+      </app-tertiary-interactions>
+      <app-tertiary-interactions label="Inter strand interactions" 
+        [(ngModel)]="value.fields.interStrandInteractions"
+        [interactions]="model.interStrandInteractions">
+      </app-tertiary-interactions>
+      <app-tertiary-interactions label="Stacking interactions" 
+        [(ngModel)]="value.fields.stackingInteractions"
+        [interactions]="model.stackingInteractions">
+      </app-tertiary-interactions>
+      <app-tertiary-interactions label="Base-phosphate interactions" 
+        [(ngModel)]="value.fields.basePhosphateInteractions"
+        [interactions]="model.basePhosphateInteractions">
+      </app-tertiary-interactions>
+      <app-tertiary-interactions label="Base-ribose interactions"
+        [(ngModel)]="value.fields.baseRiboseInteractions"
+        [interactions]="model.baseRiboseInteractions">
+      </app-tertiary-interactions>
+    </div>
+    <div class="image-panel">
+      <app-secondary-image
+        [(ngModel)]="value.fields.output2D.fields.imageInformation"
+        [imageInformation]="model.output2D.imageInformation">
+      </app-secondary-image>
+    </div>
+  </div>
+</div>

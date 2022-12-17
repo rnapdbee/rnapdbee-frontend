@@ -1,10 +1,10 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, mergeMap, Observable, tap } from 'rxjs';
 import { ApiPaths, environment } from 'src/environments/environment';
-import { Calculation } from '../../models/calculation.model';
-import { Example } from '../../models/example.model';
-import { Params } from '../../models/params.model';
-import { UploadMethod } from '../../models/upload-type.model';
+import { Calculation } from '../../models/calculation/calculation.model';
+import { Params } from '../../models/params/params.model';
+import { Example } from '../../models/upload/example.model';
+import { UploadMethod } from '../../models/upload/upload-type.model';
 import { FileReaderService } from '../file-validator/file-reader.service';
 
 export abstract class CalculationRequestService<P extends Params, O> {

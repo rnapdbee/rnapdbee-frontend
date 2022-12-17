@@ -20,7 +20,7 @@
     </app-radio-button>
   </mat-radio-group>
 
-  <app-checkbox formControlName="removeIsolated" label="Remove isolated, canonical base pairs"></app-checkbox>
+  <mat-checkbox color="primary" formControlName="removeIsolated">Remove isolated, canonical base pairs</mat-checkbox>
 
   <app-step [value]="getStepNumber(3)">How to handle structural elements</app-step>
   <mat-radio-group formControlName="structuralElementsHandling">

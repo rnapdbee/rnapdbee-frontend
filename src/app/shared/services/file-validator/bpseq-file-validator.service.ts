@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ValidationPayload } from '../../models/validation-payload.model';
+import { ValidationPayload } from '../../models/upload/validation-payload.model';
 import { FileValidationUtils } from './file-validation-utils.ts.service';
 
 @Injectable({

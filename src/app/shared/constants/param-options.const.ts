@@ -1,4 +1,4 @@
-import { Option } from '../models/option.model';
+import { Option } from '../models/option/option.model';
 
 export const MODEL_SELECTION: Option[] = [
   {

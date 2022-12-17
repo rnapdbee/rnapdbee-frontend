@@ -5,9 +5,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { TERTIARY_TO_DBN_EXAMPLES } from 'src/app/shared/constants/tertiary-to-dbn-examples.const';
-import { Example } from 'src/app/shared/models/example.model';
-import { UploadMethodType } from 'src/app/shared/models/upload-type.model';
-import { ValidationPayload } from 'src/app/shared/models/validation-payload.model';
+import { Example } from 'src/app/shared/models/upload/example.model';
+import { UploadMethodType } from 'src/app/shared/models/upload/upload-type.model';
+import { ValidationPayload } from 'src/app/shared/models/upload/validation-payload.model';
 import { FileValidatorService } from 'src/app/shared/services/file-validator/file-validator.service';
 import { TertiaryUploadFormComponent } from './tertiary-upload-form.component';
 

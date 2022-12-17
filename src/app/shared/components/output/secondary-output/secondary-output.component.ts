@@ -1,53 +1,32 @@
-import { Component, forwardRef, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { SecondaryFlags } from 'src/app/shared/models/secondary-flags.model';
-import { SecondaryOutput } from 'src/app/shared/models/secondary-output.model';
+import { Component, Input } from '@angular/core';
+import { SecondaryOutput, StructuralElements } from 'src/app/shared/models/output/secondary-output.model';
+import { SecondaryResultSelect } from 'src/app/shared/models/select/secondary-result-select.model';
+import { ControlValueComponent, ControlValueProvider } from '../../control-value/control-value.component';
 
 
 @Component({
   selector: 'app-secondary-output[output]',
   templateUrl: './secondary-output.component.html',
   styleUrls: ['./secondary-output.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      // eslint-disable-next-line no-use-before-define
-      useExisting: forwardRef(() => SecondaryOutputComponent),
-      multi: true,
-    },
-  ],
+  // eslint-disable-next-line no-use-before-define
+  providers: [ControlValueProvider(SecondaryOutputComponent)],
 })
-export class SecondaryOutputComponent implements ControlValueAccessor {
+export class SecondaryOutputComponent extends ControlValueComponent<SecondaryResultSelect> {
   @Input() output: SecondaryOutput | undefined;
 
-  private _value: SecondaryFlags = new SecondaryFlags();
-  get value() { return this._value; }
+  constructor() { super(new SecondaryResultSelect()); }
 
-  set value(value: SecondaryFlags) {
-    if (value && this._value !== value) {
-      this._value = value;
-      this.onChange(value);
-      this.onTouch(value);
+  notEmpty(structuralElements: StructuralElements): boolean {
+    if (
+      structuralElements.coordinates
+      || structuralElements.stems.length > 0
+      || structuralElements.loops.length > 0
+      || structuralElements.singleStrands.length > 0
+      || structuralElements.singleStrands3p.length > 0
+      || structuralElements.singleStrands5p.length > 0
+    ) {
+      return true;
     }
-  }
-
-  writeValue(value: SecondaryFlags): void {
-    this.value = value;
-  }
-
-  registerOnChange(_: never): void {
-    // do nothing.
-  }
-
-  registerOnTouched(_: never): void {
-    // do nothing.
-  }
-
-  onChange(_: SecondaryFlags): void {
-    // do nothing.
-  }
-
-  onTouch(_: SecondaryFlags): void {
-    // do nothing.
+    return false;
   }
 }

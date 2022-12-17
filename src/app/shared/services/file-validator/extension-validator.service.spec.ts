@@ -1,4 +1,4 @@
-import { FileExtension } from '../../models/file-extension.model';
+import { FileExtension } from '../../models/file/file-extension.model';
 import { ExtensionValidatorService } from './extension-validator.service';
 
 describe('ExtensionValidatorService', () => {

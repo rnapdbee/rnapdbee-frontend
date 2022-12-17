@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Example } from '../../models/example.model';
+import { Example } from '../../models/upload/example.model';
 
 @Component({
   selector: 'app-example-picker',

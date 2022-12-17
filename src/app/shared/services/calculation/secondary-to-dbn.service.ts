@@ -2,11 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiPaths } from 'src/environments/environment';
-import { Calculation } from '../../models/calculation.model';
-import { Example } from '../../models/example.model';
-import { SecondaryOutput } from '../../models/secondary-output.model';
-import { SecondaryToDbnParams } from '../../models/secondary-to-dbn-params.module';
-import { UploadMethod, UploadMethodType } from '../../models/upload-type.model';
+import { Calculation } from '../../models/calculation/calculation.model';
+import { SecondaryOutput } from '../../models/output/secondary-output.model';
+import { SecondaryToDbnParams } from '../../models/params/secondary-to-dbn-params.model';
+import { Example } from '../../models/upload/example.model';
+import { UploadMethod, UploadMethodType } from '../../models/upload/upload-type.model';
 import { FileReaderService } from '../file-validator/file-reader.service';
 import { CalculationRequestService } from './calculation-request.service';
 
@@ -30,6 +30,4 @@ export class SecondaryToDbnService extends CalculationRequestService<SecondaryTo
         throw new Error('Upload method type could not be recognized.');
     }
   }
-
-  // TODO: reanalyze(id, params) {...}
 }

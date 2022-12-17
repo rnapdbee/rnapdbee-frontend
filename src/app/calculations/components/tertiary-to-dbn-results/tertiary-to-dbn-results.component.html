@@ -1,1 +1,28 @@
-{{ calculation | json }}
+<ng-container *ngIf="calculation">
+  <div class="title">
+    <h2>Sequence & secondary structure topology derived from file {{ calculation.filename }}</h2>
+    <p>{{ calculation.results[0].output.title }}</p>
+  </div>
+
+  <div>
+    <app-reanalyze-panel [(ngModel)]="reanalyzePanelExpanded">
+      <app-tertiary-to-dbn-params-form [params]="calculation.results[0].params" (paramChange)="onParamsChange($event)">
+      </app-tertiary-to-dbn-params-form>
+      <mat-divider></mat-divider>
+      <app-submit-button [callback]="reanalyzeCallback" (buttonSubmit)="onSubmit($event)"></app-submit-button>
+    </app-reanalyze-panel>
+  </div>
+
+  <div class="results">
+    <div class="top-btns">
+      <button mat-stroked-button (click)="selectAll()">{{ allSelected() ? 'Unselect' : 'Select' }} all data</button>
+      <button mat-stroked-button>Download selected</button>
+    </div>
+    <div class="result" *ngFor="let result of calculation.results; let i = index">
+      <app-tertiary-result
+        [(ngModel)]="selected!.fields[i]"
+        [result]="result">
+      </app-tertiary-result>
+    </div>
+  </div>
+</ng-container>

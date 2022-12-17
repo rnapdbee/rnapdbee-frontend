@@ -1,0 +1,16 @@
+@import "src/variables";
+
+:host{
+  .container {
+    @include card;
+    padding: 1rem;
+
+    .select-btn {
+      margin-bottom: 1rem;
+    }
+
+    .models {
+      padding-left: 1rem;
+    }
+  }
+}

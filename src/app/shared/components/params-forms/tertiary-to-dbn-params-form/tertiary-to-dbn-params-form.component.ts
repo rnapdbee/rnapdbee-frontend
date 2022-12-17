@@ -7,7 +7,7 @@ import {
   STRUCTURAL_ELEMENTS_HANDLING,
   VISUALISATION_TOOL,
 } from 'src/app/shared/constants/param-options.const';
-import { TertiaryToDbnParams } from 'src/app/shared/models/tertiary-to-dbn-params.model';
+import { TertiaryToDbnParams } from 'src/app/shared/models/params/tertiary-to-dbn-params.model';
 
 @Component({
   selector: 'app-tertiary-to-dbn-params-form',

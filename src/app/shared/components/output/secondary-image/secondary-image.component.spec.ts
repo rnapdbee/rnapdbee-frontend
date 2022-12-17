@@ -2,7 +2,7 @@
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DrawingResult, ImageInformation } from 'src/app/shared/models/secondary-output.model';
+import { DrawingResult, ImageInformation } from 'src/app/shared/models/output/secondary-output.model';
 import { SecondaryImageComponent } from './secondary-image.component';
 
 const mockSuccessfulVisualizationTool = 'SUCESSFUL_DRAWER';

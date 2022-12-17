@@ -1,0 +1,18 @@
+<div *ngIf="result" class="container">
+  <div class="data-panel">
+    <div>
+      <button mat-stroked-button (click)="select()">{{ isSelected() ? 'Unselect' : 'Select' }} this</button>
+    </div>
+    <p>{{ getDescription(result.params) }}</p>
+    <app-secondary-output 
+      [(ngModel)]="value" 
+      [output]="result.output">
+    </app-secondary-output>
+  </div>
+  <div class="image-panel">
+    <app-secondary-image 
+      [(ngModel)]="value.fields.imageInformation"
+      [imageInformation]="result.output.imageInformation">
+    </app-secondary-image>
+  </div>
+</div>

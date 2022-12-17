@@ -43,17 +43,13 @@
       border-radius: 5px;
       resize: vertical;
     }
+
+    .table-view {
+      overflow: auto;
+      height: 310px;
+      border: $border;
+      border-radius: 5px;
+      resize: vertical;
+    }
   }
-
-  .indentation {
-    margin-left: 34px;
-  }
-}
-
-::ng-deep .mat-checkbox-label {
-  margin-bottom: -1px;
-}
-
-::ng-deep .mat-checkbox-layout {
-  white-space: unset !important;
 }

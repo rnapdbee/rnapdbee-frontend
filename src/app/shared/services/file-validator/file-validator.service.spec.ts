@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { ValidationPayload } from '../../models/validation-payload.model';
+import { ValidationPayload } from '../../models/upload/validation-payload.model';
 import { BpseqFileValidatorService } from './bpseq-file-validator.service';
 import { CifFileValidatorService } from './cif-file-validator.service';
 import { CtFileValidatorService } from './ct-file-validator.service';

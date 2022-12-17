@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CalculationPageComponent } from 'src/app/shared/components/calculation-page/calculation-page.component';
-import { SecondaryOutput } from 'src/app/shared/models/secondary-output.model';
-import { SecondaryToDbnParams } from 'src/app/shared/models/secondary-to-dbn-params.module';
+import { SecondaryOutput } from 'src/app/shared/models/output/secondary-output.model';
+import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-dbn-params.model';
 import { SecondaryToDbnService } from 'src/app/shared/services/calculation/secondary-to-dbn.service';
 
 @Component({

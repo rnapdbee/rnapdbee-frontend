@@ -31,7 +31,7 @@ export interface SecondaryOutput {
   strands: StrandEntry[],
   bpSeq: string[],
   ct: string[],
-  interactions: string[],
+  interactions?: string[],
   structuralElements: StructuralElements,
   imageInformation: ImageInformation,
 }

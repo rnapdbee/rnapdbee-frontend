@@ -16,7 +16,7 @@
   </app-checkbox>
 
   <app-checkbox *ngIf="output.ct && output.ct.length > 0" 
-    [(ngModel)]="value.fields.ct" label="Ct" [textView]="true">
+    [(ngModel)]="value.fields.ct" label="CT" [textView]="true">
     <div *ngFor="let line of output.ct">
       {{ line }} <br>
     </div>

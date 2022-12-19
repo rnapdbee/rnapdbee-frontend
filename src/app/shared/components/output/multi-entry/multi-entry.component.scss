@@ -1,0 +1,40 @@
+@import "src/variables";
+
+:host {
+  mat-checkbox {
+    padding: .5rem;
+  }
+
+  .container {
+    display: flex;
+
+    .data-panel {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      padding-right: 1rem;
+      margin-left: 1rem;
+      border-right: $border;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    .image-panel {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      padding-left: 1rem;
+    }
+
+    @include mobile {
+      flex-direction: column;
+
+      .data-panel {
+        padding: 0;
+        border: none;
+      }
+    }
+  }
+}

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ANALYSIS_TOOL, MODEL_SELECTION, NON_CANONICAL_HANDLING, STRUCTURAL_ELEMENTS_HANDLING } from '../../constants/param-options.const';
 import { SecondaryToDbnParams } from '../../models/params/secondary-to-dbn-params.model';
 import { TertiaryToDbnParams } from '../../models/params/tertiary-to-dbn-params.model';
+import { TertiaryToMultiParams } from '../../models/params/tertiary-to-multi-params.model';
 
 
 @Injectable({
@@ -26,6 +27,14 @@ export class DescriptionService {
     return `Analyzed ${modelSelection} using ${analysisTool}.
             Non-canonical bps ${nonCanonicalHandling}.
             Structural elements handled ${structuralElementsHandling} pseudoknots.
+            Isolated, cannonical base pairs ${removeIsolated}.`;
+  }
+
+  generateMultiDescription(params: TertiaryToMultiParams): string {
+    const includeNonCanonical = this.determineIncludeNonCanonical(params.includeNonCanonical);
+    const removeIsolated = this.determineRemoveIsolated(params.removeIsolated);
+
+    return `Non-canonical bps ${includeNonCanonical}.
             Isolated, cannonical base pairs ${removeIsolated}.`;
   }
 
@@ -75,5 +84,12 @@ export class DescriptionService {
       return 'have been removed';
     }
     return 'were not removed';
+  }
+
+  private determineIncludeNonCanonical(param: boolean): string {
+    if (param) {
+      return 'have been included';
+    }
+    return 'were not included';
   }
 }

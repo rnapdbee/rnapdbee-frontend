@@ -13,6 +13,10 @@ export const MODEL_SELECTION: Option[] = [
 
 export const ANALYSIS_TOOL: Option[] = [
   {
+    key: 'RNAPOLIS',
+    label: 'RNApolis',
+  },
+  {
     key: 'FR3D_PYTHON',
     label: 'FR3D',
   },
@@ -31,10 +35,6 @@ export const ANALYSIS_TOOL: Option[] = [
   {
     key: 'MC_ANNOTATE',
     label: 'MC-Annotate',
-  },
-  {
-    key: 'RNAPOLIS',
-    label: 'RNApolis',
   },
 ];
 
@@ -66,6 +66,10 @@ export const STRUCTURAL_ELEMENTS_HANDLING: Option[] = [
 
 export const VISUALISATION_TOOL: Option[] = [
   {
+    key: 'RNA_PUZZLER',
+    label: 'RNApuzzler',
+  },
+  {
     key: 'VARNA',
     label: 'VARNA',
   },
@@ -76,10 +80,6 @@ export const VISUALISATION_TOOL: Option[] = [
   {
     key: 'R_CHIE',
     label: 'R-Chie',
-  },
-  {
-    key: 'RNA_PUZZLER',
-    label: 'RNApuzzler',
   },
   {
     key: 'NONE',

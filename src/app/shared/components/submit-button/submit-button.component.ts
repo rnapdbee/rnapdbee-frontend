@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { catchError, defer, finalize, Observable, throwError } from 'rxjs';
 import { Calculation } from '../../models/calculation/calculation.model';
+import { RNApdbeeError } from '../../models/error/error.model';
 import { Params } from '../../models/params/params.model';
 import { SnackBarService } from '../../services/notifications/snack-bar.service';
 
@@ -34,9 +36,13 @@ export class SubmitButtonComponent {
           finalize(() => {
             this.loading = false;
           }),
-          catchError((error: Error) => {
-            this.snackBar.error(error.message);
-            return throwError(() => new Error(error.message));
+          catchError((error: HttpErrorResponse) => {
+            if ('message' in error.error) {
+              this.snackBar.error(`${(error.error as RNApdbeeError).message}`);
+            } else {
+              this.snackBar.error(`${error.name}: ${error.statusText}. Please try again later.`);
+            }
+            return throwError(() => error);
           }),
         ),
     );

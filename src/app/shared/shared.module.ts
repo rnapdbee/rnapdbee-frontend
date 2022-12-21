@@ -17,6 +17,8 @@ import { ErrorComponent } from './components/error/error.component';
 import { ExamplePickerComponent } from './components/example-picker/example-picker.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { MultiEntryComponent } from './components/output/multi-entry/multi-entry.component';
+import { MultiResultComponent } from './components/output/multi-result/multi-result.component';
 import { SecondaryImageComponent } from './components/output/secondary-image/secondary-image.component';
 import { SecondaryOutputComponent } from './components/output/secondary-output/secondary-output.component';
 import { SecondaryResultComponent } from './components/output/secondary-result/secondary-result.component';
@@ -62,6 +64,8 @@ const COMPONENTS = [
   TertiaryUploadFormComponent,
   TertiaryToDbnParamsFormComponent,
   TertiaryToMultiParamsFormComponent,
+  MultiEntryComponent,
+  MultiResultComponent,
 ];
 
 const MODULES = [

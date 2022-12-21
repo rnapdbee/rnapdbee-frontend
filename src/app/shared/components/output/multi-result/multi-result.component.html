@@ -1,0 +1,13 @@
+<div *ngIf="result" class="container">
+  <div class="select-btn">
+    <button mat-stroked-button (click)="select()">{{ isSelected() ? 'Unselect' : 'Select' }} this</button>
+  </div>
+  <p>{{ getDescription(result.params) }}</p>
+  <app-checkbox label="Consensual visualization" [(ngModel)]="value.fields.consensualVisualization" [expanded]="true">
+    <app-svg-viewer [src]="result.output.consensualVisualization.pathToSVGImage"></app-svg-viewer>
+  </app-checkbox>
+  <app-multi-entry *ngFor="let entry of result.output.entries; let i = index"
+    [(ngModel)]="value.fields.entries.fields[i]" 
+    [entry]="entry" [index]="i+1">
+  </app-multi-entry>
+</div>

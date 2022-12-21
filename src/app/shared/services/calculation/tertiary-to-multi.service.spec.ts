@@ -5,6 +5,7 @@ import { of, throwError } from 'rxjs';
 import { ApiPaths } from 'src/environments/environment';
 import { Calculation } from '../../models/calculation/calculation.model';
 import { MultiOutput } from '../../models/output/multi-output.model';
+import { DrawingResult, SecondaryOutput } from '../../models/output/secondary-output.model';
 import { TertiaryToMultiParams } from '../../models/params/tertiary-to-multi-params.model';
 import { Example } from '../../models/upload/example.model';
 import { UploadMethod, UploadMethodType } from '../../models/upload/upload-type.model';
@@ -22,15 +23,47 @@ const mockParams: TertiaryToMultiParams = {
   visualizationTool: 'VARNA',
 };
 
+const mock2DOutput: SecondaryOutput = {
+  strands: [{ name: '', sequence: '', structure: '' }],
+  bpSeq: [''],
+  ct: [''],
+  interactions: [''],
+  structuralElements: {
+    stems: [''],
+    loops: [''],
+    singleStrands: [''],
+    singleStrands5p: [''],
+    singleStrands3p: [''],
+  },
+  imageInformation: {
+    pathToSVGImage: '',
+    successfulVisualizationTool: '',
+    failedVisualizationTool: '',
+    drawingResult: DrawingResult.DoneByMainDrawer,
+  },
+};
+
+
+const mockOutput: MultiOutput = {
+  title: '',
+  consensualVisualization: {
+    pathToSVGImage: '',
+  },
+  entries: [
+    {
+      output2D: mock2DOutput,
+      adapterEnums: ['MC_ANNOTATE, RNAPOLIS'],
+    },
+  ],
+};
+
 const mockResponse: Calculation<TertiaryToMultiParams, MultiOutput> = {
   id: mockUuid,
   filename,
   results: [
     {
       params: mockParams,
-      output: {
-        out: 'output',
-      },
+      output: mockOutput,
     },
   ],
 };

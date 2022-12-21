@@ -1,0 +1,20 @@
+<div *ngIf="entry">
+  <mat-checkbox
+    [checked]="value.isSelectedOrUnactive()"
+    [indeterminate]="value.isAnythingSelected() && !value.isSelectedOrUnactive()"
+    (change)="value.set($event.checked)" color="primary">
+    Entry {{ index }}
+  </mat-checkbox>
+  <div class="container">
+    <div class="data-panel">
+      <p>This output has been generated using {{ getAdapterNames(entry.adapterEnums) }}.</p>
+      <app-secondary-output [(ngModel)]="value.fields.output2D" [output]="entry.output2D"></app-secondary-output>
+    </div>
+    <div class="image-panel">
+      <app-secondary-image
+        [(ngModel)]="value.fields.output2D.fields.imageInformation"
+        [imageInformation]="entry.output2D.imageInformation">
+      </app-secondary-image>
+    </div>
+  </div>
+</div>

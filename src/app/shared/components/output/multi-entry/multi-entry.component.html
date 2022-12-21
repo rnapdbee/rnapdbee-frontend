@@ -1,8 +1,8 @@
 <div *ngIf="entry">
   <mat-checkbox
-  [checked]="value.isSelectedOrUnactive()"
-  [indeterminate]="value.isAnythingSelected() && !value.isSelectedOrUnactive()"
-  (change)="value.set($event.checked)" color="primary">
+    [checked]="value.isSelectedOrUnactive()"
+    [indeterminate]="value.isAnythingSelected() && !value.isSelectedOrUnactive()"
+    (change)="value.set($event.checked)" color="primary">
     Entry {{ index }}
   </mat-checkbox>
   <div class="container">

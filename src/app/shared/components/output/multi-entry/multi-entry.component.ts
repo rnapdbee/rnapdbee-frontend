@@ -13,20 +13,13 @@ import { ControlValueComponent, ControlValueProvider } from '../../control-value
 })
 export class MultiEntryComponent extends ControlValueComponent<MultiEntrySelect> {
   @Input() entry: OutputMultiEntry | undefined;
-  @Input() index = 1;
+  @Input() index: number | undefined;
 
   constructor() { super(new MultiEntrySelect()); }
 
-  getAdapterNames(rawNames: string[]): string[] {
-    const adapterNames: string[] = [];
-    rawNames.forEach(rawName => {
-      const prettyName = ANALYSIS_TOOL.find(item => item.key === rawName);
-      if (prettyName !== undefined) {
-        adapterNames.push(prettyName.label);
-      } else {
-        adapterNames.push(rawName);
-      }
-    });
-    return adapterNames;
+  getAdapterNames(rawNames: string[]): string {
+    return rawNames
+      .map(name => ANALYSIS_TOOL.find(item => item.key === name)?.label ?? name)
+      .join(', ');
   }
 }

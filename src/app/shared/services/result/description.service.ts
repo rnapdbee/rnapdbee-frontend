@@ -25,7 +25,7 @@ export class DescriptionService {
     const structuralElementsHandling = this.determineStructuralElementsHandling(params.structuralElementsHandling);
 
     return `Analyzed ${modelSelection} using ${analysisTool}.
-            Non-canonical bps ${nonCanonicalHandling}.
+            Non-canonical base pairs ${nonCanonicalHandling}.
             Structural elements handled ${structuralElementsHandling} pseudoknots.
             Isolated, cannonical base pairs ${removeIsolated}.`;
   }
@@ -34,7 +34,7 @@ export class DescriptionService {
     const includeNonCanonical = this.determineIncludeNonCanonical(params.includeNonCanonical);
     const removeIsolated = this.determineRemoveIsolated(params.removeIsolated);
 
-    return `Non-canonical bps ${includeNonCanonical}.
+    return `Non-canonical base pairs ${includeNonCanonical}.
             Isolated, cannonical base pairs ${removeIsolated}.`;
   }
 

@@ -2,8 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { catchError, defer, finalize, Observable, throwError } from 'rxjs';
 import { Calculation } from '../../models/calculation/calculation.model';
-import { RNApdbeeError } from '../../models/error/error.model';
 import { Params } from '../../models/params/params.model';
+import { ErrorService } from '../../services/error/error.service';
 import { SnackBarService } from '../../services/notifications/snack-bar.service';
 
 @Component({
@@ -17,7 +17,10 @@ export class SubmitButtonComponent {
   @Output() buttonSubmit = new EventEmitter<Observable<Calculation<Params, unknown>>>();
   loading = false;
 
-  constructor(private readonly snackBar: SnackBarService) { }
+  constructor(
+    private readonly snackBar: SnackBarService,
+    private readonly errorService: ErrorService,
+  ) { }
 
   bind(fn: () => Observable<Calculation<Params, unknown>>): void {
     this.callback = fn;
@@ -36,12 +39,8 @@ export class SubmitButtonComponent {
           finalize(() => {
             this.loading = false;
           }),
-          catchError((error: HttpErrorResponse) => {
-            if ('message' in error.error) {
-              this.snackBar.error(`${(error.error as RNApdbeeError).message}`);
-            } else {
-              this.snackBar.error(`${error.name}: ${error.statusText}. Please try again later.`);
-            }
+          catchError((error: Error | HttpErrorResponse) => {
+            this.snackBar.error(this.errorService.getErrorMessage(error));
             return throwError(() => error);
           }),
         ),

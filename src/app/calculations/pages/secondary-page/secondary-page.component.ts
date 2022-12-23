@@ -4,6 +4,7 @@ import { CalculationPageComponent } from 'src/app/shared/components/calculation-
 import { SecondaryOutput } from 'src/app/shared/models/output/secondary-output.model';
 import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-dbn-params.model';
 import { SecondaryToDbnService } from 'src/app/shared/services/calculation/secondary-to-dbn.service';
+import { ErrorService } from 'src/app/shared/services/error/error.service';
 
 @Component({
   selector: 'app-secondary-page',
@@ -15,7 +16,8 @@ export class SecondaryPageComponent extends CalculationPageComponent<SecondaryTo
   constructor(
     route: ActivatedRoute,
     calculationService: SecondaryToDbnService,
+    errorService: ErrorService,
   ) {
-    super(route, calculationService);
+    super(route, calculationService, errorService);
   }
 }

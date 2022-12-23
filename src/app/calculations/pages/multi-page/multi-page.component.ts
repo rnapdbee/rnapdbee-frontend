@@ -4,6 +4,7 @@ import { CalculationPageComponent } from 'src/app/shared/components/calculation-
 import { MultiOutput } from 'src/app/shared/models/output/multi-output.model';
 import { TertiaryToMultiParams } from 'src/app/shared/models/params/tertiary-to-multi-params.model';
 import { TertiaryToMultiService } from 'src/app/shared/services/calculation/tertiary-to-multi.service';
+import { ErrorService } from 'src/app/shared/services/error/error.service';
 
 @Component({
   selector: 'app-multi-page',
@@ -15,7 +16,8 @@ export class MultiPageComponent extends CalculationPageComponent<TertiaryToMulti
   constructor(
     route: ActivatedRoute,
     calculationService: TertiaryToMultiService,
+    errorService: ErrorService,
   ) {
-    super(route, calculationService);
+    super(route, calculationService, errorService);
   }
 }

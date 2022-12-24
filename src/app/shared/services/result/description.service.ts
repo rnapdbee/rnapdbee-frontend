@@ -40,10 +40,10 @@ export class DescriptionService {
 
   private determineNonCanonicalHandling(param: string): string {
     if (param === NON_CANONICAL_HANDLING[0].key) {
-      return 'annotated in visualisation only';
+      return 'annotated in visualization only';
     }
     if (param === NON_CANONICAL_HANDLING[1].key) {
-      return 'annotated in text and visualisation';
+      return 'annotated in text and visualization';
     }
     if (param === NON_CANONICAL_HANDLING[2].key) {
       return 'are not included';

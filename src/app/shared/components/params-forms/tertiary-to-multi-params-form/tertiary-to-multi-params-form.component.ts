@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { VISUALISATION_TOOL } from 'src/app/shared/constants/param-options.const';
+import { VISUALIZATION_TOOL } from 'src/app/shared/constants/param-options.const';
 import { TertiaryToMultiParams } from 'src/app/shared/models/params/tertiary-to-multi-params.model';
 
 @Component({
@@ -13,12 +13,12 @@ export class TertiaryToMultiParamsFormComponent implements OnInit {
   @Input() params: TertiaryToMultiParams | undefined;
   @Output() paramChange = new EventEmitter<TertiaryToMultiParams>();
 
-  readonly VISUALISATION_TOOL = VISUALISATION_TOOL;
+  readonly VISUALIZATION_TOOL = VISUALIZATION_TOOL;
 
   paramsForm = this.fb.group({
     includeNonCanonical: [false],
     removeIsolated: [false],
-    visualizationTool: [VISUALISATION_TOOL[0].key],
+    visualizationTool: [VISUALIZATION_TOOL[0].key],
   });
 
   constructor(private readonly fb: FormBuilder) {

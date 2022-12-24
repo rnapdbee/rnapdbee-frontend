@@ -1,4 +1,4 @@
-import { STRUCTURAL_ELEMENTS_HANDLING, VISUALISATION_TOOL } from '../../constants/param-options.const';
+import { STRUCTURAL_ELEMENTS_HANDLING, VISUALIZATION_TOOL } from '../../constants/param-options.const';
 import { SecondaryToDbnParams } from '../../models/params/secondary-to-dbn-params.model';
 import { DescriptionService } from './description.service';
 
@@ -11,7 +11,7 @@ describe('DescriptionService', () => {
     params = {
       removeIsolated: false,
       structuralElementsHandling: STRUCTURAL_ELEMENTS_HANDLING[0].key,
-      visualizationTool: VISUALISATION_TOOL[0].key,
+      visualizationTool: VISUALIZATION_TOOL[0].key,
     };
   });
 

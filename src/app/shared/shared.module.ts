@@ -1,3 +1,4 @@
+import { ClipboardModule } from '@angular/cdk/clipboard';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -39,6 +40,7 @@ import { ReanalyzePanelComponent } from './components/reanalyze-panel/reanalyze-
 import { StepComponent } from './components/step/step.component';
 import { SubmitButtonComponent } from './components/submit-button/submit-button.component';
 import { SvgViewerComponent } from './components/svg-viewer/svg-viewer.component';
+import { TextAreaComponent } from './components/text-area/text-area.component';
 import { SecondaryUploadFormComponent } from './components/upload-forms/secondary-upload-form/secondary-upload-form.component';
 import { TertiaryUploadFormComponent } from './components/upload-forms/tertiary-upload-form/tertiary-upload-form.component';
 
@@ -53,6 +55,7 @@ const COMPONENTS = [
   StepComponent,
   SubmitButtonComponent,
   SvgViewerComponent,
+  TextAreaComponent,
   SecondaryImageComponent,
   SecondaryOutputComponent,
   SecondaryResultComponent,
@@ -70,6 +73,7 @@ const COMPONENTS = [
 
 const MODULES = [
   CommonModule,
+  ClipboardModule,
   FormsModule,
   HttpClientModule,
   MatButtonModule,

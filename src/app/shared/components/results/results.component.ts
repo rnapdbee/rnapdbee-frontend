@@ -56,9 +56,8 @@ export abstract class ResultsComponent
   protected abstract populateSelectedList(calculation: Calculation<P, O>): void;
 
   private reanalyzeParamsValid(reanalyzeParams: P): boolean {
-    return !!this.calculation?.results
+    return !this.calculation?.results
       .map(result => result.params)
-      .map(params => JSON.stringify(params) !== JSON.stringify(reanalyzeParams))
-      .reduce((previous, current) => previous && current, true);
+      .some(params => JSON.stringify(params) === JSON.stringify(reanalyzeParams));
   }
 }

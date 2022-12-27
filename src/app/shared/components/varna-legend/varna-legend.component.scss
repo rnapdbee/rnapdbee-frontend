@@ -1,0 +1,52 @@
+@import "src/variables";
+
+:host {
+  font-size: 14px;
+
+  mat-icon {
+    cursor: pointer;
+  }
+
+  .container:hover {
+    & .legend {
+      display: flex;
+    } 
+  }
+
+  .legend {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    z-index: 2000;
+    left: 0;
+    background: $white;
+    border: $border;
+    border-radius: 10px;
+
+    .row {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      border-bottom: $border;
+
+      & > * {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2px .5rem;
+
+        &:first-child {
+          border-right: $border;
+        }
+      }
+
+      img {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    .row:last-of-type {
+      border-bottom: none;
+    }
+  }
+}

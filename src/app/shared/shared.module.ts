@@ -43,6 +43,7 @@ import { SvgViewerComponent } from './components/svg-viewer/svg-viewer.component
 import { TextAreaComponent } from './components/text-area/text-area.component';
 import { SecondaryUploadFormComponent } from './components/upload-forms/secondary-upload-form/secondary-upload-form.component';
 import { TertiaryUploadFormComponent } from './components/upload-forms/tertiary-upload-form/tertiary-upload-form.component';
+import { VarnaLegendComponent } from './components/varna-legend/varna-legend.component';
 
 const COMPONENTS = [
   CheckboxComponent,
@@ -69,6 +70,7 @@ const COMPONENTS = [
   TertiaryToMultiParamsFormComponent,
   MultiEntryComponent,
   MultiResultComponent,
+  VarnaLegendComponent,
 ];
 
 const MODULES = [

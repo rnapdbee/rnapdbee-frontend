@@ -1,0 +1,13 @@
+<div class="container">
+  <mat-icon>info</mat-icon>
+  <div class="legend">
+    <div class="row">
+      <div class="name">RNA base-base classification</div>
+      <div class="symbol">Visualization symbol</div>
+    </div>
+    <div class="row" *ngFor="let entry of legendEntries">
+      <div>{{ entry.name }}</div>
+      <div><img [src]="entry.pathToSVG"></div>
+    </div>
+  </div>
+</div>

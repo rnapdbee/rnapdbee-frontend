@@ -2,6 +2,7 @@
 
 :host {
   font-size: 14px;
+  position: relative;
 
   mat-icon {
     cursor: pointer;
@@ -18,14 +19,15 @@
     flex-direction: column;
     position: absolute;
     z-index: 2000;
-    left: 0;
+    right: 0;
     background: $white;
     border: $border;
     border-radius: 10px;
 
     .row {
+      text-align: center;
       display: grid;
-      grid-template-columns: 1.5fr 1fr;
+      grid-template-columns: repeat(2, minmax(120px, 1fr));
       border-bottom: $border;
 
       & > * {
@@ -47,6 +49,17 @@
 
     .row:last-of-type {
       border-bottom: none;
+    }
+
+    .footer {
+      padding: 2px .5rem;
+      font-size: 11px;
+
+      a {
+        color: $primary;
+        text-decoration: underline;
+        cursor: pointer;
+      }
     }
   }
 }

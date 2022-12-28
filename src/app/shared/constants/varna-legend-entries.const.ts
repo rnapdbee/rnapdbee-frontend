@@ -5,75 +5,75 @@ export interface LegendEntry {
 
 export const VARNA_LEGEND_ENTRIES: LegendEntry[] = [
   {
-    name: 'cis Watson-Crick Watson-Crick',
+    name: 'cWW',
     pathToSVG: '/assets/varna-symbols/symbol-cww.svg',
   },
   {
-    name: 'trans Watson-Crick Watson-Crick',
+    name: 'tWW',
     pathToSVG: '/assets/varna-symbols/symbol-tww.svg',
   },
   {
-    name: 'cis Watson-Crick Hoogsteen',
+    name: 'cWH',
     pathToSVG: '/assets/varna-symbols/symbol-cwh.svg',
   },
   {
-    name: 'trans Watson-Crick Hoogsteen',
+    name: 'tWH',
     pathToSVG: '/assets/varna-symbols/symbol-twh.svg',
   },
   {
-    name: 'cis Watson-Crick Sugar',
+    name: 'cWS',
     pathToSVG: '/assets/varna-symbols/symbol-cws.svg',
   },
   {
-    name: 'trans Watson-Crick Sugar',
+    name: 'tWS',
     pathToSVG: '/assets/varna-symbols/symbol-tws.svg',
   },
   {
-    name: 'cis Hoogsteen Watson-Crick',
+    name: 'cHW',
     pathToSVG: '/assets/varna-symbols/symbol-chw.svg',
   },
   {
-    name: 'trans Hoogsteen Watson-Crick',
+    name: 'tHW',
     pathToSVG: '/assets/varna-symbols/symbol-thw.svg',
   },
   {
-    name: 'cis Hoogsteen Hoogsteen',
+    name: 'cHH',
     pathToSVG: '/assets/varna-symbols/symbol-chh.svg',
   },
   {
-    name: 'trans Hoogsteen Hoogsteen',
+    name: 'tHH',
     pathToSVG: '/assets/varna-symbols/symbol-thh.svg',
   },
   {
-    name: 'cis Hoogsteen Sugar',
+    name: 'cHS',
     pathToSVG: '/assets/varna-symbols/symbol-chs.svg',
   },
   {
-    name: 'trans Hoogsteen Sugar',
+    name: 'tHS',
     pathToSVG: '/assets/varna-symbols/symbol-ths.svg',
   },
   {
-    name: 'cis Sugar Watson-Crick',
+    name: 'cSW',
     pathToSVG: '/assets/varna-symbols/symbol-csw.svg',
   },
   {
-    name: 'trans Sugar Watson-Crick',
+    name: 'tSW',
     pathToSVG: '/assets/varna-symbols/symbol-tsw.svg',
   },
   {
-    name: 'cis Sugar Hoogsteen',
+    name: 'cSH',
     pathToSVG: '/assets/varna-symbols/symbol-csh.svg',
   },
   {
-    name: 'trans Sugar Hoogsteen',
+    name: 'tSH',
     pathToSVG: '/assets/varna-symbols/symbol-tsh.svg',
   },
   {
-    name: 'cis Sugar Sugar',
+    name: 'cSS',
     pathToSVG: '/assets/varna-symbols/symbol-css.svg',
   },
   {
-    name: 'trans Sugar Sugar',
+    name: 'tSS',
     pathToSVG: '/assets/varna-symbols/symbol-tss.svg',
   },
 ];

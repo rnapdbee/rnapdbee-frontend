@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { STRUCTURAL_ELEMENTS_HANDLING, VISUALISATION_TOOL } from 'src/app/shared/constants/param-options.const';
+import { STRUCTURAL_ELEMENTS_HANDLING, VISUALIZATION_TOOL } from 'src/app/shared/constants/param-options.const';
 import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-dbn-params.model';
 
 @Component({
@@ -14,12 +14,12 @@ export class SecondaryToDbnParamsFormComponent implements OnInit {
   @Output() paramChange = new EventEmitter<SecondaryToDbnParams>();
 
   readonly STRUCTURAL_ELEMENTS_HANDLING = STRUCTURAL_ELEMENTS_HANDLING;
-  readonly VISUALISATION_TOOL = VISUALISATION_TOOL;
+  readonly VISUALIZATION_TOOL = VISUALIZATION_TOOL;
 
   paramsForm = this.fb.group({
     removeIsolated: [false],
     structuralElementsHandling: [STRUCTURAL_ELEMENTS_HANDLING[0].key],
-    visualizationTool: [VISUALISATION_TOOL[0].key],
+    visualizationTool: [VISUALIZATION_TOOL[0].key],
   });
 
   constructor(private readonly fb: FormBuilder) {

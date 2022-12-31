@@ -64,7 +64,7 @@ export const STRUCTURAL_ELEMENTS_HANDLING: Option[] = [
   },
 ];
 
-export const VISUALISATION_TOOL: Option[] = [
+export const VISUALIZATION_TOOL: Option[] = [
   {
     key: 'RNA_PUZZLER',
     label: 'RNApuzzler',

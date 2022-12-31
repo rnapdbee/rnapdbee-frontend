@@ -5,7 +5,7 @@ import {
   MODEL_SELECTION,
   NON_CANONICAL_HANDLING,
   STRUCTURAL_ELEMENTS_HANDLING,
-  VISUALISATION_TOOL,
+  VISUALIZATION_TOOL,
 } from 'src/app/shared/constants/param-options.const';
 import { TertiaryToDbnParams } from 'src/app/shared/models/params/tertiary-to-dbn-params.model';
 
@@ -23,7 +23,7 @@ export class TertiaryToDbnParamsFormComponent implements OnInit {
   readonly ANALYSIS_TOOL = ANALYSIS_TOOL;
   readonly NON_CANONICAL_HANDLING = NON_CANONICAL_HANDLING;
   readonly STRUCTURAL_ELEMENTS_HANDLING = STRUCTURAL_ELEMENTS_HANDLING;
-  readonly VISUALISATION_TOOL = VISUALISATION_TOOL;
+  readonly VISUALIZATION_TOOL = VISUALIZATION_TOOL;
 
   paramsForm = this.fb.group({
     modelSelection: [MODEL_SELECTION[0].key],
@@ -31,7 +31,7 @@ export class TertiaryToDbnParamsFormComponent implements OnInit {
     nonCanonicalHandling: [NON_CANONICAL_HANDLING[0].key],
     removeIsolated: [false],
     structuralElementsHandling: [STRUCTURAL_ELEMENTS_HANDLING[0].key],
-    visualizationTool: [VISUALISATION_TOOL[0].key],
+    visualizationTool: [VISUALIZATION_TOOL[0].key],
   });
 
   constructor(private readonly fb: FormBuilder) {

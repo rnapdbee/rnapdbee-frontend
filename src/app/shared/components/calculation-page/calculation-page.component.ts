@@ -2,9 +2,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { Calculation } from '../../models/calculation/calculation.model';
-import { RNApdbeeError } from '../../models/error/error.model';
 import { Params } from '../../models/params/params.model';
 import { CalculationRequestService } from '../../services/calculation/calculation-request.service';
+import { ErrorService } from '../../services/error/error.service';
 
 export abstract class CalculationPageComponent<P extends Params, O> {
   calculationResults$: Observable<Calculation<P, O> | null>;
@@ -13,6 +13,7 @@ export abstract class CalculationPageComponent<P extends Params, O> {
   constructor(
     protected route: ActivatedRoute,
     protected calculationService: CalculationRequestService<P, O>,
+    protected errorService: ErrorService,
   ) {
     this.calculationResults$ = this.calculationService.calculationResults$;
 
@@ -22,7 +23,7 @@ export abstract class CalculationPageComponent<P extends Params, O> {
           this.findById(id);
         }
       },
-      error: (error: HttpErrorResponse) => {
+      error: (error: Error | HttpErrorResponse) => {
         this.handleError(error);
       },
     });
@@ -46,11 +47,7 @@ export abstract class CalculationPageComponent<P extends Params, O> {
     });
   }
 
-  private handleError(error: HttpErrorResponse) {
-    if ('message' in error.error) {
-      this.error = (error.error as RNApdbeeError).message;
-    } else {
-      this.error = `${error.name}: ${error.statusText}. Please try again later.`;
-    }
+  private handleError(error: Error | HttpErrorResponse) {
+    this.error = this.errorService.getErrorMessage(error);
   }
 }

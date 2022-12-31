@@ -29,6 +29,9 @@ export abstract class ResultsComponent
     if (!this.reanalyzeParams) {
       throw new Error('Reznalyze parameters could not be determined.');
     }
+    if (!this.reanalyzeParamsValid(this.reanalyzeParams)) {
+      throw new Error('You already have a calculation with given parameters. Provide different parameters.');
+    }
     return this.calculationService.reanalyze(this.calculation.id, this.reanalyzeParams);
   };
 
@@ -51,4 +54,10 @@ export abstract class ResultsComponent
   }
 
   protected abstract populateSelectedList(calculation: Calculation<P, O>): void;
+
+  private reanalyzeParamsValid(reanalyzeParams: P): boolean {
+    return !this.calculation?.results
+      .map(result => result.params)
+      .some(params => JSON.stringify(params) === JSON.stringify(reanalyzeParams));
+  }
 }

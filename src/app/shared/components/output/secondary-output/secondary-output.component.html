@@ -1,53 +1,26 @@
 <ng-container *ngIf="output">
   <app-checkbox *ngIf="output.strands && output.strands.length > 0" 
-    [(ngModel)]="value.fields.strands" label="Dot Bracket" [textView]="true">
-    <div *ngFor="let strand of output.strands">
-      {{ strand.name }} <br>
-      {{ strand.sequence }} <br>
-      {{ strand.structure }} <br> <br>
-    </div>
+    [(ngModel)]="value.fields.strands" label="Dot Bracket">
+    <app-text-area [text]="strandsText"></app-text-area>
   </app-checkbox>
 
   <app-checkbox *ngIf="output.bpSeq && output.bpSeq.length > 0" 
-    [(ngModel)]="value.fields.bpSeq" label="BPSEQ" [textView]="true">
-    <div *ngFor="let line of output.bpSeq">
-      {{ line }} <br>
-    </div>
+    [(ngModel)]="value.fields.bpSeq" label="BPSEQ">
+    <app-text-area [text]="bpSeqText"></app-text-area>
   </app-checkbox>
 
   <app-checkbox *ngIf="output.ct && output.ct.length > 0" 
-    [(ngModel)]="value.fields.ct" label="CT" [textView]="true">
-    <div *ngFor="let line of output.ct">
-      {{ line }} <br>
-    </div>
+    [(ngModel)]="value.fields.ct" label="CT">
+    <app-text-area [text]="ctText"></app-text-area>
   </app-checkbox>
 
   <app-checkbox *ngIf="output.interactions && output.interactions.length > 0" 
-    [(ngModel)]="value.fields.interactions" label="RNA to RNA Interactions" [textView]="true">
-    <div *ngFor="let line of output.interactions">
-      {{ line }} <br>
-    </div>
+    [(ngModel)]="value.fields.interactions" label="RNA to RNA Interactions">
+    <app-text-area [text]="interactionsText"></app-text-area>
   </app-checkbox>
 
   <app-checkbox *ngIf="output.structuralElements && notEmpty(output.structuralElements)" 
-    [(ngModel)]="value.fields.structuralElements" label="Structural elements" [textView]="true">
-    <div *ngFor="let line of output.structuralElements.stems">
-      Stem {{ line }} <br>
-    </div>
-    <div *ngFor="let line of output.structuralElements.loops">
-      Loop {{ line }} <br>
-    </div>
-    <div *ngFor="let line of output.structuralElements.singleStrands">
-      Single strand {{ line }} <br>
-    </div>
-    <div *ngFor="let line of output.structuralElements.singleStrands5p">
-      Single strand 5' {{ line }} <br>
-    </div>
-    <div *ngFor="let line of output.structuralElements.singleStrands3p">
-      Single strand 3' {{ line }} <br>
-    </div>
-    <div>
-      {{ output.structuralElements.coordinates }}
-    </div>
+    [(ngModel)]="value.fields.structuralElements" label="Structural elements">
+    <app-text-area [text]="structuralElementsText"></app-text-area>
   </app-checkbox>
 </ng-container>

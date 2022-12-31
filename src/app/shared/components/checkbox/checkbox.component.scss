@@ -31,18 +31,6 @@
         margin-left: 28px;
       }
     }
-    
-    .text-view {
-      overflow: auto;
-      height: 150px;
-      padding: 1rem;
-      font-family: monospace;
-      word-break: break-all;
-      line-break: anywhere;
-      border: $border;
-      border-radius: 5px;
-      resize: vertical;
-    }
 
     .table-view {
       overflow: auto;

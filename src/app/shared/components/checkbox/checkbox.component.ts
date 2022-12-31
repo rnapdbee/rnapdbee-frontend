@@ -15,7 +15,6 @@ export class CheckboxComponent extends ControlValueComponent<SelectField> {
   @Input() label = '';
   @Input() showControls = true;
   @Input() expanded = false;
-  @Input() textView = false;
   @Input() tableView = false;
 
   constructor() { super(new SelectField(false)); }

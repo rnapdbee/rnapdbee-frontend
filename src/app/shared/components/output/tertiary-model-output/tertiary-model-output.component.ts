@@ -11,6 +11,19 @@ import { ControlValueComponent, ControlValueProvider } from '../../control-value
   providers: [ControlValueProvider(TertiaryModelOutputComponent)],
 })
 export class TertiaryModelOutputComponent extends ControlValueComponent<TertiaryModelSelect> {
-  @Input() model: TertiaryModel | undefined;
+  private _model: TertiaryModel | undefined;
+  @Input() set model(value: TertiaryModel | undefined) {
+    if (value) {
+      this.generateOutputTexts(value);
+    }
+    this._model = value;
+  }
+  get model() { return this._model; }
+  messagesText = '';
+
   constructor() { super(new TertiaryModelSelect()); }
+
+  generateOutputTexts(model: TertiaryModel) {
+    this.messagesText = model.messages.join('\n');
+  }
 }

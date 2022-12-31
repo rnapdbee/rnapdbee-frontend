@@ -1,0 +1,39 @@
+@import "src/variables";
+
+:host {
+  position: relative;
+
+  button {
+    transition: opacity ease-in-out 0.225s;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    margin: .5rem 1rem;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+
+    mat-icon {
+      color: $accent;
+    }
+  }
+
+  textarea {
+    width: 100%;
+    height: 200px;
+    padding: 1rem;
+    word-break: break-all;
+    line-break: anywhere;
+    resize: vertical;
+    box-sizing: border-box;
+    border-color: $border-color;
+    border-radius: 5px;
+  }
+
+  textarea:hover + button {
+    opacity: 1;
+  }
+
+  button:hover {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,10 @@
+:host {
+  .description {
+    display: flex;
+    align-items: center;
+
+    app-varna-legend {
+      margin-left: .5rem;
+    }
+  }
+}

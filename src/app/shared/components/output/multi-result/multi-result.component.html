@@ -1,6 +1,6 @@
 <div *ngIf="result" class="container">
   <div class="select-btn">
-    <button mat-stroked-button (click)="select()">{{ isSelected() ? 'Unselect' : 'Select' }} this</button>
+    <button mat-stroked-button (click)="select()">{{ isSelected() ? 'Unselect' : 'Select' }} data on this panel</button>
   </div>
   <p>{{ getDescription(result.params) }}</p>
   <app-checkbox label="Consensus visualization" [(ngModel)]="value.fields.consensualVisualization" [expanded]="true">

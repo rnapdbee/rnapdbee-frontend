@@ -24,6 +24,8 @@ export class SvgViewerComponent implements AfterViewInit {
       crs: L.CRS.Simple,
     });
     L.imageOverlay(this.src, this.bounds).addTo(this.map);
+    this.map.attributionControl.addAttribution('<a href="https://leafletjs.com/" target="_blank">Leaflet</a>');
+    this.map.attributionControl.setPrefix(false);
     this.map.fitBounds(this.bounds);
   }
 }

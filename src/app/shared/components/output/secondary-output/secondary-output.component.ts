@@ -72,21 +72,21 @@ export class SecondaryOutputComponent extends ControlValueComponent<SecondaryRes
   }
 
   private getStructuralElementsText(output: SecondaryOutput): string {
-    const stems = output.structuralElements.stems
+    const stems = output.structuralElements?.stems
       .map(line => `Stem ${line}`)
       .join('\n');
-    const loops = output.structuralElements.loops
+    const loops = output.structuralElements?.loops
       .map(line => `Loop ${line}`)
       .join('\n');
-    const singleStrands = output.structuralElements.singleStrands
+    const singleStrands = output.structuralElements?.singleStrands
       .map(line => `Single strand ${line}`)
       .join('\n');
-    const singleStrands5p = output.structuralElements.singleStrands5p
+    const singleStrands5p = output.structuralElements?.singleStrands5p
       .map(line => `Single strand 5' ${line}`)
       .join('\n');
-    const singleStrands3p = output.structuralElements.singleStrands3p
+    const singleStrands3p = output.structuralElements?.singleStrands3p
       .map(line => `Single strand 3' ${line}`)
       .join('\n');
-    return [stems, loops, singleStrands, singleStrands5p, singleStrands3p, output.structuralElements.coordinates].join('\n');
+    return [stems, loops, singleStrands, singleStrands5p, singleStrands3p, output.structuralElements?.coordinates].join('\n');
   }
 }

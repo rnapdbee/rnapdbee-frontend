@@ -1,6 +1,6 @@
 <div *ngIf="result" class="container">
   <div class="select-btn">
-    <button mat-stroked-button (click)="select()">{{ isSelected() ? 'Unselect' : 'Select' }} this</button>
+    <button mat-stroked-button (click)="select()">{{ isSelected() ? 'Unselect' : 'Select' }} data on this panel</button>
   </div>
   <p>{{ getDescription(result.params) }}</p>
   <app-tertiary-model-output *ngFor="let model of result.output.models; let i = index"

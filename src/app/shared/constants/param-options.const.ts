@@ -14,7 +14,7 @@ export const MODEL_SELECTION: Option[] = [
 export const ANALYSIS_TOOL: Option[] = [
   {
     key: 'RNAPOLIS',
-    label: 'RNApolis',
+    label: 'RNApolis Annotator',
   },
   {
     key: 'FR3D_PYTHON',
@@ -56,7 +56,7 @@ export const NON_CANONICAL_HANDLING: Option[] = [
 export const STRUCTURAL_ELEMENTS_HANDLING: Option[] = [
   {
     key: 'USE_PSEUDOKNOTS',
-    label: 'Use pseudoknots',
+    label: 'Include pseudoknots',
   },
   {
     key: 'IGNORE_PSEUDOKNOTS',

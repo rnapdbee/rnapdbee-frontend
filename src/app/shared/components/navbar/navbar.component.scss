@@ -14,22 +14,24 @@
     z-index: 3;
     padding: .5rem 2rem;
 
-    .logo {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 40px;
-      width: 50px;
-      margin-right: 1rem;
-      cursor: pointer;
-
-      img {
-        width: 100%
-      }
-    }
-
     .title {
+      display: flex;
+      align-items: center;
       cursor: pointer;
+
+      .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+        height: 40px;
+        width: 50px;
+        margin-right: 1rem;
+
+        img {
+          width: 100%
+        }
+      }
 
       h1 {
         margin: 0;

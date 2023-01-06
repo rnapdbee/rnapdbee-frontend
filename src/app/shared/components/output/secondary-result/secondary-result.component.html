@@ -1,7 +1,7 @@
 <div *ngIf="result" class="container">
   <div class="data-panel">
     <div>
-      <button mat-stroked-button (click)="select()">{{ isSelected() ? 'Unselect' : 'Select' }} this</button>
+      <button mat-stroked-button (click)="select()">{{ isSelected() ? 'Unselect' : 'Select' }} data on this panel</button>
     </div>
     <p>{{ getDescription(result.params) }}</p>
     <app-secondary-output 

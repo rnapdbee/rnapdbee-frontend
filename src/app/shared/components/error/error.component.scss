@@ -2,12 +2,36 @@
 
 :host {
   .container {
-    box-sizing: border-box;
-    max-width: 600px;
-    padding: 2rem;
+    display: flex;
+    padding: 1rem;
 
-    .message {
-      color: $error;
+    .card {
+      @include card;
+
+      .header {
+        margin-top: 1rem;
+        display: flex;
+
+        .header-text {
+          margin-left: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        mat-icon {
+          color: $error;
+          font-size: 45px;
+          width: 45px;
+          height: 45px;
+        }
+      }
+
+      .message {
+        margin: 1rem 0;
+        color: $error;
+        font-weight: 500;
+      }
     }
   }
 }

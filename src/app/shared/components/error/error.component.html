@@ -1,5 +1,16 @@
 <div class="container">
-  <h1>Something went wrong...</h1>
-  <p class="message">{{ message }}</p>
-  <button routerLink="/" mat-raised-button>Back</button>
+  <div class="card">
+    <div class="header">
+      <mat-icon>error_outline</mat-icon>
+      <div class="header-text">
+        <h2>Something went wrong</h2>
+        <p>Searching for calculation {{ calculationId }} failed.</p>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="message">
+      {{ message }}
+    </div>
+    <button routerLink="/" mat-raised-button>Back to main page</button>
+  </div>
 </div>

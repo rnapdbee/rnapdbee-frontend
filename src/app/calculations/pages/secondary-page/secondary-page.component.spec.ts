@@ -76,7 +76,7 @@ describe('SecondaryPageComponent', () => {
   });
 
   it('shows loading component when calculation not resolved', () => {
-    expect(debugElement.query(By.css('app-loading'))).toBeTruthy();
+    expect(debugElement.query(By.css('app-calculation-loading'))).toBeTruthy();
   });
 
   it('shows results component when id is valid', () => {

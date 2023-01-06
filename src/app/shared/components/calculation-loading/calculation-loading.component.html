@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="card">
+    <div class="header">
+      <mat-spinner [diameter]="40"></mat-spinner>
+      <div class="header-text">
+        <h2>Searching for calculation {{ calculationId }}</h2>
+        <p>This might take a while. Please wait...</p>
+      </div>
+    </div>
+    <div class="calculation-info">
+      <div class="info-panel">
+        <p class="small">Selected scenario:</p>
+        <div class="title">{{ scenario }}</div>
+        <div class="description">{{ scenarioInfo }}</div>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="tip">
+      <div class="tip-header">
+        <mat-icon>tips_and_updates</mat-icon>
+        <p><span class="highlight">Note:</span> Your calculation is valid only for <strong>14 days.</strong></p>
+      </div>
+      <p class="tip-description">
+        After that time you will no longer be able to revisit your calculation. You can always request new calculation
+        on the main page.
+      </p>
+    </div>
+  </div>
+</div>

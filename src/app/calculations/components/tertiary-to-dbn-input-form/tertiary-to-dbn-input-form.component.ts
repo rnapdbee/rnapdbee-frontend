@@ -29,7 +29,7 @@ export class TertiaryToDBNInputFormComponent extends InputFormComponent<Tertiary
       this.loadingService.loading = true;
       this.loadingService.loadingData = {
         scenario: '3D → (...)',
-        scenarioInfo: 'Ssecondary structure of RNA derived from its tertiary structure provided in PDB or PDBx/mmCIF file.',
+        scenarioInfo: 'Secondary structure of RNA derived from its tertiary structure provided in PDB or PDBx/mmCIF file.',
         description: this.descriptionService.generateTertiaryDescription(this.params),
       };
     }

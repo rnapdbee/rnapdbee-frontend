@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { Calculation } from '../../models/calculation/calculation.model';
 import { Params } from '../../models/params/params.model';
 import { CalculationRequestService } from '../../services/calculation/calculation-request.service';
@@ -9,6 +9,7 @@ import { ErrorService } from '../../services/error/error.service';
 export abstract class CalculationPageComponent<P extends Params, O> {
   calculationResults$: Observable<Calculation<P, O> | null>;
   error: string | null = null;
+  id: string | undefined;
 
   constructor(
     protected route: ActivatedRoute,
@@ -30,13 +31,16 @@ export abstract class CalculationPageComponent<P extends Params, O> {
   }
 
   protected getId(): Observable<string> {
-    return this.route.params.pipe(map(params => {
-      const { id } = params;
-      if (id) {
-        return id as string;
-      }
-      throw new Error('Calculation ID could not be read. Please provide valid ID in url path');
-    }));
+    return this.route.params.pipe(
+      map(params => {
+        const { id } = params;
+        if (id) {
+          return id as string;
+        }
+        throw new Error('Calculation ID could not be read. Please provide valid ID in url path');
+      }),
+      tap(id => { this.id = id; }),
+    );
   }
 
   private findById(id: string) {

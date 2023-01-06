@@ -1,9 +1,10 @@
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 import { Calculation } from '../../models/calculation/calculation.model';
 import { Params } from '../../models/params/params.model';
 import { UploadMethod } from '../../models/upload/upload-type.model';
 import { CalculationRequestService } from '../../services/calculation/calculation-request.service';
+import { RequestLoadingService } from '../../services/loading/request-loading.service';
 import { SnackBarService } from '../../services/notifications/snack-bar.service';
 
 export abstract class InputFormComponent<P extends Params, O> {
@@ -11,12 +12,15 @@ export abstract class InputFormComponent<P extends Params, O> {
     protected router: Router,
     protected snackBar: SnackBarService,
     protected calculationService: CalculationRequestService<P, O>,
+    protected loadingService: RequestLoadingService,
     protected routePath: string,
-  ) { }
+  ) {
+    this.loading$ = this.loadingService.loading$;
+  }
 
   uploadMethod: UploadMethod | undefined;
   params: P | undefined;
-  loading = false;
+  loading$: Observable<boolean>;
 
   calculateCallback = () => {
     if (!this.params) {
@@ -25,6 +29,7 @@ export abstract class InputFormComponent<P extends Params, O> {
     if (!this.uploadMethod) {
       throw new Error('Upload method could not be determined.');
     }
+    this.onLoadingStart();
     return this.calculationService.calculate(this.params, this.uploadMethod);
   };
 
@@ -41,9 +46,18 @@ export abstract class InputFormComponent<P extends Params, O> {
   }
 
   onSubmit(event: Observable<Calculation<Params, unknown>>) {
-    event.subscribe(data => {
+    event.pipe(
+      finalize(() => this.onLoadingEnd()),
+    ).subscribe(data => {
       // eslint-disable-next-line no-void
       void this.router.navigate([this.routePath, data.id]);
     });
   }
+
+  protected onLoadingEnd(): void {
+    this.loadingService.loading = false;
+    this.loadingService.loadingData = undefined;
+  }
+
+  protected abstract onLoadingStart(): void
 }

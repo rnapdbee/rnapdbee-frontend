@@ -60,6 +60,11 @@
           white-space: nowrap;
         }
       }
+
+      &.disabled {
+        opacity: .7;
+        pointer-events: none;
+      }
     }
 
     .content {

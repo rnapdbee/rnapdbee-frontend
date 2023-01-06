@@ -37,6 +37,7 @@ import {
 } from './components/params-forms/tertiary-to-multi-params-form/tertiary-to-multi-params-form.component';
 import { RadioButtonComponent } from './components/radio-button/radio-button.component';
 import { ReanalyzePanelComponent } from './components/reanalyze-panel/reanalyze-panel.component';
+import { RequestLoadingComponent } from './components/request-loading/request-loading.component';
 import { StepComponent } from './components/step/step.component';
 import { SubmitButtonComponent } from './components/submit-button/submit-button.component';
 import { SvgViewerComponent } from './components/svg-viewer/svg-viewer.component';
@@ -53,6 +54,7 @@ const COMPONENTS = [
   NavbarComponent,
   RadioButtonComponent,
   ReanalyzePanelComponent,
+  RequestLoadingComponent,
   StepComponent,
   SubmitButtonComponent,
   SvgViewerComponent,

@@ -1,0 +1,72 @@
+@import "src/variables";
+
+:host {
+  .header {
+    margin-top: 2rem;
+    display: flex;
+
+    .header-text {
+      margin-left: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    mat-spinner {
+      flex-shrink: 0;
+    }
+  }
+
+  .calculation-info {
+    margin-top: 1.5rem;
+
+    .info-panel {
+      margin-bottom: 1.5rem;
+
+      .small {
+        font-size: 15px;
+        color: $accent;
+        margin-bottom: .25rem;
+      }
+
+      .title {
+        font-size: 20px;
+        font-weight: 400;
+        margin-bottom: .75rem;
+      }
+
+      .description {
+        font-weight: 300;
+      }
+    }
+  }
+
+  .tip {
+    margin: 1.5rem 0;
+
+    .tip-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: .5rem;
+
+      p {
+        margin: 0 0 0 .5rem;
+      }
+
+      mat-icon {
+        color: $accent;
+        font-size: 22px;
+        height: 22px;
+        width: 22px;
+      }
+    }
+
+    .tip-description {
+      font-size: 14px;
+
+      .highlight {
+        font-weight: 500;
+      }
+    }
+  }
+}

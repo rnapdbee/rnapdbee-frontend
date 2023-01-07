@@ -5,6 +5,8 @@ import { SecondaryOutput } from 'src/app/shared/models/output/secondary-output.m
 import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-dbn-params.model';
 import { SecondarySelect } from 'src/app/shared/models/select/secondary-select.model';
 import { SecondaryToDbnService } from 'src/app/shared/services/calculation/secondary-to-dbn.service';
+import { DownloadService } from 'src/app/shared/services/downlaod/download.service';
+import { ApiPaths } from 'src/environments/environment';
 
 @Component({
   selector: 'app-secondary-to-dbn-results[calculation]',
@@ -12,8 +14,11 @@ import { SecondaryToDbnService } from 'src/app/shared/services/calculation/secon
   styleUrls: ['./secondary-to-dbn-results.component.scss'],
 })
 export class SecondaryToDbnResultsComponent extends ResultsComponent<SecondaryToDbnParams, SecondaryOutput, SecondarySelect> {
-  constructor(calculationService: SecondaryToDbnService) {
-    super(calculationService);
+  constructor(
+    calculationService: SecondaryToDbnService,
+    downloadService: DownloadService,
+  ) {
+    super(calculationService, downloadService, ApiPaths.Secondary);
     this.selected = new SecondarySelect(0);
   }
 

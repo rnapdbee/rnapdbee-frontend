@@ -15,6 +15,14 @@ export abstract class SelectObject<F extends SelectFields> implements Selectable
     });
   }
 
+  getValue(): object {
+    const valueObj: {[k: string]: object | boolean} = {};
+    Object.keys(this.fields).forEach(item => {
+      valueObj[item] = this.fields[item].getValue();
+    });
+    return valueObj;
+  }
+
   isSelectedOrUnactive(): boolean {
     return Object.keys(this.fields)
       .map(item => this.fields[item].isSelectedOrUnactive())

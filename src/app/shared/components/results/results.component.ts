@@ -1,10 +1,12 @@
 import { Directive, Input } from '@angular/core';
 import { Observable, tap } from 'rxjs';
+import { ApiPaths } from 'src/environments/environment';
 import { Calculation } from '../../models/calculation/calculation.model';
 import { Params } from '../../models/params/params.model';
 import { SelectArray } from '../../models/select/select-array.model';
 import { SelectSubObject } from '../../models/select/select-fields.model';
 import { CalculationRequestService } from '../../services/calculation/calculation-request.service';
+import { DownloadService } from '../../services/downlaod/download.service';
 
 @Directive()
 export abstract class ResultsComponent
@@ -35,7 +37,11 @@ export abstract class ResultsComponent
     return this.calculationService.reanalyze(this.calculation.id, this.reanalyzeParams);
   };
 
-  constructor(protected calculationService: CalculationRequestService<P, O>) {}
+  constructor(
+    protected calculationService: CalculationRequestService<P, O>,
+    protected downloadService: DownloadService,
+    protected path: ApiPaths,
+  ) {}
 
   onParamsChange(event: P): void {
     this.reanalyzeParams = event;
@@ -51,6 +57,12 @@ export abstract class ResultsComponent
 
   allSelected(): boolean {
     return this.selected?.isSelectedOrUnactive() ?? false;
+  }
+
+  download(): void {
+    if (this.calculation?.id) {
+      this.downloadService.download(this.path, this.calculation.id);
+    }
   }
 
   protected abstract populateSelectedList(calculation: Calculation<P, O>): void;

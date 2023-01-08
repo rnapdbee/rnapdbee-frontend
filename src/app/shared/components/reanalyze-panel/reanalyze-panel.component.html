@@ -1,10 +1,19 @@
-<div class="header" (click)="toggleExpand()">
-  <span class="text">Reanalyze with different parameters</span>
-  <mat-icon *ngIf="!value">expand_more</mat-icon>
-  <mat-icon *ngIf="value">expand_less</mat-icon>
-</div>
-<div class="container" @openClose *ngIf="value">
-  <div class="content">
-    <ng-content></ng-content>
+<div class="container">
+  <div class="header" (click)="toggleExpand()">
+    <div class="text">
+      <mat-icon>tune</mat-icon>
+      <h3>Reanalyze with different parameters</h3>
+    </div>
+    <mat-icon *ngIf="!value">expand_more</mat-icon>
+    <mat-icon *ngIf="value">expand_less</mat-icon>
+  </div>
+  <div class="content" @openClose *ngIf="value">
+    <h2>Reanalyze your structure with different parameters</h2>
+    <p>Reanalysis means that you can perform another calculation with modified paremeters. 
+      Input file will remain the same as in your first calculation. New calculation will be added to 
+      your results. That way you can easily compare one calculation to another.</p>
+    <div>
+      <ng-content></ng-content>
+    </div>
   </div>
 </div>

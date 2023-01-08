@@ -1,22 +1,29 @@
 <div class="description">
-  <h1>Welcome to RNApdbee, a webserver to annotate secondary structures of knotted and unknotted RNAs.</h1>
+  <h1>Welcome to RNApdbee</h1>
+  <h2>A webserver to annotate secondary structures of knotted and unknotted RNAs.</h2>
   <p>RNApdbee runs according to the following scenarios:</p>
-  <ul>
-    <li>
-      in <strong>"3D → (...)"</strong> the secondary structure of RNA is derived from its tertiary structure provided
-      in PDB or PDBx/mmCIF file,
-    </li>
-    <li>
-      in <strong>"2D → (...)"</strong> the secondary structure topology of RNA is derived from base pair list provided
-      in BPSEQ, CT or DBN,
-    </li>
-    <li>
-      in <strong>"3D → multi 2D"</strong> a set of multiple secondary structures of RNA is derived from its tertiary
-      structure provided in PDB or PDBx/mmCIF file, based on various results of intermediate processing steps.
-    </li>
-  </ul>
-  <p>In the first and the second scenario, the resulting secondary structure encoded in dot-bracket, BPSEQ and CT is
-    immediately released together with visualization (if checked).</p>
+  <div class="scenarios">
+    <div class="box" (click)="setCalculationType(CalculationType.TertiaryToDBN)">
+      <span class="title">3D → (...)</span>
+      <p>Secondary structure of RNA derived from tertiary structure provided
+        in PDB or PDBx/mmCIF file.</p>
+    </div>
+    <div class="box" (click)="setCalculationType(CalculationType.SecondaryToDBN)">
+      <span class="title">2D → (...)</span>
+      <p>Secondary structure topology of RNA derived from base pair list provided
+        in BPSEQ, CT or DBN.</p>
+    </div>
+    <div class="box" (click)="setCalculationType(CalculationType.TertiaryToMultiSecondary)">
+      <span class="title">3D → multi 2D</span>
+      <p>Set of multiple secondary structures of RNA derived from tertiary
+        structure provided in PDB or PDBx/mmCIF file, based on various results of intermediate processing steps.</p>
+    </div>
+  </div>
+  <div class="hint">
+    <mat-icon>tips_and_updates</mat-icon>
+    <p>In the first and the second scenario, the resulting secondary structure encoded in dot-bracket, BPSEQ and CT is
+      immediately released together with visualization (if checked).</p>
+  </div>
 </div>
 <div class="calculations">
   <div class="sidebar" [class.disabled]="loading">
@@ -29,19 +36,28 @@
       (click)="setCalculationType(CalculationType.TertiaryToMultiSecondary)">3D → multi 2D</div>
     <div class="tips">
       Looking for (...) -> Image?
-      See the <a href="#">3.0 changes</a>  
+      See the <a href="#">3.0 changes</a>
     </div>
   </div>
   <div class="content">
     <div class="container">
       <ng-container [ngSwitch]="calculationType">
         <ng-container *ngSwitchCase="CalculationType.TertiaryToDBN">
+          <h2>Tertiary to dot-bracket</h2>
+          <p>Upload your tertiary RNA structure in PDBx/mmCIF file, choose one from example or provide valid Protein
+            Data Bank ID. You can adjust your calculation with parameters shown below.</p>
           <app-tertiary-to-dbn-input-form></app-tertiary-to-dbn-input-form>
         </ng-container>
         <ng-container *ngSwitchCase="CalculationType.SecondaryToDBN">
+          <h2>Secondary to dot-bracket</h2>
+          <p>Upload your secondary RNA structure in BPSEQ, CT or DBN file or choose one from example.
+            You can adjust your calculation with parameters shown below.</p>
           <app-secondary-to-dbn-input-form></app-secondary-to-dbn-input-form>
         </ng-container>
         <ng-container *ngSwitchCase="CalculationType.TertiaryToMultiSecondary">
+          <h2>Tertiary to multi secondary</h2>
+          <p>Upload your tertiary RNA structure in PDBx/mmCIF file, choose one from example or provide valid Protein
+            Data Bank ID. You can adjust your calculation with parameters shown below.</p>
           <app-tertiary-to-multi-input-form></app-tertiary-to-multi-input-form>
         </ng-container>
       </ng-container>

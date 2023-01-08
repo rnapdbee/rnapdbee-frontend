@@ -3,13 +3,13 @@
 </ng-container>
 
 <ng-template #status>
-  <div class="centered">
-    <ng-container *ngIf="error; else loading">
-      <app-error [message]="error"></app-error>
-    </ng-container>
+  <ng-container *ngIf="error; else loading">
+    <app-error [calculationId]="id" [message]="error"></app-error>
+  </ng-container>
 
-    <ng-template #loading>
-      <app-loading></app-loading>
-    </ng-template>
-  </div>
+  <ng-template #loading>
+    <app-calculation-loading scenario="3D → multi 2D" scenarioInfo="Set of multiple secondary structures of RNA derived from its tertiary structure provided in PDB or PDBx/mmCIF file
+      based on various results of intermediate processing steps." [calculationId]="id">
+    </app-calculation-loading>
+  </ng-template>
 </ng-template>

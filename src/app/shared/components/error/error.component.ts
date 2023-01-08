@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class ErrorComponent {
   @Input() message = '';
+  @Input() calculationId: string | undefined = '';
 }

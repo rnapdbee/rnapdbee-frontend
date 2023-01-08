@@ -3,13 +3,14 @@
 </ng-container>
 
 <ng-template #status>
-  <div class="centered">
     <ng-container *ngIf="error; else loading">
-      <app-error [message]="error"></app-error>
+      <app-error [calculationId]="id" [message]="error"></app-error>
     </ng-container>
 
     <ng-template #loading>
-      <app-loading></app-loading>
+      <app-calculation-loading scenario="2D → (...)"
+        scenarioInfo="Secondary structure topology of RNA derived from base pair list provided in BPSEQ, CT or DBN."
+        [calculationId]="id">
+      </app-calculation-loading>
     </ng-template>
-  </div>
 </ng-template>

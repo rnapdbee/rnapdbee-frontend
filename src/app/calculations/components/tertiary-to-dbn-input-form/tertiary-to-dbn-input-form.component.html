@@ -1,10 +1,16 @@
-<app-step [value]="1">Upload RNA 3D structure</app-step>
-<app-tertiary-upload-form (uploadChange)="onUploadMethodChange($event)">
-</app-tertiary-upload-form>
+<ng-container *ngIf="(loading$ | async) !== true; else loading">
+  <app-step [value]="1">Upload RNA 3D structure</app-step>
+  <app-tertiary-upload-form (uploadChange)="onUploadMethodChange($event)">
+  </app-tertiary-upload-form>
 
-<app-tertiary-to-dbn-params-form [startWith]="2" (paramChange)="onParamsChange($event)">
-</app-tertiary-to-dbn-params-form>
+  <app-tertiary-to-dbn-params-form [startWith]="2" [params]="params" (paramChange)="onParamsChange($event)">
+  </app-tertiary-to-dbn-params-form>
 
-<mat-divider></mat-divider>
+  <mat-divider></mat-divider>
 
-<app-submit-button [callback]="calculateCallback" [disabled]="!isValid()" (buttonSubmit)="onSubmit($event)"></app-submit-button>
+  <app-submit-button [callback]="calculateCallback" [disabled]="!isValid()" (buttonSubmit)="onSubmit($event)"></app-submit-button>
+</ng-container>
+
+<ng-template #loading>
+  <app-request-loading></app-request-loading>
+</ng-template>

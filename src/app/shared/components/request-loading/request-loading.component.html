@@ -1,0 +1,32 @@
+<ng-container *ngIf="loadingData$ | async as loadingData">
+  <div class="header">
+    <mat-spinner [diameter]="40"></mat-spinner>
+    <div class="header-text">
+      <h2>Your request is being processed</h2>
+      <p>This might take a while. Please wait...</p>
+    </div>
+  </div>
+  <div class="calculation-info">
+    <div class="info-panel">
+      <p class="small">Selected scenario:</p>
+      <div class="title">{{ loadingData.scenario }}</div>
+      <div class="description">{{ loadingData.scenarioInfo }}</div>
+    </div>
+    <div class="info-panel">
+      <p class="small">Calculation parameters:</p>
+      <div class="description">{{ loadingData.description }}</div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="tip">
+    <div class="tip-header">
+      <mat-icon>tips_and_updates</mat-icon>
+      <p>Processing complex RNA structure can be very time consuming.</p>
+    </div>
+    <p class="tip-description">
+      Depending on your structure complexity and calculation parameters, it can take <span class="highlight">from one
+      to even twenty minutes</span>. We advise you to be patient. You will be redirected to your results page as soon as
+      possible.
+    </p>
+  </div>
+</ng-container>

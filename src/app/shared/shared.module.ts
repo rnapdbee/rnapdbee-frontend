@@ -13,10 +13,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
+import { CalculationLoadingComponent } from './components/calculation-loading/calculation-loading.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ExamplePickerComponent } from './components/example-picker/example-picker.component';
-import { LoadingComponent } from './components/loading/loading.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MultiEntryComponent } from './components/output/multi-entry/multi-entry.component';
 import { MultiResultComponent } from './components/output/multi-result/multi-result.component';
@@ -37,6 +37,7 @@ import {
 } from './components/params-forms/tertiary-to-multi-params-form/tertiary-to-multi-params-form.component';
 import { RadioButtonComponent } from './components/radio-button/radio-button.component';
 import { ReanalyzePanelComponent } from './components/reanalyze-panel/reanalyze-panel.component';
+import { RequestLoadingComponent } from './components/request-loading/request-loading.component';
 import { StepComponent } from './components/step/step.component';
 import { SubmitButtonComponent } from './components/submit-button/submit-button.component';
 import { SvgViewerComponent } from './components/svg-viewer/svg-viewer.component';
@@ -46,13 +47,14 @@ import { TertiaryUploadFormComponent } from './components/upload-forms/tertiary-
 import { VarnaLegendComponent } from './components/varna-legend/varna-legend.component';
 
 const COMPONENTS = [
+  CalculationLoadingComponent,
   CheckboxComponent,
   ErrorComponent,
   ExamplePickerComponent,
-  LoadingComponent,
   NavbarComponent,
   RadioButtonComponent,
   ReanalyzePanelComponent,
+  RequestLoadingComponent,
   StepComponent,
   SubmitButtonComponent,
   SvgViewerComponent,

@@ -19,7 +19,7 @@
     immediately released together with visualization (if checked).</p>
 </div>
 <div class="calculations">
-  <div class="sidebar">
+  <div class="sidebar" [class.disabled]="loading">
     <p class="bordered">Choose scenario:</p>
     <div class="nav-item bordered" [class.active]="calculationType === CalculationType.TertiaryToDBN"
       (click)="setCalculationType(CalculationType.TertiaryToDBN)">3D → (...)</div>

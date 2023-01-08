@@ -13,6 +13,9 @@ $border-radius: 10px;
 $navbar-height: 60px;
 $navbar-height-mobile: 80px;
 
+$footer-height: 80px;
+$footer-height-mobile: 160px;
+
 @mixin mobile {
   @media (max-width: 769px) {
     @content;
@@ -31,9 +34,9 @@ $navbar-height-mobile: 80px;
 }
 
 @mixin full-height {
-  height: calc(100% - #{$navbar-height});
+  min-height: calc(100% - calc(#{$navbar-height} + #{$footer-height}));
   @include mobile {
-    height: calc(100% - #{$navbar-height-mobile});
+    min-height: calc(100% - calc(#{$navbar-height-mobile} + #{$footer-height-mobile}));
   }
 }
 

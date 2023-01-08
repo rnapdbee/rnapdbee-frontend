@@ -1,0 +1,37 @@
+@import "src/variables";
+
+:host {
+  .container {
+    @include card-x;
+    padding: 0;
+    height: $footer-height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .item {
+      display: flex;
+      align-items: center;
+      margin: 0 1rem;
+
+      img {
+        width: 45px;
+        height: 45px;
+        margin-right: 1rem;
+      }
+
+      .description {
+        color: $accent;
+      }
+    }
+
+    @include mobile {
+      height: $footer-height-mobile;
+      flex-direction: column;
+
+      .item {
+        margin: .5rem 0;
+      }
+    }
+  }
+}

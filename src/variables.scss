@@ -1,11 +1,13 @@
 $white: #FFF;
 $black: #000;
+$background: #FAFAFA;
 
 $backdrop: #F9F6F6;
-$border-color: #C4C4C4;
+$border-color: #E7E7E7;
 $primary: #5D5FEF;
 $accent: #676666;
 $error: #FF0000;
+$hint: #F5BF00;
 
 $border: 1px solid $border-color;
 $border-radius: 10px;
@@ -38,6 +40,12 @@ $footer-height-mobile: 160px;
   @include mobile {
     min-height: calc(100% - calc(#{$navbar-height-mobile} + #{$footer-height-mobile}));
   }
+}
+
+@mixin raised {
+  -webkit-box-shadow: 0px 0px 25px -4px rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 0px 0px 25px -4px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 0px 25px -4px rgba(0, 0, 0, 0.08);
 }
 
 @mixin card {

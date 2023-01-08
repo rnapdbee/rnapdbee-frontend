@@ -6,24 +6,59 @@
   padding: 1rem;
 
   .description {
-    @include card;
+    padding: 1.5rem 2rem;
 
-    h1 {
-      margin-bottom: .5rem;
+    h2 {
+      margin-bottom: 1rem;
     }
 
-    ul {
-      margin: 12px auto;
+    .scenarios {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      .box {
+        @include card;
+        @include raised;
+        cursor: pointer;
+        max-width: 450px;
+
+        .title {
+          font-size: 20px;
+          font-weight: 500;
+        }
+
+        p {
+          margin: .5rem 0 0;
+        }
+      }
     }
 
-    p:last-child {
-      margin-bottom: 0;
+    .hint {
+      display: flex;
+      margin: .75rem 0;
+
+      p {
+        margin: 0 0 0 .5rem;
+      }
+
+      mat-icon {
+        color: $hint;
+        font-size: 22px;
+        height: 22px;
+        width: 22px;
+      }
+    }
+
+    @include mobile {
+      padding: .5rem 0 1.5rem;
     }
   }
 
   .calculations {
     display: flex;
-    margin-top: 1rem;
+    margin: 0 2rem;
+    @include raised;
 
     .sidebar {
       @include card-l;
@@ -45,7 +80,7 @@
 
         &.active {
           font-weight: bold;
-          background-color: $backdrop;
+          @include raised;
         }
       }
 
@@ -72,11 +107,20 @@
 
       .container {
         max-width: 1000px;
+
+        h2 {
+          margin: 1rem 0 .5rem;
+        }
+
+        p {
+          margin-bottom: 1.5rem;
+        }
       }
     }
 
     @include mobile {
       flex-direction: column;
+      margin: 0;
 
       .sidebar {
         @include card-t;

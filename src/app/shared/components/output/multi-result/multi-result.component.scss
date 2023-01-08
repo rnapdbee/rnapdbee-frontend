@@ -3,10 +3,13 @@
 :host{
   .container {
     @include card;
-    padding: 1rem;
 
     .select-btn {
-      margin-bottom: 1rem;
+      margin: .5rem 0 1rem;
+    }
+
+    @include mobile {
+      padding: 1rem;
     }
   }
 }

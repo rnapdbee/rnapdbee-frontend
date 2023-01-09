@@ -11,7 +11,7 @@ import { TertiaryToMultiParams } from 'src/app/shared/models/params/tertiary-to-
 export class TertiaryToMultiParamsFormComponent implements OnInit {
   @Input() startWith = 1;
   @Input() params: TertiaryToMultiParams | undefined;
-  @Output() paramChange = new EventEmitter<TertiaryToMultiParams>();
+  @Output() paramChange = new EventEmitter<TertiaryToMultiParams>(true);
 
   readonly VISUALIZATION_TOOL = VISUALIZATION_TOOL;
 

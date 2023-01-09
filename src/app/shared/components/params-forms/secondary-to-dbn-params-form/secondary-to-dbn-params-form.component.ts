@@ -11,7 +11,7 @@ import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-
 export class SecondaryToDbnParamsFormComponent implements OnInit {
   @Input() startWith = 1;
   @Input() params: SecondaryToDbnParams | undefined;
-  @Output() paramChange = new EventEmitter<SecondaryToDbnParams>();
+  @Output() paramChange = new EventEmitter<SecondaryToDbnParams>(true);
 
   readonly STRUCTURAL_ELEMENTS_HANDLING = STRUCTURAL_ELEMENTS_HANDLING;
   readonly VISUALIZATION_TOOL = VISUALIZATION_TOOL;

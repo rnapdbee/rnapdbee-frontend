@@ -1,6 +1,8 @@
+export const HOST = 'https://mcq.cs.put.poznan.pl';
+
 export const environment = {
   production: true,
-  baseUrl: 'https://mcq.cs.put.poznan.pl/api/v1/engine',
+  baseUrl: `${HOST}/api/v1/engine`,
 };
 
 export enum ApiPaths {

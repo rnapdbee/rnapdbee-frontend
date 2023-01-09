@@ -2,9 +2,11 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+export const HOST = 'http://localhost:8080';
+
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8080/api/v1/engine',
+  baseUrl: `${HOST}/api/v1/engine`,
 };
 
 export enum ApiPaths {

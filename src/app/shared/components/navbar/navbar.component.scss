@@ -6,7 +6,8 @@
   }
 
   .header {
-    @include card-b;
+    @include card-x;
+    @include raised;
     height: $navbar-height;
     display: flex;
     align-items: center;
@@ -33,9 +34,10 @@
         }
       }
 
-      h1 {
+      h2 {
         margin: 0;
         font-size: 20px;
+        font-weight: bold;
         line-height: 25px;
       }
 

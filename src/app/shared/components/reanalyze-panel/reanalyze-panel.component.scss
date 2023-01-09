@@ -1,30 +1,56 @@
 @import "src/variables";
 
 :host {
-  display: flex;
-  flex-direction: column;
-
-  .header {
-    @include card-t;
-    padding: .5rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-
-    .text {
-      color: $primary;
-      text-decoration: underline;
-    }
-  }
-
   .container {
-    @include card-x;
-    padding: 1rem;
-    overflow: hidden;
+    @include card;
+    @include raised;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+
+      .text {
+        display: flex;
+        align-items: center;
+        color: $primary;
+
+        h3 {
+          margin-left: .5rem;
+        }
+      }
+
+      &:hover {
+        background: $backdrop;
+      }
+
+      @include mobile {
+        padding: 1rem;
+      }
+    }
 
     .content {
-      max-width: 1000px;
+      padding: .5rem 2rem 1rem;
+      overflow: hidden;
+
+      h2 {
+        margin-bottom: .5rem;
+      }
+
+      div {
+        max-width: 1000px;
+      }
+
+      @include mobile {
+        padding: .5rem 1rem 1rem;
+      }
     }
   }
 }

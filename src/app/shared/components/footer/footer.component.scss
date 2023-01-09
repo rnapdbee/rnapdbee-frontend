@@ -3,6 +3,7 @@
 :host {
   .container {
     @include card-x;
+    @include raised;
     padding: 0;
     height: $footer-height;
     display: flex;

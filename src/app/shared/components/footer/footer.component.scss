@@ -25,6 +25,13 @@
       }
     }
 
+    .no-description {
+      img {
+        height: auto;
+        width: 190px;
+      }
+    }
+
     @include mobile {
       height: $footer-height-mobile;
       flex-direction: column;

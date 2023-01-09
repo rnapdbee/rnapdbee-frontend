@@ -17,7 +17,7 @@ import { TertiaryToDbnParams } from 'src/app/shared/models/params/tertiary-to-db
 export class TertiaryToDbnParamsFormComponent implements OnInit {
   @Input() startWith = 1;
   @Input() params: TertiaryToDbnParams | undefined;
-  @Output() paramChange = new EventEmitter<TertiaryToDbnParams>();
+  @Output() paramChange = new EventEmitter<TertiaryToDbnParams>(true);
 
   readonly MODEL_SELECTION = MODEL_SELECTION;
   readonly ANALYSIS_TOOL = ANALYSIS_TOOL;

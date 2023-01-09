@@ -34,7 +34,7 @@ export abstract class InputFormComponent<P extends Params, O> {
   };
 
   isValid(): boolean {
-    return !!(this.uploadMethod && this.uploadMethod.valid);
+    return !!(this.uploadMethod && this.uploadMethod.valid && this.params);
   }
 
   onParamsChange(event: P) {

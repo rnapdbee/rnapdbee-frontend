@@ -1,0 +1,7 @@
+@import "src/variables";
+
+:host {
+  .app-content {
+    @include full-height;
+  }
+}

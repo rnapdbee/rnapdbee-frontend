@@ -5,7 +5,7 @@
 
   <div class="top-btns">
     <button mat-stroked-button (click)="selectAll()">{{ allSelected() ? 'Unselect' : 'Select' }} all data</button>
-    <button mat-stroked-button (click)="download()">Download selected</button>
+    <button mat-stroked-button (click)="download()" [disabled]="!selected?.isAnythingSelected()">Download selected</button>
     <div class="info">
       <mat-icon>info</mat-icon>
       <p>RNApdbee provides an easy way to download calculation results. Use checkboxes or buttons to select interesting elements of the calculation. After selecting at least one, you will be able to download it in compressed .zip format.</p>

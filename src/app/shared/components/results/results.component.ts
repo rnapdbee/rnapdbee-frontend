@@ -60,8 +60,8 @@ export abstract class ResultsComponent
   }
 
   download(): void {
-    if (this.calculation?.id) {
-      this.downloadService.download(this.path, this.calculation.id);
+    if (this.calculation?.id && this.selected) {
+      this.downloadService.download(this.path, this.calculation.id, this.selected.getValue());
     }
   }
 

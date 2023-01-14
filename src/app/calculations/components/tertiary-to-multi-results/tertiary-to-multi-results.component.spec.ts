@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { Calculation } from 'src/app/shared/models/calculation/calculation.model';
 import { MultiOutput } from 'src/app/shared/models/output/multi-output.model';
 import { DrawingResult, SecondaryOutput } from 'src/app/shared/models/output/secondary-output.model';
@@ -72,7 +73,7 @@ describe('TertiaryToMultiResultsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientModule],
+      imports: [HttpClientModule, MatSnackBarModule],
       declarations: [TertiaryToMultiResultsComponent],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();

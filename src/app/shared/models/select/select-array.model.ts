@@ -16,6 +16,10 @@ export abstract class SelectArray<S extends SelectSubObject> implements Selectab
     });
   }
 
+  getValue(): object {
+    return this.fields.map((elem: SelectSubObject) => elem.getValue());
+  }
+
   isSelectedOrUnactive(): boolean {
     return this.fields
       .map(item => item.isSelectedOrUnactive())

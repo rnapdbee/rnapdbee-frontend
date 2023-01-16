@@ -14,6 +14,10 @@ export class SelectField implements Selectable {
     }
   }
 
+  getValue(): boolean {
+    return this.value;
+  }
+
   isSelectedOrUnactive(): boolean {
     if (this.active) {
       return this.value;

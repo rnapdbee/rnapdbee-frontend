@@ -9,4 +9,10 @@ export class TertiaryResultSelect extends SelectArray<TertiaryModelSelect> {
     }
     super(selectArray);
   }
+
+  override getValue(): object {
+    return {
+      models: this.fields.map(elem => elem.getValue()),
+    };
+  }
 }

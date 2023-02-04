@@ -1,0 +1,20 @@
+@import "src/variables";
+
+:host {
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-weight: 500;
+    margin-bottom: .5rem;
+  }
+
+  mat-divider {
+    margin: 1rem 0;
+  }
+
+  a {
+    color: $primary;
+  }
+}

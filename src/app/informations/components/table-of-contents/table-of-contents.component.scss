@@ -1,0 +1,27 @@
+@import "src/variables";
+
+:host {
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  .entries {
+    display: flex;
+    flex-direction: column;
+
+    .entry-container {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: .5rem;
+
+      & * {
+        margin-bottom: 4px;
+      }
+
+      .subentry {
+        margin-left: 1rem;
+        font-weight: 300;
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+<h2>Table of contents</h2>
+<div class="entries">
+  <div class="entry-container" *ngFor="let entry of entries">
+    <a class="entry" [href]="path+'#'+entry.link">{{ entry.name }}</a>
+    <a class="subentry" *ngFor="let subentry of entry.children" [href]="path+'#'+subentry.link">{{ subentry.name }}</a>
+  </div>
+</div>

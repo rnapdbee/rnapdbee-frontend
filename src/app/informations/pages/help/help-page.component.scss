@@ -1,0 +1,54 @@
+@import "src/variables";
+
+:host {
+  .page {
+    padding: 2.5rem 3rem;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    .container {
+      display: flex;
+      @include raised;
+
+      .sidebar {
+        @include card-l;
+        flex-basis: 350px;
+        
+        app-table-of-contents {
+          position: sticky;
+          top: .5rem;
+        }
+      }
+      
+      .content {
+        @include card-r;
+      }
+
+    }
+
+    @include mobile {
+      padding: 1rem;
+
+      .container {
+        flex-direction: column;
+        
+        .sidebar {
+          @include card-t;
+          flex-basis: unset;
+
+          app-table-of-contents {
+            position: static
+          }
+        }
+        
+        .content {
+          @include card-b;
+        }
+      }
+    }
+  }
+}

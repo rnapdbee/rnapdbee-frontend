@@ -1,0 +1,23 @@
+@import "src/variables";
+
+:host {
+  .page {
+    padding: 2.5rem 3rem;
+    display: flex;
+    flex-direction: column;
+  
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    .container {
+      display: flex;
+      @include raised;
+      @include card;
+    }
+
+    @include mobile {
+      padding: 1rem;
+    }
+  }
+}

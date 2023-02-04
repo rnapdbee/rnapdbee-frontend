@@ -9,6 +9,7 @@ export class CtFileValidatorService {
   constructor(private readonly utils: FileValidationUtils) {}
 
   readonly validator = (fileContent: string[]): ValidationPayload => {
+    let atLeastOneFunctionalLine = false;
     let lineHasSixCollumns = true;
     let firstCollumnIsNaturalWithoutZero = true;
     let secondCollumnIsString = true;
@@ -17,14 +18,13 @@ export class CtFileValidatorService {
     let fifthCollumnIsNaturalWithZero = true;
     let sixthCollumnIsInteger = true;
     let firstAndFifthCollumnHaveCounterparts = true;
-    let thirdCollumCountsUpFromZeroManyTimes = true;
-    let fourthCollumnisBiggerThanThird = true;
 
-    let previousThirdCollumnVal = -1;
-    let previousFourthCollumnVal = -1;
+    const firstline = fileContent[0].trim().split(' ');
+    if (firstline.length === 1 && this.utils.isNaturalWithoutZero(firstline[0])) {
+      fileContent.shift();
+    }
 
-    const firstline = fileContent[0].trim();
-    if (this.utils.isNaturalWithoutZero(firstline)) {
+    if (firstline.length !== 1 && this.utils.isNaturalWithoutZero(firstline[0]) && firstline[1].startsWith('#')) {
       fileContent.shift();
     }
 
@@ -33,8 +33,15 @@ export class CtFileValidatorService {
         return true;
       }
 
+      atLeastOneFunctionalLine = true;
+
       const columns = line.trim().split(' ');
-      if (columns.length !== 6) {
+      if (columns.length < 6) {
+        lineHasSixCollumns = false;
+        return false;
+      }
+
+      if (columns.length > 6 && !columns[6].startsWith('#')) {
         lineHasSixCollumns = false;
         return false;
       }
@@ -81,44 +88,18 @@ export class CtFileValidatorService {
         }
       }
 
-      if (previousThirdCollumnVal !== -1) {
-        if (columns[2] !== '0') {
-          if (+columns[2] - 1 !== previousThirdCollumnVal) {
-            thirdCollumCountsUpFromZeroManyTimes = false;
-            return false;
-          }
-        }
-      }
-      previousThirdCollumnVal = +columns[2];
-
-      if (previousFourthCollumnVal !== -1) {
-        if (columns[3] !== '0') {
-          if (columns[2] === '0' && previousFourthCollumnVal !== 0) {
-            fourthCollumnisBiggerThanThird = false;
-            return false;
-          }
-
-          if (+columns[2] + 2 !== +columns[3]) {
-            fourthCollumnisBiggerThanThird = false;
-            return false;
-          }
-        }
-      }
-      previousFourthCollumnVal = +columns[3];
-
       return true;
     });
 
-    const valid = lineHasSixCollumns
+    const valid = atLeastOneFunctionalLine
+      && lineHasSixCollumns
       && firstCollumnIsNaturalWithoutZero
       && secondCollumnIsString
       && thirdCollumnIsNaturalWithZero
       && fourthCollumnIsNaturalWithZero
       && fifthCollumnIsNaturalWithZero
       && sixthCollumnIsInteger
-      && firstAndFifthCollumnHaveCounterparts
-      && thirdCollumCountsUpFromZeroManyTimes
-      && fourthCollumnisBiggerThanThird;
+      && firstAndFifthCollumnHaveCounterparts;
 
     return {
       valid,

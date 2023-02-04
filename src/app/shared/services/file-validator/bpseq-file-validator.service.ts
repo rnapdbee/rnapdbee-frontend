@@ -9,6 +9,7 @@ export class BpseqFileValidatorService {
   constructor(private readonly utils: FileValidationUtils) {}
 
   readonly validator = (fileContent: string[]): ValidationPayload => {
+    let atLeastOneFunctionalLine = false;
     let lineHasThreeCollumns = true;
     let firstCollumnIsNaturalWithoutZero = true;
     let secondCollumnIsString = true;
@@ -21,8 +22,15 @@ export class BpseqFileValidatorService {
         return true;
       }
 
+      atLeastOneFunctionalLine = true;
+
       const columns = line.trim().split(' ');
-      if (columns.length !== 3) {
+      if (columns.length < 3) {
+        lineHasThreeCollumns = false;
+        return false;
+      }
+
+      if (columns.length > 3 && !columns[3].startsWith('#')) {
         lineHasThreeCollumns = false;
         return false;
       }
@@ -62,7 +70,8 @@ export class BpseqFileValidatorService {
       return true;
     });
 
-    const valid = lineHasThreeCollumns
+    const valid = atLeastOneFunctionalLine
+      && lineHasThreeCollumns
       && firstCollumnIsNaturalWithoutZero
       && secondCollumnIsString
       && thirdCollumnIsNaturalWithZero

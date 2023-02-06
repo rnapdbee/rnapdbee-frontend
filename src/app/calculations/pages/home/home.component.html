@@ -3,21 +3,21 @@
   <h2>A webserver to annotate secondary structures of knotted and unknotted RNAs.</h2>
   <p>RNApdbee runs according to the following scenarios:</p>
   <div class="scenarios">
-    <div class="box" (click)="setCalculationType(CalculationType.TertiaryToDBN)">
+    <a class="box" href="#calculations" (click)="setCalculationType(CalculationType.TertiaryToDBN)">
       <span class="title">3D → (...)</span>
       <p>Secondary structure of RNA derived from tertiary structure provided
         in PDB or PDBx/mmCIF file.</p>
-    </div>
-    <div class="box" (click)="setCalculationType(CalculationType.SecondaryToDBN)">
+    </a>
+    <a class="box" href="#calculations" (click)="setCalculationType(CalculationType.SecondaryToDBN)">
       <span class="title">2D → (...)</span>
       <p>Secondary structure topology of RNA derived from base pair list provided
         in BPSEQ, CT or DBN.</p>
-    </div>
-    <div class="box" (click)="setCalculationType(CalculationType.TertiaryToMultiSecondary)">
+    </a>
+    <a class="box" href="#calculations" (click)="setCalculationType(CalculationType.TertiaryToMultiSecondary)">
       <span class="title">3D → multi 2D</span>
       <p>Set of multiple secondary structures of RNA derived from tertiary
         structure provided in PDB or PDBx/mmCIF file, based on various results of intermediate processing steps.</p>
-    </div>
+    </a>
   </div>
   <div class="hint">
     <mat-icon>tips_and_updates</mat-icon>
@@ -25,7 +25,7 @@
       immediately released together with visualization (if checked).</p>
   </div>
 </div>
-<div class="calculations">
+<div id="calculations" class="calculations">
   <div class="sidebar" [class.disabled]="loading">
     <p class="bordered">Choose scenario:</p>
     <div class="nav-item bordered" [class.active]="calculationType === CalculationType.TertiaryToDBN"

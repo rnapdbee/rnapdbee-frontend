@@ -8,6 +8,15 @@
       margin: .5rem 0 1rem;
     }
 
+    .description {
+      display: flex;
+      align-items: center;
+  
+      app-weblogo-legend {
+        margin-left: .5rem;
+      }
+    }
+
     @include mobile {
       padding: 1rem;
     }

@@ -34,7 +34,7 @@ export class HelpPageComponent {
     {
       name: 'Changes in RNApdbee 3.0',
       link: 'v3-changes',
-      children: []
+      children: [],
     },
     {
       name: 'RNApdbee routines',
@@ -46,31 +46,31 @@ export class HelpPageComponent {
         },
         {
           name: 'Handling of missing residues',
-          link: 'missing'
+          link: 'missing',
         },
         {
           name: 'Handling of non-canonical interactions',
-          link: 'non-canonical'
+          link: 'non-canonical',
         },
         {
           name: 'Secondary structure drawing',
-          link: '2d-drawing'
+          link: '2d-drawing',
         },
         {
           name: 'Multiple secondary structures',
-          link: 'multiple-explanation'
-        }
-      ]
+          link: 'multiple-explanation',
+        },
+      ],
     },
     {
       name: 'Supported file formats',
       link: 'formats',
-      children: []
+      children: [],
     },
     {
       name: 'System requirements',
       link: 'requirements',
-      children: []
-    }
+      children: [],
+    },
   ];
 }

@@ -1,19 +1,308 @@
-<!-- TODO: fill this with real content -->
 <section>
-  <h2 id="general-info">General information</h2>
-  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias exercitationem sint nisi quibusdam minima aliquam itaque obcaecati, facere, expedita velit unde similique eius? Optio sequi quaerat voluptatem. Minus, quasi ipsum?</p>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo odit architecto corporis aspernatur obcaecati perspiciatis ipsum laborum, quis possimus nesciunt ea ullam dolorem voluptates eaque aperiam vitae assumenda consequatur iste.</p>
+  <h2 id="general-information">General information</h2>
+  <p>In the RNA structural biology and bioinformatics an access to correct RNA secondary structure representation is of crucial importance. This is true for both, secondary and three-dimensional RNA structure prediction studies. RNApdbee is aimed to derive secondary structure topology from the tertiary structure of RNA and/or from the list of base pairs. The tool supports processing of large unknotted structures as well as RNAs with pseudoknots. In particular, it allows for the following operations:</p>
+  <ul>
+    <li>extracting RNA secondary structure from a PDB or PDBx/mmCIF file,</li>
+    <li>converting CT to BPSEQ and vice versa,</li>
+    <li>converting CT and BPSEQ to dot-bracket,</li>
+    <li>encoding extracted RNA secondary structure in dot-bracket, CT and BPSEQ,</li>
+    <li>creating a visualization of RNA secondary structure,</li>
+    <li>finding multiple 2D structures from a number of 3D structure analyses.</li>
+  </ul>
 </section>
-
-<mat-divider></mat-divider>
 
 <section>
   <h2 id="how-to-use">How to use RNApdbee</h2>
-  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias exercitationem sint nisi quibusdam minima aliquam itaque obcaecati, facere, expedita velit unde similique eius? Optio sequi quaerat voluptatem. Minus, quasi ipsum?</p>
+  <p>There are three major scenarios of using RNApdbee application:</p>
+  <ol>
+    <li>3D &rarr; (...), in which the secondary structure is extracted from a PDB or PDBx/mmCIF file,</li>
+    <li>2D &rarr; (...), where the secondary structure topology is derived from a list of base pairs,</li>
+    <li>3D &rarr; multi 2D, where multiple secondary structures are found.</li>
+  </ol>
+  <p>The first two scenarios are based on the <a href="https://doi.org/10.34768/amcs-2020-0024">algorithm solving a pseudoknot order assignment problem</a>. The result is released in dot-bracket, BPSEQ and CT, together with visualization. The last scenario performs multiple analyses simultaneously. Let us describe the three scenarios in detail.</p>
+  <h3 id="3d-scenario">3D &rarr; (....) scenario</h3>
+  <dl>
+    <dt>Step 1</dt>
+    <dd><p>In the first step of this scenario, a user should upload the PDB or PDBx/mmCIF file with RNA tertiary structure. The file can be uploaded either directly from a local drive (use "Browse" button to browse through the local repositories) or from Protein Data Bank. In the second case a user should enter PDB identifier into the edit box. The associated PDB or PDBx/mmCIF file is automatically downloaded from Protein Data Bank and made ready for processing by the application. There are six example PDBx/mmCIF files stored in the system and ready for processing. They enable new users an easy start with RNApdbee.</p></dd>
+    <dt>Step 2</dt>
+    <dd><p>In the second step, user decides how to handle multi-model inputs. By default only the first model will be processed, but user can select to process all models instead.</p></dd>
+    <dt>Step 3</dt>
+    <dd><p>In the second step, an application used to identify base pairs in the uploaded structure should be selected from six available programs: RNApolis Annotator (default), FR3D, bpnet, baRNAba, RNAView, MC-Annotate. By default, RNApdbee forms BPSEQ, CT and dot-bracket from canonical base pairs only, while the non-canonical ones are shown in a separate table and on visualization. In this step, user can modify the default behaviour to include non-canonical base pairs in BPSEQ, CT and dot-bracket or to hide them on the visualization. In this step, one can also decide to remove isolated base pairs from the result. An isolated base pair is one in which both interacting nucleotides have unpaired neighbours. Since there is no stabilizing force, some consider isolated base pairs as unsure and therefore may wish to exclude them from analysis.</p></dd>
+    <dt>Step 4</dt>
+    <dd><p>RNApdbee automatically finds secondary structure elements within the result. In this step, user can decide to treat pseudoknots as either paired (default) or unpaired residues. With the default option selected, residues encoded as pseudoknots will be allowed to form stems and terminating base pairs of loops. When the other option is set, the same residues will be part of single strands and insides of loops.</p></dd>
+    <dt>Step 5</dt>
+    <dd><p>Next, the user should decide whether the visualization is to be generated at the output, together with the textual representation of the resulting secondary structure. In order to get an image, one should select one of four available procedures: RNApuzzler (default), VARNA, PseudoViewer or R-chie. Otherwise, 'No image' option must be selected. The first three procedures generate a classical visualization of secondary structure, while the last one produces an arc diagram. If the selected procedure fails to generate an image, the alternative procedure is automatically run.</p></dd>
+    <dt>Step 6</dt>
+    <dd><p>To start secondary structure extraction, the "Run" button should be clicked. This causes an immediate display of a loading page, which will change to the result page as soon as it is ready. The result page shows the secondary structure encoded in extended dot-bracket notation, BPSEQ and CT, listing of canonical and non-canonical base pairs, listing of interstrand interactions (if any) and other RNA tertiary contacts with their classification, identified structural elements, messages generated during processing and visualization (if previously requested). The results can be saved to a local drive. Moreover, the same input data can be processed again with the other set of options.</p></dd>
+  </dl>
+  <h3 id="2d-scenario">2D &rarr; (....) scenario</h3>
+  <dl>
+    <dt>Step 1</dt>
+    <dd><p>In the first step of this scenario, the user should upload a dot-bracket, BPSEQ or CT file from local repository (use "Browse" button to select a file from the required folder). There are also 3 example files in either format.</p></dd>
+    <dt>Step 2</dt>
+    <dd><p>RNApdbee automatically finds secondary structure elements within the result. In this step, user can decide to treat pseudoknots as either paired (default) or unpaired residues. With the default option selected, residues encoded as pseudoknots will be allowed to form stems and terminating base pairs of loops. When the other option is set, the same residues will be part of single strands and insides of loops. In this step, one can also decide to remove isolated base pairs from the result. An isolated base pair is one in which both interacting nucleotides have unpaired neighbours. Since there is no stabilizing force, some consider isolated base pairs as unsure and therefore may wish to exclude them from analysis.</p></dd>
+    <dt>Step 3</dt>
+    <dd><p>Next, the user should decide whether the visualization is to be generated at the output, together with the textual representation of the resulting secondary structure. In order to get an image, one should select one of four available procedures: RNApuzzler (default), VARNA, PseudoViewer or R-chie. Otherwise, 'No image' option must be selected. The first three procedures generate a classical visualization of secondary structure, while the last one produces an arc diagram. If the selected procedure fails to generate an image, the alternative procedure is automatically run</p></dd>
+    <dt>Step 4</dt>
+    <dd><p>To start secondary structure processing, the "Run" button should be clicked. This causes an immediate display of a loading page, which will change to the result page as soon as it is ready. The result page shows the secondary structure encoded in extended dot-bracket notation, BPSEQ and CT, listing of interstrand interactions (if any), identified structural elements, and visualization (if previously requested). The results can be saved to a local drive. Moreover, the same input data can be processed again with the other set of options.</p></dd>
+  </dl>
+  <h3 id="3d-multi-2d">3D &rarr; multi 2D</h3>
+  <dl>
+    <dt>Step 1</dt>
+    <dd><p>In the first step of this scenario, a user should upload the PDB or PDBx/mmCIF file with RNA tertiary structure. The file can be uploaded either directly from a local drive (use "Browse" button to browse through the local repositories) or from Protein Data Bank. In the second case a user should enter PDB identifier into the edit box. The associated PDB or PDBx/mmCIF file is automatically downloaded from Protein Data Bank and made ready for processing by the application. There are six example PDBx/mmCIF files stored in the system and ready for processing. They enable new users an easy start with RNApdbee.</p></dd>
+    <dt>Step 2</dt>
+    <dd><p>In the second step, user can configure parameters of analysis. The first option (off by default) if selected would allow non-canonical base pairs to be included in the secondary structure topology (BPSEQ, CT and dot-bracket). The second option (off by default) if selected would remove any isolated base pairs from the result. An isolated base pair is one in which both interacting nucleotides have unpaired neighbours. Since there is no stabilizing force, some consider isolated base pairs as unsure and therefore may wish to exclude them from analysis.</p></dd>
+    <dt>Step 3</dt>
+    <dd><p>Next, the user should decide whether the visualization is to be generated at the output, together with the textual representation of the resulting secondary structure. In order to get an image, one should select one of four available procedures: RNApuzzler (default), VARNA, PseudoViewer or R-chie. Otherwise, 'No image' option must be selected. The first three procedures generate a classical visualization of secondary structure, while the last one produces an arc diagram. If the selected procedure fails to generate an image, the alternative procedure is automatically run</p></dd>
+    <dt>Step 4</dt>
+    <dd><p>To start the analysis, the "Run" button should be clicked. This causes an immediate display of a loading page, which will change to the result page as soon as it is ready. The result page shows a consensus visualization and possibly several secondary structures encoded in BPSEQ, CT and dot-bracket format. Each entry in the result page is accompanied with an image (if requested). The results can be saved to a local drive. Moreover, the same input data can be processed again with the other set of options.</p></dd>
+  </dl>
+</section>
 
-  <h3 id="3d-scenario"> 3D → (....) </h3>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo odit architecto corporis aspernatur obcaecati perspiciatis ipsum laborum, quis possimus nesciunt ea ullam dolorem voluptates eaque aperiam vitae assumenda consequatur iste.</p>
+<section>
+  <h2 id="v3-changes">Changes in RNApdbee 3.0</h2>
+  <p>RNApdbee 2.0 had two distinct scenarios: 2D &rarr; (...) and (...) &rarr; image. The purpose of the former was mainly to encode BPSEQ/CT input in dot-bracket with additional visualization. The latter was only used for visualization of a given dot-bracket input. In RNApdbee 3.0, these two scenarios were merged into 2D &rarr; (...). If you just want to visualize your dot-bracket input, please use this scenario.</p>
+</section>
 
-  <h3 id="2d-scenario"> 2D → (....) </h3>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo odit architecto corporis aspernatur obcaecati perspiciatis ipsum laborum, quis possimus nesciunt ea ullam dolorem voluptates eaque aperiam vitae assumenda consequatur iste.</p>
+<section>
+  <h2 id="routines">RNApdbee routines</h2>
+  <p>RNApdbee integrates selected functionality of different tools for analysing and visualising RNA structures into a simple and coherent interface. Below, a short note on each of these tools is provided with respect to their roles in RNApdbee workflow.</p>
+
+  <h3 id="bps-identification">Base-pair identification</h3>
+  <p>RNApdbee webserver offers the choice between six major base pair annotation methods: RNApolis Annotator, FR3D, bpnet, baRNAba, RNAView, and MC-Annotate. All of them process PDB- or PDBx/mmCIF-formatted data describing the three-dimensional structure of RNAs.</p>
+
+  <h4 id="annotator"><a href="https://content.sciendo.com/doi/10.2478/fcds-2019-0012">RNApolis Annotator</a></h4>
+  <p>RNApolis Annotator is a Python program to find hydrogen bonds and construct information about nucleotide interactions on top of it. It supports <a href="http://rnajournal.cshlp.org/content/7/4/499.long">Leontis/Westhof</a>, <a href="https://link.springer.com/book/10.1007/978-1-4612-5190-3">Seanger</a> and <a href="https://academic.oup.com/nar/article/37/15/4898/2409866">BPh/BR</a> notations.</p>
+
+  <h4><a href="https://link.springer.com/article/10.1007%2Fs00285-007-0110-x">FR3D</a></h4>
+  <p>FR3D is a suite of MATLAB programs to look for recurrent 3D motifs in RNA structure. This process includes classification of base pairs and stacking interactions. FR3D internally performs this operation using base-centered approach to analyse geometries of bases with respect to a common frame. The found base pairs are classified according to <a href="http://rnajournal.cshlp.org/content/7/4/499.long">Leontis/Westhof</a> notation. The web-accessible version of the tool is available as <a href="https://www.bgsu.edu/research/rna/web-applications/webfr3d.html">WebFR3D</a>.</p>
+
+  <h4><a href="https://link.springer.com/article/10.1007/s10822-021-00438-x">bpnet</a></h4>
+  <p>BPNet is a software tool to compute base-pair/π-π contact networks using graph formalism. It is based on BPFind procedures for finding and classifying base pairs. The results are classified according to <a href="http://rnajournal.cshlp.org/content/7/4/499.long">Leontis/Westhof</a> nomenclature.</p>
+
+  <h4><a href="https://rnajournal.cshlp.org/content/25/2/219">baRNAba</a></h4>
+  <p>Barnaba is a Python library suitable for analysis of RNA structures and trajectories. It supports several high-level analyses with one of its components being a base pair annotator.</p>
+
+  <h4><a href="https://academic.oup.com/nar/article/31/13/3450/2904151">RNAView</a></h4>
+  <p>RNAView identifies and classifies the types of base pairs and basic RNA motifs such as loops and bulges that are formed in nucleic-acid structures. It provides the implementation of edge-to-edge hydrogen bonding interactions according to <a href="http://rnajournal.cshlp.org/content/7/4/499.long">Leontis/Westhof nomenclature</a> . The program allows also for identification of tertiary interactions and visualization of 2D diagrams of RNA secondary topology in Postscript, VRML or RNAML format. RNAView can be downloaded from <a href="http://ndbserver.rutgers.edu/ndbmodule/services/download/rnaview.html">NDB</a> and used after successful installation.</p>
+
+  <h4><a href="http://www.sciencedirect.com/science/article/pii/S0022283601946261">MC-Annotate</a></h4>
+  <p>MC-Annotate provides a structural graph which encodes geometric information based on atomic coordinates and torsion angles. In general, the structural graph represents the description of every nucleotide conformation (based on sugar puckering modes and nitrogen base orientations around the glycosyl bond), base-base interactions (based on stacking and hydrogen bonding information) and pseudoknots identified in the input structure. MC-Annotate allows also for RNA motif recognition. It is available as a webserver at <a href="http://www-lbit.iro.umontreal.ca/mcannotate-simple/">http://www-lbit.iro.umontreal.ca/mcannotate-simple/</a>.</p>
+
+  <h3 id="missing">Handling of missing residues</h3>
+  <p>The PDB and PDBx/mmCIF formats support explicit description of missing residues. These are known nucleobases (A, C, G or U) for which however the atom positions are absent. For PDB entries containing missing residues, RNApdbee is able to read a full sequence, but lacks the possibility of deriving the secondary structure. A special character, i.e. the minus sign "&ndash;", was chosen to describe missing or unidentified residues in the dot-bracket output for such cases. In RNApuzzler-, PseudoViewer- and VARNA-based visualizations, missing residues are highlighted in red.</p>
+
+  <h3 id="non-canonical">Handling of non-canonical interactions</h3>
+  <p>By default, RNApdbee output representations contain only canonical base pairs, while non-canonical ones are included in a separate list only. Upon user request, non-canonical base pairs can be also included in text (BPSEQ, CT and dot-bracket) and graphical representations of the output secondary structure.</p>
+  <p>In general, RNApdbee provides information about strong non-canonical interactions (mediated by at least 2 hydrogen bonds between bases). When user selects the option to include them in text representation, due to limitations of text formats not all multiplet-involved interactions can be encoded in dot-bracket, CT and BPSEQ. This limitation is not a problem in case of visualization.</p>
+
+  <h3 id="2d-drawing">Secondary structure drawing</h3>
+  <p>In order to draw secondary structure topology, RNApdbee webserver integrates the functionality of RNApuzzler, VARNA, PseudoViewer and R-chie, and supplements it with own scripts that annotate the orders of pseudoknot interactions, and non-canonical base pairs.</p>
+
+  <h4><a href="https://academic.oup.com/bioinformatics/article/35/8/1342/5102870">RNApuzzler</a></h4>
+  <p>RNApuzzler is a layout algorithm guaranteeing intersection-free drawings. It is very fast and produces highly optimized drawings, even with the largest RNA structures. It accepts input in dot-bracket notation and generated output either in PostScript or SVG format. RNApuzzler is available as a layout algorithm for RNAplot tool, a part of <a href="https://almob.biomedcentral.com/articles/10.1186/1748-7188-6-26">ViennaRNA package</a>.</p>
+
+  <h4><a href="https://academic.oup.com/bioinformatics/article/25/15/1974/210730">VARNA</a></h4>
+  <p>VARNA is mainly an interactive software for drawing and editing RNA secondary structures. It supports several input file formats, including BPSEQ, CT and others. The main advantage of VARNA is its support for non-canonical base pairs (<a href="http://rnajournal.cshlp.org/content/7/4/499.long">Leontis/Westhof</a> nomenclature) and pseudoknots (first extracted maximal planar subset of canonical base pairs is a scaffold for the rest of the base pairings). The output visualisation can be extracted in vector and bitmap picture formats including EPS, SVG, XFIG, JPG, or PNG. VARNA is available as the lightweight applet and swing component at <a href="http://varna.lri.fr/">http://varna.lri.fr/</a>.</p>
+
+  <h4><a href="http://bioinformatics.oxfordjournals.org/content/25/11/1435.full">PseudoViewer</a></h4>
+  <p>PseudoViewer allows for effective visualisation of large RNAs, also these including pseudoknots, as planar drawings. As an input, it accepts the sequence and the secondary structure data in the dot-bracket or paired format. At the output, a URL of the generated image file is returned. The visualization can be prepared in EPS, SVG, PNG, or GIF. PseudoViewer is available at <a href="http://pseudoviewer.inha.ac.kr/">http://pseudoviewer.inha.ac.kr/</a>.</p>
+
+  <h4><a href="https://academic.oup.com/nar/article/40/12/e95/2414962">R-chie</a></h4>
+  <p>R-chie is a tool for generating different types of arc diagrams. It supports visualization of multiple sequence alignments and incorporation of co-variance information into the image. R-chie can read inputs in various formats including BPSEQ, CT and dot-bracket, also these containing higher order pseudoknots. It is highly configurable and allows to save output as PNG or PDF files. The webserver is available at <a href="http://www.e-rna.org/r-chie">http://www.e-rna.org/r-chie</a>.</p>
+
+  <h4>Pseudoknot annotation scripts</h4>
+  <p>Graphical images of RNA secondary structure generated by RNApuzzler, VARNA, PseudoViewer and R-Chie are post-processed by the RNApdbee scripts. Their aim is to annotate the orders of pseudoknot interactions in a graphical way. Different colours have been assigned to particular pseudoknot orders:</p>
+  <table>
+    <tr>
+      <td>Pseudoknot order</td>
+      <td>1st</td>
+      <td>2nd</td>
+      <td>3rd</td>
+      <td>4th</td>
+      <td>5th</td>
+      <td>6th</td>
+      <td>7th</td>
+      <td>8th</td>
+    </tr>
+    <tr>
+      <td>Text annotation (brackets &amp; letter)</td>
+      <td>[]</td>
+      <td>{{ "{" }}{{ "}" }}</td>
+      <td>&lt;&gt;</td>
+      <td>Aa</td>
+      <td>Bb</td>
+      <td>Cc</td>
+      <td>Dd</td>
+      <td>Ee</td>
+    </tr>
+    <tr>
+      <td>Graphical annotation (colours)</td>
+      <td style="background-color: rgb(0, 114, 0)"></td>
+      <td style="background-color: rgb(5, 32, 96)"></td>
+      <td style="background-color: rgb(143, 0, 0)"></td>
+      <td style="background-color: rgb(93, 0, 93)"></td>
+      <td style="background-color: rgb(60, 115, 157)"></td>
+      <td style="background-color: rgb(143, 118, 0)"></td>
+      <td style="background-color: rgb(210, 95, 210)"></td>
+      <td style="background-color: rgb(159, 185, 37)"></td>
+    </tr>
+  </table>
+
+  <h4 id="leontis-westhof-notation">Scripts to annotate non-canonical interactions</h4>
+  <p>Additional scripts post-process the RNApuzzler, VARNA and PseudoViewer images to display non-canonical interactions. VARNA visualization supports Leontis/Westhof classification and it is used during RNApdbee post-processing (see table below). In case of RNApuzzler and PseudoViewer, the non-canonical interactions are shown as gray dashed lines.</p>
+  <table>
+    <tr>
+      <td>RNA base-base classification</td>
+      <td>Visualization symbol</td>
+    </tr>
+    <tr>
+      <td>cis Watson-Crick Watson-Crick</td>
+      <td><img src="/assets/varna-symbols/symbol-cww.svg" /></td>
+    </tr>
+    <tr>
+      <td>trans Watson-Crick Watson-Crick</td>
+      <td><img src="/assets/varna-symbols/symbol-tww.svg" /></td>
+    </tr>
+    <tr>
+      <td>cis Watson-Crick Hoogsteen</td>
+      <td><img src="/assets/varna-symbols/symbol-cwh.svg" /></td>
+    </tr>
+    <tr>
+      <td>trans Watson-Crick Hoogsteen</td>
+      <td><img src="/assets/varna-symbols/symbol-twh.svg" /></td>
+    </tr>
+    <tr>
+      <td>cis Watson-Crick Sugar</td>
+      <td><img src="/assets/varna-symbols/symbol-cws.svg" /></td>
+    </tr>
+    <tr>
+      <td>trans Watson-Crick Sugar</td>
+      <td><img src="/assets/varna-symbols/symbol-tws.svg" /></td>
+    </tr>
+    <tr>
+      <td>cis Hoogsteen Watson-Crick</td>
+      <td><img src="/assets/varna-symbols/symbol-chw.svg" /></td>
+    </tr>
+    <tr>
+      <td>trans Hoogsteen Watson-Crick</td>
+      <td><img src="/assets/varna-symbols/symbol-thw.svg" /></td>
+    </tr>
+    <tr>
+      <td>cis Hoogsteen Hoogsteen</td>
+      <td><img src="/assets/varna-symbols/symbol-chh.svg" /></td>
+    </tr>
+    <tr>
+      <td>trans Hoogsteen Hoogsteen</td>
+      <td><img src="/assets/varna-symbols/symbol-thh.svg" /></td>
+    </tr>
+    <tr>
+      <td>cis Hoogsteen Sugar</td>
+      <td><img src="/assets/varna-symbols/symbol-chs.svg" /></td>
+    </tr>
+    <tr>
+      <td>trans Hoogsteen Sugar</td>
+      <td><img src="/assets/varna-symbols/symbol-ths.svg" /></td>
+    </tr>
+    <tr>
+      <td>cis Sugar Watson-Crick</td>
+      <td><img src="/assets/varna-symbols/symbol-csw.svg" /></td>
+    </tr>
+    <tr>
+      <td>trans Sugar Watson-Crick</td>
+      <td><img src="/assets/varna-symbols/symbol-tsw.svg" /></td>
+    </tr>
+    <tr>
+      <td>cis Sugar Hoogsteen</td>
+      <td><img src="/assets/varna-symbols/symbol-csh.svg" /></td>
+    </tr>
+    <tr>
+      <td>trans Sugar Hoogsteen</td>
+      <td><img src="/assets/varna-symbols/symbol-tsh.svg" /></td>
+    </tr>
+    <tr>
+      <td>cis Sugar Sugar</td>
+      <td><img src="/assets/varna-symbols/symbol-css.svg" /></td>
+    </tr>
+    <tr>
+      <td>trans Sugar Sugar</td>
+      <td><img src="/assets/varna-symbols/symbol-tss.svg" /></td>
+    </tr>
+  </table>
+
+  <h3 id="multiple-explanation">Multiple secondary structures</h3>
+  <p>RNApdbee is capable of performing multiple analyses of secondary structure information extracted from 3D coordinates of an RNA. The analysis involves running all supported base pair analysers (RNApolis Annotator, FR3D, bpnet, baRNAba, RNAView and MC-Annotate) on a single input 3D structure. The resulting lists of base pairs are grouped into unique sets. Each set is encoded in BPSEQ, CT and dot-bracket format. RNApdbee shows a consensus visualization for all results and one image for each unique result in the set.</p>
+</section>
+
+<section>
+  <h2 id="formats">Supported file formats</h2>
+  <p>RNApdbee can process input data from files in PDB, PDBx/mmCIF, BPSEQ, CT and extended dot-bracket formats. The output data are released in BPSEQ, CT, extended dot-bracket and graphical formats. The result page displays tables, which can be downloaded as CSV files.</p>
+  <ol>
+    <li>PDB file stores various data concerning the three-dimensional structure of a molecule, the experiment for structure determination, authors, etc. The detailed description of this format is given <a target="_blank" href="http://www.wwpdb.org/documentation/file-format">here.</a> In RNApdbee, the information about atom coordinates and missing or modified residues is considered.</li>
+    <li>PDBx/mmCIF is a dictionary-based storage format. The file contains well-formatted entries containing 3D atom coordinates of a molecule as well as a set of metadata related to the experiment of structure determination, authors, etc. The detailed description of this format is given <a href="http://mmcif.wwpdb.org" target="_blank">here</a> .</li>
+    <li>BPSEQ file contains information about base pairs, stored in three columns: 1st column contains the sequence position (starting at one), 2nd column contains the base encoded in one-letter notation, 3rd column contains the pairing base (if base from 2nd column is paired) or zero (if base from 2nd column is unpaired).</li>
+    <li>CT (connect) file is column based and contains the information about base pairs: 1st column specifies the sequence index (starting at one), 2nd column contains the base in one-letter notation, 3rd and 4th columns specify additional indices (the index of predecessor and successor of base in the chain; if one of them is zero, it represents the terminal base in the chain), 5th column gives the pairing base (if base from 2nd column is paired) or zero (if base from 2nd column is unpaired) and 6th column corresponds to base number. Additionally, if 7th column appears and starts with a '#', the rest of the line contains a comment.</li>
+    <li>Dot-bracket notation is used to encode RNA secondary structure topology. Standard dot-bracket encodes nested RNAs only. It is a string composed of dots and brackets, where an unpaired nucleotide is represented as a dot ".", and a base pair is represented as a pair of opening (begin) and closing (end) brackets, i.e. "(" and ")". The extended dot-bracket is applied to represent pseudoknotted secondary structures: squared "[" and "]" brackets are used for lower-order structures, the curly brackets "{{ "{" }}" and "}", angle brackets "&lt;" and "&gt;" and consecutive alphabet letters "A" and "a", "B" and "b", etc. represent higher orders and most complicated pseudoknots. Additionally, the minus sign "&ndash;" is used to encode an unidentified residue.</li>
+  </ol>
+  <p>Example encoding of RNA secondary structure:</p>
+  <table>
+    <tr>
+      <td>&nbsp; BPSEQ format &nbsp;</td>
+      <td>&nbsp; CT format &nbsp;</td>
+      <td>&nbsp; dot-bracket notation &nbsp;</td>
+      <td>&nbsp; visualization</td>
+    </tr>
+    <tr>
+      <td>
+        &nbsp; 1 &nbsp; G &nbsp; 8 &nbsp; <br />
+        &nbsp; 2 &nbsp; G &nbsp; 7 &nbsp; <br />
+        &nbsp; 3 &nbsp; C &nbsp; 0 &nbsp; <br />
+        &nbsp; 4 &nbsp; A &nbsp; 0 &nbsp; <br />
+        &nbsp; 5 &nbsp; U &nbsp; 0 &nbsp; <br />
+        &nbsp; 6 &nbsp; U &nbsp; 0 &nbsp; <br />
+        &nbsp; 7 &nbsp; C &nbsp; 2 &nbsp;&nbsp; <br />
+        &nbsp; 8 &nbsp; C &nbsp; 1
+        <br />
+      </td>
+      <td>
+        &nbsp; 8 <br />
+        &nbsp; 1 &nbsp; G &nbsp; 0 &nbsp; 2 &nbsp; 8 &nbsp; 1 &nbsp; <br />
+        &nbsp; 2 &nbsp; G &nbsp; 1 &nbsp; 3 &nbsp; 7 &nbsp; 2 &nbsp; <br />
+        &nbsp; 3 &nbsp; C &nbsp; 2 &nbsp; 4 &nbsp; 0 &nbsp; 3 &nbsp; <br />
+        &nbsp; 4 &nbsp; A &nbsp; 3 &nbsp; 5 &nbsp; 0 &nbsp; 4 &nbsp; <br />
+        &nbsp; 5 &nbsp; U &nbsp; 4 &nbsp; 6 &nbsp; 0 &nbsp; 5 &nbsp; <br />
+        &nbsp; 6 &nbsp; U &nbsp; 5 &nbsp; 7 &nbsp; 0 &nbsp; 6 &nbsp; <br />
+        &nbsp; 7 &nbsp; C &nbsp; 6 &nbsp; 8 &nbsp; 2 &nbsp; 7 &nbsp;
+        <br />
+      </td>
+      <td>
+        &nbsp;GGCAUUCC <br />
+        &nbsp;((....))
+      </td>
+      <td><img src="/assets/help-example-formats.png" alt="example_formats" /></td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <h2 id="requirements">System requirements</h2>
+  <p>RNApdbee is designed to work with most of the available web browsers. The latest versions of browsers are strongly recommended:</p>
+  <table>
+    <tr>
+      <td>Operating system</td>
+      <td>Recommended browser</td>
+    </tr>
+    <tr>
+      <td>Windows</td>
+      <td>Microsoft Internet Explorer (10 and later), Mozilla Firefox (4 and later), Opera (15 and later) or Google Chrome (19 and later)</td>
+    </tr>
+    <tr>
+      <td>Linux</td>
+      <td>Mozilla Firefox (4 and later), Opera (15 and later) or Google Chrome (19 and later)</td>
+    </tr>
+    <tr>
+      <td>macOS</td>
+      <td>Mozilla Firefox (4 and later), Opera (15 and later) or Google Chrome (19 and later)</td>
+    </tr>
+  </table>
 </section>

@@ -24,8 +24,15 @@
         }
       }
       
-      .content {
+      .content-box {
         @include card-r;
+        display: flex;
+        justify-content: center;
+
+        .content {
+          padding: 2rem 0;
+          max-width: 800px;
+        }
       }
 
     }
@@ -45,7 +52,7 @@
           }
         }
         
-        .content {
+        .content-box {
           @include card-b;
         }
       }

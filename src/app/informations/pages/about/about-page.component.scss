@@ -11,13 +11,23 @@
     }
 
     .container {
-      display: flex;
       @include raised;
       @include card;
+      display: flex;
+      padding: 3rem 1rem;
+      justify-content: center;
+
+      .content {
+        max-width: 800px;
+      }
     }
 
     @include mobile {
       padding: 1rem;
+
+      .container {
+        padding: 1rem;
+      }
     }
   }
 }

@@ -6,12 +6,33 @@
   padding: 1rem 3rem;
 
   .title {
-    padding: 1.5rem 0; 
+    padding: 1.5rem 0;
 
     h2 {
       margin: 0;
+
       &:not(:empty) {
-        margin-top: .5rem;
+        margin: .5rem 0;
+      }
+    }
+
+    .info {
+      strong {
+        font-weight: 500;
+      }
+
+      button {
+        color: $primary;
+        padding: 0;
+        line-height: 15px;
+        font-size: 1rem;
+        font-weight: 400;
+
+        mat-icon {
+          font-size: 15px;
+          height: 15px;
+          width: 15px;
+        }
       }
     }
   }

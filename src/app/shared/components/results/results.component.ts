@@ -1,6 +1,6 @@
 import { Directive, Input } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { ApiPaths } from 'src/environments/environment';
+import { ApiPaths, HOST } from 'src/environments/environment';
 import { Calculation } from '../../models/calculation/calculation.model';
 import { Params } from '../../models/params/params.model';
 import { SelectArray } from '../../models/select/select-array.model';
@@ -19,10 +19,12 @@ export abstract class ResultsComponent
     this._calculation = value;
   }
   get calculation() { return this._calculation; }
+  get url(): string { return `${HOST}/results${this.path}/${this.calculation?.id ?? ''}`; }
 
   reanalyzeParams: P | undefined;
   reanalyzePanelExpanded = false;
   selected: S | undefined;
+  linkCopied = false;
 
   reanalyzeCallback = () => {
     if (!this.calculation?.id) {

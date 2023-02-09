@@ -1,6 +1,16 @@
 <ng-container *ngIf="calculation">
   <div class="title">
     <h1>Sequence & secondary structure topology derived from file {{ calculation.filename }}</h1>
+    <p class="info">
+      <strong>NOTE:</strong> Your calculation is available only for <strong>14 days.</strong>
+      You can
+      <button mat-button [cdkCopyToClipboard]="url" (click)="linkCopied = true">
+        copy the calculation link
+        <mat-icon *ngIf="linkCopied === false">content_copy</mat-icon>
+        <mat-icon *ngIf="linkCopied === true">done</mat-icon>
+      </button>
+      to visit this page again in the future.
+    </p>
   </div>
 
   <div class="top-btns">
@@ -8,7 +18,9 @@
     <button mat-stroked-button (click)="download()" [disabled]="!selected?.isAnythingSelected()">Download selected</button>
     <div class="info">
       <mat-icon>info</mat-icon>
-      <p>RNApdbee provides an easy way to download calculation results. Use checkboxes or buttons to select interesting elements of the calculation. After selecting at least one, you will be able to download it in compressed .zip format.</p>
+      <p>RNApdbee provides an easy way to download calculation results. Use checkboxes or buttons to select interesting
+        elements of the calculation. After selecting at least one, you will be able to download it in compressed .zip
+        format.</p>
     </div>
   </div>
 

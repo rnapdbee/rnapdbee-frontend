@@ -6,7 +6,31 @@
   padding: 1rem 3rem;
 
   .title {
-    padding: 1.5rem 0; 
+    padding: 1.5rem 0;
+
+    h1 {
+      margin-bottom: .5rem;
+    }
+
+    .info {
+      strong {
+        font-weight: 500;
+      }
+
+      button {
+        color: $primary;
+        padding: 0;
+        line-height: 15px;
+        font-size: 1rem;
+        font-weight: 400;
+
+        mat-icon {
+          font-size: 15px;
+          height: 15px;
+          width: 15px;
+        }
+      }
+    }
   }
 
   .top-btns {

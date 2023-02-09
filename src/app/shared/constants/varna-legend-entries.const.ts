@@ -1,9 +1,9 @@
-export interface LegendEntry {
+export interface VarnaLegendEntry {
   name: string,
   pathToSVG: string,
 }
 
-export const VARNA_LEGEND_ENTRIES: LegendEntry[] = [
+export const VARNA_LEGEND_ENTRIES: VarnaLegendEntry[] = [
   {
     name: 'cWW',
     pathToSVG: '/assets/varna-symbols/symbol-cww.svg',

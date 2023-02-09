@@ -1,0 +1,19 @@
+<div class="page">
+  <h1>Help page</h1>
+  <h2>Here you can find all the necessary information about RNApdbee 3.0.</h2>
+  <p>
+    This section contains everything you need to know before using RNApdbee 3.0.
+    Here you can find informations about RNApdbee's capabillities and get familliar with its features. 
+  </p>
+
+  <div class="container">
+    <div class="sidebar">
+      <app-table-of-contents path="help" [entries]="helpSections"></app-table-of-contents>
+    </div>
+    <div class="content-box">
+      <div class="content">
+        <app-help-content></app-help-content>
+      </div>
+    </div>
+  </div>
+</div>

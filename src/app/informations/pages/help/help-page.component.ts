@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { TableOfContentsEntry } from 'src/app/shared/models/information/table-of-contents-item';
 
 @Component({
@@ -7,6 +8,10 @@ import { TableOfContentsEntry } from 'src/app/shared/models/information/table-of
   styleUrls: ['./help-page.component.scss'],
 })
 export class HelpPageComponent {
+  constructor(private readonly titleService: Title) {
+    this.titleService.setTitle('Help | RNApdbee');
+  }
+
   helpSections: TableOfContentsEntry[] = [
     {
       name: 'General information',

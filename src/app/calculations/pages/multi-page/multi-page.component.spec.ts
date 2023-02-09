@@ -74,7 +74,8 @@ describe('MultiPageComponent', () => {
   beforeEach(async () => {
     calculationServiceSpy = jasmine.createSpyObj<CalculationRequestService<TertiaryToMultiParams, MultiOutput>>(
       'TertiaryToMultiService',
-      ['find'],
+      { find: of(mockResponse) },
+      { calculationResults$: of(mockResponse) },
     );
 
     await TestBed.configureTestingModule({
@@ -93,6 +94,8 @@ describe('MultiPageComponent', () => {
   });
 
   it('shows loading component when calculation not resolved', () => {
+    component.calculationResults$ = of(null);
+    fixture.detectChanges();
     expect(debugElement.query(By.css('app-calculation-loading'))).toBeTruthy();
   });
 

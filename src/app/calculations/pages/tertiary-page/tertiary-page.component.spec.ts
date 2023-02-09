@@ -98,7 +98,8 @@ describe('TertiaryPageComponent', () => {
   beforeEach(async () => {
     calculationServiceSpy = jasmine.createSpyObj<CalculationRequestService<TertiaryToDbnParams, TertiaryOutput>>(
       'TertiaryToDbnService',
-      ['find'],
+      { find: of(mockResponse) },
+      { calculationResults$: of(mockResponse) },
     );
 
     await TestBed.configureTestingModule({
@@ -117,6 +118,8 @@ describe('TertiaryPageComponent', () => {
   });
 
   it('shows loading component when calculation not resolved', () => {
+    component.calculationResults$ = of(null);
+    fixture.detectChanges();
     expect(debugElement.query(By.css('app-calculation-loading'))).toBeTruthy();
   });
 

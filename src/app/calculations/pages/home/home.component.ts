@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { CalculationType } from 'src/app/shared/models/calculation/calculation-type.enum';
 import { RequestLoadingService } from 'src/app/shared/services/loading/request-loading.service';
 
@@ -12,7 +13,11 @@ export class HomeComponent {
   calculationType = CalculationType.TertiaryToDBN;
   loading = false;
 
-  constructor(private readonly loadingService: RequestLoadingService) {
+  constructor(
+    private readonly loadingService: RequestLoadingService,
+    private readonly titleService: Title,
+  ) {
+    this.titleService.setTitle('Home | RNApdbee');
     this.loadingService.loading$.subscribe(data => {
       this.loading = data;
     });

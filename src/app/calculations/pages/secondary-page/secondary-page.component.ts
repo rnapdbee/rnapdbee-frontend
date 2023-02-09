@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { CalculationPageComponent } from 'src/app/shared/components/calculation-page/calculation-page.component';
 import { SecondaryOutput } from 'src/app/shared/models/output/secondary-output.model';
@@ -17,7 +18,8 @@ export class SecondaryPageComponent extends CalculationPageComponent<SecondaryTo
     route: ActivatedRoute,
     calculationService: SecondaryToDbnService,
     errorService: ErrorService,
+    titleService: Title,
   ) {
-    super(route, calculationService, errorService);
+    super(route, calculationService, errorService, titleService);
   }
 }

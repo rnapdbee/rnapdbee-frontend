@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { OpenCloseAnimation } from 'src/app/shared/animations/open-close';
 import { CalculationPageComponent } from 'src/app/shared/components/calculation-page/calculation-page.component';
@@ -19,7 +20,8 @@ export class TertiaryPageComponent extends CalculationPageComponent<TertiaryToDb
     route: ActivatedRoute,
     calculationService: TertiaryToDbnService,
     errorService: ErrorService,
+    titleService: Title,
   ) {
-    super(route, calculationService, errorService);
+    super(route, calculationService, errorService, titleService);
   }
 }

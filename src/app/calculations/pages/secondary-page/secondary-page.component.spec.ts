@@ -57,7 +57,8 @@ describe('SecondaryPageComponent', () => {
   beforeEach(async () => {
     calculationServiceSpy = jasmine.createSpyObj<CalculationRequestService<SecondaryToDbnParams, SecondaryOutput>>(
       'SecondaryToDbnService',
-      ['find'],
+      { find: of(mockResponse) },
+      { calculationResults$: of(mockResponse) },
     );
 
     await TestBed.configureTestingModule({
@@ -68,7 +69,6 @@ describe('SecondaryPageComponent', () => {
         { provide: SecondaryToDbnService, useValue: calculationServiceSpy },
       ],
     }).compileComponents();
-
     fixture = TestBed.createComponent(SecondaryPageComponent);
     component = fixture.componentInstance;
     ({ debugElement } = fixture);
@@ -76,6 +76,8 @@ describe('SecondaryPageComponent', () => {
   });
 
   it('shows loading component when calculation not resolved', () => {
+    component.calculationResults$ = of(null);
+    fixture.detectChanges();
     expect(debugElement.query(By.css('app-calculation-loading'))).toBeTruthy();
   });
 

@@ -1,4 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable, tap } from 'rxjs';
 import { Calculation } from '../../models/calculation/calculation.model';
@@ -15,8 +16,10 @@ export abstract class CalculationPageComponent<P extends Params, O> {
     protected route: ActivatedRoute,
     protected calculationService: CalculationRequestService<P, O>,
     protected errorService: ErrorService,
+    protected titleService: Title,
   ) {
     this.calculationResults$ = this.calculationService.calculationResults$;
+    this.titleService.setTitle('Results | RNApdbee');
 
     this.getId().subscribe({
       next: id => {
@@ -27,6 +30,12 @@ export abstract class CalculationPageComponent<P extends Params, O> {
       error: (error: Error | HttpErrorResponse) => {
         this.handleError(error);
       },
+    });
+
+    this.calculationResults$.subscribe(data => {
+      if (data != null && data.filename) {
+        this.titleService.setTitle(`${data.filename} results | RNApdbee`);
+      }
     });
   }
 
@@ -47,6 +56,7 @@ export abstract class CalculationPageComponent<P extends Params, O> {
     this.calculationService.find(id).subscribe({
       error: (error: HttpErrorResponse) => {
         this.handleError(error);
+        this.titleService.setTitle('Results error | RNApdbee');
       },
     });
   }

@@ -7,6 +7,15 @@
     background: $white;
     position: relative;
 
+    .external-link {
+      position: absolute;
+      color: $accent;
+      cursor: pointer;
+      z-index: 411;
+      right: 10px;
+      top: 10px;
+    }
+
     .info-overlay {
       position: absolute;
       width: 100%;

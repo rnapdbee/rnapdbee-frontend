@@ -11,6 +11,7 @@ export class SvgViewerComponent implements AfterViewInit {
   @Input() src = '';
   @ViewChild('map') mapElementRef: ElementRef<HTMLElement> | undefined;
   get mapElement() { return this.mapElementRef?.nativeElement; }
+  get url(): string { return `${HOST}${this.src}`; }
 
   private map: L.Map | undefined;
   private readonly bounds: L.LatLngBoundsExpression = [[0, 0], [150, 150]];
@@ -29,7 +30,7 @@ export class SvgViewerComponent implements AfterViewInit {
       zoomDelta: 0.25,
     });
 
-    const svgOverlay = L.imageOverlay(`${HOST}${this.src}`, this.bounds);
+    const svgOverlay = L.imageOverlay(this.url, this.bounds);
     svgOverlay.addTo(this.map);
     this.map.fitBounds(this.bounds);
 

@@ -9,6 +9,18 @@ describe('BpseqFileValidatorService', () => {
     service = new BpseqFileValidatorService(new FileValidationUtils());
   });
 
+  it('invalidates when file has zero functional lines', () => {
+    fileContents = [
+      ['# useless comment', '# useless comment'],
+    ];
+
+    fileContents.forEach(fileContent => {
+      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+        valid: false,
+      }));
+    });
+  });
+
   it('invalidates when line has not three collumns', () => {
     fileContents = [
       ['1 G 2 U', '2 G 1'],
@@ -84,6 +96,30 @@ describe('BpseqFileValidatorService', () => {
     fileContents.forEach(fileContent => {
       expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
         valid: false,
+      }));
+    });
+  });
+
+  it('validates when line has not three collumns but next column is a comment', () => {
+    fileContents = [
+      ['1 G 2 # with space', '2 G 1 #without space'],
+    ];
+
+    fileContents.forEach(fileContent => {
+      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+        valid: true,
+      }));
+    });
+  });
+
+  it('validates when line is a comment', () => {
+    fileContents = [
+      ['1 G 2', '# some comment', '#some other comment', '2 G 1'],
+    ];
+
+    fileContents.forEach(fileContent => {
+      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+        valid: true,
       }));
     });
   });

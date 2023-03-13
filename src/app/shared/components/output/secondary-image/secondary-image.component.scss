@@ -1,10 +1,17 @@
+@import "src/variables";
+
 :host {
   .description {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 
     app-varna-legend {
       margin-left: .5rem;
+    }
+
+    app-forna-viewer {
+      margin-left: auto;
     }
   }
 }

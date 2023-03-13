@@ -18,6 +18,7 @@ import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ExamplePickerComponent } from './components/example-picker/example-picker.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { FornaViewerComponent } from './components/forna-viewer/forna-viewer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MultiEntryComponent } from './components/output/multi-entry/multi-entry.component';
 import { MultiResultComponent } from './components/output/multi-result/multi-result.component';
@@ -54,6 +55,7 @@ const COMPONENTS = [
   ErrorComponent,
   ExamplePickerComponent,
   FooterComponent,
+  FornaViewerComponent,
   NavbarComponent,
   RadioButtonComponent,
   ReanalyzePanelComponent,

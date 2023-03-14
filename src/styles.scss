@@ -1,7 +1,8 @@
 @import "src/variables";
 
-html, body { height: 100%; }
+html { height: 100%; scroll-behavior: smooth; }
 body {
+  height: 100%;
   margin: 0;
   background: $background;
   font-family: Roboto, "Helvetica Neue", sans-serif;

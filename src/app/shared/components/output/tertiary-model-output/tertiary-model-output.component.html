@@ -1,10 +1,10 @@
 <div *ngIf="model">
-  <mat-checkbox
+  <app-checkbox-indeterminate
     [checked]="value.isSelectedOrUnactive()"
     [indeterminate]="value.isAnythingSelected() && !value.isSelectedOrUnactive()"
-    (change)="value.set($event.checked)" color="primary">
+    (_change)="value.set($event)" color="primary">
     Model {{ model.modelNumber }}
-  </mat-checkbox>
+  </app-checkbox-indeterminate>
   <div class="container">
     <div class="data-panel">
       <app-secondary-output [(ngModel)]="value.fields.output2D" [output]="model.output2D"></app-secondary-output>

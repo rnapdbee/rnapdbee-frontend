@@ -1,10 +1,10 @@
 <div *ngIf="entry">
-  <mat-checkbox
+  <app-checkbox-indeterminate
     [checked]="value.isSelectedOrUnactive()"
     [indeterminate]="value.isAnythingSelected() && !value.isSelectedOrUnactive()"
-    (change)="value.set($event.checked)" color="primary">
+    (_change)="value.set($event)" color="primary">
     Entry {{ index }}
-  </mat-checkbox>
+  </app-checkbox-indeterminate>
   <div class="container">
     <div class="data-panel">
       <p>This output has been generated using {{ getAdapterNames(entry.adapterEnums) }}.</p>

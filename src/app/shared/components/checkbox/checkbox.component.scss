@@ -8,17 +8,27 @@
     .checkbox {
       display: flex;
       align-items: center;
+      border-radius: 5px;
 
-      mat-checkbox {
+      mat-checkbox, .label {
         width: 100%;
         font-size: 15px;
+        cursor: pointer;
+        margin: 3.5px 0;
+        line-height: normal;
+      }
+
+      &:has(.label) {
+        &:hover {
+          background: $background;
+        }
       }
 
       .controls button {
           line-height: normal;
 
           &:hover {
-            background: none;
+            background: $background;
           }
         }
       }
@@ -40,4 +50,8 @@
       resize: vertical;
     }
   }
+}
+
+::ng-deep .mat-button.mat-primary .mat-button-focus-overlay {
+  background: none;
 }

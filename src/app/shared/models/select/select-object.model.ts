@@ -23,6 +23,12 @@ export abstract class SelectObject<F extends SelectFields> implements Selectable
     return valueObj;
   }
 
+  getSelectedCount(): number {
+    return Object.keys(this.fields)
+      .map(key => this.fields[key].getSelectedCount())
+      .reduce((previous: number, next: number) => previous + next);
+  }
+
   isSelectedOrUnactive(): boolean {
     return Object.keys(this.fields)
       .map(item => this.fields[item].isSelectedOrUnactive())

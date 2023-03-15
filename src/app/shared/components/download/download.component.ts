@@ -26,6 +26,7 @@ export class DownloadComponent {
     private readonly downloadService: DownloadService,
     private readonly snackBar: SnackBarService,
   ) {
+    this.selectableService.selectable = false;
     this.selectable$ = this.selectableService.selectable$;
   }
 
@@ -38,6 +39,7 @@ export class DownloadComponent {
       .download(this.path, this.id, this.selected.getValue())
       .subscribe(() => {
         this.expanded = false;
+        this.selectableService.selectable = false;
       });
   }
 

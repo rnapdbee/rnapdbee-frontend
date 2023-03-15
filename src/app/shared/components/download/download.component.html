@@ -14,7 +14,7 @@
     <div *ngIf="selectable$ | async; else select">
       <button mat-stroked-button (click)="selectAll()">{{ allSelected() ? 'Unselect' : 'Select' }} all data</button>
       <div class="download-btns">
-        <button mat-stroked-button (click)="download()" [disabled]="!selected?.isAnythingSelected()">Download selected</button>
+        <button mat-stroked-button (click)="download()" [disabled]="!selected?.isAnythingSelected()">Download {{ selected?.getSelectedCount() }} items</button>
         <button mat-stroked-button (click)="disableSelect()">Cancel</button>
       </div>
     </div>

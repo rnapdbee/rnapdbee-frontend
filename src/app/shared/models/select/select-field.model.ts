@@ -18,6 +18,10 @@ export class SelectField implements Selectable {
     return this.value;
   }
 
+  getSelectedCount(): number {
+    return this.value ? 1 : 0;
+  }
+
   isSelectedOrUnactive(): boolean {
     if (this.active) {
       return this.value;

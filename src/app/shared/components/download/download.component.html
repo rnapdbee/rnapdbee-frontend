@@ -4,10 +4,10 @@
       <mat-icon>download</mat-icon>
       <h3>Download results</h3>
     </div>
-    <mat-icon *ngIf="!value">expand_more</mat-icon>
-    <mat-icon *ngIf="value">expand_less</mat-icon>
+    <mat-icon *ngIf="!expanded">expand_more</mat-icon>
+    <mat-icon *ngIf="expanded">expand_less</mat-icon>
   </div>
-  <div class="content" @openClose *ngIf="value">
+  <div class="content" @openClose *ngIf="expanded">
     <h2>Download your results</h2>
     <p>RNApdbee provides an easy way to download your calculation results. Just click “select items to download” and use
       checkboxes next to your resuts to choose which items should be included in downloaded file.</p>

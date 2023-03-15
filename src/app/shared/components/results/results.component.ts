@@ -42,7 +42,7 @@ export abstract class ResultsComponent
   constructor(
     protected calculationService: CalculationRequestService<P, O>,
     protected downloadService: DownloadService,
-    protected path: ApiPaths,
+    public path: ApiPaths,
   ) {}
 
   onParamsChange(event: P): void {

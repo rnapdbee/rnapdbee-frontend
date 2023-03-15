@@ -10,7 +10,7 @@
   <div class="content" @openClose *ngIf="value">
     <h2>Download your results</h2>
     <p>RNApdbee provides an easy way to download your calculation results. Just click “select items to download” and use
-      checkboxes to choose which items should be included in downloaded file.</p>
+      checkboxes next to your resuts to choose which items should be included in downloaded file.</p>
     <div *ngIf="selectable$ | async; else select">
       <button mat-stroked-button (click)="selectAll()">{{ allSelected() ? 'Unselect' : 'Select' }} all data</button>
       <div class="download-btns">

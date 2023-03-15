@@ -53,20 +53,6 @@ export abstract class ResultsComponent
     event.pipe(tap(() => { this.reanalyzePanelExpanded = false; })).subscribe();
   }
 
-  selectAll(): void {
-    this.selected?.set(!this.allSelected());
-  }
-
-  allSelected(): boolean {
-    return this.selected?.isSelectedOrUnactive() ?? false;
-  }
-
-  download(): void {
-    if (this.calculation?.id && this.selected) {
-      this.downloadService.download(this.path, this.calculation.id, this.selected.getValue());
-    }
-  }
-
   protected abstract populateSelectedList(calculation: Calculation<P, O>): void;
 
   private reanalyzeParamsValid(reanalyzeParams: P): boolean {

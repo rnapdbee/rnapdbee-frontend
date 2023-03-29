@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 import { OpenCloseAnimation } from '../../animations/open-close';
 import { SelectField } from '../../models/select/select-field.model';
+import { SelectableService } from '../../services/selectable/selectable.service';
 import { ControlValueComponent, ControlValueProvider } from '../control-value/control-value.component';
 
 @Component({
@@ -17,7 +19,12 @@ export class CheckboxComponent extends ControlValueComponent<SelectField> {
   @Input() expanded = false;
   @Input() tableView = false;
 
-  constructor() { super(new SelectField(false)); }
+  selectable$: Observable<boolean>;
+
+  constructor(private readonly selectableService: SelectableService) {
+    super(new SelectField(false));
+    this.selectable$ = this.selectableService.selectable$;
+  }
 
   override writeValue(value: SelectField): void {
     this.value = value;

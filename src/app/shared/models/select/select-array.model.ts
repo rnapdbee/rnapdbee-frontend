@@ -20,6 +20,12 @@ export abstract class SelectArray<S extends SelectSubObject> implements Selectab
     return this.fields.map((elem: SelectSubObject) => elem.getValue());
   }
 
+  getSelectedCount(): number {
+    return this.fields
+      .map(item => item.getSelectedCount())
+      .reduce((previous: number, next: number) => previous + next);
+  }
+
   isSelectedOrUnactive(): boolean {
     return this.fields
       .map(item => item.isSelectedOrUnactive())

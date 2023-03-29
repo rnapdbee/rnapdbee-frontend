@@ -1,8 +1,13 @@
 <div class="container">
   <div class="checkbox">
-    <mat-checkbox [(ngModel)]="value.value" color="primary">
+    <mat-checkbox *ngIf="selectable$ | async; else plain" [(ngModel)]="value.value" color="primary">
       {{ label }}
     </mat-checkbox>
+    <ng-template #plain>
+      <div class="label" (click)="toggleExpand()">
+        {{ label }}
+      </div>
+    </ng-template>
     <div *ngIf="showControls" class="controls">
       <div *ngIf="expanded; then hide else show"></div>
       <ng-template #hide>

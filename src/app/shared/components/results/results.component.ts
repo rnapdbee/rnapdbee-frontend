@@ -42,7 +42,7 @@ export abstract class ResultsComponent
   constructor(
     protected calculationService: CalculationRequestService<P, O>,
     protected downloadService: DownloadService,
-    protected path: ApiPaths,
+    public path: ApiPaths,
   ) {}
 
   onParamsChange(event: P): void {
@@ -51,20 +51,6 @@ export abstract class ResultsComponent
 
   onSubmit(event: Observable<Calculation<Params, unknown>>): void {
     event.pipe(tap(() => { this.reanalyzePanelExpanded = false; })).subscribe();
-  }
-
-  selectAll(): void {
-    this.selected?.set(!this.allSelected());
-  }
-
-  allSelected(): boolean {
-    return this.selected?.isSelectedOrUnactive() ?? false;
-  }
-
-  download(): void {
-    if (this.calculation?.id && this.selected) {
-      this.downloadService.download(this.path, this.calculation.id, this.selected.getValue());
-    }
   }
 
   protected abstract populateSelectedList(calculation: Calculation<P, O>): void;

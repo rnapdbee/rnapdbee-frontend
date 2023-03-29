@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Result } from 'src/app/shared/models/calculation/calculation.model';
 import { SecondaryOutput } from 'src/app/shared/models/output/secondary-output.model';
 import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-dbn-params.model';
 import { SecondaryResultSelect } from 'src/app/shared/models/select/secondary-result-select.model';
 import { DescriptionService } from 'src/app/shared/services/result/description.service';
+import { SelectableService } from 'src/app/shared/services/selectable/selectable.service';
 import { ControlValueComponent, ControlValueProvider } from '../../control-value/control-value.component';
 
 @Component({
@@ -16,8 +18,14 @@ import { ControlValueComponent, ControlValueProvider } from '../../control-value
 export class SecondaryResultComponent extends ControlValueComponent<SecondaryResultSelect> {
   @Input() result: Result<SecondaryToDbnParams, SecondaryOutput> | undefined;
 
-  constructor(private readonly descriptionService: DescriptionService) {
+  selectable$: Observable<boolean>;
+
+  constructor(
+    private readonly descriptionService: DescriptionService,
+    private readonly selectableService: SelectableService,
+  ) {
     super(new SecondaryResultSelect());
+    this.selectable$ = this.selectableService.selectable$;
   }
 
   select(): void {

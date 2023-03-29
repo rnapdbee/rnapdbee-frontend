@@ -3,9 +3,14 @@
 :host{
   .container {
     @include card;
+    padding-top: 2rem;
+
+    &:has(.select-btn) {
+      padding-top: 1.5rem;
+    }
 
     .select-btn {
-      margin: .5rem 0 1rem;
+      margin-bottom: 1rem;
     }
 
     .description {

@@ -14,7 +14,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { CalculationLoadingComponent } from './components/calculation-loading/calculation-loading.component';
+import { CheckboxIndeterminateComponent } from './components/checkbox-indeterminate/checkbox-indeterminate.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { DownloadComponent } from './components/download/download.component';
 import { ErrorComponent } from './components/error/error.component';
 import { ExamplePickerComponent } from './components/example-picker/example-picker.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -51,6 +53,8 @@ import { WeblogoLegendComponent } from './components/weblogo-legend/weblogo-lege
 const COMPONENTS = [
   CalculationLoadingComponent,
   CheckboxComponent,
+  CheckboxIndeterminateComponent,
+  DownloadComponent,
   ErrorComponent,
   ExamplePickerComponent,
   FooterComponent,

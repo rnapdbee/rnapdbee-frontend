@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Result } from 'src/app/shared/models/calculation/calculation.model';
 import { TertiaryOutput } from 'src/app/shared/models/output/tertiary-output.model';
 import { TertiaryToDbnParams } from 'src/app/shared/models/params/tertiary-to-dbn-params.model';
 import { TertiaryResultSelect } from 'src/app/shared/models/select/tertiary-result-select.model';
 import { DescriptionService } from 'src/app/shared/services/result/description.service';
+import { SelectableService } from 'src/app/shared/services/selectable/selectable.service';
 import { ControlValueComponent, ControlValueProvider } from '../../control-value/control-value.component';
 
 @Component({
@@ -23,8 +25,14 @@ export class TertiaryResultComponent extends ControlValueComponent<TertiaryResul
   }
   get result() { return this._result; }
 
-  constructor(private readonly descriptionService: DescriptionService) {
+  selectable$: Observable<boolean>;
+
+  constructor(
+    private readonly descriptionService: DescriptionService,
+    private readonly selectableService: SelectableService,
+  ) {
     super(new TertiaryResultSelect(0));
+    this.selectable$ = this.selectableService.selectable$;
   }
 
   select(): void {

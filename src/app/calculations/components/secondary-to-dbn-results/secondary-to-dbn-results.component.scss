@@ -33,34 +33,6 @@
     }
   }
 
-  .top-btns {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem;
-
-    button {
-      background: $white;
-      padding: .2rem 1rem;
-      @include raised;
-    }
-
-    .info {
-      display: flex;
-
-      p {
-        margin: 0 0 0 .5rem;
-      }
-
-      mat-icon {
-        color: $accent;
-        font-size: 20px;
-        height: 20px;
-        width: 20px;
-      }
-    }
-  }
-
   .reanalyze {
     margin-top: 1rem;
   }

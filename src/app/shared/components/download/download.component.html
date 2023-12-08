@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="header" (click)="toggleExpand()">
+    <div class="text">
+      <mat-icon>download</mat-icon>
+      <h3>Download results</h3>
+    </div>
+    <mat-icon *ngIf="!expanded">expand_more</mat-icon>
+    <mat-icon *ngIf="expanded">expand_less</mat-icon>
+  </div>
+  <div class="content" @openClose *ngIf="expanded">
+    <h2>Download your results</h2>
+    <p>RNApdbee provides an easy way to download your calculation results. Just click “select items to download” and use
+      checkboxes next to your results to choose which items should be included in downloaded file.</p>
+    <div *ngIf="selectable$ | async; else select">
+      <button mat-stroked-button (click)="selectAll()">{{ allSelected() ? 'Unselect' : 'Select' }} all data</button>
+      <div class="download-btns">
+        <button mat-stroked-button (click)="download()" [disabled]="!selected?.isAnythingSelected()">Download {{ selected?.getSelectedCount() }} items</button>
+        <button mat-stroked-button (click)="disableSelect()">Cancel</button>
+      </div>
+    </div>
+    <ng-template #select>
+      <button mat-stroked-button (click)="enableSelect()">Select items to download</button>
+    </ng-template>
+  </div>
+</div>

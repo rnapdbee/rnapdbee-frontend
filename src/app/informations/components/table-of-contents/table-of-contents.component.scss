@@ -5,6 +5,11 @@
     margin-bottom: 1rem;
   }
 
+  a:hover {
+    text-decoration: underline;
+    color: $primary;
+  }
+
   .entries {
     display: flex;
     flex-direction: column;
@@ -19,7 +24,6 @@
       }
 
       .subentry {
-        margin-left: 1rem;
         font-weight: 300;
       }
     }

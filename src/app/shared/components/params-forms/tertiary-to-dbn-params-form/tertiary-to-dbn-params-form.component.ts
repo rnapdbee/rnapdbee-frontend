@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import {
   ANALYSIS_TOOL,
   MODEL_SELECTION,
@@ -15,6 +15,7 @@ import { TertiaryToDbnParams } from 'src/app/shared/models/params/tertiary-to-db
   styleUrls: ['./tertiary-to-dbn-params-form.component.scss'],
 })
 export class TertiaryToDbnParamsFormComponent implements OnInit {
+  @Input() isTestLayout: boolean = false;
   @Input() startWith = 1;
   @Input() params: TertiaryToDbnParams | undefined;
   @Output() paramChange = new EventEmitter<TertiaryToDbnParams>(true);
@@ -25,22 +26,29 @@ export class TertiaryToDbnParamsFormComponent implements OnInit {
   readonly STRUCTURAL_ELEMENTS_HANDLING = STRUCTURAL_ELEMENTS_HANDLING;
   readonly VISUALIZATION_TOOL = VISUALIZATION_TOOL;
 
-  paramsForm = this.fb.group({
-    modelSelection: [MODEL_SELECTION[0].key],
-    analysisTool: [ANALYSIS_TOOL[0].key],
-    nonCanonicalHandling: [NON_CANONICAL_HANDLING[0].key],
-    removeIsolated: [false],
-    structuralElementsHandling: [STRUCTURAL_ELEMENTS_HANDLING[0].key],
-    visualizationTool: [VISUALIZATION_TOOL[0].key],
-  });
+  paramsForm!: FormGroup;
 
-  constructor(private readonly fb: FormBuilder) {
+  constructor(private readonly fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.paramsForm = this.fb.group({
+      modelSelection: [this.MODEL_SELECTION[0].key],
+      analysisTool: [
+        this.isTestLayout
+          ? this.ANALYSIS_TOOL[1].key // second item for test layout
+          : this.ANALYSIS_TOOL[0].key, // first item for normal layout
+      ],
+      nonCanonicalHandling: [this.NON_CANONICAL_HANDLING[0].key],
+      structuralElementsHandling: [this.STRUCTURAL_ELEMENTS_HANDLING[0].key],
+      visualizationTool: [this.VISUALIZATION_TOOL[0].key],
+      removeIsolated: [false],
+    });
+
+    // Move this subscription here!
     this.paramsForm.valueChanges.subscribe((data: TertiaryToDbnParams) => {
       this.paramChange.emit(data);
     });
-  }
 
-  ngOnInit(): void {
     this.paramChange.emit(this.paramsForm.value as TertiaryToDbnParams);
     if (this.params) {
       this.updateFormValues(this.params);

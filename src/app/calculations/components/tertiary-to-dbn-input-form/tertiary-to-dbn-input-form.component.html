@@ -2,8 +2,7 @@
   <app-step [value]="1">Upload RNA 3D structure</app-step>
   <app-tertiary-upload-form (uploadChange)="onUploadMethodChange($event)">
   </app-tertiary-upload-form>
-
-  <app-tertiary-to-dbn-params-form [startWith]="2" [params]="params" (paramChange)="onParamsChange($event)">
+  <app-tertiary-to-dbn-params-form [isTestLayout]="isTestLayout" [startWith]="2" [params]="params" (paramChange)="onParamsChange($event)">
   </app-tertiary-to-dbn-params-form>
 
   <mat-divider></mat-divider>

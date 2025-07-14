@@ -24,7 +24,7 @@
 
   <div class="reanalyze">
     <app-reanalyze-panel [(ngModel)]="reanalyzePanelExpanded">
-      <app-tertiary-to-dbn-params-form [params]="calculation.results[0].params" (paramChange)="onParamsChange($event)">
+      <app-tertiary-to-dbn-params-form [isTestLayout]="false" [params]="calculation.results[0].params" (paramChange)="onParamsChange($event)">
       </app-tertiary-to-dbn-params-form>
       <mat-divider></mat-divider>
       <app-submit-button [callback]="reanalyzeCallback" (buttonSubmit)="onSubmit($event)"></app-submit-button>

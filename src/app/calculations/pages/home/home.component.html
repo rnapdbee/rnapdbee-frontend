@@ -1,3 +1,20 @@
+<!-- // Option 1: Pass a boolean flag via route data
+// In your routes array, add:
+//{ path: 'test', component: HomeComponent, data: { isTestLayout: true } },
+
+// In HomeComponent, inject ActivatedRoute and read the flag:
+// import { ActivatedRoute } from '@angular/router';
+// constructor(private route: ActivatedRoute) {}
+// ngOnInit() {
+//   const isTestLayout = this.route.snapshot.data['isTestLayout'];
+//   // Use isTestLayout to adjust layout
+// }
+
+// This approach avoids duplicating components and keeps logic centralized. -->
+
+
+  
+<div *ngIf="!isTestLayout" class="test-banner">
 <div class="description">
   <h1>Welcome to RNApdbee</h1>
   <h2>A webserver to annotate secondary structures of knotted and unknotted RNAs.</h2>
@@ -25,6 +42,8 @@
       immediately released together with visualization (if checked).</p>
   </div>
 </div>
+
+</div>
 <div id="calculations" class="calculations">
   <div class="sidebar" [class.disabled]="loading">
     <p class="bordered">Choose scenario:</p>
@@ -46,7 +65,7 @@
           <h2>Tertiary to dot-bracket</h2>
           <p>Upload your tertiary RNA structure in PDBx/mmCIF file, choose one from example or provide valid Protein
             Data Bank ID. You can adjust your calculation with parameters shown below.</p>
-          <app-tertiary-to-dbn-input-form></app-tertiary-to-dbn-input-form>
+          <app-tertiary-to-dbn-input-form [isTestLayout]="isTestLayout"></app-tertiary-to-dbn-input-form>
         </ng-container>
         <ng-container *ngSwitchCase="CalculationType.SecondaryToDBN">
           <h2>Secondary to dot-bracket</h2>

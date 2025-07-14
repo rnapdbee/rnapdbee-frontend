@@ -7,13 +7,14 @@ import { TertiaryToDbnService } from 'src/app/shared/services/calculation/tertia
 import { RequestLoadingService } from 'src/app/shared/services/loading/request-loading.service';
 import { SnackBarService } from 'src/app/shared/services/notifications/snack-bar.service';
 import { DescriptionService } from 'src/app/shared/services/result/description.service';
-
+import { Input } from '@angular/core';
 @Component({
   selector: 'app-tertiary-to-dbn-input-form',
   templateUrl: './tertiary-to-dbn-input-form.component.html',
   styleUrls: ['./tertiary-to-dbn-input-form.component.scss'],
 })
 export class TertiaryToDBNInputFormComponent extends InputFormComponent<TertiaryToDbnParams, TertiaryOutput> {
+  @Input() isTestLayout: boolean = false;
   constructor(
     router: Router,
     snackBar: SnackBarService,

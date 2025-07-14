@@ -11,6 +11,7 @@ import { HelpPageComponent } from './informations/pages/help/help-page.component
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
+  { path: 'szarzynska', component: HomeComponent, data: { isTestLayout: true } },
   { path: 'results/3d/:id', component: TertiaryPageComponent },
   { path: 'results/2d/:id', component: SecondaryPageComponent },
   { path: 'results/multi/:id', component: MultiPageComponent },

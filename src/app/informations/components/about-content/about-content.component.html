@@ -1,14 +1,21 @@
 <article>
   <section>
-    <h2>About</h2>
-    <p>The analysis of RNA structure is a demanding task. There are several tools to extract nucleotide interactions (2D
+    <p style="text-align: justify;">
+      <!-- The analysis of RNA structure is a demanding task. There are several tools to extract nucleotide interactions (2D
       information) from the 3D coordinates. These tools differ in their working methods, such as internal stereochemical
       rules for hydrogen bond formation. Furthermore, they differ in capabilities to work with various input formats,
       and
       each produces the result in a unique syntax. Similarly, there are a few visualization tools, but each has its own
-      features and often supports different input/output formats.</p>
+      features and often supports different input/output formats. -->
+      Structural studies of RNA molecules often require insight into their secondary and tertiary structures and an appropriate 
+      visualization of the structural information. Contemporary science provides numerous tools to extract base-pairing information 
+      (2D structure) from the atom coordinates of RNA molecules. They adhere to distinct internal stereochemical rules for hydrogen 
+      bond formation, accept diverse input data formats, and produce output with varying content and syntax. Similarly, there is a 
+      variation in the back-end methodology, functionality, and processed data formats between programs that visualize the RNA structure.
+    </p>
 
-    <p>RNApdbee integrates the most popular tools the research community uses in a unified and user-friendly way. In the
+    <p style="text-align: justify;">
+      <!-- RNApdbee integrates the most popular tools the research community uses in a unified and user-friendly way. In the
       main scenario, the engine processes an input with 3D coordinates (in either PDB or PDBx/mmCIF format) and provides
       a
       visualization and a clean description of all the interactions found. A large part of the processing happens when
@@ -16,7 +23,16 @@
       engine extracts the 2D data. Because of that, there is a dedicated 2D scenario when the user already inputs it.
       The
       last scenario allows running all annotation tools simultaneously and analyzing everything as a single result set.
-      The user can easily reanalyze the input in all cases thanks to a dedicated form on top of the result page.</p>
+      The user can easily reanalyze the input in all cases thanks to a dedicated form on top of the result page.
+   -->
+      RNApdbee integrates various popular secondary structure annotation and visualization tools, provides a unified 
+      user-friendly interface to run them, and allows comparison of their performance for the same input data. 
+      The web server offers three usage scenarios. The first is to process atom coordinates (PDB or PDBx/mmCIF format) 
+      and provide a clear visualization and description of all the interactions found. The second scenario allows 
+      transformation between various representations of the 2D structure. In the third scenario, users run all 
+      annotation tools simultaneously for the same input data to collectively analyze the results. Additionally, 
+      RNApdbee provides the REST API for batch processing.
+       </p> 
   </section>
 
   <mat-divider></mat-divider>
@@ -29,18 +45,20 @@
       <li>Maciej Antczak<sup>1,2</sup></li>
       <li>Marta Szachniuk<sup>1,2</sup></li>
     </ul>
-    <p><sup>1</sup> <a href="http://www2.cs.put.poznan.pl/en/">Institute of Computing Science, Poznan University of
-        Technology</a></p>
-    <p><sup>2</sup> <a href="https://institution.pan.pl/">Institute of Bioorganic Chemistry, Polish Academy of
-        Sciences</a></p>
+   
 
-    RNApdbee 3.0 was developed by the following people:
+    The following team contributed to version 3.0:
     <ul>
       <li>Kamil Niznik</li>
+      <li>Jan Pielesiak</li>
       <li>Pawel Snioszek</li>
       <li>Gabriel Wachowski</li>
       <li>Mikolaj Zurawski</li>
       <li>Tomasz Zok</li>
     </ul>
+     <p><sup>1</sup> <a href="http://www2.cs.put.poznan.pl/en/">Institute of Computing Science, Poznan University of
+        Technology</a></p>
+    <p><sup>2</sup> <a href="https://institution.pan.pl/">Institute of Bioorganic Chemistry, Polish Academy of
+        Sciences</a></p>
   </section>
 </article>

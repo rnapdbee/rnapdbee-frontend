@@ -1,16 +1,16 @@
 <ng-container *ngIf="calculation">
   <div class="title">
-    <h1>Sequence & secondary structure topology derived from file {{ calculation.filename }}</h1>
+    <h1>Sequence & secondary structure derived from {{ calculation.filename }}</h1>
     <h2>{{ calculation.results[0].output.title }}</h2>
     <p class="info">
-      <strong>NOTE:</strong> Your calculation is available only for <strong>14 days.</strong>
-      You can
+      <strong>NOTE:</strong> Results will be available for <strong>14 days.</strong>
+      Save the
       <button mat-button [cdkCopyToClipboard]="url" (click)="linkCopied = true">
-        copy the calculation link
+        page adress
         <mat-icon *ngIf="linkCopied === false">content_copy</mat-icon>
         <mat-icon *ngIf="linkCopied === true">done</mat-icon>
       </button>
-      to visit this page again in the future.
+      to revisit later.
     </p>
   </div>
 

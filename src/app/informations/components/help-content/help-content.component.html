@@ -165,7 +165,7 @@
   <mat-divider></mat-divider>
 
   <section id="v3-changes">
-    <h2>Changes in RNApdbee 3.0</h2>
+    <h2>New in RNApdbee 3.0</h2>
     <p>RNApdbee 2.0 had two distinct scenarios: 2D &rarr; (...) and (...) &rarr; image. The purpose of the former was
       mainly to encode BPSEQ/CT input in dot-bracket with additional visualization. The latter was only used for
       visualization of a given dot-bracket input. In RNApdbee 3.0, these two scenarios were merged into 2D &rarr; (...).
@@ -327,7 +327,7 @@
     <table class="classification-table">
       <tr>
         <td>RNA base-base classification</td>
-        <td>Visualization symbol</td>
+        <td>Icon</td>
       </tr>
       <tr>
         <td>cis Watson-Crick Watson-Crick</td>
@@ -418,32 +418,39 @@
     <p>RNApdbee can process input data from files in PDB, PDBx/mmCIF, BPSEQ, CT and extended dot-bracket formats. The
       output data are released in BPSEQ, CT, extended dot-bracket and graphical formats. The result page displays
       tables, which can be downloaded as CSV files.</p>
-    <ol>
-      <li>PDB file stores various data concerning the three-dimensional structure of a molecule, the experiment for
+    <h4>PDB</h4>
+    <p>PDB file stores various data concerning the three-dimensional structure of a molecule, the experiment for
         structure determination, authors, etc. The detailed description of this format is given <a target="_blank"
           href="http://www.wwpdb.org/documentation/file-format">here.</a> In RNApdbee, the information about atom
-        coordinates and missing or modified residues is considered.</li>
-      <li>PDBx/mmCIF is a dictionary-based storage format. The file contains well-formatted entries containing 3D atom
+        coordinates and missing or modified residues is considered.</p>
+      <h4>PDBx/mmCI</h4>
+      <p>PDBx/mmCIF is a dictionary-based storage format. The file contains well-formatted entries containing 3D atom
         coordinates of a molecule as well as a set of metadata related to the experiment of structure determination,
         authors, etc. The detailed description of this format is given <a href="http://mmcif.wwpdb.org"
-          target="_blank">here</a> .</li>
-      <li>BPSEQ file contains information about base pairs, stored in three columns: 1st column contains the sequence
+          target="_blank">here</a> .</p>
+      <h4>BPSEQ</h4>
+      <p>BPSEQ file contains information about base pairs, stored in three columns: 1st column contains the sequence
         position (starting at one), 2nd column contains the base encoded in one-letter notation, 3rd column contains the
-        pairing base (if base from 2nd column is paired) or zero (if base from 2nd column is unpaired).</li>
-      <li>CT (connect) file is column based and contains the information about base pairs: 1st column specifies the
+        pairing base (if base from 2nd column is paired) or zero (if base from 2nd column is unpaired).</p>
+          
+      <h4>CT</h4>
+      <p>CT (connect) file is column based and contains the information about base pairs: 1st column specifies the
         sequence index (starting at one), 2nd column contains the base in one-letter notation, 3rd and 4th columns
         specify additional indices (the index of predecessor and successor of base in the chain; if one of them is zero,
         it represents the terminal base in the chain), 5th column gives the pairing base (if base from 2nd column is
         paired) or zero (if base from 2nd column is unpaired) and 6th column corresponds to base number. Additionally,
-        if 7th column appears and starts with a '#', the rest of the line contains a comment.</li>
-      <li>Dot-bracket notation is used to encode RNA secondary structure topology. Standard dot-bracket encodes nested
+        if 7th column appears and starts with a '#', the rest of the line contains a comment.</p>
+        
+      <h4>Dot-bracket</h4>
+      <p>Dot-bracket notation is used to encode RNA secondary structure topology. Standard dot-bracket encodes nested
         RNAs only. It is a string composed of dots and brackets, where an unpaired nucleotide is represented as a dot
         ".", and a base pair is represented as a pair of opening (begin) and closing (end) brackets, i.e. "(" and ")".
         The extended dot-bracket is applied to represent pseudoknotted secondary structures: squared "[" and "]"
         brackets are used for lower-order structures, the curly brackets "{{ "{" }}" and "}", angle brackets "&lt;" and
         "&gt;" and consecutive alphabet letters "A" and "a", "B" and "b", etc. represent higher orders and most
-        complicated pseudoknots. Additionally, the minus sign "&ndash;" is used to encode an unidentified residue.</li>
-    </ol>
+        complicated pseudoknots. Additionally, the minus sign "&ndash;" is used to encode an unidentified residue.</p>
+       
+    
     <p>Example encoding of RNA secondary structure:</p>
     <table class="encoding-example-table">
       <tr>

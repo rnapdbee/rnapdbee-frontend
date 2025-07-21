@@ -1,5 +1,5 @@
 <form [formGroup]="paramsForm">
-  <app-step [value]="getStepNumber(1)">What to process</app-step>
+  <app-step [value]="getStepNumber(1)">For multimodel files, process</app-step>
   <mat-radio-group formControlName="modelSelection">
     <app-radio-button *ngFor="let item of MODEL_SELECTION" [value]="item.key" [label]="item.label"
       [checked]="paramsForm.value.modelSelection === item.key">
@@ -37,7 +37,7 @@
 
   <mat-checkbox color="primary" formControlName="removeIsolated">Remove isolated, canonical base pairs</mat-checkbox>
 
-  <app-step [value]="getStepNumber(3)">How to handle structural elements</app-step>
+  <app-step [value]="getStepNumber(3)"> Handle structural elements</app-step>
   <mat-radio-group formControlName="structuralElementsHandling">
     <app-radio-button *ngFor="let item of STRUCTURAL_ELEMENTS_HANDLING" [value]="item.key" [label]="item.label"
       [checked]="paramsForm.value.structuralElementsHandling === item.key">

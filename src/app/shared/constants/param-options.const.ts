@@ -56,11 +56,11 @@ export const NON_CANONICAL_HANDLING: Option[] = [
 export const STRUCTURAL_ELEMENTS_HANDLING: Option[] = [
   {
     key: 'USE_PSEUDOKNOTS',
-    label: 'Include pseudoknots',
+    label: 'Including pseudoknots',
   },
   {
     key: 'IGNORE_PSEUDOKNOTS',
-    label: 'Ignore pseudoknots',
+    label: 'Ignoring pseudoknots',
   },
 ];
 

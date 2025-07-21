@@ -1,5 +1,5 @@
 <form [formGroup]="paramsForm">
-  <app-step [value]="getStepNumber(1)">How to handle structural elements</app-step>
+  <app-step [value]="getStepNumber(1)">Handle structural elements</app-step>
   <mat-radio-group formControlName="structuralElementsHandling">
     <app-radio-button *ngFor="let item of STRUCTURAL_ELEMENTS_HANDLING" [value]="item.key" [label]="item.label"
       [checked]="paramsForm.value.structuralElementsHandling === item.key">

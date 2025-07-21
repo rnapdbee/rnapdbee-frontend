@@ -32,6 +32,8 @@ export class SecondaryUploadFormComponent implements OnInit {
   bpseq_examples = SECONDARY_TO_DBN_BPSEQ_EXAMPLES;
   ct_examples = SECONDARY_TO_DBN_CT_EXAMPLES;
   dbn_examples = SECONDARY_TO_DBN_DBN_EXAMPLES;
+  
+  dotBracketText: string = '';
 
   allowedFileExtensions = [FileExtension.Bpseq, FileExtension.Ct, FileExtension.Dbn];
   file: File | null = null;

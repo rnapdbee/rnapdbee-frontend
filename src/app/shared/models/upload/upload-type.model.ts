@@ -2,6 +2,7 @@ import { Example } from './example.model';
 
 export enum UploadMethodType {
   FromPDB = 'pdb',
+  FromDotBracket = 'dotbracket',
   FromLocalFile = 'file',
   FromExample = 'example'
 }

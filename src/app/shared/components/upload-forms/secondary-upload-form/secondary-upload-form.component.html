@@ -14,7 +14,40 @@
         <span class="file-error">{{ fileError }}</span>
       </div>
     </app-radio-button>
+    <app-radio-button 
+  label="From Dot-bracket"
+  [value]="UploadType.FromDotBracket"
+  [checked]="currentUploadType === UploadType.FromDotBracket"
+  (click)="onMethodChange()">
+  
+      <!-- <app-example-picker [examples]="dbn_examples" (selected)="onDbnExampleSelect($event)"></app-example-picker> -->
 
+      <!-- Show textarea when Dot-bracket is selected -->
+      <!-- <textarea
+  *ngIf="currentUploadType === UploadType.FromDotBracket"
+  rows="5"
+  [(ngModel)]="dotBracketText"
+  name="dotBracketText"
+  placeholder="Paste your dot-bracket notation here"
+  style="width: 100%; margin-top: 8px;"
+></textarea> -->
+<textarea
+  *ngIf="currentUploadType === UploadType.FromDotBracket"
+  rows="5"
+  [(ngModel)]="dotBracketText"
+  name="dotBracketText"
+  placeholder="Paste your dot-bracket notation here"
+  style="width: 100%; margin-top: 8px;"
+></textarea>
+<button
+  *ngIf="currentUploadType === UploadType.FromDotBracket"
+  type="button"
+  (click)="dotBracketText = ''"
+  style="margin-top: 4px; margin-bottom: 8px;"
+>
+  Reset
+</button>
+    </app-radio-button>
     <app-radio-button 
       label="From BPSEQ example"
       [value]="UploadType.FromExample" 
@@ -41,5 +74,6 @@
 
       <app-example-picker [examples]="dbn_examples" (selected)="onDbnExampleSelect($event)"></app-example-picker>
     </app-radio-button>
+    
   </mat-radio-group>
 </form>

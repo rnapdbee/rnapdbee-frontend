@@ -33,12 +33,24 @@
 ></textarea> -->
 <textarea
   *ngIf="currentUploadType === UploadType.FromDotBracket"
-  rows="5"
+  rows="10"
   [(ngModel)]="dotBracketText"
+  (input)="validateStructuredText()"
   name="dotBracketText"
   placeholder="Paste your dot-bracket notation here"
-  style="width: 100%; margin-top: 8px;"
+   wrap="off"
+  style="width: 100%; margin-top: 8px; white-space: pre; overflow: auto; resize: both;margin-bottom: 8px;" 
 ></textarea>
+  <!-- <textarea
+    [(ngModel)]="textInput"
+    (input)="validateStructuredText()"
+    rows="10"
+    cols="60"
+    placeholder=""
+  ></textarea> -->
+  <div *ngIf="isTextValid === false" style="color: red; white-space: pre-wrap;">
+  {{ textValidationError }}
+</div>
 <button
   *ngIf="currentUploadType === UploadType.FromDotBracket"
   type="button"

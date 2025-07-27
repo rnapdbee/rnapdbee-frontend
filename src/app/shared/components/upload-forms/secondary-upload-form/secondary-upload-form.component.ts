@@ -44,6 +44,123 @@ export class SecondaryUploadFormComponent implements OnInit {
   dbnExample: Example | null = null;
   selectedExample: ExampleType = ExampleType.None;
 
+  //validate text input:
+  textInput: string = '';
+textValidationError: string = '';
+  isTextValid: boolean | null = null;
+
+  // Method to validate structured text input
+
+validateStructuredText(): void {
+  const lines = this.dotBracketText?.split('\n').map(l => l.trim()) || [];
+  this.textValidationError = '';
+  this.isTextValid = null;
+
+  if (lines.length % 3 !== 0) {
+    this.textValidationError = 'Error: Input must be in blocks of 3 lines (name, sequence, brackets).';
+    this.isTextValid = false;
+    this.emitInvalid();
+    return;
+  }
+
+  const openClosePairs: { [key: string]: string } = { '(': ')', '[': ']', '{': '}' };
+  const allowedBrackets = /^[()\[\]\{\}\.]+$/;
+  const closingBrackets = Object.values(openClosePairs);
+  const bracketPairs: [string, string][] = [['(', ')'], ['[', ']'], ['{', '}']];
+  for (let i = 0; i < lines.length; i += 3) {
+    const name = lines[i];
+    const brackets = lines[i + 2];
+    const letters = lines[i + 1];
+
+    if (!name || !brackets || !letters) {
+      this.textValidationError += `Block starting at line ${i + 2} is incomplete.\n`;
+      continue;
+    }
+
+    if (!allowedBrackets.test(brackets)) {
+      this.textValidationError += `Line ${i + 1} contains invalid characters.\n`;
+    }
+
+    if (brackets.length !== letters.length) {
+      this.textValidationError += `Line ${i + 2} and ${i + 3} must be the same length.\n`;
+    }
+        // ✅ Count each type of bracket
+    for (const [open, close] of bracketPairs) {
+      const openCount = (brackets.match(new RegExp(`\\${open}`, 'g')) || []).length;
+      const closeCount = (brackets.match(new RegExp(`\\${close}`, 'g')) || []).length;
+
+      if (openCount !== closeCount) {
+        if(openCount > closeCount) {
+          this.textValidationError += `Lacking '${close}' bracket in line ${i + 2}.\n`;
+        } else {
+          this.textValidationError += `Lacking '${open}' bracket in line ${i + 2}.\n`;
+        }
+      }
+    }
+  }
+
+  if (this.textValidationError) {
+    this.isTextValid = false;
+    this.emitInvalid();
+  } else {
+    this.isTextValid = true;
+    this.uploadChange.emit({
+      type: UploadMethodType.FromLocalFile,
+      data: this.dotBracketText,
+      valid: true
+    });
+  }
+}
+
+private emitInvalid(): void {
+  this.uploadChange.emit({
+    type: UploadMethodType.FromLocalFile,
+    data: null,
+    valid: false
+  });
+}
+
+//     const stack: string[] = [];
+//     for (const char of brackets) {
+//       if (openClosePairs[char]) {
+//         stack.push(openClosePairs[char]);
+//       } else if (closingBrackets.includes(char)) {
+//         const expected = stack.pop();
+//         if (expected !== char) {
+//           this.textValidationError += `Unclosed brackets in strand ${Math.floor((i+1)/3)}.\n`;
+//           break;
+//         }
+//       }
+//     }
+
+//     if (stack.length > 0) {
+//       this.textValidationError += `Unmatched brackets in strand ${Math.floor((i+1)/3)}.\n`;
+//     }
+//   }
+
+//   if (this.textValidationError) {
+//     this.isTextValid = false;
+//     this.emitInvalid();
+//   } else {
+//     this.isTextValid = true;
+//     this.uploadChange.emit({
+//       type: UploadMethodType.FromLocalFile,
+//       data: this.dotBracketText,
+//       valid: true
+//     });
+//   }
+// }
+
+// private emitInvalid(): void {
+//   this.uploadChange.emit({
+//     type: UploadMethodType.FromLocalFile,
+//     data: null,
+//     valid: false
+//   });
+// }
+
+
+
   constructor(private readonly fileValidatorService: FileValidatorService) { }
 
   ngOnInit(): void {

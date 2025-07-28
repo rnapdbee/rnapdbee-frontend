@@ -84,6 +84,10 @@ validateStructuredText(): void {
     if (brackets.length !== letters.length) {
       this.textValidationError += `Line ${i + 2} and ${i + 3} must be the same length.\n`;
     }
+    //ensure that lettes are valid characters (A, U, C, G)
+    if (!/^[AUCG]+$/.test(letters)) {
+      this.textValidationError += `Line ${i + 1} contains invalid characters. Only A, U, C, G are allowed.\n`;
+    }
         // ✅ Count each type of bracket
     for (const [open, close] of bracketPairs) {
       const openCount = (brackets.match(new RegExp(`\\${open}`, 'g')) || []).length;
@@ -110,6 +114,7 @@ validateStructuredText(): void {
       valid: true
     });
   }
+  this.notifyChanges();
 }
 
 private emitInvalid(): void {
@@ -119,47 +124,6 @@ private emitInvalid(): void {
     valid: false
   });
 }
-
-//     const stack: string[] = [];
-//     for (const char of brackets) {
-//       if (openClosePairs[char]) {
-//         stack.push(openClosePairs[char]);
-//       } else if (closingBrackets.includes(char)) {
-//         const expected = stack.pop();
-//         if (expected !== char) {
-//           this.textValidationError += `Unclosed brackets in strand ${Math.floor((i+1)/3)}.\n`;
-//           break;
-//         }
-//       }
-//     }
-
-//     if (stack.length > 0) {
-//       this.textValidationError += `Unmatched brackets in strand ${Math.floor((i+1)/3)}.\n`;
-//     }
-//   }
-
-//   if (this.textValidationError) {
-//     this.isTextValid = false;
-//     this.emitInvalid();
-//   } else {
-//     this.isTextValid = true;
-//     this.uploadChange.emit({
-//       type: UploadMethodType.FromLocalFile,
-//       data: this.dotBracketText,
-//       valid: true
-//     });
-//   }
-// }
-
-// private emitInvalid(): void {
-//   this.uploadChange.emit({
-//     type: UploadMethodType.FromLocalFile,
-//     data: null,
-//     valid: false
-//   });
-// }
-
-
 
   constructor(private readonly fileValidatorService: FileValidatorService) { }
 
@@ -251,6 +215,17 @@ private emitInvalid(): void {
         payload.type = UploadMethodType.FromExample;
         payload.data = this.getCurrentExample();
         payload.valid = !!this.getCurrentExample();
+        break;
+      case UploadMethodType.FromDotBracket:
+        payload.type = UploadMethodType.FromDotBracket;
+        payload.data = this.dotBracketText;
+        payload.valid = this.isTextValid === true;
+        //write the payload to console for debugging
+        console.log('Dot-bracket payload:', payload);
+
+        if (!payload.valid) {
+          this.textValidationError += 'Invalid dot-bracket text input.\n';
+        }
         break;
       default:
         return;

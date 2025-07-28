@@ -26,6 +26,8 @@ export class SecondaryToDbnService extends CalculationRequestService<SecondaryTo
         return this.calculateFromExample(content.data as Example, params);
       case UploadMethodType.FromLocalFile:
         return this.calculateFromFile(content.data as File, params);
+      case UploadMethodType.FromDotBracket:
+        return this.calculateFromFile(new File([content.data as string], 'input.dbn', { type: 'text/plain' }), params);
       default:
         throw new Error('Upload method type could not be recognized.');
     }

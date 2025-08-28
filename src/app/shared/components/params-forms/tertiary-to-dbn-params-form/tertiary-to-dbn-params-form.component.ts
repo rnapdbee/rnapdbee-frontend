@@ -15,7 +15,7 @@ import { TertiaryToDbnParams } from 'src/app/shared/models/params/tertiary-to-db
   styleUrls: ['./tertiary-to-dbn-params-form.component.scss'],
 })
 export class TertiaryToDbnParamsFormComponent implements OnInit {
-  @Input() isTestLayout: boolean = false;
+  @Input() isTestLayout = false;
   @Input() startWith = 1;
   @Input() params: TertiaryToDbnParams | undefined;
   @Output() paramChange = new EventEmitter<TertiaryToDbnParams>(true);

@@ -32,8 +32,7 @@ export class SecondaryUploadFormComponent implements OnInit {
   bpseq_examples = SECONDARY_TO_DBN_BPSEQ_EXAMPLES;
   ct_examples = SECONDARY_TO_DBN_CT_EXAMPLES;
   dbn_examples = SECONDARY_TO_DBN_DBN_EXAMPLES;
-  
-  dotBracketText: string = '';
+  dotBracketText = '';
 
   allowedFileExtensions = [FileExtension.Bpseq, FileExtension.Ct, FileExtension.Dbn];
   file: File | null = null;
@@ -44,84 +43,85 @@ export class SecondaryUploadFormComponent implements OnInit {
   dbnExample: Example | null = null;
   selectedExample: ExampleType = ExampleType.None;
 
-  //validate text input:
-  textInput: string = '';
-textValidationError: string = '';
+  // validate text input:
+  textInput = '';
+  textValidationError = '';
   isTextValid: boolean | null = null;
 
   // Method to validate structured text input
 
-validateStructuredText(): void {
-  const lines = this.dotBracketText?.split('\n').map(l => l.trim()) || [];
-  this.textValidationError = '';
-  this.isTextValid = null;
+  validateStructuredText(): void {
+    const lines = this.dotBracketText?.split('\n').map(l => l.trim()) || [];
+    this.textValidationError = '';
+    this.isTextValid = null;
 
-  if (lines.length % 3 !== 0) {
-    this.textValidationError = 'Error: Input must be in blocks of 3 lines (name, sequence, brackets).';
-    this.isTextValid = false;
-    this.emitInvalid();
-    return;
-  }
-
-  const openClosePairs: { [key: string]: string } = { '(': ')', '[': ']', '{': '}' };
-  const allowedBrackets = /^[()\[\]\{\}\.]+$/;
-  const closingBrackets = Object.values(openClosePairs);
-  const bracketPairs: [string, string][] = [['(', ')'], ['[', ']'], ['{', '}']];
-  for (let i = 0; i < lines.length; i += 3) {
-    const name = lines[i];
-    const brackets = lines[i + 2];
-    const letters = lines[i + 1];
-
-    if (!name || !brackets || !letters) {
-      this.textValidationError += `Block starting at line ${i + 2} is incomplete.\n`;
-      continue;
+    if (lines.length % 3 !== 0) {
+      this.textValidationError = 'Error: Input must be in blocks of 3 lines (name, sequence, brackets).';
+      this.isTextValid = false;
+      this.emitInvalid();
+      return;
     }
 
-    if (!allowedBrackets.test(brackets)) {
-      this.textValidationError += `Line ${i + 1} contains invalid characters.\n`;
-    }
-
-    if (brackets.length !== letters.length) {
-      this.textValidationError += `Line ${i + 2} and ${i + 3} must be the same length.\n`;
-    }
-    //ensure that lettes are valid characters (A, U, C, G)
-    if (!/^[AUCG]+$/.test(letters)) {
-      this.textValidationError += `Line ${i + 1} contains invalid characters. Only A, U, C, G are allowed.\n`;
-    }
-        // ✅ Count each type of bracket
-    for (const [open, close] of bracketPairs) {
-      const openCount = (brackets.match(new RegExp(`\\${open}`, 'g')) || []).length;
-      const closeCount = (brackets.match(new RegExp(`\\${close}`, 'g')) || []).length;
-
-      if (openCount !== closeCount) {
-        if(openCount > closeCount) {
-          this.textValidationError += `Lacking '${close}' bracket in line ${i + 2}.\n`;
-        } else {
-          this.textValidationError += `Lacking '${open}' bracket in line ${i + 2}.\n`;
+    const openClosePairs: { [key: string]: string } = { '(': ')', '[': ']', '{': '}' };
+    const allowedBrackets = /^[()[\]{}.]+$/;
+    // const closingBrackets = Object.values(openClosePairs);
+    const bracketPairs: [string, string][] = [['(', ')'], ['[', ']'], ['{', '}']];
+    for (let i = 0; i < lines.length; i += 3) {
+      const name = lines[i];
+      const brackets = lines[i + 2];
+      const letters = lines[i + 1];
+      let shouldSkip = false;
+      if (!name || !brackets || !letters) {
+        this.textValidationError += `Block starting at line ${i + 2} is incomplete.\n`;
+        shouldSkip = true;
+      }
+      // added this because continue is forbidden by tslint
+      if(!shouldSkip){
+        if (!allowedBrackets.test(brackets)) {
+          this.textValidationError += `Line ${i + 1} contains invalid characters.\n`;
         }
+
+        if (brackets.length !== letters.length) {
+          this.textValidationError += `Line ${i + 2} and ${i + 3} must be the same length.\n`;
+        }
+        // ensure that lettes are valid characters (A, U, C, G)
+        if (!/^[AUCG]+$/.test(letters)) {
+          this.textValidationError += `Line ${i + 1} contains invalid characters. Only A, U, C, G are allowed.\n`;
+        }
+        bracketPairs.forEach(([open, close]) => {
+          const openCount = (brackets.match(new RegExp(`\\${open}`, 'g')) || []).length;
+          const closeCount = (brackets.match(new RegExp(`\\${close}`, 'g')) || []).length;
+
+          if (openCount !== closeCount) {
+            if (openCount > closeCount) {
+              this.textValidationError += `Lacking '${close}' bracket in line ${i + 2}.\n`;
+            } else {
+              this.textValidationError += `Lacking '${open}' bracket in line ${i + 2}.\n`;
+            }
+          }
+        });
       }
     }
-  }
 
-  if (this.textValidationError) {
-    this.isTextValid = false;
-    this.emitInvalid();
-  } else {
-    this.isTextValid = true;
-    this.uploadChange.emit({
-      type: UploadMethodType.FromLocalFile,
-      data: this.dotBracketText,
-      valid: true
-    });
-  }
-  this.notifyChanges();
+    if (this.textValidationError) {
+      this.isTextValid = false;
+      this.emitInvalid();
+    } else {
+      this.isTextValid = true;
+      this.uploadChange.emit({
+        type: UploadMethodType.FromLocalFile,
+        data: this.dotBracketText,
+        valid: true,
+      });
+    }
+    this.notifyChanges();
 }
 
 private emitInvalid(): void {
   this.uploadChange.emit({
     type: UploadMethodType.FromLocalFile,
     data: null,
-    valid: false
+    valid: false,
   });
 }
 
@@ -220,9 +220,6 @@ private emitInvalid(): void {
         payload.type = UploadMethodType.FromDotBracket;
         payload.data = this.dotBracketText;
         payload.valid = this.isTextValid === true;
-        //write the payload to console for debugging
-        console.log('Dot-bracket payload:', payload);
-
         if (!payload.valid) {
           this.textValidationError += 'Invalid dot-bracket text input.\n';
         }

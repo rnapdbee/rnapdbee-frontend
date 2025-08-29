@@ -3,8 +3,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 import { CalculationType } from 'src/app/shared/models/calculation/calculation-type.enum';
-import { HomeComponent } from './home.component';
 import { ActivatedRoute } from '@angular/router';
+import { HomeComponent } from './home.component';
+
 
 const tertiaryToDBNInputForm = 'app-tertiary-to-dbn-input-form';
 const secondaryToDBNInputForm = 'app-secondary-to-dbn-input-form';

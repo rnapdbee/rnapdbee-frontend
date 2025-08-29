@@ -62,9 +62,9 @@ export class SecondaryUploadFormComponent implements OnInit {
       return;
     }
 
-    const openClosePairs: { [key: string]: string } = { '(': ')', '[': ']', '{': '}' };
+
+
     const allowedBrackets = /^[()[\]{}.]+$/;
-    // const closingBrackets = Object.values(openClosePairs);
     const bracketPairs: [string, string][] = [['(', ')'], ['[', ']'], ['{', '}']];
     for (let i = 0; i < lines.length; i += 3) {
       const name = lines[i];
@@ -76,7 +76,7 @@ export class SecondaryUploadFormComponent implements OnInit {
         shouldSkip = true;
       }
       // added this because continue is forbidden by tslint
-      if(!shouldSkip){
+      if (!shouldSkip) {
         if (!allowedBrackets.test(brackets)) {
           this.textValidationError += `Line ${i + 1} contains invalid characters.\n`;
         }
@@ -115,15 +115,15 @@ export class SecondaryUploadFormComponent implements OnInit {
       });
     }
     this.notifyChanges();
-}
+  }
 
-private emitInvalid(): void {
-  this.uploadChange.emit({
-    type: UploadMethodType.FromLocalFile,
-    data: null,
-    valid: false,
-  });
-}
+  private emitInvalid(): void {
+    this.uploadChange.emit({
+      type: UploadMethodType.FromLocalFile,
+      data: null,
+      valid: false,
+    });
+  }
 
   constructor(private readonly fileValidatorService: FileValidatorService) { }
 

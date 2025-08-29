@@ -13,7 +13,7 @@ export class HomeComponent {
   CalculationType: typeof CalculationType = CalculationType;
   calculationType = CalculationType.TertiaryToDBN;
   loading = false;
-  //informs if different settings are to be toggled
+  // informs if different settings are to be toggled
   isTestLayout = false;
 
   constructor(
@@ -25,7 +25,7 @@ export class HomeComponent {
     this.loadingService.loading$.subscribe(data => {
       this.loading = data;
     });
-  
+
     // Access route data
     this.route.data.subscribe(data => {
       const d = data as { isTestLayout?: boolean };

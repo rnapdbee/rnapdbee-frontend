@@ -1,4 +1,4 @@
-import { Component, Input  } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { InputFormComponent } from 'src/app/shared/components/input-form/input-form.component';
 import { TertiaryOutput } from 'src/app/shared/models/output/tertiary-output.model';

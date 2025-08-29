@@ -23,7 +23,7 @@ export class TertiaryToDBNInputFormComponent extends InputFormComponent<Tertiary
     private readonly descriptionService: DescriptionService,
   ) {
     super(router, snackBar, calculationService, loadingService, 'results/3d');
-  }
+}
 
   onLoadingStart() {
     if (this.params) {

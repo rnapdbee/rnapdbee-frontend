@@ -62,8 +62,6 @@ export class SecondaryUploadFormComponent implements OnInit {
       return;
     }
 
-
-
     const allowedBrackets = /^[()[\]{}.]+$/;
     const bracketPairs: [string, string][] = [['(', ')'], ['[', ']'], ['{', '}']];
     for (let i = 0; i < lines.length; i += 3) {

@@ -1,8 +1,11 @@
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { of } from 'rxjs';
 import { CalculationType } from 'src/app/shared/models/calculation/calculation-type.enum';
+import { ActivatedRoute } from '@angular/router';
 import { HomeComponent } from './home.component';
+
 
 const tertiaryToDBNInputForm = 'app-tertiary-to-dbn-input-form';
 const secondaryToDBNInputForm = 'app-secondary-to-dbn-input-form';
@@ -16,6 +19,15 @@ describe('HomeComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HomeComponent],
+      providers: [
+        // ...other providers...
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            data: of({ isTestLayout: false }),
+          },
+        },
+      ],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 

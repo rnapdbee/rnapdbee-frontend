@@ -13,8 +13,7 @@ export class HomeComponent {
   CalculationType: typeof CalculationType = CalculationType;
   calculationType = CalculationType.TertiaryToDBN;
   loading = false;
-  // informs if different settings are to be toggled
-  isTestLayout = false;
+  minimalView = false; // <-- renamed variable
 
   constructor(
     private readonly loadingService: RequestLoadingService,
@@ -26,10 +25,9 @@ export class HomeComponent {
       this.loading = data;
     });
 
-    // Access route data
-    this.route.data.subscribe(data => {
-      const d = data as { isTestLayout?: boolean };
-      this.isTestLayout = !!d.isTestLayout;
+    // Read minimalView from query params
+    this.route.queryParamMap.subscribe(params => {
+      this.minimalView = params.get('minimalView') === 'true';
     });
   }
 

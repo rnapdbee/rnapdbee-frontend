@@ -24,7 +24,7 @@ describe('HomeComponent', () => {
           provide: ActivatedRoute,
           useValue: {
             queryParamMap: of({
-              get: (key: string) => key === 'minimalView' ? 'false' : null,
+              get: (key: string) => (key === 'minimalView' ? 'false' : null),
             }),
           },
         },

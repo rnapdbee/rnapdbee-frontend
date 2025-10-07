@@ -24,7 +24,9 @@ describe('HomeComponent', () => {
           provide: ActivatedRoute,
           useValue: {
             queryParamMap: of({
-              get: (key: string) => key === 'minimalView' ? 'false' : null,
+              get: (key: string) => {
+                return key === 'minimalView' ? 'false' : null;
+              },
             }),
           },
         },
@@ -34,7 +36,7 @@ describe('HomeComponent', () => {
 
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
-    debugElement = fixture.debugElement;
+    ({ debugElement } = fixture); // use object destructuring
     fixture.detectChanges();
   });
 

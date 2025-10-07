@@ -20,11 +20,12 @@ describe('HomeComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [HomeComponent],
       providers: [
-        // ...other providers...
         {
           provide: ActivatedRoute,
           useValue: {
-            data: of({ isTestLayout: false }),
+            queryParamMap: of({
+              get: (key: string) => key === 'minimalView' ? 'false' : null,
+            }),
           },
         },
       ],
@@ -33,7 +34,7 @@ describe('HomeComponent', () => {
 
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
-    ({ debugElement } = fixture);
+    debugElement = fixture.debugElement;
     fixture.detectChanges();
   });
 

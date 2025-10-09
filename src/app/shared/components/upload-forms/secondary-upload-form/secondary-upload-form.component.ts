@@ -51,6 +51,8 @@ export class SecondaryUploadFormComponent implements OnInit {
   // Method to validate structured text input
 
   validateStructuredText(): void {
+    // Normalize ellipsis to three dots
+    this.dotBracketText = this.dotBracketText.replace(/…/g, '...');
     const lines = this.dotBracketText?.split('\n').map(l => l.trim()) || [];
     this.textValidationError = '';
     this.isTextValid = null;

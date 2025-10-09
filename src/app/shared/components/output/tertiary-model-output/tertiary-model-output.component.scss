@@ -3,6 +3,8 @@
 :host {
   .container {
     display: flex;
+    flex-direction: row; // side-by-side for very wide screens
+    gap: 1rem;
 
     .data-panel {
       display: flex;
@@ -20,12 +22,19 @@
       padding-left: 1rem;
     }
 
-    @include mobile {
+    // Responsive: stack panels vertically on screens <= 1600px
+    @media (max-width: 1600px) {
       flex-direction: column;
 
       .data-panel {
         padding: 0;
+        margin-left: 0;
         border: none;
+        padding-bottom: 1rem;
+      }
+
+      .image-panel {
+        padding-left: 0;
       }
     }
   }

@@ -42,7 +42,7 @@ export abstract class CalculationRequestService<P extends Params, O> {
     return this.http.post<Calculation<P, O>>(`${this.url}/pdb/${id}`, null, { params }).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 413) {
-          this.snackBar.error('Request entity is too large. The file size should not exceed 10MB.');
+          this.snackBar.error('Request entity is too large.');
         }
         return throwError(() => error);
       }),
@@ -56,7 +56,7 @@ export abstract class CalculationRequestService<P extends Params, O> {
       mergeMap(data => this.http.post<Calculation<P, O>>(this.url, data, { params, headers })),
       catchError((error: unknown) => {
         if (error instanceof HttpErrorResponse && error.status === 413) {
-          this.snackBar.error('Request entity is too large. The file size should not exceed 10MB.');
+          this.snackBar.error('Request entity is too large.');
         }
         return throwError(() => error);
       }),
@@ -70,7 +70,7 @@ export abstract class CalculationRequestService<P extends Params, O> {
       mergeMap(data => this.http.post<Calculation<P, O>>(this.url, data, { params, headers })),
       catchError((error: HttpErrorResponse) => {
         if (error.status === 413) {
-          this.snackBar.error('Request entity is too large. The file size should not exceed 10MB.');
+          this.snackBar.error('Request entity is too large.');
         }
         return throwError(() => error);
       }),
@@ -86,7 +86,7 @@ export abstract class CalculationRequestService<P extends Params, O> {
     return this.http.post<Calculation<P, O>>(`${this.url}/${id}`, null, { params }).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 413) {
-          this.snackBar.error('Request entity is too large. The file size should not exceed 10MB.');
+          this.snackBar.error('Request entity is too large.');
         }
         return throwError(() => error);
       }),

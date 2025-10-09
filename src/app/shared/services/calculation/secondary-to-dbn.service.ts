@@ -8,6 +8,7 @@ import { SecondaryToDbnParams } from '../../models/params/secondary-to-dbn-param
 import { Example } from '../../models/upload/example.model';
 import { UploadMethod, UploadMethodType } from '../../models/upload/upload-type.model';
 import { FileReaderService } from '../file-validator/file-reader.service';
+import { SnackBarService } from '../notifications/snack-bar.service';
 import { CalculationRequestService } from './calculation-request.service';
 
 
@@ -15,8 +16,8 @@ import { CalculationRequestService } from './calculation-request.service';
   providedIn: 'root',
 })
 export class SecondaryToDbnService extends CalculationRequestService<SecondaryToDbnParams, SecondaryOutput> {
-  constructor(http: HttpClient, fileReader: FileReaderService) {
-    super(http, fileReader, ApiPaths.Secondary);
+  constructor(http: HttpClient, fileReader: FileReaderService, snackBar: SnackBarService) {
+    super(http, fileReader, snackBar, ApiPaths.Secondary);
   }
 
   performCalculationBasedOnContent(params: SecondaryToDbnParams, content: UploadMethod)

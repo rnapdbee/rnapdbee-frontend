@@ -1,6 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { of, throwError } from 'rxjs';
 import { ApiPaths } from 'src/environments/environment';
 import { Calculation } from '../../models/calculation/calculation.model';
@@ -70,6 +71,7 @@ describe('SecondaryToDbnService', () => {
       providers: [
         SecondaryToDbnService,
         { provide: FileReaderService, useValue: fileReaderSpy },
+        { provide: MatSnackBar, useValue: {} },
       ],
     });
     service = TestBed.inject(SecondaryToDbnService);

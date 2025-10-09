@@ -8,14 +8,15 @@ import { TertiaryToMultiParams } from '../../models/params/tertiary-to-multi-par
 import { Example } from '../../models/upload/example.model';
 import { UploadMethod, UploadMethodType } from '../../models/upload/upload-type.model';
 import { FileReaderService } from '../file-validator/file-reader.service';
+import { SnackBarService } from '../notifications/snack-bar.service';
 import { CalculationRequestService } from './calculation-request.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TertiaryToMultiService extends CalculationRequestService<TertiaryToMultiParams, MultiOutput> {
-  constructor(http: HttpClient, fileReader: FileReaderService) {
-    super(http, fileReader, ApiPaths.Multi);
+  constructor(http: HttpClient, fileReader: FileReaderService, snackBar: SnackBarService) {
+    super(http, fileReader, snackBar, ApiPaths.Multi);
   }
 
   performCalculationBasedOnContent(params: TertiaryToMultiParams, content: UploadMethod)

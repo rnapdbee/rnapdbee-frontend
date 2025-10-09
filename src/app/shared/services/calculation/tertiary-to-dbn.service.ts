@@ -8,14 +8,15 @@ import { TertiaryToDbnParams } from '../../models/params/tertiary-to-dbn-params.
 import { Example } from '../../models/upload/example.model';
 import { UploadMethod, UploadMethodType } from '../../models/upload/upload-type.model';
 import { FileReaderService } from '../file-validator/file-reader.service';
+import { SnackBarService } from '../notifications/snack-bar.service';
 import { CalculationRequestService } from './calculation-request.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TertiaryToDbnService extends CalculationRequestService<TertiaryToDbnParams, TertiaryOutput> {
-  constructor(http: HttpClient, fileReader: FileReaderService) {
-    super(http, fileReader, ApiPaths.Tertiary);
+  constructor(http: HttpClient, fileReader: FileReaderService, snackBar: SnackBarService) {
+    super(http, fileReader, snackBar, ApiPaths.Tertiary);
   }
 
   performCalculationBasedOnContent(params: TertiaryToDbnParams, content: UploadMethod)

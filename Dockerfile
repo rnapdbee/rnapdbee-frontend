@@ -1,8 +1,8 @@
 ARG NODE_VERSION=16-alpine
 ARG NGINX_VERSION=1.21-alpine
-ARG BUILD_CONF=development
 
 FROM node:${NODE_VERSION} AS build
+ARG BUILD_CONF=development
 WORKDIR /app
 COPY ./ ./
 RUN npm install

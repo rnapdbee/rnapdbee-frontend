@@ -22,6 +22,7 @@ export interface TertiaryModel {
   modelNumber: number,
   output2D: SecondaryOutput,
   messages: string[],
+  Multiplets: string[],
   canonicalInteractions: TertiaryInteractions[],
   nonCanonicalInteractions: TertiaryInteractions[],
   interStrandInteractions: TertiaryInteractions[],

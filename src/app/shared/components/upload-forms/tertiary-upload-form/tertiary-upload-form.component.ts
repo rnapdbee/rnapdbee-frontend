@@ -89,14 +89,15 @@ export class TertiaryUploadFormComponent implements OnInit {
 
   private setAndValidatePdbId(value: string): void {
     const pdbRegExp = /^[a-zA-Z0-9]{4}$/;
+    const pdbRegExpLong = /^[a-zA-Z0-9_]{12}$/;
     this._pdbId = value;
 
-    if (value.match(pdbRegExp)) {
+    if (value.match(pdbRegExp) || value.match(pdbRegExpLong)) {
       this.pdbIdError = null;
     } else if (value === '') {
       this.pdbIdError = '';
     } else {
-      this.pdbIdError = 'PDB ID must contain of 4 characters (letters or digits)';
+      this.pdbIdError = 'PDB ID must consist of 4 or 12 characters (letters or digits)';
     }
 
     this.notifyChanges();

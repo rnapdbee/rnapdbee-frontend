@@ -17,12 +17,18 @@ export interface TertiaryInteractions {
   rightResidue: Residue,
   stackingTopology?: string,
 }
+export interface Triples {
+  residue: Residue,
+  firstPartner: Residue,
+  secondPartner: Residue,
+  type: string,
+}
 
 export interface TertiaryModel {
   modelNumber: number,
   output2D: SecondaryOutput,
   messages: string[],
-  Multiplets: string[],
+  baseTriples : Triples[], 
   canonicalInteractions: TertiaryInteractions[],
   nonCanonicalInteractions: TertiaryInteractions[],
   interStrandInteractions: TertiaryInteractions[],

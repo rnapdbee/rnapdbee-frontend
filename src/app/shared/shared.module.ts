@@ -50,6 +50,7 @@ import { SecondaryUploadFormComponent } from './components/upload-forms/secondar
 import { TertiaryUploadFormComponent } from './components/upload-forms/tertiary-upload-form/tertiary-upload-form.component';
 import { VarnaLegendComponent } from './components/varna-legend/varna-legend.component';
 import { WeblogoLegendComponent } from './components/weblogo-legend/weblogo-legend.component';
+import { TriplesTableComponent } from './components/output/triples-table/triples-table.component';
 
 const COMPONENTS = [
   CalculationLoadingComponent,
@@ -83,6 +84,7 @@ const COMPONENTS = [
   MultiResultComponent,
   VarnaLegendComponent,
   WeblogoLegendComponent,
+  TriplesTableComponent,
 ];
 
 const MODULES = [

@@ -19,7 +19,7 @@ export class TertiaryModelSelect extends SelectObject<TertiaryModelSelectFields>
     super({
       output2D: new SecondaryResultSelect(),
       messages: new SelectField(false),
-      Multiplets: new SelectField(false),
+      baseTriples : new SelectField(false),
       canonicalInteractions: new SelectField(false),
       nonCanonicalInteractions: new SelectField(false),
       interStrandInteractions: new SelectField(false),

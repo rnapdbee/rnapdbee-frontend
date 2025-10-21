@@ -1,0 +1,21 @@
+.triples-table {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    th, td {
+      padding: 0.4rem 0.6rem;
+      border: 1px solid rgba(0,0,0,0.08);
+      text-align: left;
+      vertical-align: top;
+      word-break: break-word;
+    }
+    thead {
+      background: rgba(0,0,0,0.04);
+      th { font-weight: 600; }
+    }
+  }
+  .no-triples {
+    padding: 0.5rem;
+    color: #666;
+  }
+}

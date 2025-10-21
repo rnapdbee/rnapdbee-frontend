@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { Calculation } from 'src/app/shared/models/calculation/calculation.model';
 import { DrawingResult, SecondaryOutput } from 'src/app/shared/models/output/secondary-output.model';
-import { Residue, TertiaryInteractions, TertiaryOutput } from 'src/app/shared/models/output/tertiary-output.model';
+import { Residue, TertiaryInteractions, Triples, TertiaryOutput } from 'src/app/shared/models/output/tertiary-output.model';
 import { TertiaryToDbnParams } from 'src/app/shared/models/params/tertiary-to-dbn-params.model';
 import { TertiarySelect } from 'src/app/shared/models/select/tertiary-select.model';
 import { TertiaryToDbnResultsComponent } from './tertiary-to-dbn-results.component';
@@ -61,6 +61,15 @@ const mockInteractions: TertiaryInteractions[] = [
   },
 ];
 
+const mockTriples: Triples[] = [
+  {
+    residue: mockResidue,
+    type: '',
+    firstPartner: mockResidue,
+    secondPartner: mockResidue,
+  },
+];
+
 const mockResponse: Calculation<TertiaryToDbnParams, TertiaryOutput> = {
   id: mockUuid,
   filename,
@@ -73,6 +82,7 @@ const mockResponse: Calculation<TertiaryToDbnParams, TertiaryOutput> = {
             modelNumber: 1,
             output2D: mock2DOutput,
             messages: [],
+            baseTriples: mockTriples,
             canonicalInteractions: mockInteractions,
             nonCanonicalInteractions: mockInteractions,
             interStrandInteractions: mockInteractions,

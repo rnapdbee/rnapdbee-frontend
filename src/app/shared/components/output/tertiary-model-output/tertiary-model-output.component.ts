@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { TertiaryModel } from 'src/app/shared/models/output/tertiary-output.model';
 import { TertiaryModelSelect } from 'src/app/shared/models/select/tertiary-model-select.model';
 import { ControlValueComponent, ControlValueProvider } from '../../control-value/control-value.component';
+import { TertiaryInteractions, Triples } from 'src/app/shared/models/output/tertiary-output.model';
 
 @Component({
   selector: 'app-tertiary-model-output[model]',
@@ -20,16 +21,31 @@ export class TertiaryModelOutputComponent extends ControlValueComponent<Tertiary
   }
   get model() { return this._model; }
   messagesText = '';
-  multipletsText = '';
+  baseTriplesText = '';
 
   constructor() { super(new TertiaryModelSelect()); }
 
   generateOutputTexts(model: TertiaryModel) {
     this.messagesText = model.messages.join('\n');
-    this.multipletsText = model.Multiplets.join('\n');
+    this.baseTriplesText = model.baseTriples.join('\n');
   }
 
-  onMultipletsChange(): void { // Only for debugging
+  onBaseTriplesChange(): void { // Only for debugging
     console.log('value:', this.value);
+  }
+
+  // adapter: expose baseTriples as TertiaryInteractions[] for the existing interactions component
+  get baseTriplesAsInteractions(): TertiaryInteractions[] {
+    const triples: Triples[] = this.model?.baseTriples ?? [];
+    return triples.map(t => ({
+      interactionType: t.type ?? '',
+      saenger: '',
+      leontisWesthof: '',
+      bPh: undefined,
+      br: undefined,
+      leftResidue: t.residue,
+      rightResidue: t.firstPartner,
+      stackingTopology: undefined,
+    }));
   }
 }

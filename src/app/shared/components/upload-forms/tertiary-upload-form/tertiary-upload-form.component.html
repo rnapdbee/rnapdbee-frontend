@@ -6,7 +6,7 @@
       [checked]="currentUploadType === UploadType.FromPDB">
 
         <div inline class="pdbid-input">
-          <input maxlength="4" type="text" [(ngModel)]="pdbId" name="pdbId" placeholder="4 character PDB ID">
+          <input maxlength="12" type="text" [(ngModel)]="pdbId" name="pdbId" placeholder="4 or 12 character PDB ID">
           <mat-icon *ngIf="pdbId" (click)="clearPdbIdInput()">close</mat-icon>
           <span class="pdbid-error">{{ pdbIdError }}</span>
         </div>

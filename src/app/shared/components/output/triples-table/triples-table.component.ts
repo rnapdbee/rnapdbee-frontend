@@ -58,13 +58,21 @@ export class TriplesTableComponent implements OnChanges, AfterViewInit {
   };
 
   ngOnChanges(changes: SimpleChanges): void {
-    if ((changes as SimpleChanges & { triples?: SimpleChange }).triples){
+    if ((changes as SimpleChanges & { triples?: SimpleChange }).triples) {
       this.dataSource.data = this.triples ?? [];
-
-      this.dataSource.filterPredicate = (data: Triples, filter: string): boolean =>this.displayedColumns.some(col =>(this.tripleColumns[col].cell(data) || '').toLowerCase().includes(filter),);
-
+      // use a named method instead of a long inline arrow to satisfy max-len/arrow rules
+      this.dataSource.filterPredicate = this.tripleFilterPredicate.bind(this);
       this.applyFilter(this.filterValue);
     }
+  }
+
+  // helper moved out as a method to keep lines short and linter-friendly
+  private tripleFilterPredicate(data: Triples, filter: string): boolean {
+    const f = filter ?? '';
+    return this.displayedColumns.some(col => {
+      const cell = this.tripleColumns[col].cell(data) || '';
+      return cell.toLowerCase().includes(f);
+    });
   }
 
   ngAfterViewInit(): void {
@@ -88,17 +96,17 @@ export class TriplesTableComponent implements OnChanges, AfterViewInit {
     }
     const residue = obj as Partial<Residue>;
     return (
-      typeof residue.chainIdentifier === 'string' 
-      &&(typeof residue.residueNumber === 'number' 
-      ||typeof residue.residueNumber === 'string') 
-      &&typeof residue.oneLetterName === 'string'
+      typeof residue.chainIdentifier === 'string'
+      && (typeof residue.residueNumber === 'number'
+      || typeof residue.residueNumber === 'string')
+      && typeof residue.oneLetterName === 'string'
     );
   }
 
   private formatResidue(r: unknown): string {
     if (!r) {
       return '';
-    } 
+    }
 
     if (this.isResidue(r)) {
       const chain = r.chainIdentifier ?? '';

@@ -75,6 +75,7 @@ const mockResponse: Calculation<TertiaryToDbnParams, TertiaryOutput> = {
             modelNumber: 1,
             output2D: mock2DOutput,
             messages: [],
+            baseTriples: [],
             canonicalInteractions: mockInteractions,
             nonCanonicalInteractions: mockInteractions,
             interStrandInteractions: mockInteractions,

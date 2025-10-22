@@ -3,6 +3,7 @@ import {
   Component,
   Input,
   OnChanges,
+  SimpleChange,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
@@ -37,36 +38,30 @@ export class TriplesTableComponent implements OnChanges, AfterViewInit {
   tripleColumns: Record<
     keyof Triples,
     { header: string; cell: (t: Triples) => string }
-  > = {
-    residue: {
-      header: 'Residue',
-      cell: t => this.formatResidue(t.residue),
-    },
-    type: {
-      header: 'Type',
-      cell: t => t.type ?? '',
-    },
-    firstPartner: {
-      header: 'First Partner',
-      cell: t => this.formatResidue(t.firstPartner),
-    },
-    secondPartner: {
-      header: 'Second Partner',
-      cell: t => this.formatResidue(t.secondPartner),
-    },
+    > = {
+      residue: {
+        header: 'Residue',
+        cell: t => this.formatResidue(t.residue),
+      },
+      type: {
+        header: 'Type',
+        cell: t => t.type ?? '',
+      },
+      firstPartner: {
+        header: 'First Partner',
+        cell: t => this.formatResidue(t.firstPartner),
+      },
+      secondPartner: {
+        header: 'Second Partner',
+        cell: t => this.formatResidue(t.secondPartner),
+      },
   };
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['triples']) {
+    if ((changes as SimpleChanges & { triples?: SimpleChange }).triples){
       this.dataSource.data = this.triples ?? [];
 
-      this.dataSource.filterPredicate = (data: Triples, filter: string): boolean =>
-        this.displayedColumns.some(
-          col =>
-            (this.tripleColumns[col].cell(data) || '')
-              .toLowerCase()
-              .includes(filter),
-        );
+      this.dataSource.filterPredicate = (data: Triples, filter: string): boolean =>this.displayedColumns.some(col =>(this.tripleColumns[col].cell(data) || '').toLowerCase().includes(filter),);
 
       this.applyFilter(this.filterValue);
     }
@@ -88,18 +83,22 @@ export class TriplesTableComponent implements OnChanges, AfterViewInit {
   }
 
   private isResidue(obj: unknown): obj is Residue {
-    if (!obj || typeof obj !== 'object') return false;
+    if (!obj || typeof obj !== 'object') {
+      return false;
+    }
     const residue = obj as Partial<Residue>;
     return (
-      typeof residue.chainIdentifier === 'string' &&
-      (typeof residue.residueNumber === 'number' ||
-        typeof residue.residueNumber === 'string') &&
-      typeof residue.oneLetterName === 'string'
+      typeof residue.chainIdentifier === 'string' 
+      &&(typeof residue.residueNumber === 'number' 
+      ||typeof residue.residueNumber === 'string') 
+      &&typeof residue.oneLetterName === 'string'
     );
   }
 
   private formatResidue(r: unknown): string {
-    if (!r) return '';
+    if (!r) {
+      return '';
+    } 
 
     if (this.isResidue(r)) {
       const chain = r.chainIdentifier ?? '';

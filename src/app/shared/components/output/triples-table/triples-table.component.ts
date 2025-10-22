@@ -55,7 +55,7 @@ export class TriplesTableComponent implements OnChanges, AfterViewInit {
         header: 'Second Partner',
         cell: t => this.formatResidue(t.secondPartner),
       },
-  };
+    };
 
   ngOnChanges(changes: SimpleChanges): void {
     if ((changes as SimpleChanges & { triples?: SimpleChange }).triples) {

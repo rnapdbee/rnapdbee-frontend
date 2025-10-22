@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { TertiaryModel } from 'src/app/shared/models/output/tertiary-output.model';
 import { TertiaryModelSelect } from 'src/app/shared/models/select/tertiary-model-select.model';
-import { ControlValueComponent, ControlValueProvider } from '../../control-value/control-value.component';
 import { TertiaryInteractions, Triples } from 'src/app/shared/models/output/tertiary-output.model';
+import { ControlValueComponent, ControlValueProvider } from '../../control-value/control-value.component';
 
 @Component({
   selector: 'app-tertiary-model-output[model]',

@@ -1,4 +1,11 @@
-import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Triples, Residue } from 'src/app/shared/models/output/tertiary-output.model';
@@ -17,26 +24,50 @@ export class TriplesTableComponent implements OnChanges, AfterViewInit {
   filterValue = '';
   open = true;
 
-  displayedColumns = ['residue', 'type', 'firstPartner', 'secondPartner'];
+  displayedColumns: (keyof Triples)[] = [
+    'residue',
+    'type',
+    'firstPartner',
+    'secondPartner',
+  ];
 
   dataSource = new MatTableDataSource<Triples>([]);
 
   // mapping for headers and cell renderers used by the template
-  tripleColumns: Record<string, { header: string; cell: (t: Triples) => string }> = {
-    residue: { header: 'Residue', cell: (t) => this.formatResidue((t as any).residue) },
-    type: { header: 'Type', cell: (t) => (t as any).type ?? '' },
-    firstPartner: { header: 'First Partner', cell: (t) => this.formatResidue((t as any).firstPartner) },
-    secondPartner: { header: 'Second Partner', cell: (t) => this.formatResidue((t as any).secondPartner) },
+  tripleColumns: Record<
+    keyof Triples,
+    { header: string; cell: (t: Triples) => string }
+  > = {
+    residue: {
+      header: 'Residue',
+      cell: t => this.formatResidue(t.residue),
+    },
+    type: {
+      header: 'Type',
+      cell: t => t.type ?? '',
+    },
+    firstPartner: {
+      header: 'First Partner',
+      cell: t => this.formatResidue(t.firstPartner),
+    },
+    secondPartner: {
+      header: 'Second Partner',
+      cell: t => this.formatResidue(t.secondPartner),
+    },
   };
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['triples']) {
       this.dataSource.data = this.triples ?? [];
-      // set predicate to search across displayed columns using the cell renderers
-      this.dataSource.filterPredicate = (data: Triples, filter: string) =>
-        this.displayedColumns.some(col =>
-          (this.tripleColumns[col].cell(data) || '').toLowerCase().includes(filter),
+
+      this.dataSource.filterPredicate = (data: Triples, filter: string): boolean =>
+        this.displayedColumns.some(
+          col =>
+            (this.tripleColumns[col].cell(data) || '')
+              .toLowerCase()
+              .includes(filter),
         );
+
       this.applyFilter(this.filterValue);
     }
   }
@@ -52,30 +83,41 @@ export class TriplesTableComponent implements OnChanges, AfterViewInit {
   }
 
   applyFilter(value: string): void {
-    this.filterValue = value ?? '';
-    this.dataSource.filter = this.filterValue.trim().toLowerCase();
+    this.filterValue = value?.trim().toLowerCase() ?? '';
+    this.dataSource.filter = this.filterValue;
   }
 
-  private isResidue(obj: any): obj is Residue {
+  private isResidue(obj: unknown): obj is Residue {
+    if (!obj || typeof obj !== 'object') return false;
+    const residue = obj as Partial<Residue>;
     return (
-      obj &&
-      typeof obj.chainIdentifier === 'string' &&
-      (typeof obj.residueNumber === 'number' || typeof obj.residueNumber === 'string') &&
-      typeof obj.oneLetterName === 'string'
+      typeof residue.chainIdentifier === 'string' &&
+      (typeof residue.residueNumber === 'number' ||
+        typeof residue.residueNumber === 'string') &&
+      typeof residue.oneLetterName === 'string'
     );
   }
 
-  private formatResidue(r: any): string {
+  private formatResidue(r: unknown): string {
     if (!r) return '';
+
     if (this.isResidue(r)) {
       const chain = r.chainIdentifier ?? '';
-      const name = r.oneLetterName ? String(r.oneLetterName).toUpperCase() : '';
+      const name = r.oneLetterName
+        ? String(r.oneLetterName).toUpperCase()
+        : '';
       const num = r.residueNumber ?? '';
       return `${chain}.${name}${num}`;
     }
-    // handle cases where residue is a string or simple value
-    if (typeof r === 'string' || typeof r === 'number') return String(r);
-    // fallback to JSON
-    try { return JSON.stringify(r); } catch { return String(r); }
+
+    if (typeof r === 'string' || typeof r === 'number') {
+      return String(r);
+    }
+
+    try {
+      return JSON.stringify(r);
+    } catch {
+      return String(r);
+    }
   }
 }

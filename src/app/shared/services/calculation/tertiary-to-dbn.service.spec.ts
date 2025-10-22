@@ -84,6 +84,7 @@ const mockResponse: Calculation<TertiaryToDbnParams, TertiaryOutput> = {
             stackingInteractions: mockInteractions,
             basePhosphateInteractions: mockInteractions,
             baseRiboseInteractions: mockInteractions,
+            baseTriples: []
           },
         ],
       },

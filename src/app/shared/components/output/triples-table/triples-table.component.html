@@ -7,23 +7,16 @@
         type="text"
         name="filter"
         placeholder="Search..."
-      >
-      <mat-icon *ngIf="filterValue" (click)="applyFilter('')">close</mat-icon>
+        aria-label="Search triples"
+      />
+      <mat-icon *ngIf="filterValue" (click)="applyFilter('')" class="clear-icon">close</mat-icon>
     </div>
 
     <div class="table-container">
-      <mat-table [dataSource]="dataSource" matSort>
-        <ng-container
-          *ngFor="let column of displayedColumns; first as isFirst"
-          [matColumnDef]="column"
-          [sticky]="isFirst"
-        >
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ tripleColumns[column].header }}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let element">
-            {{ tripleColumns[column].cell(element) }}
-          </mat-cell>
+      <mat-table [dataSource]="dataSource" matSort class="triples-mat-table">
+        <ng-container *ngFor="let column of displayedColumns; first as isFirst" [matColumnDef]="column" [sticky]="isFirst">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{ tripleColumns[column].header }} </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ tripleColumns[column].cell(element) }} </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>

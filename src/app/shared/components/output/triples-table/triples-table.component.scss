@@ -1,21 +1,84 @@
-.triples-table {
-  table {
+:host {
+  .triples-panel, app-checkbox {
     width: 100%;
-    border-collapse: collapse;
-    th, td {
-      padding: 0.4rem 0.6rem;
-      border: 1px solid rgba(0,0,0,0.08);
-      text-align: left;
-      vertical-align: top;
-      word-break: break-word;
+  }
+
+  .filter {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 0.5rem;
+
+    /* push the internal search area slightly away from the left edge */
+    padding-left: 10px;
+
+    input {
+      height: 36px;                 // match tertiary-interactions search height
+      padding: 0 12px 0 12px;      // keep internal input padding
+      border-radius: 4px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      width: 100%;
+      max-width: 200px;             // same max width as other tables' search
+      font-size: 13px;
+      line-height: 36px;
+      box-sizing: border-box;
     }
-    thead {
-      background: rgba(0,0,0,0.04);
-      th { font-weight: 600; }
+
+    .clear-icon {
+      cursor: pointer;
+      font-size: 20px;
+      color: rgba(0,0,0,0.54);
+      margin-left: -40px;           // visually overlay like tertiary-interactions
     }
   }
-  .no-triples {
-    padding: 0.5rem;
-    color: #666;
+
+  .table-container {
+    margin-top: 0.5rem;
+
+    .triples-mat-table {
+      width: 100%;
+
+      mat-header-row, mat-row {
+        min-height: 12px;          // match Material table row height used elsewhere
+      }
+
+      /* add left padding only to cell content (moves text inward without shifting layout) */
+      mat-header-cell, mat-cell {
+        padding: 10px 8px 10px 24px;        // added left padding for row text
+        vertical-align: middle;
+      }
+
+      thead.mat-header-row {
+        background: rgba(0,0,0,0.02);
+        font-weight: 600;
+      }
+    }
+
+    .no-data-row {
+      padding: 0.5rem 0;
+      color: #666;
+    }
+  }
+
+  .triples-table {
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      th, td {
+        padding: 0.4rem 0.6rem 0.4rem 1.2rem; /* increase left padding for table cells */
+        border: 1px solid rgba(0,0,0,0.08);
+        text-align: left;
+        vertical-align: top;
+        word-break: break-word;
+      }
+      thead {
+        background: rgba(0,0,0,0.04);
+        th { font-weight: 600; }
+      }
+    }
+    .no-triples {
+      padding: 0.5rem;
+      color: #666;
+    }
   }
 }

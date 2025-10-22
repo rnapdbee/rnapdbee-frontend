@@ -7,27 +7,28 @@
   </app-checkbox-indeterminate>
   <div class="container">
     <div class="data-panel">
-      <app-secondary-output [(ngModel)]="value.fields.output2D" [output]="model.output2D"></app-secondary-output>
       <app-checkbox label="Messages" [(ngModel)]="value.fields.messages">
         <app-text-area [text]="messagesText"></app-text-area>
       </app-checkbox>
-      <app-tertiary-interactions label="Canonical interactions" 
+      <app-secondary-output [(ngModel)]="value.fields.output2D" [output]="model.output2D"></app-secondary-output>
+      <app-triples-table [triples]="model.baseTriples"></app-triples-table>
+      <app-tertiary-interactions label="Canonical interactions"
         [(ngModel)]="value.fields.canonicalInteractions"
         [interactions]="model.canonicalInteractions">
       </app-tertiary-interactions>
-      <app-tertiary-interactions label="Non-canonical interactions" 
+      <app-tertiary-interactions label="Non-canonical interactions"
         [(ngModel)]="value.fields.nonCanonicalInteractions"
         [interactions]="model.nonCanonicalInteractions">
       </app-tertiary-interactions>
-      <app-tertiary-interactions label="Interstrand interactions" 
+      <app-tertiary-interactions label="Interstrand interactions"
         [(ngModel)]="value.fields.interStrandInteractions"
         [interactions]="model.interStrandInteractions">
       </app-tertiary-interactions>
-      <app-tertiary-interactions label="Stacking interactions" 
+      <app-tertiary-interactions label="Stacking interactions"
         [(ngModel)]="value.fields.stackingInteractions"
         [interactions]="model.stackingInteractions">
       </app-tertiary-interactions>
-      <app-tertiary-interactions label="Base-phosphate interactions" 
+      <app-tertiary-interactions label="Base-phosphate interactions"
         [(ngModel)]="value.fields.basePhosphateInteractions"
         [interactions]="model.basePhosphateInteractions">
       </app-tertiary-interactions>

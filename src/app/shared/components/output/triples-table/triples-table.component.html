@@ -1,0 +1,37 @@
+<ng-container *ngIf="triples && triples.length > 0">
+  <app-checkbox [(ngModel)]="open" [label]="label" [tableView]="true">
+    <div class="filter">
+      <input
+        [(ngModel)]="filterValue"
+        (ngModelChange)="applyFilter($event)"
+        type="text"
+        name="filter"
+        placeholder="Search..."
+        aria-label="Search triples"
+      />
+      <mat-icon *ngIf="filterValue" (click)="applyFilter('')" class="clear-icon">close</mat-icon>
+    </div>
+
+    <div class="table-container">
+      <mat-table [dataSource]="dataSource" matSort class="triples-mat-table">
+        <ng-container *ngFor="let column of displayedColumns; first as isFirst" [matColumnDef]="column" [sticky]="isFirst">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{ tripleColumns[column].header }} </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{ tripleColumns[column].cell(element) }} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+        <div class="no-data-row" *matNoDataRow>
+          <span *ngIf="filterValue; else noData">
+            No data matching the filter "{{ filterValue }}"
+          </span>
+          <ng-template #noData>No data to show</ng-template>
+        </div>
+      </mat-table>
+    </div>
+  </app-checkbox>
+</ng-container>
+<ng-template #empty>
+  <div class="no-triples">No triples available</div>
+</ng-template>

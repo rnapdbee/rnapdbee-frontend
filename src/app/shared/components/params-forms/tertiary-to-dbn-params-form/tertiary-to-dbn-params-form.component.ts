@@ -60,6 +60,6 @@ export class TertiaryToDbnParamsFormComponent implements OnInit {
   }
 
   private updateFormValues(params: TertiaryToDbnParams): void {
-    this.paramsForm.setValue(params);
+    this.paramsForm.patchValue(params);
   }
 }

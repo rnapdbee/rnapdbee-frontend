@@ -71,6 +71,7 @@ const mockResult: Result<TertiaryToDbnParams, TertiaryOutput> = {
         stackingInteractions: mockInteractions,
         basePhosphateInteractions: mockInteractions,
         baseRiboseInteractions: mockInteractions,
+        baseTriples: [],
       },
       {
         modelNumber: 2,
@@ -82,6 +83,7 @@ const mockResult: Result<TertiaryToDbnParams, TertiaryOutput> = {
         stackingInteractions: mockInteractions,
         basePhosphateInteractions: mockInteractions,
         baseRiboseInteractions: mockInteractions,
+        baseTriples: [],
       },
     ],
   },

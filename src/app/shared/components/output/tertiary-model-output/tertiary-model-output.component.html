@@ -11,13 +11,7 @@
         <app-text-area [text]="messagesText"></app-text-area>
       </app-checkbox>
       <app-secondary-output [(ngModel)]="value.fields.output2D" [output]="model.output2D"></app-secondary-output>
-      <app-checkbox
-        label="Base Triples"
-        [(ngModel)]="value.fields['baseTriples']"
-        [tableView]="true"
-      >
-        <app-triples-table [triples]="model.baseTriples"></app-triples-table>
-      </app-checkbox>
+      <app-triples-table [triples]="model.baseTriples"></app-triples-table>
       <app-tertiary-interactions label="Canonical interactions"
         [(ngModel)]="value.fields.canonicalInteractions"
         [interactions]="model.canonicalInteractions">

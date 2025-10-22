@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Triples, Residue } from 'src/app/shared/models/output/tertiary-output.model';
 
 @Component({
@@ -6,19 +8,52 @@ import { Triples, Residue } from 'src/app/shared/models/output/tertiary-output.m
   templateUrl: './triples-table.component.html',
   styleUrls: ['./triples-table.component.scss'],
 })
-export class TriplesTableComponent {
+export class TriplesTableComponent implements OnChanges, AfterViewInit {
   @Input() triples: Triples[] = [];
+  @Input() label = 'Base Triples';
 
-  // compute superset of keys across triples to handle varied objects
-  get columns(): string[] {
-    if (!this.triples || this.triples.length === 0) return [];
-    const keys = new Set<string>();
-    this.triples.forEach(t => Object.keys(t as any).forEach(k => keys.add(k)));
-    return Array.from(keys);
+  @ViewChild(MatSort) sort: MatSort | null = null;
+
+  filterValue = '';
+  open = true;
+
+  displayedColumns = ['residue', 'type', 'firstPartner', 'secondPartner'];
+
+  dataSource = new MatTableDataSource<Triples>([]);
+
+  // mapping for headers and cell renderers used by the template
+  tripleColumns: Record<string, { header: string; cell: (t: Triples) => string }> = {
+    residue: { header: 'Residue', cell: (t) => this.formatResidue((t as any).residue) },
+    type: { header: 'Type', cell: (t) => (t as any).type ?? '' },
+    firstPartner: { header: 'First Partner', cell: (t) => this.formatResidue((t as any).firstPartner) },
+    secondPartner: { header: 'Second Partner', cell: (t) => this.formatResidue((t as any).secondPartner) },
+  };
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['triples']) {
+      this.dataSource.data = this.triples ?? [];
+      // set predicate to search across displayed columns using the cell renderers
+      this.dataSource.filterPredicate = (data: Triples, filter: string) =>
+        this.displayedColumns.some(col =>
+          (this.tripleColumns[col].cell(data) || '').toLowerCase().includes(filter),
+        );
+      this.applyFilter(this.filterValue);
+    }
   }
 
-  trackByIndex(_: number) {
-    return _;
+  ngAfterViewInit(): void {
+    if (this.sort) {
+      this.dataSource.sort = this.sort;
+    }
+  }
+
+  toggle(): void {
+    this.open = !this.open;
+  }
+
+  applyFilter(value: string): void {
+    this.filterValue = value ?? '';
+    this.dataSource.filter = this.filterValue.trim().toLowerCase();
   }
 
   private isResidue(obj: any): obj is Residue {
@@ -30,36 +65,17 @@ export class TriplesTableComponent {
     );
   }
 
-  private formatResidue(r: Residue): string {
-    const letter = r.oneLetterName ? r.oneLetterName.toUpperCase() : '';
-    return `${letter} (${r.chainIdentifier}${r.residueNumber})`;
-  }
-
-  // helper to safely get a property by name (avoids `(t as any)[col]` in template)
-  cellValue(item: Triples, col: string): any {
-    return (item as unknown as Record<string, any>)[col];
-  }
-
-  formatValue(val: any): string {
-    if (val == null) return '';
-    if (Array.isArray(val)) {
-      // if array of residues, format each nicely
-      if (val.length > 0 && this.isResidue(val[0])) {
-        return val.map(v => this.formatResidue(v)).join(', ');
-      }
-      return val.map(v => this.formatValue(v)).join(', ');
+  private formatResidue(r: any): string {
+    if (!r) return '';
+    if (this.isResidue(r)) {
+      const chain = r.chainIdentifier ?? '';
+      const name = r.oneLetterName ? String(r.oneLetterName).toUpperCase() : '';
+      const num = r.residueNumber ?? '';
+      return `${chain}.${name}${num}`;
     }
-    if (this.isResidue(val)) {
-      return this.formatResidue(val);
-    }
-    if (typeof val === 'object') {
-      // try to detect nested residue-like objects inside
-      const keys = Object.keys(val);
-      if (keys.includes('oneLetterName') && keys.includes('chainIdentifier')) {
-        return this.formatResidue(val as Residue);
-      }
-      return JSON.stringify(val);
-    }
-    return String(val);
+    // handle cases where residue is a string or simple value
+    if (typeof r === 'string' || typeof r === 'number') return String(r);
+    // fallback to JSON
+    try { return JSON.stringify(r); } catch { return String(r); }
   }
 }

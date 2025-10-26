@@ -36,6 +36,10 @@ export const ANALYSIS_TOOL: Option[] = [
     key: 'MC_ANNOTATE',
     label: 'MC-Annotate',
   },
+  {
+    key: 'MAXIT',
+    label: 'MAXIT',
+  },
 ];
 
 export const NON_CANONICAL_HANDLING: Option[] = [

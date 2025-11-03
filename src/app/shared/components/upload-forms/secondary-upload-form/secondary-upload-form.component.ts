@@ -99,10 +99,10 @@ export class SecondaryUploadFormComponent implements OnInit {
       if (openCount !== closeCount) {
         if (openCount > closeCount) {
           this.textValidationError += `Lacking '${close}' bracket.\n`;
-          } else {
-            this.textValidationError += `Lacking '${open}' bracket .\n`;
-          }
+        } else {
+          this.textValidationError += `Lacking '${open}' bracket .\n`;
         }
+      }
     });
 
     if (this.textValidationError) {

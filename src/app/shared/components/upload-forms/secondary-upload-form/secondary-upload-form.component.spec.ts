@@ -7,7 +7,7 @@ import { of } from 'rxjs';
 import {
   SECONDARY_TO_DBN_BPSEQ_EXAMPLES,
   SECONDARY_TO_DBN_CT_EXAMPLES,
-  SECONDARY_TO_DBN_DBN_EXAMPLES,
+  // SECONDARY_TO_DBN_DBN_EXAMPLES,
 } from 'src/app/shared/constants/secondary-to-dbn-examples.const';
 import { Example } from 'src/app/shared/models/upload/example.model';
 import { UploadMethodType } from 'src/app/shared/models/upload/upload-type.model';
@@ -246,11 +246,11 @@ describe('SecondaryUploadFormComponent', () => {
     });
 
     describe('Dbn example type', () => {
-      //let mockExample: Example;
+      // let mockExample: Example;
 
       beforeEach(() => {
         component.onExampleTypeChange(ExampleType.DbnExample);
-        //mockExample = SECONDARY_TO_DBN_DBN_EXAMPLES[0];
+        // mockExample = SECONDARY_TO_DBN_DBN_EXAMPLES[0];
         spyOn(component.uploadChange, 'emit');
       });
 

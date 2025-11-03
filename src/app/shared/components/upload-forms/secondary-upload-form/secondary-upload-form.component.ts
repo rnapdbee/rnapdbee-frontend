@@ -64,11 +64,13 @@ export class SecondaryUploadFormComponent implements OnInit {
       return;
     }
 
-    const allowedBrackets = /^[()[\]{}.]+$/;
-    const bracketPairs: [string, string][] = [['(', ')'], ['[', ']'], ['{', '}']];
+    const allowedBrackets = /^[()[\]{}<>.-]+$/;
+    const bracketPairs: [string, string][] = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']];
+    let allBrackets = '';
     for (let i = 0; i < lines.length; i += 3) {
       const name = lines[i];
       const brackets = lines[i + 2];
+      allBrackets += brackets;
       const letters = lines[i + 1];
       let shouldSkip = false;
       if (!name || !brackets || !letters) {
@@ -85,23 +87,23 @@ export class SecondaryUploadFormComponent implements OnInit {
           this.textValidationError += `Line ${i + 2} and ${i + 3} must be the same length.\n`;
         }
         // ensure that lettes are valid characters (A, U, C, G)
-        if (!/^[AUCG]+$/.test(letters)) {
+        if (!/^[aucgAUCG]+$/.test(letters)) {
           this.textValidationError += `Line ${i + 1} contains invalid characters. Only A, U, C, G are allowed.\n`;
         }
-        bracketPairs.forEach(([open, close]) => {
-          const openCount = (brackets.match(new RegExp(`\\${open}`, 'g')) || []).length;
-          const closeCount = (brackets.match(new RegExp(`\\${close}`, 'g')) || []).length;
-
-          if (openCount !== closeCount) {
-            if (openCount > closeCount) {
-              this.textValidationError += `Lacking '${close}' bracket in line ${i + 2}.\n`;
-            } else {
-              this.textValidationError += `Lacking '${open}' bracket in line ${i + 2}.\n`;
-            }
-          }
-        });
       }
     }
+    bracketPairs.forEach(([open, close]) => {
+      const openCount = (allBrackets.match(new RegExp(`\\${open}`, 'g')) || []).length;
+      const closeCount = (allBrackets.match(new RegExp(`\\${close}`, 'g')) || []).length;
+
+      if (openCount !== closeCount) {
+        if (openCount > closeCount) {
+          this.textValidationError += `Lacking '${close}' bracket.\n`;
+        } else {
+          this.textValidationError += `Lacking '${open}' bracket .\n`;
+        }
+      }
+    });
 
     if (this.textValidationError) {
       this.isTextValid = false;
@@ -154,9 +156,26 @@ export class SecondaryUploadFormComponent implements OnInit {
     this.notifyChanges();
   }
 
+  // onDbnExampleSelect(event: Example): void {
+  //   this.dbnExample = event;
+  //   this.notifyChanges();
+  // }
+
   onDbnExampleSelect(event: Example): void {
-    this.dbnExample = event;
-    this.notifyChanges();
+    this.currentUploadType = this.UploadType.FromDotBracket;
+
+    fetch(event.path)
+      .then(r => r.text())
+      .then(rawTxt => {
+        // remove last empty line (and also trailing spaces)
+        const cleanedTxt = rawTxt.replace(/\s+$/, '');
+        this.dotBracketText = cleanedTxt;
+        this.validateStructuredText();
+        this.notifyChanges();
+      })
+      .catch(err => {
+        console.error('Failed to load DBN example file', err);
+      });
   }
 
   onExampleTypeChange(type: ExampleType): void {

@@ -246,11 +246,11 @@ describe('SecondaryUploadFormComponent', () => {
     });
 
     describe('Dbn example type', () => {
-      let mockExample: Example;
+      //let mockExample: Example;
 
       beforeEach(() => {
         component.onExampleTypeChange(ExampleType.DbnExample);
-        mockExample = SECONDARY_TO_DBN_DBN_EXAMPLES[0];
+        //mockExample = SECONDARY_TO_DBN_DBN_EXAMPLES[0];
         spyOn(component.uploadChange, 'emit');
       });
 

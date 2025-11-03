@@ -65,8 +65,8 @@ export class SecondaryUploadFormComponent implements OnInit {
     }
 
     const allowedBrackets = /^[()[\]{}<>.-]+$/;
-    const bracketPairs: [string, string][] = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>'],];
-    let allBrackets = "";
+    const bracketPairs: [string, string][] = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']];
+    let allBrackets = '';
     for (let i = 0; i < lines.length; i += 3) {
       const name = lines[i];
       const brackets = lines[i + 2];
@@ -90,21 +90,20 @@ export class SecondaryUploadFormComponent implements OnInit {
         if (!/^[aucgAUCG]+$/.test(letters)) {
           this.textValidationError += `Line ${i + 1} contains invalid characters. Only A, U, C, G are allowed.\n`;
         }
-
       }
     }
-            bracketPairs.forEach(([open, close]) => {
-          const openCount = (allBrackets.match(new RegExp(`\\${open}`, 'g')) || []).length;
-          const closeCount = (allBrackets.match(new RegExp(`\\${close}`, 'g')) || []).length;
+    bracketPairs.forEach(([open, close]) => {
+      const openCount = (allBrackets.match(new RegExp(`\\${open}`, 'g')) || []).length;
+      const closeCount = (allBrackets.match(new RegExp(`\\${close}`, 'g')) || []).length;
 
-          if (openCount !== closeCount) {
-            if (openCount > closeCount) {
-              this.textValidationError += `Lacking '${close}' bracket.\n`;
-            } else {
-              this.textValidationError += `Lacking '${open}' bracket .\n`;
-            }
+      if (openCount !== closeCount) {
+        if (openCount > closeCount) {
+          this.textValidationError += `Lacking '${close}' bracket.\n`;
+          } else {
+            this.textValidationError += `Lacking '${open}' bracket .\n`;
           }
-        });
+        }
+    });
 
     if (this.textValidationError) {
       this.isTextValid = false;
@@ -162,24 +161,22 @@ export class SecondaryUploadFormComponent implements OnInit {
   //   this.notifyChanges();
   // }
 
-onDbnExampleSelect(event: Example): void {
-  this.currentUploadType = this.UploadType.FromDotBracket;
+  onDbnExampleSelect(event: Example): void {
+    this.currentUploadType = this.UploadType.FromDotBracket;
 
-  fetch(event.path)
-    .then(r => r.text())
-    .then(txt => {
-
-      // remove last empty line (and also trailing spaces)
-      txt = txt.replace(/\s+$/, '');
-
-      this.dotBracketText = txt;
-      this.validateStructuredText();
-      this.notifyChanges();
-    })
-    .catch(err => {
-      console.error('Failed to load DBN example file', err);
-    });
-}
+    fetch(event.path)
+      .then(r => r.text())
+      .then(rawTxt => {
+        // remove last empty line (and also trailing spaces)
+        const cleanedTxt = rawTxt.replace(/\s+$/, '');
+        this.dotBracketText = cleanedTxt;
+        this.validateStructuredText();
+        this.notifyChanges();
+      })
+      .catch(err => {
+        console.error('Failed to load DBN example file', err);
+      });
+  }
 
   onExampleTypeChange(type: ExampleType): void {
     this.selectedExample = type;

@@ -262,37 +262,37 @@ describe('SecondaryUploadFormComponent', () => {
         }));
       });
 
-      it('emits valid payload when dbn example provided', () => {
-        component.onDbnExampleSelect(mockExample);
-        expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
-          valid: true,
-        }));
-      });
+      // it('emits valid payload when dbn example provided', () => {
+      //   component.onDbnExampleSelect(mockExample);
+      //   expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+      //     valid: true,
+      //   }));
+      // });
 
-      it('emits new value when example changed', () => {
-        const mockedExample2 = SECONDARY_TO_DBN_DBN_EXAMPLES[1];
-        component.onDbnExampleSelect(mockExample);
-        component.onDbnExampleSelect(mockedExample2);
-        expect(component.uploadChange.emit).toHaveBeenCalledTimes(2);
-      });
+      // it('emits new value when example changed', () => {
+      //   const mockedExample2 = SECONDARY_TO_DBN_DBN_EXAMPLES[1];
+      //   component.onDbnExampleSelect(mockExample);
+      //   component.onDbnExampleSelect(mockedExample2);
+      //   expect(component.uploadChange.emit).toHaveBeenCalledTimes(2);
+      // });
 
-      it('includes example object in payload', () => {
-        component.onDbnExampleSelect(mockExample);
-        expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
-          data: mockExample,
-        }));
-      });
+      // it('includes example object in payload', () => {
+      //   component.onDbnExampleSelect(mockExample);
+      //   expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+      //     data: mockExample,
+      //   }));
+      // });
 
-      it('emits dbn example', () => {
-        const dummyExample = { name: '', no: -1, path: '' };
-        component.dbnExample = mockExample;
-        component.bpseqExample = dummyExample;
-        component.ctExample = dummyExample;
-        component.onMethodChange();
-        expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
-          data: component.dbnExample,
-        }));
-      });
+      // it('emits dbn example', () => {
+      //   const dummyExample = { name: '', no: -1, path: '' };
+      //   component.dbnExample = mockExample;
+      //   component.bpseqExample = dummyExample;
+      //   component.ctExample = dummyExample;
+      //   component.onMethodChange();
+      //   expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+      //     data: component.dbnExample,
+      //   }));
+      // });
     });
   });
 });

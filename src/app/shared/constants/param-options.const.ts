@@ -70,12 +70,12 @@ export const STRUCTURAL_ELEMENTS_HANDLING: Option[] = [
 
 export const VISUALIZATION_TOOL: Option[] = [
   {
-    key: 'RNA_PUZZLER',
-    label: 'RNApuzzler',
-  },
-  {
     key: 'VARNA',
     label: 'VARNA',
+  },
+  {
+    key: 'RNA_PUZZLER',
+    label: 'RNApuzzler',
   },
   {
     key: 'PSEUDO_VIEWER',

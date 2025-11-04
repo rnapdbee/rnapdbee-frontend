@@ -18,7 +18,7 @@ import { Triples, Residue } from 'src/app/shared/models/output/tertiary-output.m
 })
 export class TriplesTableComponent implements OnChanges, AfterViewInit {
   @Input() triples: Triples[] = [];
-  @Input() label = 'Base Triples';
+  @Input() label = 'Base triples';
 
   @ViewChild(MatSort) sort: MatSort | null = null;
 

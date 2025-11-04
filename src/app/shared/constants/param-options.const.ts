@@ -22,11 +22,11 @@ export const ANALYSIS_TOOL: Option[] = [
   },
   {
     key: 'BPNET',
-    label: 'bpnet',
+    label: 'BPNet',
   },
   {
     key: 'BARNABA',
-    label: 'baRNAba',
+    label: 'Barnaba',
   },
   {
     key: 'RNAVIEW',
@@ -83,7 +83,7 @@ export const VISUALIZATION_TOOL: Option[] = [
   },
   {
     key: 'R_CHIE',
-    label: 'R-Chie',
+    label: 'R-chie',
   },
   {
     key: 'NONE',

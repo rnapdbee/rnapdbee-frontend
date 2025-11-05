@@ -22,11 +22,11 @@ export const ANALYSIS_TOOL: Option[] = [
   },
   {
     key: 'BPNET',
-    label: 'bpnet',
+    label: 'BPNet',
   },
   {
     key: 'BARNABA',
-    label: 'baRNAba',
+    label: 'Barnaba',
   },
   {
     key: 'RNAVIEW',
@@ -70,12 +70,12 @@ export const STRUCTURAL_ELEMENTS_HANDLING: Option[] = [
 
 export const VISUALIZATION_TOOL: Option[] = [
   {
-    key: 'RNA_PUZZLER',
-    label: 'RNApuzzler',
-  },
-  {
     key: 'VARNA',
     label: 'VARNA',
+  },
+  {
+    key: 'RNA_PUZZLER',
+    label: 'RNApuzzler',
   },
   {
     key: 'PSEUDO_VIEWER',
@@ -83,7 +83,7 @@ export const VISUALIZATION_TOOL: Option[] = [
   },
   {
     key: 'R_CHIE',
-    label: 'R-Chie',
+    label: 'R-chie',
   },
   {
     key: 'NONE',

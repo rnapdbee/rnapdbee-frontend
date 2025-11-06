@@ -1,4 +1,4 @@
-export const HOST = 'https://mcq.cs.put.poznan.pl';
+export const HOST = 'https://rnapdbee.cs.put.poznan.pl';
 
 export const environment = {
   production: true,

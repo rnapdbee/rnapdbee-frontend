@@ -229,8 +229,9 @@
 
     <h4><a href="https://sw-tools.rcsb.org/apps/MAXIT/index.html">MAXIT</a></h4>
     <p>MAXIT is a tool for macromolecular structural data processing from PDB and mmCIF files. 
-      It is used for It allows for base pair annotation, but note that it only identifies base pairs that are of very 
+      It allows for base pair annotation, but note that it only identifies base pairs that are of very 
       high confidence.
+      In RNApdbee 3.0, MAXIT is also used for coordinates conversion between PDB and PDBx/mmCIF formats.
       The tool is available at
        <a href="https://sw-tools.rcsb.org/apps/MAXIT/index.html">https://sw-tools.rcsb.org/apps/MAXIT/index.html</a>.
     </p>
@@ -419,7 +420,14 @@
       User is provided with a table consisting each detected base triple, with all interacting residues listed, along with
       information about the type of the interaction.
     </p>
-    
+    <h4>MILP</h4>
+    <p>
+    Pseudoknots are identified and encoded using a Mixed Integer Linear Programming (MILP) algorithm. 
+    This approach enables precise and unambiguous detection and classification of pseudoknotted base pairs, 
+    preserving the hierarchical organization of RNA structure and reflecting it via pseudoknot order assignment. 
+    For detailed methodology, see the <a href="https://reference-global.com/article/10.34768/amcs-2020-0024">publication by Zok et al., International Journal of Applied Mathematics and 
+    Computer Science 2020</a>.
+    </p>
     <h3 id="multiple-explanation">Multiple secondary structures</h3>
     <p>RNApdbee is capable of performing multiple analyses of secondary structure information extracted from 3D
       coordinates of an RNA. The analysis involves running all supported base pair analysers (RNApolis Annotator, FR3D,

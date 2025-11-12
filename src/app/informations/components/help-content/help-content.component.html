@@ -165,7 +165,7 @@
   <mat-divider></mat-divider>
 
   <section id="v3-changes">
-    <h2>New in RNApdbee 3.0</h2>
+    <h2>Important UI change in RNApdbee 3.0</h2>
     <p>RNApdbee 2.0 had two distinct scenarios: 2D &rarr; (...) and (...) &rarr; image. The purpose of the former was
       mainly to encode BPSEQ/CT input in dot-bracket with additional visualization. The latter was only used for
       visualization of a given dot-bracket input. In RNApdbee 3.0, these two scenarios were merged into 2D &rarr; (...).
@@ -226,6 +226,15 @@
       MC-Annotate allows also for RNA motif recognition. It is available as a webserver at <a
         href="http://www-lbit.iro.umontreal.ca/mcannotate-simple/">http://www-lbit.iro.umontreal.ca/mcannotate-simple/</a>.
     </p>
+
+    <h4><a href="https://sw-tools.rcsb.org/apps/MAXIT/index.html">MAXIT</a></h4>
+    <p>MAXIT is a tool for macromolecular structural data processing from PDB and mmCIF files. 
+      It is used for It allows for base pair annotation, but note that it only identifies base pairs that are of very 
+      high confidence.
+      The tool is available at
+       <a href="https://sw-tools.rcsb.org/apps/MAXIT/index.html">https://sw-tools.rcsb.org/apps/MAXIT/index.html</a>.
+    </p>
+    
 
     <h3 id="missing">Handling of missing residues</h3>
     <p>The PDB and PDBx/mmCIF formats support explicit description of missing residues. These are known nucleobases (A,
@@ -403,6 +412,14 @@
       </tr>
     </table>
 
+    <h4>Base triples detection</h4>
+    <p>RNApdbee 3.0 provides the user with information about base triples detected by the system. Base triples are
+      interactions involving three nucleobases interacting with one another thorugh hydrogen bonds. More can be read
+      at <a href="https://www.bgsu.edu/research/rna/databases/triples.html">link</a>.
+      User is provided with a table consisting each detected base triple, with all interacting residues listed, along with
+      information about the type of the interaction.
+    </p>
+    
     <h3 id="multiple-explanation">Multiple secondary structures</h3>
     <p>RNApdbee is capable of performing multiple analyses of secondary structure information extracted from 3D
       coordinates of an RNA. The analysis involves running all supported base pair analysers (RNApolis Annotator, FR3D,
@@ -515,5 +532,10 @@
         <td>Safari (10.1 and later), Google Chrome (57 and later), Mozilla Firefox (4 and later) or Opera (15 and later)</td>
       </tr>
     </table>
+  </section>
+  <section id="previous_version">
+    <h2>Previous version of RNApdbee</h2>
+    <p>The previous version of RNApdbee (2.0) is still available at <a
+        href="https://rnapdbee.cs.put.poznan.pl/legacy/">https://rnapdbee.cs.put.poznan.pl/legacy/</a>.</p>
   </section>
 </article>

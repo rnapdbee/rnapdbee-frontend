@@ -412,7 +412,16 @@
         <td><img src="/assets/varna-symbols/symbol-tss.svg"/></td>
       </tr>
     </table>
-
+    <h4>Consensus structure logo</h4>
+    <p>As multiple base pair annotators are available in RNApdbee 3.0, it is possible that different results are
+      produced by individual tools, especially concerning non-canonical interactions, long-range interactions and 
+      pseudoknots. To allow for better judgement of such situations, a consensus structure logo is provided. The 
+      mechanism is similar to <a href="https://doi.org/10.1093/nar/18.20.6097">Sequence Logos</a>, and uses 
+      Python-based WebLogo library. In our visualization, unpaired nucleotides and missing residues are denoted by
+       "U" and "Z", respectively, while pseudoknots are colored using the established RNApdbee palette for visual 
+       consistency. 
+    </p>
+    <img src="/assets/help-example-logo.png" alt="example_logo" />
     <h4>Base triples detection</h4>
     <p>RNApdbee 3.0 provides the user with information about base triples detected by the system. Base triples are
       interactions involving three nucleobases interacting with one another thorugh hydrogen bonds. More can be read
@@ -427,6 +436,14 @@
     preserving the hierarchical organization of RNA structure and reflecting it via pseudoknot order assignment. 
     For detailed methodology, see the <a href="https://reference-global.com/article/10.34768/amcs-2020-0024">publication by Zok et al., International Journal of Applied Mathematics and 
     Computer Science 2020</a>.
+    </p>
+    <h4>Leaflet for efficient display of complex structures</h4>
+    <p>
+    As all visualisations are now displayed in SVG format, it became cruicial to ensure smooth operation of the
+    frontend appliaction, even when more complex structures are annotated. In order to do that, 
+    <a href="https://leafletjs.com/">Leaflet</a> library was used. It is an open-source JavaScript library originally 
+    designed for interactive maps, which allows for efficient rendering and navigation of large SVG images, but has 
+    found home in RNApdbee as well.
     </p>
     <h3 id="multiple-explanation">Multiple secondary structures</h3>
     <p>RNApdbee is capable of performing multiple analyses of secondary structure information extracted from 3D

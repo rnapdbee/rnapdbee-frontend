@@ -37,7 +37,7 @@ export class HelpPageComponent {
       ],
     },
     {
-      name: 'Changes in RNApdbee 3.0',
+      name: 'Important UI change in RNApdbee 3.0',
       link: 'v3-changes',
       children: [],
     },

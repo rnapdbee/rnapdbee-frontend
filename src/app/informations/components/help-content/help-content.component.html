@@ -165,7 +165,7 @@
   <mat-divider></mat-divider>
 
   <section id="v3-changes">
-    <h2>New in RNApdbee 3.0</h2>
+    <h2>Important UI change in RNApdbee 3.0</h2>
     <p>RNApdbee 2.0 had two distinct scenarios: 2D &rarr; (...) and (...) &rarr; image. The purpose of the former was
       mainly to encode BPSEQ/CT input in dot-bracket with additional visualization. The latter was only used for
       visualization of a given dot-bracket input. In RNApdbee 3.0, these two scenarios were merged into 2D &rarr; (...).
@@ -226,6 +226,16 @@
       MC-Annotate allows also for RNA motif recognition. It is available as a webserver at <a
         href="http://www-lbit.iro.umontreal.ca/mcannotate-simple/">http://www-lbit.iro.umontreal.ca/mcannotate-simple/</a>.
     </p>
+
+    <h4><a href="https://sw-tools.rcsb.org/apps/MAXIT/index.html">MAXIT</a></h4>
+    <p>MAXIT is a tool for macromolecular structural data processing from PDB and mmCIF files. 
+      It allows for base pair annotation, but note that it only identifies base pairs that are of very 
+      high confidence.
+      In RNApdbee 3.0, MAXIT is also used for coordinates conversion between PDB and PDBx/mmCIF formats.
+      The tool is available at
+       <a href="https://sw-tools.rcsb.org/apps/MAXIT/index.html">https://sw-tools.rcsb.org/apps/MAXIT/index.html</a>.
+    </p>
+    
 
     <h3 id="missing">Handling of missing residues</h3>
     <p>The PDB and PDBx/mmCIF formats support explicit description of missing residues. These are known nucleobases (A,
@@ -402,7 +412,39 @@
         <td><img src="/assets/varna-symbols/symbol-tss.svg"/></td>
       </tr>
     </table>
-
+    <h4>Consensus structure logo</h4>
+    <p>As multiple base pair annotators are available in RNApdbee 3.0, it is possible that different results are
+      produced by individual tools, especially concerning non-canonical interactions, long-range interactions and 
+      pseudoknots. To allow for better judgement of such situations, a consensus structure logo is provided. The 
+      mechanism is similar to <a href="https://doi.org/10.1093/nar/18.20.6097">Sequence Logos</a>, and uses 
+      Python-based WebLogo library. In our visualization, unpaired nucleotides and missing residues are denoted by
+       "U" and "Z", respectively, while pseudoknots are colored using the established RNApdbee palette for visual 
+       consistency. 
+    </p>
+    <img src="/assets/help-example-logo.png" alt="example_logo" />
+    <h4>Base triples detection</h4>
+    <p>RNApdbee 3.0 provides the user with information about base triples detected by the system. Base triples are
+      interactions involving three nucleobases interacting with one another thorugh hydrogen bonds. More can be read
+      at <a href="https://www.bgsu.edu/research/rna/databases/triples.html">link</a>.
+      User is provided with a table consisting each detected base triple, with all interacting residues listed, along with
+      information about the type of the interaction.
+    </p>
+    <h4>MILP</h4>
+    <p>
+    Pseudoknots are identified and encoded using a Mixed Integer Linear Programming (MILP) algorithm. 
+    This approach enables precise and unambiguous detection and classification of pseudoknotted base pairs, 
+    preserving the hierarchical organization of RNA structure and reflecting it via pseudoknot order assignment. 
+    For detailed methodology, see the <a href="https://reference-global.com/article/10.34768/amcs-2020-0024">publication by Zok et al., International Journal of Applied Mathematics and 
+    Computer Science 2020</a>.
+    </p>
+    <h4>Leaflet for efficient display of complex structures</h4>
+    <p>
+    As all visualisations are now displayed in SVG format, it became crucial to ensure smooth operation of the
+    frontend appliaction, even when more complex structures are annotated. In order to do that, 
+    <a href="https://leafletjs.com/">Leaflet</a> library was used. It is an open-source JavaScript library originally 
+    designed for interactive maps, which allows for efficient rendering and navigation of large SVG images, but has 
+    found home in RNApdbee as well.
+    </p>
     <h3 id="multiple-explanation">Multiple secondary structures</h3>
     <p>RNApdbee is capable of performing multiple analyses of secondary structure information extracted from 3D
       coordinates of an RNA. The analysis involves running all supported base pair analysers (RNApolis Annotator, FR3D,
@@ -515,5 +557,10 @@
         <td>Safari (10.1 and later), Google Chrome (57 and later), Mozilla Firefox (4 and later) or Opera (15 and later)</td>
       </tr>
     </table>
+  </section>
+  <section id="previous_version">
+    <h2>Previous version of RNApdbee</h2>
+    <p>The previous version of RNApdbee (2.0) is still available at <a
+        href="https://rnapdbee.cs.put.poznan.pl/legacy/">https://rnapdbee.cs.put.poznan.pl/legacy/</a>.</p>
   </section>
 </article>

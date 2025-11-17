@@ -7,16 +7,20 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import { SelectField } from 'src/app/shared/models/select/select-field.model';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Triples, Residue } from 'src/app/shared/models/output/tertiary-output.model';
+import { ControlValueProvider, ControlValueComponent } from '../../control-value/control-value.component';
 
 @Component({
   selector: 'app-triples-table',
   templateUrl: './triples-table.component.html',
   styleUrls: ['./triples-table.component.scss'],
+  // eslint-disable-next-line no-use-before-define
+  providers: [ControlValueProvider(TriplesTableComponent)],
 })
-export class TriplesTableComponent implements OnChanges, AfterViewInit {
+export class TriplesTableComponent extends ControlValueComponent<SelectField> implements OnChanges, AfterViewInit {
   @Input() triples: Triples[] = [];
   @Input() label = 'Base triples';
 
@@ -33,6 +37,15 @@ export class TriplesTableComponent implements OnChanges, AfterViewInit {
   ];
 
   dataSource = new MatTableDataSource<Triples>([]);
+
+  constructor() {
+    super(new SelectField(false));
+  }
+
+  override writeValue(value: SelectField): void {
+    this.value = value;
+    this.value.activateField();
+  }
 
   // mapping for headers and cell renderers used by the template
   tripleColumns: Record<

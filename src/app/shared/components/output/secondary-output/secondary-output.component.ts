@@ -31,8 +31,7 @@ export class SecondaryOutputComponent extends ControlValueComponent<SecondaryRes
 
   notEmpty(structuralElements: StructuralElements): boolean {
     if (
-      structuralElements.coordinates
-      || structuralElements.stems.length > 0
+      structuralElements.stems.length > 0
       || structuralElements.loops.length > 0
       || structuralElements.singleStrands.length > 0
       || structuralElements.singleStrands3p.length > 0
@@ -87,6 +86,8 @@ export class SecondaryOutputComponent extends ControlValueComponent<SecondaryRes
     const singleStrands3p = output.structuralElements.singleStrands3p
       .map(line => `Single strand 3' ${line}`)
       .join('\n');
-    return [stems, loops, singleStrands, singleStrands5p, singleStrands3p, output.structuralElements.coordinates].join('\n');
+    const parts = [stems, loops, singleStrands, singleStrands5p, singleStrands3p]
+      .filter(p => p && p.length > 0);
+    return parts.join('\n');
   }
 }

@@ -11,7 +11,7 @@
       <app-checkbox label="Messages" [(ngModel)]="value.fields.messages">
         <app-text-area [text]="messagesText"></app-text-area>
       </app-checkbox>
-      <app-triples-table [triples]="model.baseTriples"></app-triples-table>
+      <app-triples-table [(ngModel)]="value.fields.baseTriples" [triples]="model.baseTriples"></app-triples-table>
       <app-tertiary-interactions label="Canonical interactions"
         [(ngModel)]="value.fields.canonicalInteractions"
         [interactions]="model.canonicalInteractions">

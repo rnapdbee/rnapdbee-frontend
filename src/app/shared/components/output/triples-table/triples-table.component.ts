@@ -7,11 +7,11 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { ControlValueProvider, ControlValueComponent } from '../../control-value/control-value.component';
 import { SelectField } from 'src/app/shared/models/select/select-field.model';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Triples, Residue } from 'src/app/shared/models/output/tertiary-output.model';
+import { ControlValueProvider, ControlValueComponent } from '../../control-value/control-value.component';
 
 @Component({
   selector: 'app-triples-table',

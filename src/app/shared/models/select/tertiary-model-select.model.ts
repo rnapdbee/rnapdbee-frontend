@@ -6,6 +6,7 @@ import { SelectObject } from './select-object.model';
 export interface TertiaryModelSelectFields extends SelectFields {
   output2D: SecondaryResultSelect,
   messages: SelectField,
+  baseTriples: SelectField,
   canonicalInteractions: SelectField,
   nonCanonicalInteractions: SelectField,
   interStrandInteractions: SelectField,

@@ -215,7 +215,7 @@
       according to <a href="http://rnajournal.cshlp.org/content/7/4/499.long">Leontis/Westhof nomenclature</a> . The
       program allows also for identification of tertiary interactions and visualization of 2D diagrams of RNA secondary
       topology in Postscript, VRML or RNAML format. RNAView can be downloaded from <a
-        href="http://ndbserver.rutgers.edu/ndbmodule/services/download/rnaview.html">NDB</a> and used after successful
+        href=" https://github.com/rcsb/RNAView">NDB</a> and used after successful
       installation.</p>
 
     <h4><a href="http://www.sciencedirect.com/science/article/pii/S0022283601946261">MC-Annotate</a></h4>
@@ -271,15 +271,19 @@
       base pairs (<a href="http://rnajournal.cshlp.org/content/7/4/499.long">Leontis/Westhof</a> nomenclature) and
       pseudoknots (first extracted maximal planar subset of canonical base pairs is a scaffold for the rest of the base
       pairings). The output visualisation can be extracted in vector and bitmap picture formats including EPS, SVG,
-      XFIG, JPG, or PNG. VARNA is available as the lightweight applet and swing component at <a
-        href="http://varna.lri.fr/">http://varna.lri.fr/</a>.</p>
+      XFIG, JPG, or PNG. 
+      <!-- VARNA is available as the lightweight applet and swing component at <a
+        href="http://varna.lri.fr/">http://varna.lri.fr/</a>. -->
+      </p>
 
     <h4><a href="http://bioinformatics.oxfordjournals.org/content/25/11/1435.full">PseudoViewer</a></h4>
     <p>PseudoViewer allows for effective visualisation of large RNAs, also these including pseudoknots, as planar
       drawings. As an input, it accepts the sequence and the secondary structure data in the dot-bracket or paired
       format. At the output, a URL of the generated image file is returned. The visualization can be prepared in EPS,
-      SVG, PNG, or GIF. PseudoViewer is available at <a
-        href="http://pseudoviewer.inha.ac.kr/">http://pseudoviewer.inha.ac.kr/</a>.</p>
+      SVG, PNG, or GIF. 
+      <!-- PseudoViewer is available at <a
+        href="http://pseudoviewer.inha.ac.kr/">http://pseudoviewer.inha.ac.kr/</a>. -->
+      </p>
 
     <h4><a href="https://academic.oup.com/nar/article/40/12/e95/2414962">R-chie</a></h4>
     <p>R-chie is a tool for generating different types of arc diagrams. It supports visualization of multiple sequence
@@ -451,6 +455,19 @@
       BPNet, Barnaba, RNAView and MC-Annotate) on a single input 3D structure. The resulting lists of base pairs are
       grouped into unique sets. Each set is encoded in BPSEQ, CT and dot-bracket format. RNApdbee shows a consensus
       visualization for all results and one image for each unique result in the set.</p>
+
+      <h3 id="reanalyze">Reanalyze your structure with different parameters</h3>
+    <p>The result page contains a section called <b>Reanalyze your structure with different parameters</b>. This section 
+    allows the user to change analysis parameters while retaining the previous results. Calculation with new parameters will 
+    be performed again for the same imput, and new results will appear above the previous set of results.</p>
+
+    <h3 id="downloading">Downloading results</h3>
+    <p>Results can be downloaded, using the <b>Download results</b> section. For each analysis, user can manually decide whether to download
+    all the results, or just part of them. This is done by either clicking <b>Select all data</b> button, or 
+    checking checkboxes with desired parts of the result. Note that checkboxes are independent for each result in Tertiary to 
+    multi secondary results and reanalyzed results.<br>
+    All the selected sections will be downloaded as a ZIP archive, containing the desired files. Structural elements are downloaded
+    in PDBx/mmCIF and the visualisation is saved as both SVG and PDF for printing convenience. </p>
   </section>
 
   <mat-divider></mat-divider>

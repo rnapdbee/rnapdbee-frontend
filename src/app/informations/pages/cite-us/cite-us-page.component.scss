@@ -18,7 +18,7 @@
       justify-content: center;
 
       .content {
-        max-width: 800px;
+        max-width: 1300px; //800px
       }
     }
 
@@ -33,6 +33,12 @@
 
   .cite-us-align-left {
     text-align: left;
+    margin-left: 0;
+    margin-right: auto;
+    display: block;
+  }
+  .cite-us-align-center {
+    text-align: center;
     margin-left: 0;
     margin-right: auto;
     display: block;

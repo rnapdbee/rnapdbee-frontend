@@ -27,10 +27,26 @@ export class SecondaryToDbnService extends CalculationRequestService<SecondaryTo
         return this.calculateFromExample(content.data as Example, params);
       case UploadMethodType.FromLocalFile:
         return this.calculateFromFile(content.data as File, params);
-      case UploadMethodType.FromDotBracket:
-        return this.calculateFromFile(new File([content.data as string], 'input.dbn', { type: 'text/plain' }), params);
+      case UploadMethodType.FromDotBracket: {
+        const data = content.data as string;
+        const filename = this.getFilenameFromDotBracket(data);
+        return this.calculateFromFile(new File([data], filename, { type: 'text/plain' }), params);
+      }
       default:
         throw new Error('Upload method type could not be recognized.');
     }
+  }
+
+  private getFilenameFromDotBracket(data: string): string {
+    const strandNames = data
+      .split('\n')
+      .filter(line => line.startsWith('>'))
+      .map(line => line.substring(1).trim());
+
+    if (strandNames.length > 0) {
+      return `${strandNames.join('-')}.dbn`;
+    }
+
+    return 'input.dbn';
   }
 }

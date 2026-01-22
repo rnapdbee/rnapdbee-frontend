@@ -77,5 +77,10 @@ export class HelpPageComponent {
       link: 'requirements',
       children: [],
     },
+    {
+      name: 'Previous version of RNApdbee',
+      link: 'previous_version',
+      children: [],
+    },
   ];
 }

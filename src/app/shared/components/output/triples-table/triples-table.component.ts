@@ -101,9 +101,12 @@ export class TriplesTableComponent extends ControlValueComponent<SelectField> im
     if (property === 'firstPartner' || property === 'secondPartner' || property === 'residue') {
       return this.formatResidue(item[property as keyof Triples]).toLowerCase();
     }
-    // fallback to default
-    const value = (item as any)[property];
-    return typeof value === 'string' || typeof value === 'number' ? value : '';
+    // fallback to default, but avoid 'any' and unsafe access
+    if (property in item) {
+      const value = item[property as keyof Triples];
+      return typeof value === 'string' || typeof value === 'number' ? value : '';
+    }
+    return '';
   }
 
   toggle(): void {

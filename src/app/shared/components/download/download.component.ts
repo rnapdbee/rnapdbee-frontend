@@ -45,7 +45,9 @@ export class DownloadComponent {
   }
 
   onDownloadClick(): void {
-    if (this.loading) return;
+    if (this.loading) {
+      return;
+    }
     this.loading = true;
     try {
       if (!this.path || !this.id || !this.selected?.getValue()) {
@@ -65,7 +67,7 @@ export class DownloadComponent {
           },
           complete: () => {
             this.loading = false;
-          }
+          },
         });
     } catch {
       this.loading = false;

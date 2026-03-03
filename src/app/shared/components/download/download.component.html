@@ -14,7 +14,14 @@
     <div *ngIf="selectable$ | async; else select">
       <button mat-stroked-button (click)="selectAll()">{{ allSelected() ? 'Unselect' : 'Select' }} all data</button>
       <div class="download-btns">
-        <button mat-stroked-button (click)="download()" [disabled]="!selected?.isAnythingSelected()">Download {{ selected?.getSelectedCount() }} items</button>
+        <button mat-stroked-button (click)="onDownloadClick()" [disabled]="!selected?.isAnythingSelected() || loading">
+          <ng-container *ngIf="!loading; else loadingSpinner">
+            Download {{ selected?.getSelectedCount() }} items
+          </ng-container>
+          <ng-template #loadingSpinner>
+            <mat-progress-spinner diameter="24" mode="indeterminate" color="primary" [strokeWidth]="3"></mat-progress-spinner>
+          </ng-template>
+        </button>
         <button mat-stroked-button (click)="disableSelect()">Cancel</button>
       </div>
     </div>

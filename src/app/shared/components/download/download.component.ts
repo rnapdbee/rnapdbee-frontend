@@ -19,6 +19,7 @@ export class DownloadComponent {
   @Input() path: ApiPaths | undefined;
   @Input() id: string | undefined;
   expanded = false;
+  loading = false;
   selectable$: Observable<boolean>;
 
   constructor(
@@ -41,6 +42,36 @@ export class DownloadComponent {
         this.expanded = false;
         this.selectableService.selectable = false;
       });
+  }
+
+  onDownloadClick(): void {
+    if (this.loading) {
+      return;
+    }
+    this.loading = true;
+    try {
+      if (!this.path || !this.id || !this.selected?.getValue()) {
+        this.snackBar.error('Could not download your results. Try again.');
+        throw new Error('Id, path or payload is undefined');
+      }
+      this.downloadService
+        .download(this.path, this.id, this.selected.getValue())
+        .subscribe({
+          next: () => {
+            this.expanded = false;
+            this.selectableService.selectable = false;
+            this.loading = false;
+          },
+          error: () => {
+            this.loading = false;
+          },
+          complete: () => {
+            this.loading = false;
+          },
+        });
+    } catch {
+      this.loading = false;
+    }
   }
 
   enableSelect(): void {

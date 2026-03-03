@@ -75,6 +75,7 @@ export class TriplesTableComponent extends ControlValueComponent<SelectField> im
       this.dataSource.data = this.triples ?? [];
       // use a named method instead of a long inline arrow to satisfy max-len/arrow rules
       this.dataSource.filterPredicate = this.tripleFilterPredicate.bind(this);
+      this.dataSource.sortingDataAccessor = this.tripleSortingDataAccessor.bind(this);
       this.applyFilter(this.filterValue);
     }
   }
@@ -91,7 +92,21 @@ export class TriplesTableComponent extends ControlValueComponent<SelectField> im
   ngAfterViewInit(): void {
     if (this.sort) {
       this.dataSource.sort = this.sort;
+      this.dataSource.sortingDataAccessor = this.tripleSortingDataAccessor.bind(this);
     }
+  }
+
+  // Custom sorting accessor for residue columns
+  private tripleSortingDataAccessor(item: Triples, property: string): string | number {
+    if (property === 'firstPartner' || property === 'secondPartner' || property === 'residue') {
+      return this.formatResidue(item[property as keyof Triples]).toLowerCase();
+    }
+    // fallback to default, but avoid 'any' and unsafe access
+    if (property in item) {
+      const value = item[property as keyof Triples];
+      return typeof value === 'string' || typeof value === 'number' ? value : '';
+    }
+    return '';
   }
 
   toggle(): void {

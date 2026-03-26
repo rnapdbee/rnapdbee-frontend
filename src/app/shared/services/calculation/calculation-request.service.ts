@@ -44,6 +44,9 @@ export abstract class CalculationRequestService<P extends Params, O> {
         if (error.status === 413) {
           this.snackBar.error('Request entity is too large. Maximum size: 100MB.');
         }
+        else if (error instanceof HttpErrorResponse && error.status >= 500 && error.status < 600) {
+          this.snackBar.error('We are experiencing technical difficulties, please try again later. Thank you.');
+        }
         return throwError(() => error);
       }),
     );
@@ -58,6 +61,9 @@ export abstract class CalculationRequestService<P extends Params, O> {
         if (error instanceof HttpErrorResponse && error.status === 413) {
           this.snackBar.error('Request entity is too large. Maximum size: 100MB.');
         }
+        else if (error instanceof HttpErrorResponse && error.status >= 500 && error.status < 600) {
+          this.snackBar.error('We are experiencing technical difficulties, please try again later. Thank you.');
+        }
         return throwError(() => error);
       }),
     );
@@ -71,6 +77,9 @@ export abstract class CalculationRequestService<P extends Params, O> {
       catchError((error: HttpErrorResponse) => {
         if (error.status === 413) {
           this.snackBar.error('Request entity is too large. Maximum size: 100MB.');
+        }
+        else if (error instanceof HttpErrorResponse && error.status >= 500 && error.status < 600) {
+          this.snackBar.error('We are experiencing technical difficulties, please try again later. Thank you.');
         }
         return throwError(() => error);
       }),
@@ -87,6 +96,9 @@ export abstract class CalculationRequestService<P extends Params, O> {
       catchError((error: HttpErrorResponse) => {
         if (error.status === 413) {
           this.snackBar.error('Request entity is too large. Maximum size: 100MB.');
+        }
+        else if (error instanceof HttpErrorResponse && error.status >= 500 && error.status < 600) {
+          this.snackBar.error('We are experiencing technical difficulties, please try again later. Thank you.');
         }
         return throwError(() => error);
       }),

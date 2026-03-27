@@ -7,6 +7,7 @@ export const HOST = 'http://localhost';
 export const environment = {
   production: false,
   baseUrl: `${HOST}/api/v1/engine`,
+  nucleoSizeUrl: `${HOST}/api/nucleosize`,
 };
 
 export enum ApiPaths {

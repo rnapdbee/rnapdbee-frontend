@@ -86,8 +86,8 @@ export class SecondaryUploadFormComponent implements OnInit {
         if (brackets.length !== letters.length) {
           this.textValidationError += `Line ${i + 2} and ${i + 3} must be the same length.\n`;
         }
-        // ensure that lettes are valid characters (A, U, C, G)
-        if (!/^[aucgAUCG]+$/.test(letters)) {
+        // ensure that lettes are valid characters (A, U, C, G, T)
+        if (!/^[aucgtAUCGT]+$/.test(letters)) {
           this.textValidationError += `Line ${i + 1} contains invalid characters. Only A, U, C, G are allowed.\n`;
         }
       }

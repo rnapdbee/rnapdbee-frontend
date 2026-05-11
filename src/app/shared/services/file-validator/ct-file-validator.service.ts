@@ -19,7 +19,7 @@ export class CtFileValidatorService {
     let sixthCollumnIsInteger = true;
     let firstAndFifthCollumnHaveCounterparts = true;
 
-    const firstline = fileContent[0].trim().split(' ');
+    const firstline = fileContent[0].trim().split(/\s+/);
     if (firstline.length === 1 && this.utils.isNaturalWithoutZero(firstline[0])) {
       fileContent.shift();
     }
@@ -35,7 +35,7 @@ export class CtFileValidatorService {
 
       atLeastOneFunctionalLine = true;
 
-      const columns = line.trim().split(' ');
+      const columns = line.trim().split(/\s+/);
       if (columns.length < 6) {
         lineHasSixCollumns = false;
         return false;
@@ -78,7 +78,7 @@ export class CtFileValidatorService {
 
       if (columns[4] !== '0') {
         const counterpart = fileContent.find(item => {
-          const itemCollumns = item.split(' ');
+          const itemCollumns = item.trim().split(/\s+/);
           return itemCollumns[0] === columns[4]
             && itemCollumns[4] === columns[0];
         });

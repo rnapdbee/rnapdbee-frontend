@@ -24,7 +24,7 @@ export class BpseqFileValidatorService {
 
       atLeastOneFunctionalLine = true;
 
-      const columns = line.trim().split(' ');
+      const columns = line.trim().split(/\s+/);
       if (columns.length < 3) {
         lineHasThreeCollumns = false;
         return false;
@@ -57,7 +57,7 @@ export class BpseqFileValidatorService {
 
       if (columns[2] !== '0') {
         const counterpart = fileContent.find(item => {
-          const itemCollumns = item.split(' ');
+          const itemCollumns = item.trim().split(/\s+/);
           return itemCollumns[0] === columns[2]
             && itemCollumns[2] === columns[0];
         });

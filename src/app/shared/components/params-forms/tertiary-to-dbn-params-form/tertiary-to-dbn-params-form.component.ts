@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import {
   ANALYSIS_TOOL,
   MODEL_SELECTION,
@@ -26,9 +26,9 @@ export class TertiaryToDbnParamsFormComponent implements OnInit {
   readonly STRUCTURAL_ELEMENTS_HANDLING = STRUCTURAL_ELEMENTS_HANDLING;
   readonly VISUALIZATION_TOOL = VISUALIZATION_TOOL;
 
-  paramsForm!: FormGroup;
+  paramsForm!: UntypedFormGroup;
 
-  constructor(private readonly fb: FormBuilder) {}
+  constructor(private readonly fb: UntypedFormBuilder) {}
 
   ngOnInit(): void {
     this.paramsForm = this.fb.group({

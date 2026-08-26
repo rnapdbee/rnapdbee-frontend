@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { VISUALIZATION_TOOL } from 'src/app/shared/constants/param-options.const';
 import { TertiaryToMultiParams } from 'src/app/shared/models/params/tertiary-to-multi-params.model';
 
@@ -21,7 +21,7 @@ export class TertiaryToMultiParamsFormComponent implements OnInit {
     visualizationTool: [VISUALIZATION_TOOL[0].key],
   });
 
-  constructor(private readonly fb: FormBuilder) {
+  constructor(private readonly fb: UntypedFormBuilder) {
     this.paramsForm.valueChanges.subscribe((data: TertiaryToMultiParams) => {
       this.paramChange.emit(data);
     });

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { STRUCTURAL_ELEMENTS_HANDLING, VISUALIZATION_TOOL } from 'src/app/shared/constants/param-options.const';
 import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-dbn-params.model';
 
@@ -22,7 +22,7 @@ export class SecondaryToDbnParamsFormComponent implements OnInit {
     visualizationTool: [VISUALIZATION_TOOL[0].key],
   });
 
-  constructor(private readonly fb: FormBuilder) {
+  constructor(private readonly fb: UntypedFormBuilder) {
     this.paramsForm.valueChanges.subscribe((data: SecondaryToDbnParams) => {
       this.paramChange.emit(data);
     });

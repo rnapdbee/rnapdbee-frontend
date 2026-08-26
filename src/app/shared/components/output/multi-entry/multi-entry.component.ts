@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ANALYSIS_TOOL } from 'src/app/shared/constants/param-options.const';
 import { OutputMultiEntry } from 'src/app/shared/models/output/multi-output.model';
 import { MultiEntrySelect } from 'src/app/shared/models/select/multi-entry-select.model';
@@ -8,8 +8,9 @@ import { ControlValueComponent, ControlValueProvider } from '../../control-value
   selector: 'app-multi-entry[entry]',
   templateUrl: './multi-entry.component.html',
   styleUrls: ['./multi-entry.component.scss'],
-  // eslint-disable-next-line no-use-before-define
+   
   providers: [ControlValueProvider(MultiEntryComponent)],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class MultiEntryComponent extends ControlValueComponent<MultiEntrySelect> {

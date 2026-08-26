@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormBuilder } from '@angular/forms';
 import { VISUALIZATION_TOOL } from 'src/app/shared/constants/param-options.const';
 import { TertiaryToMultiParams } from 'src/app/shared/models/params/tertiary-to-multi-params.model';
@@ -7,6 +7,7 @@ import { TertiaryToMultiParams } from 'src/app/shared/models/params/tertiary-to-
   selector: 'app-tertiary-to-multi-params-form',
   templateUrl: './tertiary-to-multi-params-form.component.html',
   styleUrls: ['./tertiary-to-multi-params-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class TertiaryToMultiParamsFormComponent implements OnInit {

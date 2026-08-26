@@ -1,4 +1,4 @@
-import { HttpParams, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpParams, provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -72,7 +72,7 @@ describe('SecondaryToDbnService', () => {
         SecondaryToDbnService,
         { provide: FileReaderService, useValue: fileReaderSpy },
         { provide: MatSnackBar, useValue: {} },
-        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
         provideHttpClientTesting(),
       ],
     });

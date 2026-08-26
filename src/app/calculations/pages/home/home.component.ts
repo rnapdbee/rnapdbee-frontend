@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { CalculationType } from 'src/app/shared/models/calculation/calculation-type.enum';
 import { RequestLoadingService } from 'src/app/shared/services/loading/request-loading.service';
@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class HomeComponent {

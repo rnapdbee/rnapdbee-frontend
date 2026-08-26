@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { TertiaryModel, TertiaryInteractions, Triples } from 'src/app/shared/models/output/tertiary-output.model';
 import { TertiaryModelSelect } from 'src/app/shared/models/select/tertiary-model-select.model';
 import { ControlValueComponent, ControlValueProvider } from '../../control-value/control-value.component';
@@ -7,8 +7,9 @@ import { ControlValueComponent, ControlValueProvider } from '../../control-value
   selector: 'app-tertiary-model-output[model]',
   templateUrl: './tertiary-model-output.component.html',
   styleUrls: ['./tertiary-model-output.component.scss'],
-  // eslint-disable-next-line no-use-before-define
+   
   providers: [ControlValueProvider(TertiaryModelOutputComponent)],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class TertiaryModelOutputComponent extends ControlValueComponent<TertiaryModelSelect> {

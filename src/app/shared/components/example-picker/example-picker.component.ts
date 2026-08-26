@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { Example } from '../../models/upload/example.model';
 
 @Component({
   selector: 'app-example-picker',
   templateUrl: './example-picker.component.html',
   styleUrls: ['./example-picker.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class ExamplePickerComponent implements OnInit {

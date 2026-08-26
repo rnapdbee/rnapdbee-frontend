@@ -1,4 +1,4 @@
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -105,7 +105,7 @@ describe('TertiaryToDbnResultsComponent', () => {
       declarations: [TertiaryToDbnResultsComponent],
       schemas: [NO_ERRORS_SCHEMA],
       imports: [MatSnackBarModule],
-      providers: [provideHttpClient(withInterceptorsFromDi())],
+      providers: [provideHttpClient(withXhr(), withInterceptorsFromDi())],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TertiaryToDbnResultsComponent);

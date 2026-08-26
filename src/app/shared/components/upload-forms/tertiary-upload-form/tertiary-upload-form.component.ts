@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { Subject, debounceTime, distinctUntilChanged, Subscription, take } from 'rxjs';
 import { TERTIARY_TO_DBN_EXAMPLES } from 'src/app/shared/constants/tertiary-to-dbn-examples.const';
 import { FileExtension } from 'src/app/shared/models/file/file-extension.model';
@@ -13,6 +13,7 @@ import { NucleoSizeService } from 'src/app/shared/services/nucleosize/nucleosize
   selector: 'app-tertiary-upload-form',
   templateUrl: './tertiary-upload-form.component.html',
   styleUrls: ['./tertiary-upload-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class TertiaryUploadFormComponent implements OnInit, OnDestroy {

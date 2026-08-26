@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { OpenCloseAnimation } from 'src/app/shared/animations/open-close';
@@ -13,6 +13,7 @@ import { ErrorService } from 'src/app/shared/services/error/error.service';
   templateUrl: './tertiary-page.component.html',
   styleUrls: ['./tertiary-page.component.scss'],
   animations: [OpenCloseAnimation],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class TertiaryPageComponent extends CalculationPageComponent<TertiaryToDbnParams, TertiaryOutput> {

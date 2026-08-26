@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import {
   SECONDARY_TO_DBN_BPSEQ_EXAMPLES,
   SECONDARY_TO_DBN_CT_EXAMPLES,
@@ -21,6 +21,7 @@ export enum ExampleType {
   selector: 'app-secondary-upload-form',
   templateUrl: './secondary-upload-form.component.html',
   styleUrls: ['./secondary-upload-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class SecondaryUploadFormComponent implements OnInit {

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/unbound-method */
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -20,7 +20,7 @@ describe('TertiaryUploadFormComponent', () => {
       declarations: [TertiaryUploadFormComponent],
       schemas: [NO_ERRORS_SCHEMA],
       imports: [],
-      providers: [provideHttpClient(withInterceptorsFromDi())],
+      providers: [provideHttpClient(withXhr(), withInterceptorsFromDi())],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TertiaryUploadFormComponent);

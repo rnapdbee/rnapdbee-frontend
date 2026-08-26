@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiPaths } from 'src/environments/environment';
 import { OpenCloseAnimation } from '../../animations/open-close';
@@ -13,6 +13,7 @@ import { SelectableService } from '../../services/selectable/selectable.service'
   templateUrl: './download.component.html',
   styleUrls: ['./download.component.scss'],
   animations: [OpenCloseAnimation],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class DownloadComponent {

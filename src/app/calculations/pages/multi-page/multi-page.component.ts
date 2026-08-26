@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { CalculationPageComponent } from 'src/app/shared/components/calculation-page/calculation-page.component';
@@ -11,6 +11,7 @@ import { ErrorService } from 'src/app/shared/services/error/error.service';
   selector: 'app-multi-page',
   templateUrl: './multi-page.component.html',
   styleUrls: ['./multi-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class MultiPageComponent extends CalculationPageComponent<TertiaryToMultiParams, MultiOutput> {

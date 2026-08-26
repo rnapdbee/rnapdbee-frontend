@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
 import { UntypedFormBuilder } from '@angular/forms';
 import { STRUCTURAL_ELEMENTS_HANDLING, VISUALIZATION_TOOL } from 'src/app/shared/constants/param-options.const';
 import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-dbn-params.model';
@@ -7,6 +7,7 @@ import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-
   selector: 'app-secondary-to-dbn-params-form',
   templateUrl: './secondary-to-dbn-params-form.component.html',
   styleUrls: ['./secondary-to-dbn-params-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class SecondaryToDbnParamsFormComponent implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { OpenCloseAnimation } from '../../animations/open-close';
 import { SelectField } from '../../models/select/select-field.model';
@@ -10,8 +10,9 @@ import { ControlValueComponent, ControlValueProvider } from '../control-value/co
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
   animations: [OpenCloseAnimation],
-  // eslint-disable-next-line no-use-before-define
+   
   providers: [ControlValueProvider(CheckboxComponent)],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class CheckboxComponent extends ControlValueComponent<SelectField> {

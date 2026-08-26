@@ -6,6 +6,7 @@ import {
   SimpleChange,
   SimpleChanges,
   ViewChild,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { SelectField } from 'src/app/shared/models/select/select-field.model';
 import { MatSort } from '@angular/material/sort';
@@ -17,8 +18,9 @@ import { ControlValueProvider, ControlValueComponent } from '../../control-value
   selector: 'app-triples-table',
   templateUrl: './triples-table.component.html',
   styleUrls: ['./triples-table.component.scss'],
-  // eslint-disable-next-line no-use-before-define
+   
   providers: [ControlValueProvider(TriplesTableComponent)],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class TriplesTableComponent extends ControlValueComponent<SelectField> implements OnChanges, AfterViewInit {

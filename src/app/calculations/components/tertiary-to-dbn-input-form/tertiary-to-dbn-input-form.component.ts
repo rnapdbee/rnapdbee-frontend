@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { InputFormComponent } from 'src/app/shared/components/input-form/input-form.component';
 import { TertiaryOutput } from 'src/app/shared/models/output/tertiary-output.model';
@@ -12,6 +12,7 @@ import { DescriptionService } from 'src/app/shared/services/result/description.s
   selector: 'app-tertiary-to-dbn-input-form',
   templateUrl: './tertiary-to-dbn-input-form.component.html',
   styleUrls: ['./tertiary-to-dbn-input-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class TertiaryToDBNInputFormComponent extends InputFormComponent<TertiaryToDbnParams, TertiaryOutput> {

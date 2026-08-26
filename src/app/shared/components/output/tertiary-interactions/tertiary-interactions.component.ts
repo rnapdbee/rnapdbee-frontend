@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Residue, TertiaryInteractions } from 'src/app/shared/models/output/tertiary-output.model';
@@ -70,8 +70,9 @@ const INTERACTION_COLUMNS: InteractionColumn = {
   selector: 'app-tertiary-interactions[interactions]',
   templateUrl: './tertiary-interactions.component.html',
   styleUrls: ['./tertiary-interactions.component.scss'],
-  // eslint-disable-next-line no-use-before-define
+   
   providers: [ControlValueProvider(TertiaryInteractionsComponent)],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class TertiaryInteractionsComponent extends ControlValueComponent<SelectField> implements OnInit, AfterViewInit {

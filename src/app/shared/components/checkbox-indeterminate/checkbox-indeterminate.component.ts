@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SelectableService } from '../../services/selectable/selectable.service';
 
@@ -6,6 +6,7 @@ import { SelectableService } from '../../services/selectable/selectable.service'
   selector: 'app-checkbox-indeterminate',
   templateUrl: './checkbox-indeterminate.component.html',
   styleUrls: ['./checkbox-indeterminate.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class CheckboxIndeterminateComponent {

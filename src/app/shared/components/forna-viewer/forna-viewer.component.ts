@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { StrandEntry } from '../../models/output/secondary-output.model';
 
 @Component({
   selector: 'app-forna-viewer[strands]',
   templateUrl: './forna-viewer.component.html',
   styleUrls: ['./forna-viewer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class FornaViewerComponent {

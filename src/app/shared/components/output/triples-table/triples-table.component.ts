@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { SelectField } from 'src/app/shared/models/select/select-field.model';
 import { MatSort } from '@angular/material/sort';
-import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
+import { MatTableDataSource } from '@angular/material/table';
 import { Triples, Residue } from 'src/app/shared/models/output/tertiary-output.model';
 import { ControlValueProvider, ControlValueComponent } from '../../control-value/control-value.component';
 

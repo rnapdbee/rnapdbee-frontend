@@ -88,10 +88,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "rnapdbee-frontend:build:production"
+              "buildTarget": "rnapdbee-frontend:build:production"
             },
             "development": {
-              "browserTarget": "rnapdbee-frontend:build:development"
+              "buildTarget": "rnapdbee-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -99,7 +99,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "rnapdbee-frontend:build"
+            "buildTarget": "rnapdbee-frontend:build"
           }
         },
         "test": {

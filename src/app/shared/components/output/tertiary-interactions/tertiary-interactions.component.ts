@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
 import { Residue, TertiaryInteractions } from 'src/app/shared/models/output/tertiary-output.model';
 import { SelectField } from 'src/app/shared/models/select/select-field.model';
 import { ControlValueComponent, ControlValueProvider } from '../../control-value/control-value.component';

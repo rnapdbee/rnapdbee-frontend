@@ -67,6 +67,7 @@
         "no-empty-function": ["error", { "allow": ["constructors"] }],
         "@typescript-eslint/no-useless-constructor": "error",
         "@angular-eslint/prefer-standalone": "off",
+        "@angular-eslint/prefer-inject": "off",
         "@typescript-eslint/no-unsafe-call": "warn",
         "@typescript-eslint/no-base-to-string": "warn",
         "object-curly-newline": ["error", { "consistent": true }],

@@ -1,26 +1,32 @@
-<ng-container *ngIf="output">
-  <app-checkbox *ngIf="output.strands && output.strands.length > 0" 
-    [(ngModel)]="value.fields.strands" label="Dot Bracket">
-    <app-text-area [text]="strandsText"></app-text-area>
-  </app-checkbox>
-
-  <app-checkbox *ngIf="output.bpSeq && output.bpSeq.length > 0" 
-    [(ngModel)]="value.fields.bpSeq" label="BPSEQ">
-    <app-text-area [text]="bpSeqText"></app-text-area>
-  </app-checkbox>
-
-  <app-checkbox *ngIf="output.ct && output.ct.length > 0" 
-    [(ngModel)]="value.fields.ct" label="CT">
-    <app-text-area [text]="ctText"></app-text-area>
-  </app-checkbox>
-
-  <app-checkbox *ngIf="output.interactions && output.interactions.length > 0" 
-    [(ngModel)]="value.fields.interactions" label="Interstrand interactions">
-    <app-text-area [text]="interactionsText"></app-text-area>
-  </app-checkbox>
-
-  <app-checkbox *ngIf="output.structuralElements && notEmpty(output.structuralElements)" 
-    [(ngModel)]="value.fields.structuralElements" label="Structural elements">
-    <app-text-area [text]="structuralElementsText"></app-text-area>
-  </app-checkbox>
-</ng-container>
+@if (output) {
+  @if (output.strands && output.strands.length > 0) {
+    <app-checkbox
+      [(ngModel)]="value.fields.strands" label="Dot Bracket">
+      <app-text-area [text]="strandsText"></app-text-area>
+    </app-checkbox>
+  }
+  @if (output.bpSeq && output.bpSeq.length > 0) {
+    <app-checkbox
+      [(ngModel)]="value.fields.bpSeq" label="BPSEQ">
+      <app-text-area [text]="bpSeqText"></app-text-area>
+    </app-checkbox>
+  }
+  @if (output.ct && output.ct.length > 0) {
+    <app-checkbox
+      [(ngModel)]="value.fields.ct" label="CT">
+      <app-text-area [text]="ctText"></app-text-area>
+    </app-checkbox>
+  }
+  @if (output.interactions && output.interactions.length > 0) {
+    <app-checkbox
+      [(ngModel)]="value.fields.interactions" label="Interstrand interactions">
+      <app-text-area [text]="interactionsText"></app-text-area>
+    </app-checkbox>
+  }
+  @if (output.structuralElements && notEmpty(output.structuralElements)) {
+    <app-checkbox
+      [(ngModel)]="value.fields.structuralElements" label="Structural elements">
+      <app-text-area [text]="structuralElementsText"></app-text-area>
+    </app-checkbox>
+  }
+}

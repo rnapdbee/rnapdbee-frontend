@@ -2,7 +2,7 @@ import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { of, throwError } from 'rxjs';
+import { of } from 'rxjs';
 import { Calculation } from 'src/app/shared/models/calculation/calculation.model';
 import { MultiOutput } from 'src/app/shared/models/output/multi-output.model';
 import { DrawingResult, SecondaryOutput } from 'src/app/shared/models/output/secondary-output.model';
@@ -90,24 +90,29 @@ describe('MultiPageComponent', () => {
     fixture = TestBed.createComponent(MultiPageComponent);
     component = fixture.componentInstance;
     ({ debugElement } = fixture);
-    fixture.detectChanges();
   });
 
-  it('shows loading component when calculation not resolved', () => {
+  it('shows loading component when calculation not resolved', async () => {
     component.calculationResults$ = of(null);
+    fixture.detectChanges();
+    await fixture.whenStable();
     fixture.detectChanges();
     expect(debugElement.query(By.css('app-calculation-loading'))).toBeTruthy();
   });
 
-  it('shows results component when id is valid', () => {
+  it('shows results component when id is valid', async () => {
     component.calculationResults$ = of(mockResponse);
+    fixture.detectChanges();
+    await fixture.whenStable();
     fixture.detectChanges();
     expect(debugElement.query(By.css('app-tertiary-to-multi-results'))).toBeTruthy();
   });
 
-  it('shows error component when id is valid', () => {
-    component.calculationResults$ = throwError(() => new Error(''));
+  it('shows error component when id is valid', async () => {
+    component.calculationResults$ = of(null);
     component.error = 'error';
+    fixture.detectChanges();
+    await fixture.whenStable();
     fixture.detectChanges();
     expect(debugElement.query(By.css('app-error'))).toBeTruthy();
   });

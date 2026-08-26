@@ -5,9 +5,11 @@
       <div>Symbol</div>
       <div>Description</div>
     </div>
-    <div class="row" *ngFor="let entry of legendEntries">
-      <div class="symbol" [style.color]="entry.color">{{ entry.symbol }}</div>
-      <div>{{ entry.description }}</div>
-    </div>
+    @for (entry of legendEntries; track entry) {
+      <div class="row">
+        <div class="symbol" [style.color]="entry.color">{{ entry.symbol }}</div>
+        <div>{{ entry.description }}</div>
+      </div>
+    }
   </div>
 </div>

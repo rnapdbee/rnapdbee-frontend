@@ -1,14 +1,19 @@
 <p>available examples</p>
 <div class="example-buttons">
-  <div class="example" *ngFor="let example of examples">
-    <div *ngIf="example.no !== current?.no; else selected">
-      <button mat-stroked-button (click)="select(example)" type="button">{{ example.no }}</button>
+  @for (example of examples; track example) {
+    <div class="example">
+      @if (example.no !== current?.no) {
+        <div>
+          <button mat-stroked-button (click)="select(example)" type="button">{{ example.no }}</button>
+        </div>
+      } @else {
+        <button mat-raised-button (click)="select(example)" type="button" color="primary">{{ example.no }}</button>
+      }
     </div>
-    <ng-template #selected>
-      <button mat-raised-button (click)="select(example)" type="button" color="primary">{{ example.no }}</button>
-    </ng-template>
-  </div>
+  }
 </div>
-<p *ngIf="current" class="example-info">
-  data uploaded from: {{ current.name }}
-</p>
+@if (current) {
+  <p class="example-info">
+    data uploaded from: {{ current.name }}
+  </p>
+}

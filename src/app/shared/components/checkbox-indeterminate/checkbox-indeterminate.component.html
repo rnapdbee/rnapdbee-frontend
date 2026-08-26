@@ -1,14 +1,14 @@
-<mat-checkbox
-  *ngIf="selectable$ | async; else plain"
-  [checked]="checked"
-  [indeterminate]="indeterminate"
-  (change)="handleChange($event.checked)" color="primary">
+@if (selectable$ | async) {
+  <mat-checkbox
+    [checked]="checked"
+    [indeterminate]="indeterminate"
+    (change)="handleChange($event.checked)" color="primary">
+    <ng-container *ngTemplateOutlet="templateOutlet"></ng-container>
+  </mat-checkbox>
+} @else {
   <ng-container *ngTemplateOutlet="templateOutlet"></ng-container>
-</mat-checkbox>
+}
 
-<ng-template #plain>
-  <ng-container *ngTemplateOutlet="templateOutlet"></ng-container>
-</ng-template>
 
 <ng-template #templateOutlet>
   <div class="label">

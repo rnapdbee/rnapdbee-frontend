@@ -5,10 +5,12 @@
       <div>RNA base-base classification</div>
       <div>Visualization symbol</div>
     </div>
-    <div class="row" *ngFor="let entry of legendEntries">
-      <div>{{ entry.name }}</div>
-      <div><img [src]="entry.pathToSVG"></div>
-    </div>
+    @for (entry of legendEntries; track entry) {
+      <div class="row">
+        <div>{{ entry.name }}</div>
+        <div><img [src]="entry.pathToSVG"></div>
+      </div>
+    }
     <div class="footer">
       <a href="help#leontis-westhof-notation">Learn more</a> about Leontis-Westhof notation
     </div>

@@ -1,12 +1,18 @@
 <div #map class="map">
-  <a [href]="url" target="_blank" *ngIf="!loading && !error" class="external-link">
-    <mat-icon>open_in_new</mat-icon>
-  </a>
+  @if (!loading && !error) {
+    <a [href]="url" target="_blank" class="external-link">
+      <mat-icon>open_in_new</mat-icon>
+    </a>
+  }
   <div class="info-overlay">
-    <mat-spinner *ngIf="loading" [diameter]="30"></mat-spinner>
-    <div *ngIf="error" class="error">
-      <mat-icon>image_not_supported</mat-icon>
-      <span>Something went wrong...<br>We could not load your image</span>
-    </div>
+    @if (loading) {
+      <mat-spinner [diameter]="30"></mat-spinner>
+    }
+    @if (error) {
+      <div class="error">
+        <mat-icon>image_not_supported</mat-icon>
+        <span>Something went wrong...<br>We could not load your image</span>
+      </div>
+    }
   </div>
 </div>

@@ -1,10 +1,16 @@
-<div *ngIf="result" class="container">
-  <div *ngIf="selectable$ | async" class="select-btn">
-    <button mat-stroked-button (click)="select()">{{ isSelected() ? 'Unselect' : 'Select' }} data on this panel</button>
+@if (result) {
+  <div class="container">
+    @if (selectable$ | async) {
+      <div class="select-btn">
+        <button mat-stroked-button (click)="select()">{{ isSelected() ? 'Unselect' : 'Select' }} data on this panel</button>
+      </div>
+    }
+    <p>{{ getDescription(result.params) }}</p>
+    @for (model of result.output.models; track model; let i = $index) {
+      <app-tertiary-model-output
+        [(ngModel)]="value.fields[i]"
+        [model]="model">
+      </app-tertiary-model-output>
+    }
   </div>
-  <p>{{ getDescription(result.params) }}</p>
-  <app-tertiary-model-output *ngFor="let model of result.output.models; let i = index"
-    [(ngModel)]="value.fields[i]"
-    [model]="model">
-  </app-tertiary-model-output>
-</div>
+}

@@ -1,26 +1,36 @@
 <form [formGroup]="paramsForm">
   <app-step [value]="getStepNumber(1)">For multimodel files, process</app-step>
   <mat-radio-group formControlName="modelSelection">
-    <app-radio-button *ngFor="let item of MODEL_SELECTION" [value]="item.key" [label]="item.label"
-      [checked]="paramsForm.value.modelSelection === item.key">
-    </app-radio-button>
+    @for (item of MODEL_SELECTION; track item) {
+      <app-radio-button [value]="item.key" [label]="item.label"
+        [checked]="paramsForm.value.modelSelection === item.key">
+      </app-radio-button>
+    }
   </mat-radio-group>
-  <div *ngIf="isTestLayout" class="test-banner">
-  <app-step [value]="getStepNumber(2)">Identify base pairs using</app-step>
-  <mat-radio-group formControlName="analysisTool">
-    <app-radio-button *ngFor="let item of ANALYSIS_TOOL" [value]="item.key" [label]="item.label"
-      [checked]="paramsForm.value.analysisTool === item.key">
-    </app-radio-button>
-  </mat-radio-group>
-</div>
-<div *ngIf="!isTestLayout" class="test-banner">
-  <app-step [value]="getStepNumber(2)">Identify base pairs using</app-step>
-  <mat-radio-group formControlName="analysisTool">
-    <app-radio-button *ngFor="let item of ANALYSIS_TOOL" [value]="item.key" [label]="item.label"
-      [checked]="paramsForm.value.analysisTool === item.key">
-    </app-radio-button>
-  </mat-radio-group>
-</div>
+  @if (isTestLayout) {
+    <div class="test-banner">
+      <app-step [value]="getStepNumber(2)">Identify base pairs using</app-step>
+      <mat-radio-group formControlName="analysisTool">
+        @for (item of ANALYSIS_TOOL; track item) {
+          <app-radio-button [value]="item.key" [label]="item.label"
+            [checked]="paramsForm.value.analysisTool === item.key">
+          </app-radio-button>
+        }
+      </mat-radio-group>
+    </div>
+  }
+  @if (!isTestLayout) {
+    <div class="test-banner">
+      <app-step [value]="getStepNumber(2)">Identify base pairs using</app-step>
+      <mat-radio-group formControlName="analysisTool">
+        @for (item of ANALYSIS_TOOL; track item) {
+          <app-radio-button [value]="item.key" [label]="item.label"
+            [checked]="paramsForm.value.analysisTool === item.key">
+          </app-radio-button>
+        }
+      </mat-radio-group>
+    </div>
+  }
   <!-- <app-step [value]="getStepNumber(2)">Identify base pairs using</app-step>
   <mat-radio-group formControlName="analysisTool">
     <app-radio-button *ngFor="let item of ANALYSIS_TOOL" [value]="item.key" [label]="item.label"
@@ -30,24 +40,30 @@
 
   <h3 class="subsection">Include non-canonical ones: </h3>
   <mat-radio-group formControlName="nonCanonicalHandling">
-    <app-radio-button *ngFor="let item of NON_CANONICAL_HANDLING" [value]="item.key" [label]="item.label"
-      [checked]="paramsForm.value.nonCanonicalHandling === item.key">
-    </app-radio-button>
+    @for (item of NON_CANONICAL_HANDLING; track item) {
+      <app-radio-button [value]="item.key" [label]="item.label"
+        [checked]="paramsForm.value.nonCanonicalHandling === item.key">
+      </app-radio-button>
+    }
   </mat-radio-group>
 
   <mat-checkbox color="primary" formControlName="removeIsolated">Remove isolated, canonical base pairs</mat-checkbox>
 
   <app-step [value]="getStepNumber(3)"> Handle structural elements</app-step>
   <mat-radio-group formControlName="structuralElementsHandling">
-    <app-radio-button *ngFor="let item of STRUCTURAL_ELEMENTS_HANDLING" [value]="item.key" [label]="item.label"
-      [checked]="paramsForm.value.structuralElementsHandling === item.key">
-    </app-radio-button>
+    @for (item of STRUCTURAL_ELEMENTS_HANDLING; track item) {
+      <app-radio-button [value]="item.key" [label]="item.label"
+        [checked]="paramsForm.value.structuralElementsHandling === item.key">
+      </app-radio-button>
+    }
   </mat-radio-group>
 
   <app-step [value]="getStepNumber(4)">Visualize secondary structure using</app-step>
   <mat-radio-group formControlName="visualizationTool">
-    <app-radio-button *ngFor="let item of VISUALIZATION_TOOL" [value]="item.key" [label]="item.label"
-      [checked]="paramsForm.value.visualizationTool === item.key">
-    </app-radio-button>
+    @for (item of VISUALIZATION_TOOL; track item) {
+      <app-radio-button [value]="item.key" [label]="item.label"
+        [checked]="paramsForm.value.visualizationTool === item.key">
+      </app-radio-button>
+    }
   </mat-radio-group>
 </form>

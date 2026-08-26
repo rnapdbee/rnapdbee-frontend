@@ -1,16 +1,13 @@
-<ng-container *ngIf="calculationResults$ | async as calcRes; else status">
+@if (calculationResults$ | async; as calcRes) {
   <app-secondary-to-dbn-results [calculation]="calcRes"></app-secondary-to-dbn-results>
-</ng-container>
+} @else {
+  @if (error) {
+    <app-error [calculationId]="id" [message]="error"></app-error>
+  } @else {
+    <app-calculation-loading scenario="2D → (...)"
+      scenarioInfo="Secondary structure topology of RNA derived from base pair list provided in BPSEQ, CT or DBN."
+      [calculationId]="id">
+    </app-calculation-loading>
+  }
+}
 
-<ng-template #status>
-    <ng-container *ngIf="error; else loading">
-      <app-error [calculationId]="id" [message]="error"></app-error>
-    </ng-container>
-
-    <ng-template #loading>
-      <app-calculation-loading scenario="2D → (...)"
-        scenarioInfo="Secondary structure topology of RNA derived from base pair list provided in BPSEQ, CT or DBN."
-        [calculationId]="id">
-      </app-calculation-loading>
-    </ng-template>
-</ng-template>

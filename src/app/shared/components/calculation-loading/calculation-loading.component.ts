@@ -4,6 +4,7 @@ import { Component, Input } from '@angular/core';
   selector: 'app-calculation-loading',
   templateUrl: './calculation-loading.component.html',
   styleUrls: ['./calculation-loading.component.scss'],
+  standalone: false,
 })
 export class CalculationLoadingComponent {
   @Input() calculationId: string | undefined = '';

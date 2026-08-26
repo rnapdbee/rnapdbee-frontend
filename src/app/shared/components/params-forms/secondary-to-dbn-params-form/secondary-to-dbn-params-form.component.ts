@@ -7,6 +7,7 @@ import { SecondaryToDbnParams } from 'src/app/shared/models/params/secondary-to-
   selector: 'app-secondary-to-dbn-params-form',
   templateUrl: './secondary-to-dbn-params-form.component.html',
   styleUrls: ['./secondary-to-dbn-params-form.component.scss'],
+  standalone: false,
 })
 export class SecondaryToDbnParamsFormComponent implements OnInit {
   @Input() startWith = 1;

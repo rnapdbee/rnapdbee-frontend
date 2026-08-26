@@ -12,6 +12,7 @@ import { ControlValueComponent, ControlValueProvider } from '../control-value/co
   animations: [OpenCloseAnimation],
   // eslint-disable-next-line no-use-before-define
   providers: [ControlValueProvider(CheckboxComponent)],
+  standalone: false,
 })
 export class CheckboxComponent extends ControlValueComponent<SelectField> {
   @Input() label = '';

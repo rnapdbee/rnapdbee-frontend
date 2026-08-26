@@ -5,6 +5,7 @@ import { WEBLOGO_LEGEND_ENTRIES } from '../../constants/weblogo-legend-entries.c
   selector: 'app-weblogo-legend',
   templateUrl: './weblogo-legend.component.html',
   styleUrls: ['./weblogo-legend.component.scss'],
+  standalone: false,
 })
 export class WeblogoLegendComponent {
   legendEntries = WEBLOGO_LEGEND_ENTRIES;

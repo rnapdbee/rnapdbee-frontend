@@ -10,6 +10,7 @@ import { SnackBarService } from '../../services/notifications/snack-bar.service'
   selector: 'app-submit-button',
   templateUrl: './submit-button.component.html',
   styleUrls: ['./submit-button.component.scss'],
+  standalone: false,
 })
 export class SubmitButtonComponent {
   @Input() callback: (() => Observable<Calculation<Params, unknown>>) | undefined;

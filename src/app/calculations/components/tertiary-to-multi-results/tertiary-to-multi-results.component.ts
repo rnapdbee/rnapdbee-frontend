@@ -12,6 +12,7 @@ import { ApiPaths } from 'src/environments/environment';
   selector: 'app-tertiary-to-multi-results[calculation]',
   templateUrl: './tertiary-to-multi-results.component.html',
   styleUrls: ['./tertiary-to-multi-results.component.scss'],
+  standalone: false,
 })
 export class TertiaryToMultiResultsComponent extends ResultsComponent<TertiaryToMultiParams, MultiOutput, MultiSelect> {
   constructor(

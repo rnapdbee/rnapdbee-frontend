@@ -5,6 +5,7 @@ import { TableOfContentsEntry } from 'src/app/shared/models/information/table-of
   selector: 'app-table-of-contents',
   templateUrl: './table-of-contents.component.html',
   styleUrls: ['./table-of-contents.component.scss'],
+  standalone: false,
 })
 export class TableOfContentsComponent {
   @Input() path = '';

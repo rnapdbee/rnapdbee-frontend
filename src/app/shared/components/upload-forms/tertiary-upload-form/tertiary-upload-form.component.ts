@@ -13,6 +13,7 @@ import { NucleoSizeService } from 'src/app/shared/services/nucleosize/nucleosize
   selector: 'app-tertiary-upload-form',
   templateUrl: './tertiary-upload-form.component.html',
   styleUrls: ['./tertiary-upload-form.component.scss'],
+  standalone: false,
 })
 export class TertiaryUploadFormComponent implements OnInit, OnDestroy {
   @Output() uploadChange = new EventEmitter<UploadMethod>();

@@ -12,6 +12,7 @@ import { DescriptionService } from 'src/app/shared/services/result/description.s
   selector: 'app-secondary-to-dbn-input-form',
   templateUrl: './secondary-to-dbn-input-form.component.html',
   styleUrls: ['./secondary-to-dbn-input-form.component.scss'],
+  standalone: false,
 })
 export class SecondaryToDbnInputFormComponent extends InputFormComponent<SecondaryToDbnParams, SecondaryOutput> {
   constructor(

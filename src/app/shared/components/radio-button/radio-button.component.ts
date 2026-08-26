@@ -6,6 +6,7 @@ import { OpenCloseAnimation } from 'src/app/shared/animations/open-close';
   templateUrl: './radio-button.component.html',
   styleUrls: ['./radio-button.component.scss'],
   animations: [OpenCloseAnimation],
+  standalone: false,
 })
 export class RadioButtonComponent {
   @Input() checked = false;

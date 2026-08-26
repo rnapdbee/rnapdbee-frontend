@@ -19,6 +19,7 @@ import { ControlValueProvider, ControlValueComponent } from '../../control-value
   styleUrls: ['./triples-table.component.scss'],
   // eslint-disable-next-line no-use-before-define
   providers: [ControlValueProvider(TriplesTableComponent)],
+  standalone: false,
 })
 export class TriplesTableComponent extends ControlValueComponent<SelectField> implements OnChanges, AfterViewInit {
   @Input() triples: Triples[] = [];

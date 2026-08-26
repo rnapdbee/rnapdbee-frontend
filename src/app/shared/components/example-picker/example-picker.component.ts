@@ -5,6 +5,7 @@ import { Example } from '../../models/upload/example.model';
   selector: 'app-example-picker',
   templateUrl: './example-picker.component.html',
   styleUrls: ['./example-picker.component.scss'],
+  standalone: false,
 })
 export class ExamplePickerComponent implements OnInit {
   @Input() examples: Example[] = [];

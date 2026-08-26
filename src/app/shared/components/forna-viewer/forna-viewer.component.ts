@@ -5,6 +5,7 @@ import { StrandEntry } from '../../models/output/secondary-output.model';
   selector: 'app-forna-viewer[strands]',
   templateUrl: './forna-viewer.component.html',
   styleUrls: ['./forna-viewer.component.scss'],
+  standalone: false,
 })
 export class FornaViewerComponent {
   @Input() strands: StrandEntry[] = [];

@@ -6,6 +6,7 @@ import { HOST } from 'src/environments/environment';
   selector: 'app-svg-viewer[src]',
   templateUrl: './svg-viewer.component.html',
   styleUrls: ['./svg-viewer.component.scss'],
+  standalone: false,
 })
 export class SvgViewerComponent implements AfterViewInit {
   @Input() src = '';

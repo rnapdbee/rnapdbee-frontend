@@ -13,6 +13,7 @@ import { TertiaryToDbnParams } from 'src/app/shared/models/params/tertiary-to-db
   selector: 'app-tertiary-to-dbn-params-form',
   templateUrl: './tertiary-to-dbn-params-form.component.html',
   styleUrls: ['./tertiary-to-dbn-params-form.component.scss'],
+  standalone: false,
 })
 export class TertiaryToDbnParamsFormComponent implements OnInit {
   @Input() isTestLayout = false;

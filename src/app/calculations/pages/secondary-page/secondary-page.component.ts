@@ -11,6 +11,7 @@ import { ErrorService } from 'src/app/shared/services/error/error.service';
   selector: 'app-secondary-page',
   templateUrl: './secondary-page.component.html',
   styleUrls: ['./secondary-page.component.scss'],
+  standalone: false,
 })
 export class SecondaryPageComponent extends CalculationPageComponent<SecondaryToDbnParams, SecondaryOutput> {
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor

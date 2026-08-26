@@ -6,6 +6,7 @@ import { TableOfContentsEntry } from 'src/app/shared/models/information/table-of
   selector: 'app-help-page',
   templateUrl: './help-page.component.html',
   styleUrls: ['./help-page.component.scss'],
+  standalone: false,
 })
 export class HelpPageComponent {
   constructor(private readonly titleService: Title) {

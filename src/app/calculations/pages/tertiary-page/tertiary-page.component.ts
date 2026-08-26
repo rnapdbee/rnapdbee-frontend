@@ -13,6 +13,7 @@ import { ErrorService } from 'src/app/shared/services/error/error.service';
   templateUrl: './tertiary-page.component.html',
   styleUrls: ['./tertiary-page.component.scss'],
   animations: [OpenCloseAnimation],
+  standalone: false,
 })
 export class TertiaryPageComponent extends CalculationPageComponent<TertiaryToDbnParams, TertiaryOutput> {
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor

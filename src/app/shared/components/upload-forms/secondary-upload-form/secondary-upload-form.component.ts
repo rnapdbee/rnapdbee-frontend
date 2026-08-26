@@ -21,6 +21,7 @@ export enum ExampleType {
   selector: 'app-secondary-upload-form',
   templateUrl: './secondary-upload-form.component.html',
   styleUrls: ['./secondary-upload-form.component.scss'],
+  standalone: false,
 })
 export class SecondaryUploadFormComponent implements OnInit {
   @Output() uploadChange = new EventEmitter<UploadMethod>();

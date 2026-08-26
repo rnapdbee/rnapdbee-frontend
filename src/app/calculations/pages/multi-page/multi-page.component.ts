@@ -11,6 +11,7 @@ import { ErrorService } from 'src/app/shared/services/error/error.service';
   selector: 'app-multi-page',
   templateUrl: './multi-page.component.html',
   styleUrls: ['./multi-page.component.scss'],
+  standalone: false,
 })
 export class MultiPageComponent extends CalculationPageComponent<TertiaryToMultiParams, MultiOutput> {
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor

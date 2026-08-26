@@ -7,6 +7,7 @@ import { TertiaryToMultiParams } from 'src/app/shared/models/params/tertiary-to-
   selector: 'app-tertiary-to-multi-params-form',
   templateUrl: './tertiary-to-multi-params-form.component.html',
   styleUrls: ['./tertiary-to-multi-params-form.component.scss'],
+  standalone: false,
 })
 export class TertiaryToMultiParamsFormComponent implements OnInit {
   @Input() startWith = 1;

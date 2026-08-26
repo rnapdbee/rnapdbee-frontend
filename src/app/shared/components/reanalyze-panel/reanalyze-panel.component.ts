@@ -9,6 +9,7 @@ import { ControlValueComponent, ControlValueProvider } from '../control-value/co
   animations: [OpenCloseAnimation],
   // eslint-disable-next-line no-use-before-define
   providers: [ControlValueProvider(ReanalyzePanelComponent)],
+  standalone: false,
 })
 export class ReanalyzePanelComponent extends ControlValueComponent<boolean> {
   constructor() { super(false); }

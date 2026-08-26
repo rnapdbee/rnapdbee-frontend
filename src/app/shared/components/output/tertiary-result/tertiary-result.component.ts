@@ -14,6 +14,7 @@ import { ControlValueComponent, ControlValueProvider } from '../../control-value
   styleUrls: ['./tertiary-result.component.scss'],
   // eslint-disable-next-line no-use-before-define
   providers: [ControlValueProvider(TertiaryResultComponent)],
+  standalone: false,
 })
 export class TertiaryResultComponent extends ControlValueComponent<TertiaryResultSelect> {
   private _result: Result<TertiaryToDbnParams, TertiaryOutput> | undefined;

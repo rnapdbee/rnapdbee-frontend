@@ -6,6 +6,7 @@ import { RequestLoadingData, RequestLoadingService } from '../../services/loadin
   selector: 'app-request-loading',
   templateUrl: './request-loading.component.html',
   styleUrls: ['./request-loading.component.scss'],
+  standalone: false,
 })
 export class RequestLoadingComponent {
   loadingData$: Observable<RequestLoadingData | undefined>;

@@ -12,6 +12,7 @@ import { DescriptionService } from 'src/app/shared/services/result/description.s
   selector: 'app-tertiary-to-multi-input-form',
   templateUrl: './tertiary-to-multi-input-form.component.html',
   styleUrls: ['./tertiary-to-multi-input-form.component.scss'],
+  standalone: false,
 })
 export class TertiaryToMultiInputFormComponent extends InputFormComponent<TertiaryToMultiParams, MultiOutput> {
   constructor(

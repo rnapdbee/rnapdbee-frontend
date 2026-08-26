@@ -13,6 +13,7 @@ import { SelectableService } from '../../services/selectable/selectable.service'
   templateUrl: './download.component.html',
   styleUrls: ['./download.component.scss'],
   animations: [OpenCloseAnimation],
+  standalone: false,
 })
 export class DownloadComponent {
   @Input() selected: SelectArray<SelectSubObject> | undefined;

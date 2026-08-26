@@ -14,6 +14,7 @@ import { ControlValueComponent, ControlValueProvider } from '../../control-value
   styleUrls: ['./secondary-result.component.scss'],
   // eslint-disable-next-line no-use-before-define
   providers: [ControlValueProvider(SecondaryResultComponent)],
+  standalone: false,
 })
 export class SecondaryResultComponent extends ControlValueComponent<SecondaryResultSelect> {
   @Input() result: Result<SecondaryToDbnParams, SecondaryOutput> | undefined;

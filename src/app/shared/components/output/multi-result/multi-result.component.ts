@@ -14,6 +14,7 @@ import { ControlValueComponent, ControlValueProvider } from '../../control-value
   styleUrls: ['./multi-result.component.scss'],
   // eslint-disable-next-line no-use-before-define
   providers: [ControlValueProvider(MultiResultComponent)],
+  standalone: false,
 })
 export class MultiResultComponent extends ControlValueComponent<MultiResultSelect> {
   private _result: Result<TertiaryToMultiParams, MultiOutput> | undefined;

@@ -6,6 +6,7 @@ import { SelectableService } from '../../services/selectable/selectable.service'
   selector: 'app-checkbox-indeterminate',
   templateUrl: './checkbox-indeterminate.component.html',
   styleUrls: ['./checkbox-indeterminate.component.scss'],
+  standalone: false,
 })
 export class CheckboxIndeterminateComponent {
   @Input() checked = false;

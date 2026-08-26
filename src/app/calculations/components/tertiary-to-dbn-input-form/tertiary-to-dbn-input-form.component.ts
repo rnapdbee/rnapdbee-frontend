@@ -12,6 +12,7 @@ import { DescriptionService } from 'src/app/shared/services/result/description.s
   selector: 'app-tertiary-to-dbn-input-form',
   templateUrl: './tertiary-to-dbn-input-form.component.html',
   styleUrls: ['./tertiary-to-dbn-input-form.component.scss'],
+  standalone: false,
 })
 export class TertiaryToDBNInputFormComponent extends InputFormComponent<TertiaryToDbnParams, TertiaryOutput> {
   @Input() isTestLayout = false;

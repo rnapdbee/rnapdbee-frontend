@@ -12,6 +12,7 @@ import { ApiPaths } from 'src/environments/environment';
   selector: 'app-tertiary-to-dbn-results[calculation]',
   templateUrl: './tertiary-to-dbn-results.component.html',
   styleUrls: ['./tertiary-to-dbn-results.component.scss'],
+  standalone: false,
 })
 export class TertiaryToDbnResultsComponent extends ResultsComponent<TertiaryToDbnParams, TertiaryOutput, TertiarySelect> {
   constructor(

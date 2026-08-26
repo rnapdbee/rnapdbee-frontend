@@ -72,6 +72,7 @@ const INTERACTION_COLUMNS: InteractionColumn = {
   styleUrls: ['./tertiary-interactions.component.scss'],
   // eslint-disable-next-line no-use-before-define
   providers: [ControlValueProvider(TertiaryInteractionsComponent)],
+  standalone: false,
 })
 export class TertiaryInteractionsComponent extends ControlValueComponent<SelectField> implements OnInit, AfterViewInit {
   @Input() interactions: TertiaryInteractions[] | undefined;

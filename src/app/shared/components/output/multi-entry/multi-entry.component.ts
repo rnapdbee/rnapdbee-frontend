@@ -10,6 +10,7 @@ import { ControlValueComponent, ControlValueProvider } from '../../control-value
   styleUrls: ['./multi-entry.component.scss'],
   // eslint-disable-next-line no-use-before-define
   providers: [ControlValueProvider(MultiEntryComponent)],
+  standalone: false,
 })
 export class MultiEntryComponent extends ControlValueComponent<MultiEntrySelect> {
   @Input() entry: OutputMultiEntry | undefined;

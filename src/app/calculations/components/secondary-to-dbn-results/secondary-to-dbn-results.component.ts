@@ -12,6 +12,7 @@ import { ApiPaths } from 'src/environments/environment';
   selector: 'app-secondary-to-dbn-results[calculation]',
   templateUrl: './secondary-to-dbn-results.component.html',
   styleUrls: ['./secondary-to-dbn-results.component.scss'],
+  standalone: false,
 })
 export class SecondaryToDbnResultsComponent extends ResultsComponent<SecondaryToDbnParams, SecondaryOutput, SecondarySelect> {
   constructor(

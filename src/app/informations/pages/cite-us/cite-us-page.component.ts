@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
   selector: 'app-cite-us-page',
   templateUrl: './cite-us-page.component.html',
   styleUrls: ['./cite-us-page.component.scss'],
+  standalone: false,
 })
 export class CiteUsPageComponent {
   constructor(private readonly titleService: Title) {

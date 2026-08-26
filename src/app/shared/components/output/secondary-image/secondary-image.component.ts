@@ -11,6 +11,7 @@ import { ControlValueComponent, ControlValueProvider } from '../../control-value
   styleUrls: ['./secondary-image.component.scss'],
   // eslint-disable-next-line no-use-before-define
   providers: [ControlValueProvider(SecondaryImageComponent)],
+  standalone: false,
 })
 export class SecondaryImageComponent extends ControlValueComponent<SelectField> {
   @Input() imageInformation: ImageInformation | undefined;

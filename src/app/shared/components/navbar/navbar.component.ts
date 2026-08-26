@@ -7,6 +7,7 @@ import { OpenCloseAnimation } from '../../animations/open-close';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   animations: [OpenCloseAnimation],
+  standalone: false,
 })
 export class NavbarComponent {
   menuExpanded = false;

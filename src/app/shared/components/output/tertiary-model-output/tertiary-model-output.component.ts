@@ -9,6 +9,7 @@ import { ControlValueComponent, ControlValueProvider } from '../../control-value
   styleUrls: ['./tertiary-model-output.component.scss'],
   // eslint-disable-next-line no-use-before-define
   providers: [ControlValueProvider(TertiaryModelOutputComponent)],
+  standalone: false,
 })
 export class TertiaryModelOutputComponent extends ControlValueComponent<TertiaryModelSelect> {
   private _model: TertiaryModel | undefined;

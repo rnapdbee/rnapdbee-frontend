@@ -10,6 +10,7 @@ import { ControlValueComponent, ControlValueProvider } from '../../control-value
   styleUrls: ['./secondary-output.component.scss'],
   // eslint-disable-next-line no-use-before-define
   providers: [ControlValueProvider(SecondaryOutputComponent)],
+  standalone: false,
 })
 export class SecondaryOutputComponent extends ControlValueComponent<SecondaryResultSelect> {
   private _output: SecondaryOutput | undefined;

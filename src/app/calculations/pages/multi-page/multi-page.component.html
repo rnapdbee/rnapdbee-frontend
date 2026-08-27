@@ -1,15 +1,12 @@
-<ng-container *ngIf="calculationResults$ | async as calcRes; else status">
+@if (calculationResults$ | async; as calcRes) {
   <app-tertiary-to-multi-results [calculation]="calcRes"></app-tertiary-to-multi-results>
-</ng-container>
-
-<ng-template #status>
-  <ng-container *ngIf="error; else loading">
+} @else {
+  @if (error) {
     <app-error [calculationId]="id" [message]="error"></app-error>
-  </ng-container>
-
-  <ng-template #loading>
+  } @else {
     <app-calculation-loading scenario="3D → multi 2D" scenarioInfo="Set of multiple secondary structures of RNA derived from its tertiary structure provided in PDB or PDBx/mmCIF file
       based on various results of intermediate processing steps." [calculationId]="id">
     </app-calculation-loading>
-  </ng-template>
-</ng-template>
+  }
+}
+

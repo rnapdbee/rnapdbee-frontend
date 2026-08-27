@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ResultsComponent } from 'src/app/shared/components/results/results.component';
 import { Calculation } from 'src/app/shared/models/calculation/calculation.model';
 import { SecondaryOutput } from 'src/app/shared/models/output/secondary-output.model';
@@ -12,6 +12,8 @@ import { ApiPaths } from 'src/environments/environment';
   selector: 'app-secondary-to-dbn-results[calculation]',
   templateUrl: './secondary-to-dbn-results.component.html',
   styleUrls: ['./secondary-to-dbn-results.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SecondaryToDbnResultsComponent extends ResultsComponent<SecondaryToDbnParams, SecondaryOutput, SecondarySelect> {
   constructor(

@@ -1,17 +1,21 @@
 <form [formGroup]="paramsForm">
   <app-step [value]="getStepNumber(1)">Handle structural elements</app-step>
   <mat-radio-group formControlName="structuralElementsHandling">
-    <app-radio-button *ngFor="let item of STRUCTURAL_ELEMENTS_HANDLING" [value]="item.key" [label]="item.label"
-      [checked]="paramsForm.value.structuralElementsHandling === item.key">
-    </app-radio-button>
+    @for (item of STRUCTURAL_ELEMENTS_HANDLING; track item) {
+      <app-radio-button [value]="item.key" [label]="item.label"
+        [checked]="paramsForm.value.structuralElementsHandling === item.key">
+      </app-radio-button>
+    }
   </mat-radio-group>
 
   <mat-checkbox color="primary" formControlName="removeIsolated">Remove isolated, canonical base pairs</mat-checkbox>
 
   <app-step [value]="getStepNumber(2)">Visualize secondary structure using</app-step>
   <mat-radio-group formControlName="visualizationTool">
-    <app-radio-button *ngFor="let item of VISUALIZATION_TOOL" [value]="item.key" [label]="item.label"
-      [checked]="paramsForm.value.visualizationTool === item.key">
-    </app-radio-button>
+    @for (item of VISUALIZATION_TOOL; track item) {
+      <app-radio-button [value]="item.key" [label]="item.label"
+        [checked]="paramsForm.value.visualizationTool === item.key">
+      </app-radio-button>
+    }
   </mat-radio-group>
 </form>

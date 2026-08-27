@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { SecondaryOutput, StructuralElements } from 'src/app/shared/models/output/secondary-output.model';
 import { SecondaryResultSelect } from 'src/app/shared/models/select/secondary-result-select.model';
 import { ControlValueComponent, ControlValueProvider } from '../../control-value/control-value.component';
@@ -8,8 +8,10 @@ import { ControlValueComponent, ControlValueProvider } from '../../control-value
   selector: 'app-secondary-output[output]',
   templateUrl: './secondary-output.component.html',
   styleUrls: ['./secondary-output.component.scss'],
-  // eslint-disable-next-line no-use-before-define
+   
   providers: [ControlValueProvider(SecondaryOutputComponent)],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SecondaryOutputComponent extends ControlValueComponent<SecondaryResultSelect> {
   private _output: SecondaryOutput | undefined;

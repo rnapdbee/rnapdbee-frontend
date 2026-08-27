@@ -1,28 +1,32 @@
-<ng-container *ngIf="interactions && interactions.length > 0">
+@if (interactions && interactions.length > 0) {
   <app-checkbox [(ngModel)]="value" [label]="label" [tableView]="true">
     <div class="filter">
       <input [(ngModel)]="filterValue" type="text" name="filter" placeholder="Search...">
-      <mat-icon *ngIf="filterValue" (click)="filterValue = ''">close</mat-icon>
+      @if (filterValue) {
+        <mat-icon (click)="filterValue = ''">close</mat-icon>
+      }
     </div>
-
     <div class="table-container">
       <mat-table [dataSource]="dataSource" matSort>
-        <ng-container *ngFor="let column of displayedColumns; first as isFirst" [matColumnDef]="column"
-          [sticky]="isFirst">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> {{ interactionColumns[column].header }} </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{ interactionColumns[column].cell(element) }} </mat-cell>
-        </ng-container>
-
+        @for (column of displayedColumns; track column; let isFirst = $first) {
+          <ng-container [matColumnDef]="column"
+            [sticky]="isFirst">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> {{ interactionColumns[column].header }} </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ interactionColumns[column].cell(element) }} </mat-cell>
+          </ng-container>
+        }
         <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
         <div class="no-data-row" *matNoDataRow>
-          <span *ngIf="filterValue; else noData">
-            No data matching the filter "{{ filterValue }}"
-          </span>
-          <ng-template #noData>No data to show</ng-template>
+          @if (filterValue) {
+            <span>
+              No data matching the filter "{{ filterValue }}"
+            </span>
+          } @else {
+            No data to show
+          }
         </div>
       </mat-table>
     </div>
   </app-checkbox>
-</ng-container>
+}

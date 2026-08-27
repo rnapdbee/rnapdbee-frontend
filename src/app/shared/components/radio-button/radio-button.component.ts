@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { OpenCloseAnimation } from 'src/app/shared/animations/open-close';
 
 @Component({
@@ -6,6 +6,8 @@ import { OpenCloseAnimation } from 'src/app/shared/animations/open-close';
   templateUrl: './radio-button.component.html',
   styleUrls: ['./radio-button.component.scss'],
   animations: [OpenCloseAnimation],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RadioButtonComponent {
   @Input() checked = false;

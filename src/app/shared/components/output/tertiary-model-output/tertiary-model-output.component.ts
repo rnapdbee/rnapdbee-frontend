@@ -1,15 +1,16 @@
-import { Component, Input } from '@angular/core';
-import { TertiaryModel } from 'src/app/shared/models/output/tertiary-output.model';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { TertiaryModel, TertiaryInteractions, Triples } from 'src/app/shared/models/output/tertiary-output.model';
 import { TertiaryModelSelect } from 'src/app/shared/models/select/tertiary-model-select.model';
-import { TertiaryInteractions, Triples } from 'src/app/shared/models/output/tertiary-output.model';
 import { ControlValueComponent, ControlValueProvider } from '../../control-value/control-value.component';
 
 @Component({
   selector: 'app-tertiary-model-output[model]',
   templateUrl: './tertiary-model-output.component.html',
   styleUrls: ['./tertiary-model-output.component.scss'],
-  // eslint-disable-next-line no-use-before-define
+   
   providers: [ControlValueProvider(TertiaryModelOutputComponent)],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TertiaryModelOutputComponent extends ControlValueComponent<TertiaryModelSelect> {
   private _model: TertiaryModel | undefined;
@@ -21,17 +22,11 @@ export class TertiaryModelOutputComponent extends ControlValueComponent<Tertiary
   }
   get model() { return this._model; }
   messagesText = '';
-  baseTriplesText = '';
 
   constructor() { super(new TertiaryModelSelect()); }
 
   generateOutputTexts(model: TertiaryModel) {
     this.messagesText = model.messages.join('\n');
-    this.baseTriplesText = model.baseTriples.join('\n');
-  }
-
-  onBaseTriplesChange(): void { // Only for debugging
-    console.log('value:', this.value);
   }
 
   // adapter: expose baseTriples as TertiaryInteractions[] for the existing interactions component

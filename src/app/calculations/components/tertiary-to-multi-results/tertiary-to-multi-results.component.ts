@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ResultsComponent } from 'src/app/shared/components/results/results.component';
 import { Calculation } from 'src/app/shared/models/calculation/calculation.model';
 import { MultiOutput } from 'src/app/shared/models/output/multi-output.model';
@@ -12,6 +12,8 @@ import { ApiPaths } from 'src/environments/environment';
   selector: 'app-tertiary-to-multi-results[calculation]',
   templateUrl: './tertiary-to-multi-results.component.html',
   styleUrls: ['./tertiary-to-multi-results.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TertiaryToMultiResultsComponent extends ResultsComponent<TertiaryToMultiParams, MultiOutput, MultiSelect> {
   constructor(

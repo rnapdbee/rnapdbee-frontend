@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-cycle
 import { SelectFields } from './select-fields.model';
 import { Selectable } from './selectable.model';
 

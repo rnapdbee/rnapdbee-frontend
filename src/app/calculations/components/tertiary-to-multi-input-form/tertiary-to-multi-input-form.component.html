@@ -1,17 +1,13 @@
-<ng-container *ngIf="(loading$ | async) !== true; else loading">
+@if ((loading$ | async) !== true) {
   <app-step [value]="1">Upload RNA 3D structure</app-step>
   <app-tertiary-upload-form (uploadChange)="onUploadMethodChange($event)">
   </app-tertiary-upload-form>
-
   <app-tertiary-to-multi-params-form [startWith]="2" [params]="params" (paramChange)="onParamsChange($event)">
   </app-tertiary-to-multi-params-form>
-
   <mat-divider></mat-divider>
-
   <app-submit-button [callback]="calculateCallback" [disabled]="!isValid()"
-    (buttonSubmit)="onSubmit($event)"></app-submit-button>
-</ng-container>
-
-<ng-template #loading>
+  (buttonSubmit)="onSubmit($event)"></app-submit-button>
+} @else {
   <app-request-loading></app-request-loading>
-</ng-template>
+}
+

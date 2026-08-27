@@ -1,8 +1,7 @@
-/* eslint-disable import/no-cycle */
 import { SelectSubObject } from './select-fields.model';
 import { Selectable } from './selectable.model';
 
-// eslint-disable-next-line no-use-before-define
+ 
 export abstract class SelectArray<S extends SelectSubObject> implements Selectable {
   fields: S[];
 

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import * as L from 'leaflet';
 import { HOST } from 'src/environments/environment';
 
@@ -6,6 +6,8 @@ import { HOST } from 'src/environments/environment';
   selector: 'app-svg-viewer[src]',
   templateUrl: './svg-viewer.component.html',
   styleUrls: ['./svg-viewer.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SvgViewerComponent implements AfterViewInit {
   @Input() src = '';

@@ -1,7 +1,7 @@
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, Type } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -52,7 +52,7 @@ import { VarnaLegendComponent } from './components/varna-legend/varna-legend.com
 import { WeblogoLegendComponent } from './components/weblogo-legend/weblogo-legend.component';
 import { TriplesTableComponent } from './components/output/triples-table/triples-table.component';
 
-const COMPONENTS = [
+const COMPONENTS: Type<unknown>[] = [
   CalculationLoadingComponent,
   CheckboxComponent,
   CheckboxIndeterminateComponent,
@@ -87,7 +87,7 @@ const COMPONENTS = [
   TriplesTableComponent,
 ];
 
-const MODULES = [
+const MODULES: Type<unknown>[] = [
   CommonModule,
   ClipboardModule,
   FormsModule,

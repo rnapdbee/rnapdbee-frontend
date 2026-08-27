@@ -1,4 +1,4 @@
-@import "src/variables";
+@use "src/variables" as *;
 
 :host {
   h2 {
@@ -22,6 +22,14 @@
 
   a {
     color: $primary;
+  }
+
+  // Example images/screenshots are wider than their native display size, and
+  // the content column can now be narrower than that (sidebar layout), so
+  // let them scale down instead of overflowing the card.
+  img {
+    max-width: 100%;
+    height: auto;
   }
 
   .classification-table tr td:nth-child(2) {

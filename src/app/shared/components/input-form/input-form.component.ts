@@ -49,7 +49,7 @@ export abstract class InputFormComponent<P extends Params, O> {
     event.pipe(
       finalize(() => this.onLoadingEnd()),
     ).subscribe(data => {
-      // eslint-disable-next-line no-void
+       
       void this.router.navigate([this.routePath, data.id]);
     });
   }

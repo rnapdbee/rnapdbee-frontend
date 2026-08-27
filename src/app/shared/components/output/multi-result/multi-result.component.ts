@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Result } from 'src/app/shared/models/calculation/calculation.model';
 import { MultiOutput } from 'src/app/shared/models/output/multi-output.model';
@@ -12,8 +12,10 @@ import { ControlValueComponent, ControlValueProvider } from '../../control-value
   selector: 'app-multi-result',
   templateUrl: './multi-result.component.html',
   styleUrls: ['./multi-result.component.scss'],
-  // eslint-disable-next-line no-use-before-define
+   
   providers: [ControlValueProvider(MultiResultComponent)],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class MultiResultComponent extends ControlValueComponent<MultiResultSelect> {
   private _result: Result<TertiaryToMultiParams, MultiOutput> | undefined;

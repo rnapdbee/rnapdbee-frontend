@@ -1,20 +1,20 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DrawingResult, ImageInformation } from 'src/app/shared/models/output/secondary-output.model';
 import { SecondaryImageComponent } from './secondary-image.component';
 
-const mockSuccessfulVisualizationTool = 'SUCESSFUL_DRAWER';
-const mockFailedVisualizationTool = 'SUCESSFUL_DRAWER';
+const mockSuccessfulVisualizationTool = 'SUCCESSFUL_DRAWER';
+const mockFailedVisualizationTool = 'FAILED_DRAWER';
 
-const mockImageInformation: ImageInformation = {
-  pathToSVGImage: '',
-  successfulVisualizationTool: mockSuccessfulVisualizationTool,
-  failedVisualizationTool: mockFailedVisualizationTool,
-  drawingResult: DrawingResult.DoneByMainDrawer,
-};
-
+function createImageInformation(drawingResult: DrawingResult): ImageInformation {
+  return {
+    pathToSVGImage: '',
+    successfulVisualizationTool: mockSuccessfulVisualizationTool,
+    failedVisualizationTool: mockFailedVisualizationTool,
+    drawingResult,
+  };
+}
 
 describe('SecondaryImageComponent', () => {
   let fixture: ComponentFixture<SecondaryImageComponent>;
@@ -29,43 +29,33 @@ describe('SecondaryImageComponent', () => {
 
     fixture = TestBed.createComponent(SecondaryImageComponent);
     component = fixture.componentInstance;
-    component.imageInformation = mockImageInformation;
     ({ debugElement } = fixture);
-    fixture.detectChanges();
   });
 
   it('shows image when main drawer works', () => {
-    if (component.imageInformation) {
-      component.imageInformation.drawingResult = DrawingResult.DoneByMainDrawer;
-    }
+    component.imageInformation = createImageInformation(DrawingResult.DoneByMainDrawer);
     fixture.detectChanges();
     expect(debugElement.query(By.css('app-svg-viewer'))).toBeTruthy();
     expect(debugElement.query(By.css('p')).nativeElement.textContent).toContain(mockSuccessfulVisualizationTool);
   });
 
   it('shows image when main drawer fails but backup drawer works', () => {
-    if (component.imageInformation) {
-      component.imageInformation.drawingResult = DrawingResult.DoneByBackupDrawer;
-    }
+    component.imageInformation = createImageInformation(DrawingResult.DoneByBackupDrawer);
     fixture.detectChanges();
     expect(debugElement.query(By.css('app-svg-viewer'))).toBeTruthy();
-    expect(debugElement.query(By.css('p')).nativeElement.textContent).toContain(mockSuccessfulVisualizationTool);
     expect(debugElement.query(By.css('p')).nativeElement.textContent).toContain(mockFailedVisualizationTool);
+    expect(debugElement.query(By.css('p')).nativeElement.textContent).toContain(mockSuccessfulVisualizationTool);
   });
 
   it('shows information when all drawers fail', () => {
-    if (component.imageInformation) {
-      component.imageInformation.drawingResult = DrawingResult.FailedByBothDrawers;
-    }
+    component.imageInformation = createImageInformation(DrawingResult.FailedByBothDrawers);
     fixture.detectChanges();
     expect(debugElement.query(By.css('app-svg-viewer'))).toBeFalsy();
     expect(debugElement.query(By.css('p')).nativeElement.textContent).toContain(mockFailedVisualizationTool);
   });
 
   it('shows information when image not drawn', () => {
-    if (component.imageInformation) {
-      component.imageInformation.drawingResult = DrawingResult.NotDrawn;
-    }
+    component.imageInformation = createImageInformation(DrawingResult.NotDrawn);
     fixture.detectChanges();
     expect(debugElement.query(By.css('app-svg-viewer'))).toBeFalsy();
     expect(debugElement.query(By.css('p')).nativeElement.textContent).toContain('Image not drawn');

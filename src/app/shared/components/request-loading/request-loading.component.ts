@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RequestLoadingData, RequestLoadingService } from '../../services/loading/request-loading.service';
 
@@ -6,6 +6,8 @@ import { RequestLoadingData, RequestLoadingService } from '../../services/loadin
   selector: 'app-request-loading',
   templateUrl: './request-loading.component.html',
   styleUrls: ['./request-loading.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class RequestLoadingComponent {
   loadingData$: Observable<RequestLoadingData | undefined>;

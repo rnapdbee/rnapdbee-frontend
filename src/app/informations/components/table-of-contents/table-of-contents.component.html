@@ -1,7 +1,11 @@
 <h2>Table of contents</h2>
 <nav class="entries">
-  <div class="entry-container" *ngFor="let entry of entries">
-    <a class="entry" [href]="path+'#'+entry.link">{{ entry.name }}</a>
-    <ul><li *ngFor="let subentry of entry.children"><a class="subentry"  [href]="path+'#'+subentry.link">{{ subentry.name }}</a></li></ul>
-  </div>
+  @for (entry of entries; track entry) {
+    <div class="entry-container">
+      <a class="entry" [href]="path+'#'+entry.link">{{ entry.name }}</a>
+      <ul>@for (subentry of entry.children; track subentry) {
+        <li><a class="subentry"  [href]="path+'#'+subentry.link">{{ subentry.name }}</a></li>
+      }</ul>
+    </div>
+  }
 </nav>

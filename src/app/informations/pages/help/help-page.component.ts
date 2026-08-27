@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { TableOfContentsEntry } from 'src/app/shared/models/information/table-of-contents-item';
 
@@ -6,6 +6,8 @@ import { TableOfContentsEntry } from 'src/app/shared/models/information/table-of
   selector: 'app-help-page',
   templateUrl: './help-page.component.html',
   styleUrls: ['./help-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class HelpPageComponent {
   constructor(private readonly titleService: Title) {

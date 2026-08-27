@@ -1,20 +1,22 @@
 <form>
   <mat-radio-group [(ngModel)]="currentUploadType" (ngModelChange)="onMethodChange()" name="upload-type">
-    <app-radio-button 
-      label="From Protein Data Bank" 
+    <app-radio-button
+      label="From Protein Data Bank"
       [value]="UploadType.FromPDB"
       [checked]="currentUploadType === UploadType.FromPDB">
 
-        <div inline class="pdbid-input">
-          <input maxlength="12" type="text" [(ngModel)]="pdbId" name="pdbId" placeholder="4 or 12 character PDB ID">
-          <mat-icon *ngIf="pdbId" (click)="clearPdbIdInput()">close</mat-icon>
-          <span class="pdbid-error">{{ pdbIdError }}</span>
-          <span class="pdbid-error nucleosize-error">{{ nucleoSizeError }}</span>
-        </div>
+      <div inline class="pdbid-input">
+        <input maxlength="12" type="text" [(ngModel)]="pdbId" name="pdbId" placeholder="4 or 12 character PDB ID">
+        @if (pdbId) {
+          <mat-icon (click)="clearPdbIdInput()">close</mat-icon>
+        }
+        <span class="pdbid-error">{{ pdbIdError }}</span>
+        <span class="pdbid-error nucleosize-error">{{ nucleoSizeError }}</span>
+      </div>
     </app-radio-button>
 
-    <app-radio-button 
-      label="From local file" 
+    <app-radio-button
+      label="From local file"
       [value]="UploadType.FromLocalFile"
       [checked]="currentUploadType === UploadType.FromLocalFile">
 
@@ -28,9 +30,9 @@
       </div>
     </app-radio-button>
 
-    <app-radio-button 
+    <app-radio-button
       label="From PDBx/mmCIF example"
-      [value]="UploadType.FromExample" 
+      [value]="UploadType.FromExample"
       [checked]="currentUploadType === UploadType.FromExample">
 
       <app-example-picker [examples]="examples" (selected)="onExampleSelect($event)"></app-example-picker>
@@ -40,6 +42,6 @@
 
 <style>
   .pdbid-input input::placeholder {
-    font-size: 16px;
-  }
+  font-size: 16px;
+}
 </style>

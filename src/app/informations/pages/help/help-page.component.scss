@@ -1,7 +1,13 @@
-@import "src/variables";
+@use "src/variables" as *;
 
 :host {
+  display: block;
+
   .page {
+    box-sizing: border-box;
+    max-width: 1150px;
+    width: 100%;
+    margin: 0 auto;
     padding: 2.5rem 3rem;
     display: flex;
     flex-direction: column;
@@ -17,21 +23,20 @@
       .sidebar {
         @include card-l;
         flex-basis: 350px;
-        
+
         app-table-of-contents {
           position: sticky;
           top: .5rem;
         }
       }
-      
+
       .content-box {
         @include card-r;
-        display: flex;
-        justify-content: center;
 
         .content {
           padding-bottom: 2rem;
           max-width: 800px;
+          margin: 0 auto;
         }
       }
 

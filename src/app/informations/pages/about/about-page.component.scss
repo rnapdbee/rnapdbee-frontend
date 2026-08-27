@@ -1,11 +1,17 @@
-@import "src/variables";
+@use "src/variables" as *;
 
 :host {
+  display: block;
+
   .page {
+    box-sizing: border-box;
+    max-width: 1150px;
+    width: 100%;
+    margin: 0 auto;
     padding: 2.5rem 3rem;
     display: flex;
     flex-direction: column;
-  
+
     h2 {
       margin-bottom: 1rem;
     }
@@ -13,13 +19,7 @@
     .container {
       @include raised;
       @include card;
-      display: flex;
       padding: 1rem 1rem 2rem;
-      justify-content: center;
-
-      .content {
-        max-width: 800px;
-      }
     }
 
     @include mobile {
@@ -28,12 +28,6 @@
       .container {
         padding: 1rem;
       }
-    } 
+    }
   }
-  .about-us-align-left {
-  text-align: left;
-  margin-left: 0;
-  margin-right: auto;
-  display: block;
-}
 }

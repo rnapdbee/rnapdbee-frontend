@@ -1,7 +1,7 @@
 <form>
   <mat-radio-group [(ngModel)]="currentUploadType" (ngModelChange)="onMethodChange()" name="upload-type">
-    <app-radio-button 
-      label="From local file (BPSEQ/CT/DBN)" 
+    <app-radio-button
+      label="From local file (BPSEQ/CT/DBN)"
       [value]="UploadType.FromLocalFile"
       [checked]="currentUploadType === UploadType.FromLocalFile">
 
@@ -14,79 +14,56 @@
         <span class="file-error">{{ fileError }}</span>
       </div>
     </app-radio-button>
-    <app-radio-button 
-  label="From DBN"
-  [value]="UploadType.FromDotBracket"
-  [checked]="currentUploadType === UploadType.FromDotBracket"
-  (click)="onMethodChange()">
-  
-      <!-- <app-example-picker [examples]="dbn_examples" (selected)="onDbnExampleSelect($event)"></app-example-picker> -->
-
-      <!-- Show textarea when Dot-bracket is selected -->
-      <!-- <textarea
-  *ngIf="currentUploadType === UploadType.FromDotBracket"
-  rows="5"
-  [(ngModel)]="dotBracketText"
-  name="dotBracketText"
-  placeholder="Paste your dot-bracket notation here"
-  style="width: 100%; margin-top: 8px;"
-></textarea> -->
-<textarea
-  *ngIf="currentUploadType === UploadType.FromDotBracket"
-  rows="10"
-  [(ngModel)]="dotBracketText"
-  (input)="validateStructuredText()"
-  name="dotBracketText"
-  placeholder="Paste your dot-bracket notation here"
-   wrap="off"
-  style="width: 100%; margin-top: 8px; white-space: pre; overflow: auto; resize: both;margin-bottom: 8px;" 
-></textarea>
-  <!-- <textarea
-    [(ngModel)]="textInput"
-    (input)="validateStructuredText()"
-    rows="10"
-    cols="60"
-    placeholder=""
-  ></textarea> -->
-  <app-example-picker [examples]="dbn_examples" (selected)="onDbnExampleSelect($event)"></app-example-picker>
-  <div *ngIf="isTextValid === false" style="color: red; white-space: pre-wrap;">
-  {{ textValidationError }}
-</div>
-<button
-  *ngIf="currentUploadType === UploadType.FromDotBracket"
-  type="button"
-  (click)="dotBracketText = ''"
-  style="margin-top: 4px; margin-bottom: 8px;"
->
-  Reset
-</button>
-    </app-radio-button>
-    <app-radio-button 
-      label="From BPSEQ"
-      [value]="UploadType.FromExample" 
-      [checked]="isExampleChecked(ExampleType.BpseqExample)"
-      (click)="onExampleTypeChange(ExampleType.BpseqExample)">
-
-      <app-example-picker [examples]="bpseq_examples" (selected)="onBpseqExampleSelect($event)"></app-example-picker>
-    </app-radio-button>
-    
-    <app-radio-button 
-      label="From CT"
-      [value]="UploadType.FromExample" 
-      [checked]="isExampleChecked(ExampleType.CtExample)"
-      (click)="onExampleTypeChange(ExampleType.CtExample)">
-
-      <app-example-picker [examples]="ct_examples" (selected)="onCtExampleSelect($event)"></app-example-picker>
-    </app-radio-button>
-
-    <!-- <app-radio-button 
+    <app-radio-button
       label="From DBN"
-      [value]="UploadType.FromExample" 
-      [checked]="isExampleChecked(ExampleType.DbnExample)"
-      (click)="onExampleTypeChange(ExampleType.DbnExample)">
+      [value]="UploadType.FromDotBracket"
+      [checked]="currentUploadType === UploadType.FromDotBracket"
+      (click)="onMethodChange()">
 
-      <app-example-picker [examples]="dbn_examples" (selected)="onDbnExampleSelect($event)"></app-example-picker>
-    </app-radio-button> -->
-    
-  </mat-radio-group>
+    @if (currentUploadType === UploadType.FromDotBracket) {
+      <textarea
+        rows="10"
+        [(ngModel)]="dotBracketText"
+        (input)="validateStructuredText()"
+        name="dotBracketText"
+        placeholder="Paste your dot-bracket notation here"
+        wrap="off"
+        style="width: 100%; margin-top: 8px; white-space: pre; overflow: auto; resize: both;margin-bottom: 8px;"
+      ></textarea>
+    }
+  <app-example-picker [examples]="dbn_examples" (selected)="onDbnExampleSelect($event)"></app-example-picker>
+  @if (isTextValid === false) {
+    <div style="color: red; white-space: pre-wrap;">
+      {{ textValidationError }}
+    </div>
+  }
+  @if (currentUploadType === UploadType.FromDotBracket) {
+    <button
+      type="button"
+      (click)="dotBracketText = ''"
+      style="margin-top: 4px; margin-bottom: 8px;"
+      >
+      Reset
+    </button>
+  }
+</app-radio-button>
+<app-radio-button
+  label="From BPSEQ"
+  [value]="UploadType.FromExample"
+  [checked]="isExampleChecked(ExampleType.BpseqExample)"
+  (click)="onExampleTypeChange(ExampleType.BpseqExample)">
+
+  <app-example-picker [examples]="bpseq_examples" (selected)="onBpseqExampleSelect($event)"></app-example-picker>
+</app-radio-button>
+
+<app-radio-button
+  label="From CT"
+  [value]="UploadType.FromExample"
+  [checked]="isExampleChecked(ExampleType.CtExample)"
+  (click)="onExampleTypeChange(ExampleType.CtExample)">
+
+  <app-example-picker [examples]="ct_examples" (selected)="onCtExampleSelect($event)"></app-example-picker>
+</app-radio-button>
+
+</mat-radio-group>
 </form>

@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output, ChangeDetectionStrategy } from '@angular/core';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import {
   ANALYSIS_TOOL,
   MODEL_SELECTION,
@@ -13,6 +13,8 @@ import { TertiaryToDbnParams } from 'src/app/shared/models/params/tertiary-to-db
   selector: 'app-tertiary-to-dbn-params-form',
   templateUrl: './tertiary-to-dbn-params-form.component.html',
   styleUrls: ['./tertiary-to-dbn-params-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TertiaryToDbnParamsFormComponent implements OnInit {
   @Input() isTestLayout = false;
@@ -26,9 +28,9 @@ export class TertiaryToDbnParamsFormComponent implements OnInit {
   readonly STRUCTURAL_ELEMENTS_HANDLING = STRUCTURAL_ELEMENTS_HANDLING;
   readonly VISUALIZATION_TOOL = VISUALIZATION_TOOL;
 
-  paramsForm!: FormGroup;
+  paramsForm!: UntypedFormGroup;
 
-  constructor(private readonly fb: FormBuilder) {}
+  constructor(private readonly fb: UntypedFormBuilder) {}
 
   ngOnInit(): void {
     this.paramsForm = this.fb.group({

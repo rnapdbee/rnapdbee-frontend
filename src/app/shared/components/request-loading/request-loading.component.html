@@ -1,4 +1,4 @@
-<ng-container *ngIf="loadingData$ | async as loadingData">
+@if (loadingData$ | async; as loadingData) {
   <div class="header">
     <mat-spinner [diameter]="40"></mat-spinner>
     <div class="header-text">
@@ -25,8 +25,8 @@
     </div>
     <p class="tip-description">
       Depending on your structure complexity and calculation parameters, it can take <span class="highlight">from one
-      to even twenty minutes</span>. We advise you to be patient. You will be redirected to your results page as soon as
-      possible.
-    </p>
-  </div>
-</ng-container>
+    to even twenty minutes</span>. We advise you to be patient. You will be redirected to your results page as soon as
+    possible.
+  </p>
+</div>
+}

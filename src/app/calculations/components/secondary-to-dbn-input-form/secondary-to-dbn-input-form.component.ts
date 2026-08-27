@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { InputFormComponent } from 'src/app/shared/components/input-form/input-form.component';
 import { SecondaryOutput } from 'src/app/shared/models/output/secondary-output.model';
@@ -12,6 +12,8 @@ import { DescriptionService } from 'src/app/shared/services/result/description.s
   selector: 'app-secondary-to-dbn-input-form',
   templateUrl: './secondary-to-dbn-input-form.component.html',
   styleUrls: ['./secondary-to-dbn-input-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SecondaryToDbnInputFormComponent extends InputFormComponent<SecondaryToDbnParams, SecondaryOutput> {
   constructor(

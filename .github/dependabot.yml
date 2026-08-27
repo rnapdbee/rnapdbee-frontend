@@ -10,7 +10,12 @@ updates:
     open-pull-requests-limit: 15
     commit-message:
       prefix: "build"
-    target-branch: "dependabot/updates"
+    groups:
+      dev-deps-minor-patch:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
 
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -19,4 +24,3 @@ updates:
     open-pull-requests-limit: 15
     commit-message:
       prefix: "build"
-    target-branch: "dependabot/updates"

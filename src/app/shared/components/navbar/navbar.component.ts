@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { OpenCloseAnimation } from '../../animations/open-close';
 
@@ -7,6 +7,8 @@ import { OpenCloseAnimation } from '../../animations/open-close';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   animations: [OpenCloseAnimation],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class NavbarComponent {
   menuExpanded = false;

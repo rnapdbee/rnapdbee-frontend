@@ -34,11 +34,11 @@ describe('HomeComponent', () => {
 
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
-    ({ debugElement } = fixture); // use object destructuring
-    fixture.detectChanges();
+    ({ debugElement } = fixture);
   });
 
   it('renders TertiaryToDBNInputForm by default', () => {
+    fixture.detectChanges();
     const form = debugElement.query(By.css(tertiaryToDBNInputForm));
     const calcType = component.calculationType;
     expect(form).toBeTruthy();
@@ -47,21 +47,21 @@ describe('HomeComponent', () => {
 
   describe('CalculationType', () => {
     it('renders TertiaryToDBNInputForm when set to TertiaryToDBN', () => {
-      component.setCalculationType(CalculationType.TertiaryToDBN);
+      component.calculationType = CalculationType.TertiaryToDBN;
       fixture.detectChanges();
       const form = debugElement.query(By.css(tertiaryToDBNInputForm));
       expect(form).toBeTruthy();
     });
 
     it('renders SecondaryToDBNInputForm when set to SecondaryToDBN', () => {
-      component.setCalculationType(CalculationType.SecondaryToDBN);
+      component.calculationType = CalculationType.SecondaryToDBN;
       fixture.detectChanges();
       const form = debugElement.query(By.css(secondaryToDBNInputForm));
       expect(form).toBeTruthy();
     });
 
     it('renders TertiaryToMultiInputForm when set to TertiaryToMultiSecondary', () => {
-      component.setCalculationType(CalculationType.TertiaryToMultiSecondary);
+      component.calculationType = CalculationType.TertiaryToMultiSecondary;
       fixture.detectChanges();
       const form = debugElement.query(By.css(tertiaryToMultiInputForm));
       expect(form).toBeTruthy();

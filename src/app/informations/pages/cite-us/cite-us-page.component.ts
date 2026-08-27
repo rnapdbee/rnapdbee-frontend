@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-cite-us-page',
   templateUrl: './cite-us-page.component.html',
   styleUrls: ['./cite-us-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class CiteUsPageComponent {
   constructor(private readonly titleService: Title) {

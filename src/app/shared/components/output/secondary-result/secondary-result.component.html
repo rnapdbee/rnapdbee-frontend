@@ -1,19 +1,23 @@
-<div *ngIf="result" class="container">
-  <div class="data-panel">
-    <div *ngIf="selectable$ | async" class="select-btn">
-      <button mat-stroked-button (click)="select()">{{ isSelected() ? 'Unselect' : 'Select' }} data on this panel</button>
+@if (result) {
+  <div class="container">
+    <div class="data-panel">
+      @if (selectable$ | async) {
+        <div class="select-btn">
+          <button mat-stroked-button (click)="select()">{{ isSelected() ? 'Unselect' : 'Select' }} data on this panel</button>
+        </div>
+      }
+      <p>{{ getDescription(result.params) }}</p>
+      <app-secondary-output
+        [(ngModel)]="value"
+        [output]="result.output">
+      </app-secondary-output>
     </div>
-    <p>{{ getDescription(result.params) }}</p>
-    <app-secondary-output 
-      [(ngModel)]="value" 
-      [output]="result.output">
-    </app-secondary-output>
+    <div class="image-panel">
+      <app-secondary-image
+        [(ngModel)]="value.fields.imageInformation"
+        [imageInformation]="result.output.imageInformation"
+        [strands]="result.output.strands">
+      </app-secondary-image>
+    </div>
   </div>
-  <div class="image-panel">
-    <app-secondary-image 
-      [(ngModel)]="value.fields.imageInformation"
-      [imageInformation]="result.output.imageInformation"
-      [strands]="result.output.strands">
-    </app-secondary-image>
-  </div>
-</div>
+}

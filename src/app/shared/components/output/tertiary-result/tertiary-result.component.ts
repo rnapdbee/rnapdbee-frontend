@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Result } from 'src/app/shared/models/calculation/calculation.model';
 import { TertiaryOutput } from 'src/app/shared/models/output/tertiary-output.model';
@@ -12,8 +12,10 @@ import { ControlValueComponent, ControlValueProvider } from '../../control-value
   selector: 'app-tertiary-result',
   templateUrl: './tertiary-result.component.html',
   styleUrls: ['./tertiary-result.component.scss'],
-  // eslint-disable-next-line no-use-before-define
+   
   providers: [ControlValueProvider(TertiaryResultComponent)],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TertiaryResultComponent extends ControlValueComponent<TertiaryResultSelect> {
   private _result: Result<TertiaryToDbnParams, TertiaryOutput> | undefined;

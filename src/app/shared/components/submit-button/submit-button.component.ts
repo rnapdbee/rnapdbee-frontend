@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { catchError, defer, finalize, Observable, throwError } from 'rxjs';
 import { Calculation } from '../../models/calculation/calculation.model';
 import { Params } from '../../models/params/params.model';
@@ -10,6 +10,8 @@ import { SnackBarService } from '../../services/notifications/snack-bar.service'
   selector: 'app-submit-button',
   templateUrl: './submit-button.component.html',
   styleUrls: ['./submit-button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SubmitButtonComponent {
   @Input() callback: (() => Observable<Calculation<Params, unknown>>) | undefined;

@@ -41,6 +41,10 @@ yarn-error.log
 testem.log
 /typings
 
+# container artifacts
+/ng
+/rnapdbee-frontend@0.0.0
+
 # System Files
 .DS_Store
 Thumbs.db

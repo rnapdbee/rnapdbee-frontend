@@ -10,7 +10,6 @@ on:
   pull_request:
     branches:
       - main
-      - "dependabot/updates"
 
   workflow_dispatch:
 
@@ -28,38 +27,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-      - run: npm ci --force
+      - run: npm ci
       - run: npm run build --if-present
       - run: npm run lint
       - run: npm run test:prod
-
-  ci-dependabot:
-    if: ${{ github.actor == 'dependabot[bot]' && github.base_ref == 'dependabot/updates'}}
-    needs: build
-
-    runs-on: ubuntu-20.04
-
-    permissions:
-      contents: write
-      checks: write
-      pull-requests: write
-
-    steps:
-      - name: Dependabot metadata
-        id: metadata
-        uses: dependabot/fetch-metadata@v1.3.4
-        with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
-
-      - name: Approve a PR
-        run: gh pr review --approve "$PR_URL"
-        env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-      - name: Enable auto-merge for Dependabot PRs
-        if: steps.metadata.outputs.update-type != 'version-update:semver-major'
-        run: gh pr merge --auto --squash "$PR_URL"
-        env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

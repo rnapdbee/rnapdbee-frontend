@@ -26,7 +26,7 @@
     }
   </div>
   @if (expanded) {
-    <div @openClose class="content" [class.table-view]="tableView">
+    <div (animate.enter)="animateOpen($event)" (animate.leave)="animateClose($event)" class="content" [class.table-view]="tableView">
       <ng-content></ng-content>
     </div>
   }

@@ -1,6 +1,6 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
-import { OpenCloseAnimation } from '../../animations/open-close';
+import { animateClose, animateOpen } from '../../animations/open-close';
 import { SelectField } from '../../models/select/select-field.model';
 import { SelectableService } from '../../services/selectable/selectable.service';
 import { ControlValueComponent, ControlValueProvider } from '../control-value/control-value.component';
@@ -9,13 +9,14 @@ import { ControlValueComponent, ControlValueProvider } from '../control-value/co
   selector: 'app-checkbox',
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
-  animations: [OpenCloseAnimation],
-   
   providers: [ControlValueProvider(CheckboxComponent)],
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class CheckboxComponent extends ControlValueComponent<SelectField> {
+  protected readonly animateOpen = animateOpen;
+  protected readonly animateClose = animateClose;
+
   @Input() label = '';
   @Input() showControls = true;
   @Input() expanded = false;

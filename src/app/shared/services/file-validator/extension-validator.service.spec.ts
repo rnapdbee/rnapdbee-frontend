@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it } from 'vitest';
 import { FileExtension } from '../../models/file/file-extension.model';
 import { ExtensionValidatorService } from './extension-validator.service';
 
@@ -10,24 +11,24 @@ describe('ExtensionValidatorService', () => {
   });
 
   it('invalidates files without extension', () => {
-    expect(service.validate('', validExtensions)).toEqual(jasmine.objectContaining({
+    expect(service.validate('', validExtensions)).toEqual(expect.objectContaining({
       valid: false,
     }));
-    expect(service.validate(undefined, validExtensions)).toEqual(jasmine.objectContaining({
+    expect(service.validate(undefined, validExtensions)).toEqual(expect.objectContaining({
       valid: false,
     }));
   });
 
   it('invalidates files with unsupported extension', () => {
     const unsupportedFileExtension = 'txt';
-    expect(service.validate(unsupportedFileExtension, validExtensions)).toEqual(jasmine.objectContaining({
+    expect(service.validate(unsupportedFileExtension, validExtensions)).toEqual(expect.objectContaining({
       valid: false,
     }));
   });
 
   it('invalidates valid extension when not enabled', () => {
     validExtensions.forEach(extension => {
-      expect(service.validate(extension, [])).toEqual(jasmine.objectContaining({
+      expect(service.validate(extension, [])).toEqual(expect.objectContaining({
         valid: false,
       }));
     });
@@ -35,7 +36,7 @@ describe('ExtensionValidatorService', () => {
 
   it('validates valid extension when enabled', () => {
     validExtensions.forEach(extension => {
-      expect(service.validate(extension, validExtensions)).toEqual(jasmine.objectContaining({
+      expect(service.validate(extension, validExtensions)).toEqual(expect.objectContaining({
         valid: true,
       }));
     });

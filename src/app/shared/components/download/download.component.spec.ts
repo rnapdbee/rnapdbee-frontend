@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it } from 'vitest';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -23,35 +24,35 @@ describe('DownloadComponent', () => {
     (component.selected as SecondarySelect).fields
       .map(item => item.fields)
       .forEach(fields => {
-        fields.bpSeq.activateField();
-        fields.ct.activateField();
-        fields.imageInformation.activateField();
-        fields.interactions.activateField();
-        fields.strands.activateField();
-        fields.structuralElements.activateField();
-      });
+      fields.bpSeq.activateField();
+      fields.ct.activateField();
+      fields.imageInformation.activateField();
+      fields.interactions.activateField();
+      fields.strands.activateField();
+      fields.structuralElements.activateField();
+    });
     fixture.detectChanges();
   });
 
   it('are selected when selectAll clicked', () => {
     component.selectAll();
-    expect(component.selected?.isSelectedOrUnactive()).toBeTrue();
-    expect(component.allSelected()).toBeTrue();
+    expect(component.selected?.isSelectedOrUnactive()).toBe(true);
+    expect(component.allSelected()).toBe(true);
   });
 
   it('are selected when every result selected', () => {
     component.selected?.fields.forEach(item => {
       item.set(true);
     });
-    expect(component.selected?.isSelectedOrUnactive()).toBeTrue();
-    expect(component.allSelected()).toBeTrue();
+    expect(component.selected?.isSelectedOrUnactive()).toBe(true);
+    expect(component.allSelected()).toBe(true);
   });
 
   it('are not fully selected when selectAll clicked and some results unselected', () => {
     component.selectAll();
     component.selected?.fields[0].set(false);
-    expect(component.selected?.isSelectedOrUnactive()).toBeFalse();
-    expect(component.allSelected()).toBeFalse();
+    expect(component.selected?.isSelectedOrUnactive()).toBe(false);
+    expect(component.allSelected()).toBe(false);
   });
 
   it('are not fully selected when not all results selected', () => {
@@ -59,12 +60,12 @@ describe('DownloadComponent', () => {
       item.set(true);
     });
     component.selected?.fields[0].set(false);
-    expect(component.allSelected()).toBeFalse();
+    expect(component.allSelected()).toBe(false);
   });
 
   it('are not selected when selectAll and then unselectAll clicked', () => {
     component.selectAll();
     component.selectAll();
-    expect(component.allSelected()).toBeFalse();
+    expect(component.allSelected()).toBe(false);
   });
 });

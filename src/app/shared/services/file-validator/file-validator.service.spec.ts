@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, type MockedObject, vi } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { ValidationPayload } from '../../models/upload/validation-payload.model';
@@ -12,13 +13,13 @@ import { PdbFileValidatorService } from './pdb-file-validator.service';
 
 describe('FileValidatorService', () => {
   let service: FileValidatorService;
-  let fileReaderSpy: jasmine.SpyObj<FileReaderService>;
-  let extensionValidatorSpy: jasmine.SpyObj<ExtensionValidatorService>;
-  let cifValidatorSpy: jasmine.SpyObj<CifFileValidatorService>;
-  let pdbValidatorSpy: jasmine.SpyObj<PdbFileValidatorService>;
-  let bpseqValidatorSpy: jasmine.SpyObj<BpseqFileValidatorService>;
-  let ctValidatorSpy: jasmine.SpyObj<CtFileValidatorService>;
-  let dbnValidatorSpy: jasmine.SpyObj<DbnFileValidatorService>;
+  let fileReaderSpy: MockedObject<FileReaderService>;
+  let extensionValidatorSpy: MockedObject<ExtensionValidatorService>;
+  let cifValidatorSpy: MockedObject<CifFileValidatorService>;
+  let pdbValidatorSpy: MockedObject<PdbFileValidatorService>;
+  let bpseqValidatorSpy: MockedObject<BpseqFileValidatorService>;
+  let ctValidatorSpy: MockedObject<CtFileValidatorService>;
+  let dbnValidatorSpy: MockedObject<DbnFileValidatorService>;
 
   const validPayload: ValidationPayload = {
     valid: true,
@@ -31,21 +32,35 @@ describe('FileValidatorService', () => {
   };
 
   beforeEach(() => {
-    fileReaderSpy = jasmine.createSpyObj<FileReaderService>('FileReaderService', ['readAsArray']);
-    extensionValidatorSpy = jasmine.createSpyObj<ExtensionValidatorService>('ExtensionValidatorService', ['validate']);
-    cifValidatorSpy = jasmine.createSpyObj<CifFileValidatorService>('CifFileValidatorService', ['validator']);
-    pdbValidatorSpy = jasmine.createSpyObj<PdbFileValidatorService>('PdbFileValidatorService', ['validator']);
-    bpseqValidatorSpy = jasmine.createSpyObj<BpseqFileValidatorService>('BpseqFileValidatorService', ['validator']);
-    ctValidatorSpy = jasmine.createSpyObj<CtFileValidatorService>('CtFileValidatorService', ['validator']);
-    dbnValidatorSpy = jasmine.createSpyObj<DbnFileValidatorService>('DbnFileValidatorService', ['validator']);
+    fileReaderSpy = {
+      readAsArray: vi.fn().mockName('FileReaderService.readAsArray')
+    } as unknown as MockedObject<FileReaderService>;
+    extensionValidatorSpy = {
+      validate: vi.fn().mockName('ExtensionValidatorService.validate')
+    } as unknown as MockedObject<ExtensionValidatorService>;
+    cifValidatorSpy = {
+      validator: vi.fn().mockName('CifFileValidatorService.validator')
+    };
+    pdbValidatorSpy = {
+      validator: vi.fn().mockName('PdbFileValidatorService.validator')
+    };
+    bpseqValidatorSpy = {
+      validator: vi.fn().mockName('BpseqFileValidatorService.validator')
+    } as unknown as MockedObject<BpseqFileValidatorService>;
+    ctValidatorSpy = {
+      validator: vi.fn().mockName('CtFileValidatorService.validator')
+    } as unknown as MockedObject<CtFileValidatorService>;
+    dbnValidatorSpy = {
+      validator: vi.fn().mockName('DbnFileValidatorService.validator')
+    };
 
-    fileReaderSpy.readAsArray.and.returnValue(of([]));
-    extensionValidatorSpy.validate.and.returnValue(validPayload);
-    cifValidatorSpy.validator.and.returnValue(invalidPayload);
-    pdbValidatorSpy.validator.and.returnValue(invalidPayload);
-    bpseqValidatorSpy.validator.and.returnValue(invalidPayload);
-    ctValidatorSpy.validator.and.returnValue(invalidPayload);
-    dbnValidatorSpy.validator.and.returnValue(invalidPayload);
+    fileReaderSpy.readAsArray.mockReturnValue(of([]));
+    extensionValidatorSpy.validate.mockReturnValue(validPayload);
+    cifValidatorSpy.validator.mockReturnValue(invalidPayload);
+    pdbValidatorSpy.validator.mockReturnValue(invalidPayload);
+    bpseqValidatorSpy.validator.mockReturnValue(invalidPayload);
+    ctValidatorSpy.validator.mockReturnValue(invalidPayload);
+    dbnValidatorSpy.validator.mockReturnValue(invalidPayload);
 
     TestBed.configureTestingModule({
       providers: [
@@ -63,63 +78,57 @@ describe('FileValidatorService', () => {
     service = TestBed.inject(FileValidatorService);
   });
 
-  it('performs file extension validation', (done: DoneFn) => {
+  it('performs file extension validation', () => {
     const invalidExtensionPayload: ValidationPayload = {
       valid: false,
       message: 'extension validation failed',
     };
 
     const file = new File([], 'test.txt');
-    extensionValidatorSpy.validate.and.returnValue(invalidExtensionPayload);
+    extensionValidatorSpy.validate.mockReturnValue(invalidExtensionPayload);
 
     service.validate(file).subscribe(data => {
       expect(data).toBe(invalidExtensionPayload);
-      done();
     });
   });
 
-  it('uses cif validator for .cif files', (done: DoneFn) => {
-    cifValidatorSpy.validator.and.returnValue(validPayload);
+  it('uses cif validator for .cif files', () => {
+    cifValidatorSpy.validator.mockReturnValue(validPayload);
     const file = new File([], 'file.cif');
     service.validate(file).subscribe(data => {
       expect(data).toBe(validPayload);
-      done();
     });
   });
 
-  it('uses pdb validator for .pdb files', (done: DoneFn) => {
-    pdbValidatorSpy.validator.and.returnValue(validPayload);
+  it('uses pdb validator for .pdb files', () => {
+    pdbValidatorSpy.validator.mockReturnValue(validPayload);
     const file = new File([], 'file.pdb');
     service.validate(file).subscribe(data => {
       expect(data).toBe(validPayload);
-      done();
     });
   });
 
-  it('uses bpseq validator for .bpseq files', (done: DoneFn) => {
-    bpseqValidatorSpy.validator.and.returnValue(validPayload);
+  it('uses bpseq validator for .bpseq files', () => {
+    bpseqValidatorSpy.validator.mockReturnValue(validPayload);
     const file = new File([], 'file.bpseq');
     service.validate(file).subscribe(data => {
       expect(data).toBe(validPayload);
-      done();
     });
   });
 
-  it('uses ct validator for .ct files', (done: DoneFn) => {
-    ctValidatorSpy.validator.and.returnValue(validPayload);
+  it('uses ct validator for .ct files', () => {
+    ctValidatorSpy.validator.mockReturnValue(validPayload);
     const file = new File([], 'file.ct');
     service.validate(file).subscribe(data => {
       expect(data).toBe(validPayload);
-      done();
     });
   });
 
-  it('uses dbn validator for .dbn files', (done: DoneFn) => {
-    dbnValidatorSpy.validator.and.returnValue(validPayload);
+  it('uses dbn validator for .dbn files', () => {
+    dbnValidatorSpy.validator.mockReturnValue(validPayload);
     const file = new File([], 'file.dbn');
     service.validate(file).subscribe(data => {
       expect(data).toBe(validPayload);
-      done();
     });
   });
 });

@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it } from 'vitest';
 import { CtFileValidatorService } from './ct-file-validator.service';
 import { FileValidationUtils } from './file-validation-utils.ts.service';
 
@@ -15,7 +16,7 @@ describe('CtFileValidatorService', () => {
     ];
 
     fileContents.forEach(fileContent => {
-      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+      expect(service.validator(fileContent)).toEqual(expect.objectContaining({
         valid: false,
       }));
     });
@@ -27,7 +28,7 @@ describe('CtFileValidatorService', () => {
     ];
 
     fileContents.forEach(fileContent => {
-      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+      expect(service.validator(fileContent)).toEqual(expect.objectContaining({
         valid: false,
       }));
     });
@@ -42,7 +43,7 @@ describe('CtFileValidatorService', () => {
     ];
 
     fileContents.forEach(fileContent => {
-      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+      expect(service.validator(fileContent)).toEqual(expect.objectContaining({
         valid: false,
       }));
     });
@@ -56,7 +57,7 @@ describe('CtFileValidatorService', () => {
     ];
 
     fileContents.forEach(fileContent => {
-      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+      expect(service.validator(fileContent)).toEqual(expect.objectContaining({
         valid: false,
       }));
     });
@@ -69,7 +70,7 @@ describe('CtFileValidatorService', () => {
     ];
 
     fileContents.forEach(fileContent => {
-      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+      expect(service.validator(fileContent)).toEqual(expect.objectContaining({
         valid: false,
       }));
     });
@@ -83,7 +84,7 @@ describe('CtFileValidatorService', () => {
     ];
 
     fileContents.forEach(fileContent => {
-      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+      expect(service.validator(fileContent)).toEqual(expect.objectContaining({
         valid: false,
       }));
     });
@@ -97,7 +98,7 @@ describe('CtFileValidatorService', () => {
     ];
 
     fileContents.forEach(fileContent => {
-      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+      expect(service.validator(fileContent)).toEqual(expect.objectContaining({
         valid: false,
       }));
     });
@@ -111,7 +112,7 @@ describe('CtFileValidatorService', () => {
     ];
 
     fileContents.forEach(fileContent => {
-      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+      expect(service.validator(fileContent)).toEqual(expect.objectContaining({
         valid: false,
       }));
     });
@@ -123,7 +124,7 @@ describe('CtFileValidatorService', () => {
     ];
 
     fileContents.forEach(fileContent => {
-      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+      expect(service.validator(fileContent)).toEqual(expect.objectContaining({
         valid: false,
       }));
     });
@@ -135,7 +136,7 @@ describe('CtFileValidatorService', () => {
     ];
 
     fileContents.forEach(fileContent => {
-      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+      expect(service.validator(fileContent)).toEqual(expect.objectContaining({
         valid: true,
       }));
     });
@@ -147,7 +148,7 @@ describe('CtFileValidatorService', () => {
     ];
 
     fileContents.forEach(fileContent => {
-      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+      expect(service.validator(fileContent)).toEqual(expect.objectContaining({
         valid: true,
       }));
     });
@@ -160,7 +161,7 @@ describe('CtFileValidatorService', () => {
     ];
 
     fileContents.forEach(fileContent => {
-      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+      expect(service.validator(fileContent)).toEqual(expect.objectContaining({
         valid: true,
       }));
     });

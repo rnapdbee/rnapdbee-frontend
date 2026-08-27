@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it } from 'vitest';
 import { BpseqFileValidatorService } from './bpseq-file-validator.service';
 import { FileValidationUtils } from './file-validation-utils.ts.service';
 
@@ -15,7 +16,7 @@ describe('BpseqFileValidatorService', () => {
     ];
 
     fileContents.forEach(fileContent => {
-      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+      expect(service.validator(fileContent)).toEqual(expect.objectContaining({
         valid: false,
       }));
     });
@@ -27,7 +28,7 @@ describe('BpseqFileValidatorService', () => {
     ];
 
     fileContents.forEach(fileContent => {
-      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+      expect(service.validator(fileContent)).toEqual(expect.objectContaining({
         valid: false,
       }));
     });
@@ -42,7 +43,7 @@ describe('BpseqFileValidatorService', () => {
     ];
 
     fileContents.forEach(fileContent => {
-      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+      expect(service.validator(fileContent)).toEqual(expect.objectContaining({
         valid: false,
       }));
     });
@@ -56,7 +57,7 @@ describe('BpseqFileValidatorService', () => {
     ];
 
     fileContents.forEach(fileContent => {
-      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+      expect(service.validator(fileContent)).toEqual(expect.objectContaining({
         valid: false,
       }));
     });
@@ -70,7 +71,7 @@ describe('BpseqFileValidatorService', () => {
     ];
 
     fileContents.forEach(fileContent => {
-      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+      expect(service.validator(fileContent)).toEqual(expect.objectContaining({
         valid: false,
       }));
     });
@@ -82,7 +83,7 @@ describe('BpseqFileValidatorService', () => {
     ];
 
     fileContents.forEach(fileContent => {
-      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+      expect(service.validator(fileContent)).toEqual(expect.objectContaining({
         valid: false,
       }));
     });
@@ -94,7 +95,7 @@ describe('BpseqFileValidatorService', () => {
     ];
 
     fileContents.forEach(fileContent => {
-      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+      expect(service.validator(fileContent)).toEqual(expect.objectContaining({
         valid: false,
       }));
     });
@@ -106,7 +107,7 @@ describe('BpseqFileValidatorService', () => {
     ];
 
     fileContents.forEach(fileContent => {
-      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+      expect(service.validator(fileContent)).toEqual(expect.objectContaining({
         valid: true,
       }));
     });
@@ -118,7 +119,7 @@ describe('BpseqFileValidatorService', () => {
     ];
 
     fileContents.forEach(fileContent => {
-      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+      expect(service.validator(fileContent)).toEqual(expect.objectContaining({
         valid: true,
       }));
     });
@@ -130,7 +131,7 @@ describe('BpseqFileValidatorService', () => {
     ];
 
     fileContents.forEach(fileContent => {
-      expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+      expect(service.validator(fileContent)).toEqual(expect.objectContaining({
         valid: true,
       }));
     });

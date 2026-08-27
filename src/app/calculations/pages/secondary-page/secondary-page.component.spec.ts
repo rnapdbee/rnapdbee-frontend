@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, type MockedObject, vi } from 'vitest';
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -51,15 +52,14 @@ const mockResponse: Calculation<SecondaryToDbnParams, SecondaryOutput> = {
 describe('SecondaryPageComponent', () => {
   let fixture: ComponentFixture<SecondaryPageComponent>;
   let component: SecondaryPageComponent;
-  let calculationServiceSpy: jasmine.SpyObj<CalculationRequestService<SecondaryToDbnParams, SecondaryOutput>>;
+  let calculationServiceSpy: MockedObject<CalculationRequestService<SecondaryToDbnParams, SecondaryOutput>>;
   let debugElement: DebugElement;
 
   beforeEach(async () => {
-    calculationServiceSpy = jasmine.createSpyObj<CalculationRequestService<SecondaryToDbnParams, SecondaryOutput>>(
-      'SecondaryToDbnService',
-      { find: of(mockResponse) },
-      { calculationResults$: of(mockResponse) },
-    );
+    calculationServiceSpy = {
+      find: vi.fn().mockName('SecondaryToDbnService.find').mockReturnValue(of(mockResponse)),
+      calculationResults$: of(mockResponse)
+    } as unknown as MockedObject<CalculationRequestService<SecondaryToDbnParams, SecondaryOutput>>;
 
     await TestBed.configureTestingModule({
       declarations: [SecondaryPageComponent],

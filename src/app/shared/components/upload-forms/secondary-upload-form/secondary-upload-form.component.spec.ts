@@ -1,13 +1,11 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 /* eslint-disable @typescript-eslint/unbound-method */
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
-import {
-  SECONDARY_TO_DBN_BPSEQ_EXAMPLES,
-  SECONDARY_TO_DBN_CT_EXAMPLES,
-} from 'src/app/shared/constants/secondary-to-dbn-examples.const';
+import { SECONDARY_TO_DBN_BPSEQ_EXAMPLES, SECONDARY_TO_DBN_CT_EXAMPLES, } from 'src/app/shared/constants/secondary-to-dbn-examples.const';
 import { Example } from 'src/app/shared/models/upload/example.model';
 import { UploadMethodType } from 'src/app/shared/models/upload/upload-type.model';
 import { ValidationPayload } from 'src/app/shared/models/upload/validation-payload.model';
@@ -32,9 +30,10 @@ describe('SecondaryUploadFormComponent', () => {
   });
 
   it('emits invalid empty payload on init', () => {
-    spyOn(component.uploadChange, 'emit');
+    vi.spyOn(component.uploadChange, 'emit').mockReturnValue(undefined);
     component.ngOnInit();
-    expect(component.uploadChange.emit).toHaveBeenCalledOnceWith(jasmine.objectContaining({
+    expect(component.uploadChange.emit).toHaveBeenCalledTimes(1);
+    expect(component.uploadChange.emit).toHaveBeenCalledWith(expect.objectContaining({
       data: null,
       valid: false,
     }));
@@ -42,13 +41,13 @@ describe('SecondaryUploadFormComponent', () => {
 
   describe('UploadMethod change', () => {
     beforeEach(() => {
-      spyOn(component.uploadChange, 'emit');
+      vi.spyOn(component.uploadChange, 'emit').mockReturnValue(undefined);
     });
 
     it('emits object of type file when set to file', () => {
       component.currentUploadType = UploadMethodType.FromLocalFile;
       component.onMethodChange();
-      expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+      expect(component.uploadChange.emit).toHaveBeenCalledWith(expect.objectContaining({
         type: UploadMethodType.FromLocalFile,
       }));
     });
@@ -56,7 +55,7 @@ describe('SecondaryUploadFormComponent', () => {
     it('emits object of type example when set to example', () => {
       component.currentUploadType = UploadMethodType.FromExample;
       component.onMethodChange();
-      expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+      expect(component.uploadChange.emit).toHaveBeenCalledWith(expect.objectContaining({
         type: UploadMethodType.FromExample,
       }));
     });
@@ -81,31 +80,31 @@ describe('SecondaryUploadFormComponent', () => {
         message: 'validation failed',
       };
 
-      spyOn(component.uploadChange, 'emit');
+      vi.spyOn(component.uploadChange, 'emit').mockReturnValue(undefined);
     });
 
     it('emits invalid payload when file not provided', () => {
       component.file = null;
       component.onMethodChange();
-      expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+      expect(component.uploadChange.emit).toHaveBeenCalledWith(expect.objectContaining({
         valid: false,
       }));
     });
 
     it('emits invalid payload when file provided and validation fails', () => {
-      spyOn(mockFileValidatorService, 'validate').and.returnValue(of(invalidMockValidationPayload));
+      vi.spyOn(mockFileValidatorService, 'validate').mockReturnValue(of(invalidMockValidationPayload));
 
       component.setAndValidateFile(mockFile);
-      expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+      expect(component.uploadChange.emit).toHaveBeenCalledWith(expect.objectContaining({
         valid: false,
       }));
     });
 
     it('emits valid payload when file provided and validation passes', () => {
-      spyOn(mockFileValidatorService, 'validate').and.returnValue(of(validMockValidationPayload));
+      vi.spyOn(mockFileValidatorService, 'validate').mockReturnValue(of(validMockValidationPayload));
 
       component.setAndValidateFile(mockFile);
-      expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+      expect(component.uploadChange.emit).toHaveBeenCalledWith(expect.objectContaining({
         valid: true,
       }));
     });
@@ -118,10 +117,10 @@ describe('SecondaryUploadFormComponent', () => {
     });
 
     it('includes valid file object in payload', () => {
-      spyOn(mockFileValidatorService, 'validate').and.returnValue(of(validMockValidationPayload));
+      vi.spyOn(mockFileValidatorService, 'validate').mockReturnValue(of(validMockValidationPayload));
 
       component.setAndValidateFile(mockFile);
-      expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+      expect(component.uploadChange.emit).toHaveBeenCalledWith(expect.objectContaining({
         data: mockFile,
       }));
     });
@@ -139,7 +138,7 @@ describe('SecondaryUploadFormComponent', () => {
     });
 
     it('emits new payload when example type changed', () => {
-      spyOn(component.uploadChange, 'emit');
+      vi.spyOn(component.uploadChange, 'emit').mockReturnValue(undefined);
       component.onExampleTypeChange(ExampleType.BpseqExample);
       component.onExampleTypeChange(ExampleType.CtExample);
       expect(component.uploadChange.emit).toHaveBeenCalledTimes(2);
@@ -151,20 +150,20 @@ describe('SecondaryUploadFormComponent', () => {
       beforeEach(() => {
         component.onExampleTypeChange(ExampleType.BpseqExample);
         mockExample = SECONDARY_TO_DBN_BPSEQ_EXAMPLES[0];
-        spyOn(component.uploadChange, 'emit');
+        vi.spyOn(component.uploadChange, 'emit').mockReturnValue(undefined);
       });
 
       it('emits invalid payload when bpseq example not provided', () => {
         component.bpseqExample = null;
         component.onMethodChange();
-        expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+        expect(component.uploadChange.emit).toHaveBeenCalledWith(expect.objectContaining({
           valid: false,
         }));
       });
 
       it('emits valid payload when bpseq example provided', () => {
         component.onBpseqExampleSelect(mockExample);
-        expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+        expect(component.uploadChange.emit).toHaveBeenCalledWith(expect.objectContaining({
           valid: true,
         }));
       });
@@ -178,7 +177,7 @@ describe('SecondaryUploadFormComponent', () => {
 
       it('includes example object in payload', () => {
         component.onBpseqExampleSelect(mockExample);
-        expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+        expect(component.uploadChange.emit).toHaveBeenCalledWith(expect.objectContaining({
           data: mockExample,
         }));
       });
@@ -189,7 +188,7 @@ describe('SecondaryUploadFormComponent', () => {
         component.ctExample = dummyExample;
         component.dbnExample = dummyExample;
         component.onMethodChange();
-        expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+        expect(component.uploadChange.emit).toHaveBeenCalledWith(expect.objectContaining({
           data: component.bpseqExample,
         }));
       });
@@ -201,20 +200,20 @@ describe('SecondaryUploadFormComponent', () => {
       beforeEach(() => {
         component.onExampleTypeChange(ExampleType.CtExample);
         mockExample = SECONDARY_TO_DBN_CT_EXAMPLES[0];
-        spyOn(component.uploadChange, 'emit');
+        vi.spyOn(component.uploadChange, 'emit').mockReturnValue(undefined);
       });
 
       it('emits invalid payload when ct example not provided', () => {
         component.ctExample = null;
         component.onMethodChange();
-        expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+        expect(component.uploadChange.emit).toHaveBeenCalledWith(expect.objectContaining({
           valid: false,
         }));
       });
 
       it('emits valid payload when ct example provided', () => {
         component.onCtExampleSelect(mockExample);
-        expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+        expect(component.uploadChange.emit).toHaveBeenCalledWith(expect.objectContaining({
           valid: true,
         }));
       });
@@ -228,7 +227,7 @@ describe('SecondaryUploadFormComponent', () => {
 
       it('includes example object in payload', () => {
         component.onCtExampleSelect(mockExample);
-        expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+        expect(component.uploadChange.emit).toHaveBeenCalledWith(expect.objectContaining({
           data: mockExample,
         }));
       });
@@ -239,7 +238,7 @@ describe('SecondaryUploadFormComponent', () => {
         component.bpseqExample = dummyExample;
         component.dbnExample = dummyExample;
         component.onMethodChange();
-        expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+        expect(component.uploadChange.emit).toHaveBeenCalledWith(expect.objectContaining({
           data: component.ctExample,
         }));
       });
@@ -248,13 +247,13 @@ describe('SecondaryUploadFormComponent', () => {
     describe('Dbn example type', () => {
       beforeEach(() => {
         component.onExampleTypeChange(ExampleType.DbnExample);
-        spyOn(component.uploadChange, 'emit');
+        vi.spyOn(component.uploadChange, 'emit').mockReturnValue(undefined);
       });
 
       it('emits invalid payload when dbn example not provided', () => {
         component.dbnExample = null;
         component.onMethodChange();
-        expect(component.uploadChange.emit).toHaveBeenCalledWith(jasmine.objectContaining({
+        expect(component.uploadChange.emit).toHaveBeenCalledWith(expect.objectContaining({
           valid: false,
         }));
       });

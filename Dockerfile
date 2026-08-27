@@ -5,7 +5,7 @@ FROM node:${NODE_VERSION} AS build
 ARG BUILD_CONF=development
 WORKDIR /app
 COPY ./ ./
-RUN npm install
+RUN npm ci
 RUN npm run build -- -c ${BUILD_CONF}
 
 FROM nginx:${NGINX_VERSION} AS runtime

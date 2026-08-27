@@ -7,36 +7,16 @@
       </app-radio-button>
     }
   </mat-radio-group>
-  @if (isTestLayout) {
-    <div class="test-banner">
-      <app-step [value]="getStepNumber(2)">Identify base pairs using</app-step>
-      <mat-radio-group formControlName="analysisTool">
-        @for (item of ANALYSIS_TOOL; track item) {
-          <app-radio-button [value]="item.key" [label]="item.label"
-            [checked]="paramsForm.value.analysisTool === item.key">
-          </app-radio-button>
-        }
-      </mat-radio-group>
-    </div>
-  }
-  @if (!isTestLayout) {
-    <div class="test-banner">
-      <app-step [value]="getStepNumber(2)">Identify base pairs using</app-step>
-      <mat-radio-group formControlName="analysisTool">
-        @for (item of ANALYSIS_TOOL; track item) {
-          <app-radio-button [value]="item.key" [label]="item.label"
-            [checked]="paramsForm.value.analysisTool === item.key">
-          </app-radio-button>
-        }
-      </mat-radio-group>
-    </div>
-  }
-  <!-- <app-step [value]="getStepNumber(2)">Identify base pairs using</app-step>
-  <mat-radio-group formControlName="analysisTool">
-    <app-radio-button *ngFor="let item of ANALYSIS_TOOL" [value]="item.key" [label]="item.label"
-      [checked]="paramsForm.value.analysisTool === item.key">
-    </app-radio-button>
-  </mat-radio-group> -->
+  <div class="test-banner">
+    <app-step [value]="getStepNumber(2)">Identify base pairs using</app-step>
+    <mat-radio-group formControlName="analysisTool">
+      @for (item of ANALYSIS_TOOL; track item) {
+        <app-radio-button [value]="item.key" [label]="item.label"
+          [checked]="paramsForm.value.analysisTool === item.key">
+        </app-radio-button>
+      }
+    </mat-radio-group>
+  </div>
 
   <h3 class="subsection">Include non-canonical ones: </h3>
   <mat-radio-group formControlName="nonCanonicalHandling">

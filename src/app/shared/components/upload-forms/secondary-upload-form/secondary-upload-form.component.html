@@ -20,17 +20,6 @@
       [checked]="currentUploadType === UploadType.FromDotBracket"
       (click)="onMethodChange()">
 
-      <!-- <app-example-picker [examples]="dbn_examples" (selected)="onDbnExampleSelect($event)"></app-example-picker> -->
-
-      <!-- Show textarea when Dot-bracket is selected -->
-      <!-- <textarea
-      *ngIf="currentUploadType === UploadType.FromDotBracket"
-      rows="5"
-      [(ngModel)]="dotBracketText"
-      name="dotBracketText"
-      placeholder="Paste your dot-bracket notation here"
-      style="width: 100%; margin-top: 8px;"
-    ></textarea> -->
     @if (currentUploadType === UploadType.FromDotBracket) {
       <textarea
         rows="10"
@@ -42,13 +31,6 @@
         style="width: 100%; margin-top: 8px; white-space: pre; overflow: auto; resize: both;margin-bottom: 8px;"
       ></textarea>
     }
-    <!-- <textarea
-    [(ngModel)]="textInput"
-    (input)="validateStructuredText()"
-    rows="10"
-    cols="60"
-    placeholder=""
-  ></textarea> -->
   <app-example-picker [examples]="dbn_examples" (selected)="onDbnExampleSelect($event)"></app-example-picker>
   @if (isTextValid === false) {
     <div style="color: red; white-space: pre-wrap;">
@@ -82,15 +64,6 @@
 
   <app-example-picker [examples]="ct_examples" (selected)="onCtExampleSelect($event)"></app-example-picker>
 </app-radio-button>
-
-<!-- <app-radio-button
-label="From DBN"
-[value]="UploadType.FromExample"
-[checked]="isExampleChecked(ExampleType.DbnExample)"
-(click)="onExampleTypeChange(ExampleType.DbnExample)">
-
-<app-example-picker [examples]="dbn_examples" (selected)="onDbnExampleSelect($event)"></app-example-picker>
-</app-radio-button> -->
 
 </mat-radio-group>
 </form>

@@ -46,7 +46,6 @@ export class SecondaryUploadFormComponent implements OnInit {
   selectedExample: ExampleType = ExampleType.None;
 
   // validate text input:
-  textInput = '';
   textValidationError = '';
   isTextValid: boolean | null = null;
 
@@ -157,11 +156,6 @@ export class SecondaryUploadFormComponent implements OnInit {
     this.ctExample = event;
     this.notifyChanges();
   }
-
-  // onDbnExampleSelect(event: Example): void {
-  //   this.dbnExample = event;
-  //   this.notifyChanges();
-  // }
 
   onDbnExampleSelect(event: Example): void {
     this.currentUploadType = this.UploadType.FromDotBracket;

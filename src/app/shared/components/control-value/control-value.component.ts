@@ -31,10 +31,9 @@ export abstract class ControlValueComponent<F> implements ControlValueAccessor {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: never): void {
-    this.onTouch = fn;
+  registerOnTouched(): void {
+    // Touched state is not tracked by this base class.
   }
 
   private onChange: (_: F) => void = () => { /* do nothing. */ };
-  private onTouch: (_: F) => void = () => { /* do nothing. */ };
 }

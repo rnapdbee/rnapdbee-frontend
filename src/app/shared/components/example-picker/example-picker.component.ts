@@ -15,7 +15,12 @@ export class ExamplePickerComponent implements OnInit {
 
   ngOnInit(): void {
     this.current = this.examples[0];
-    this.selected.emit(this.current);
+    // Defer the initial emit to a microtask so it runs after Angular's initial
+    // change detection pass completes. Emitting synchronously here can cause
+    // parent components that react to `selected` by mutating their own bound
+    // state (e.g. switching an upload mode) to trigger
+    // ExpressionChangedAfterItHasBeenCheckedError.
+    void Promise.resolve().then(() => this.selected.emit(this.current));
   }
 
   select(item: Example): void {

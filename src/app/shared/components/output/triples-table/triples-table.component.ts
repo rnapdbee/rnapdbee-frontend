@@ -155,7 +155,7 @@ export class TriplesTableComponent extends ControlValueComponent<SelectField> im
     try {
       return JSON.stringify(r);
     } catch {
-      return String(r);
+      return '[unserializable value]';
     }
   }
 }

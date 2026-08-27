@@ -154,10 +154,10 @@ export class TertiaryUploadFormComponent implements OnInit, OnDestroy {
             if (error.status === 404) {
               this.nucleoSizeError = 'PDB ID was not found';
             } else {
-              console.log(`NucleoSize: Failed for ${pdbId} (Status: ${error.status})`);
+              console.error(`NucleoSize: Failed for ${pdbId} (Status: ${error.status})`);
             }
           } else {
-            console.log(`NucleoSize: Failed for ${pdbId} (Status: unknown)`);
+            console.error(`NucleoSize: Failed for ${pdbId} (Status: unknown)`);
           }
           this.notifyChanges();
         },

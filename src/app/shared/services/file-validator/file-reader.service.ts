@@ -14,8 +14,8 @@ export class FileReaderService {
 
     return new Observable<string[]>((observer: Subscriber<string[]>): void => {
       this.reader.onload = (progressEvent: ProgressEvent<FileReader>): void => {
-        const result = progressEvent.target?.result?.toString();
-        if (result) {
+        const result = progressEvent.target?.result;
+        if (typeof result === 'string') {
           observer.next(result.split(/\r\n|\n/));
           observer.complete();
         } else {
@@ -33,8 +33,8 @@ export class FileReaderService {
     this.reader.readAsText(file);
     return new Observable<string>((observer: Subscriber<string>): void => {
       this.reader.onload = (progressEvent: ProgressEvent<FileReader>): void => {
-        const result = progressEvent.target?.result?.toString();
-        if (result) {
+        const result = progressEvent.target?.result;
+        if (typeof result === 'string') {
           observer.next(result);
           observer.complete();
         } else {

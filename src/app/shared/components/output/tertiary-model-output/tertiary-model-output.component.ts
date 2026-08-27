@@ -22,17 +22,11 @@ export class TertiaryModelOutputComponent extends ControlValueComponent<Tertiary
   }
   get model() { return this._model; }
   messagesText = '';
-  baseTriplesText = '';
 
   constructor() { super(new TertiaryModelSelect()); }
 
   generateOutputTexts(model: TertiaryModel) {
     this.messagesText = model.messages.join('\n');
-    this.baseTriplesText = model.baseTriples.join('\n');
-  }
-
-  onBaseTriplesChange(): void { // Only for debugging
-    console.log('value:', this.value);
   }
 
   // adapter: expose baseTriples as TertiaryInteractions[] for the existing interactions component

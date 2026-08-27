@@ -79,7 +79,7 @@ module.exports = defineConfig([
       '@typescript-eslint/no-unsafe-assignment': 'warn',
       '@typescript-eslint/no-base-to-string': 'warn',
       '@typescript-eslint/no-unsafe-member-access': 'off',
-      'no-console': 'warn',
+      'no-console': ['warn', { allow: ['error'] }],
       'object-curly-newline': ['error', { consistent: true }],
       'no-multiple-empty-lines': ['error', { max: 2, maxBOF: 0, maxEOF: 0 }],
       'import/no-extraneous-dependencies': ['error', { devDependencies: true }],

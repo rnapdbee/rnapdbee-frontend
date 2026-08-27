@@ -44,7 +44,7 @@
     "@typescript-eslint/parser": "^8.68.0",
     "angular-eslint": "^22.1.0",
     "eslint": "^9.39.5",
-    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-import-resolver-typescript": "^4.4.5",
     "eslint-plugin-import": "^2.25.4",
     "istanbul-lib-instrument": "^6.0.3",
     "jasmine-core": "~4.4.0",

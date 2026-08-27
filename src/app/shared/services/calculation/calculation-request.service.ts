@@ -42,7 +42,7 @@ export abstract class CalculationRequestService<P extends Params, O> {
     return this.http.post<Calculation<P, O>>(`${this.url}/pdb/${id}`, null, { params }).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 413) {
-          this.snackBar.error('Request entity is too large. Maximum size: 100MB.');
+          this.snackBar.error('Request entity is too large.');
         } else if (error instanceof HttpErrorResponse && error.status >= 500 && error.status < 600) {
           this.snackBar.error('We are experiencing technical difficulties, please try again later. Thank you.');
         }
@@ -58,7 +58,7 @@ export abstract class CalculationRequestService<P extends Params, O> {
       mergeMap(data => this.http.post<Calculation<P, O>>(this.url, data, { params, headers })),
       catchError((error: unknown) => {
         if (error instanceof HttpErrorResponse && error.status === 413) {
-          this.snackBar.error('Request entity is too large. Maximum size: 100MB.');
+          this.snackBar.error('Request entity is too large.');
         } else if (error instanceof HttpErrorResponse && error.status >= 500 && error.status < 600) {
           this.snackBar.error('We are experiencing technical difficulties, please try again later. Thank you.');
         }
@@ -74,7 +74,7 @@ export abstract class CalculationRequestService<P extends Params, O> {
       mergeMap(data => this.http.post<Calculation<P, O>>(this.url, data, { params, headers })),
       catchError((error: HttpErrorResponse) => {
         if (error.status === 413) {
-          this.snackBar.error('Request entity is too large. Maximum size: 100MB.');
+          this.snackBar.error('Request entity is too large.');
         } else if (error instanceof HttpErrorResponse && error.status >= 500 && error.status < 600) {
           this.snackBar.error('We are experiencing technical difficulties, please try again later. Thank you.');
         }
@@ -92,7 +92,7 @@ export abstract class CalculationRequestService<P extends Params, O> {
     return this.http.post<Calculation<P, O>>(`${this.url}/${id}`, null, { params }).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 413) {
-          this.snackBar.error('Request entity is too large. Maximum size: 100MB.');
+          this.snackBar.error('Request entity is too large.');
         } else if (error instanceof HttpErrorResponse && error.status >= 500 && error.status < 600) {
           this.snackBar.error('We are experiencing technical difficulties, please try again later. Thank you.');
         }

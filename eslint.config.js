@@ -3,7 +3,7 @@ const eslint = require('@eslint/js');
 const { defineConfig } = require('eslint/config');
 const tseslint = require('typescript-eslint');
 const angular = require('angular-eslint');
-const importPlugin = require('eslint-plugin-import');
+const importPluginX = require('eslint-plugin-import-x');
 
 module.exports = defineConfig([
   {
@@ -22,8 +22,8 @@ module.exports = defineConfig([
       ...tseslint.configs.recommended,
       ...tseslint.configs.recommendedTypeChecked,
       angular.configs.tsRecommended,
-      importPlugin.flatConfigs.recommended,
-      importPlugin.flatConfigs.typescript,
+      importPluginX.flatConfigs.recommended,
+      importPluginX.flatConfigs.typescript,
     ],
     languageOptions: {
       parserOptions: {
@@ -33,7 +33,7 @@ module.exports = defineConfig([
     },
     processor: angular.processInlineTemplates,
     settings: {
-      'import/resolver': {
+      'import-x/resolver': {
         typescript: true,
         node: true,
       },
@@ -53,7 +53,7 @@ module.exports = defineConfig([
         prefixes: ['app'],
       }],
       'linebreak-style': 'off',
-      'import/extensions': ['error', 'ignorePackages', {
+      'import-x/extensions': ['error', 'ignorePackages', {
         js: 'never',
         mjs: 'never',
         jsx: 'never',
@@ -62,7 +62,7 @@ module.exports = defineConfig([
       }],
       'arrow-parens': ['error', 'as-needed'],
       'prefer-destructuring': ['error', { object: true, array: false }],
-      'import/prefer-default-export': 'off',
+      'import-x/prefer-default-export': 'off',
       'lines-between-class-members': 'off',
       'no-underscore-dangle': 'off',
       'max-len': ['error', 140],
@@ -82,8 +82,8 @@ module.exports = defineConfig([
       'no-console': ['warn', { allow: ['error'] }],
       'object-curly-newline': ['error', { consistent: true }],
       'no-multiple-empty-lines': ['error', { max: 2, maxBOF: 0, maxEOF: 0 }],
-      'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
-      'import/no-default-export': 'error',
+      'import-x/no-extraneous-dependencies': ['error', { devDependencies: true }],
+      'import-x/no-default-export': 'error',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/prefer-readonly': 'error',

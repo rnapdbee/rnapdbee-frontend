@@ -1,16 +1,18 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
-import { OpenCloseAnimation } from '../../animations/open-close';
+import { animateClose, animateOpen } from '../../animations/open-close';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
-  animations: [OpenCloseAnimation],
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class NavbarComponent {
+  protected readonly animateOpen = animateOpen;
+  protected readonly animateClose = animateClose;
+
   menuExpanded = false;
 
   constructor(private readonly router: Router) { }

@@ -23,7 +23,7 @@
 </div>
 <div class="mobile-menu-container">
   @if (menuExpanded) {
-    <div @openClose class="mobile-menu">
+    <div (animate.enter)="animateOpen($event)" (animate.leave)="animateClose($event)" class="mobile-menu">
       <nav>
         <a routerLink="/" class="item" [class.active]="isActive('')" (click)="toggleMenu()">Home</a>
         <a routerLink="help" class="item" [class.active]="isActive('help')" (click)="toggleMenu()">Help</a>

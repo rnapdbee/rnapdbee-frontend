@@ -1,7 +1,7 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiPaths } from 'src/environments/environment';
-import { OpenCloseAnimation } from '../../animations/open-close';
+import { animateClose, animateOpen } from '../../animations/open-close';
 import { SelectArray } from '../../models/select/select-array.model';
 import { SelectSubObject } from '../../models/select/select-fields.model';
 import { DownloadService } from '../../services/downlaod/download.service';
@@ -12,11 +12,13 @@ import { SelectableService } from '../../services/selectable/selectable.service'
   selector: 'app-download',
   templateUrl: './download.component.html',
   styleUrls: ['./download.component.scss'],
-  animations: [OpenCloseAnimation],
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class DownloadComponent {
+  protected readonly animateOpen = animateOpen;
+  protected readonly animateClose = animateClose;
+
   @Input() selected: SelectArray<SelectSubObject> | undefined;
   @Input() path: ApiPaths | undefined;
   @Input() id: string | undefined;

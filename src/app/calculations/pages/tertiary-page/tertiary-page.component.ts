@@ -1,7 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { OpenCloseAnimation } from 'src/app/shared/animations/open-close';
 import { CalculationPageComponent } from 'src/app/shared/components/calculation-page/calculation-page.component';
 import { TertiaryOutput } from 'src/app/shared/models/output/tertiary-output.model';
 import { TertiaryToDbnParams } from 'src/app/shared/models/params/tertiary-to-dbn-params.model';
@@ -12,7 +11,6 @@ import { ErrorService } from 'src/app/shared/services/error/error.service';
   selector: 'app-tertiary-page',
   templateUrl: './tertiary-page.component.html',
   styleUrls: ['./tertiary-page.component.scss'],
-  animations: [OpenCloseAnimation],
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })

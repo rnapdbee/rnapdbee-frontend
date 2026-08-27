@@ -12,7 +12,7 @@
     }
   </div>
   @if (expanded) {
-    <div class="content" @openClose>
+    <div class="content" (animate.enter)="animateOpen($event)" (animate.leave)="animateClose($event)">
       <h2>Download your results</h2>
       <p>RNApdbee provides an easy way to download your calculation results. Just click “select items to download” and use
       checkboxes next to your results to choose which items should be included in downloaded file.</p>

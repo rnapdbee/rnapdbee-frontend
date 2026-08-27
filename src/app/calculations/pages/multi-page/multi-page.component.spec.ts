@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, type MockedObject, vi } from 'vitest';
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -68,15 +69,14 @@ const mockResponse: Calculation<TertiaryToMultiParams, MultiOutput> = {
 describe('MultiPageComponent', () => {
   let fixture: ComponentFixture<MultiPageComponent>;
   let component: MultiPageComponent;
-  let calculationServiceSpy: jasmine.SpyObj<CalculationRequestService<TertiaryToMultiParams, MultiOutput>>;
+  let calculationServiceSpy: MockedObject<CalculationRequestService<TertiaryToMultiParams, MultiOutput>>;
   let debugElement: DebugElement;
 
   beforeEach(async () => {
-    calculationServiceSpy = jasmine.createSpyObj<CalculationRequestService<TertiaryToMultiParams, MultiOutput>>(
-      'TertiaryToMultiService',
-      { find: of(mockResponse) },
-      { calculationResults$: of(mockResponse) },
-    );
+    calculationServiceSpy = {
+      find: vi.fn().mockName('TertiaryToMultiService.find').mockReturnValue(of(mockResponse)),
+      calculationResults$: of(mockResponse)
+    } as unknown as MockedObject<CalculationRequestService<TertiaryToMultiParams, MultiOutput>>;
 
     await TestBed.configureTestingModule({
       declarations: [MultiPageComponent],

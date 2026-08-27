@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it } from 'vitest';
 import { PdbFileValidatorService } from './pdb-file-validator.service';
 
 describe('PdbFileValidatorService', () => {
@@ -9,21 +10,21 @@ describe('PdbFileValidatorService', () => {
 
   it('invalidates when line with ATOM and HETATM not exists', () => {
     const fileContent = ['HEADER X X X X', 'COMPND   3 CHAIN: A'];
-    expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+    expect(service.validator(fileContent)).toEqual(expect.objectContaining({
       valid: false,
     }));
   });
 
   it('validates when line with ATOM exist', () => {
     const fileContent = ['ATOM'];
-    expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+    expect(service.validator(fileContent)).toEqual(expect.objectContaining({
       valid: true,
     }));
   });
 
   it('validates when line with HETATM exist', () => {
     const fileContent = ['HETATM'];
-    expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+    expect(service.validator(fileContent)).toEqual(expect.objectContaining({
       valid: true,
     }));
   });

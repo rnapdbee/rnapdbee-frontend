@@ -1,3 +1,4 @@
+import { afterEach, beforeEach, describe, expect, it, type MockedObject, vi } from 'vitest';
 import { HttpParams, provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
@@ -74,15 +75,15 @@ const httpParams = new HttpParams({ fromObject: mockParams });
 describe('TertiaryToMultiService', () => {
   let service: TertiaryToMultiService;
   let controller: HttpTestingController;
-  let fileReaderSpy: jasmine.SpyObj<FileReaderService>;
+  let fileReaderSpy: MockedObject<FileReaderService>;
   let response: Calculation<TertiaryToMultiParams, MultiOutput> | undefined;
   let error: string | undefined;
 
   beforeEach(() => {
-    fileReaderSpy = jasmine.createSpyObj<FileReaderService>('FileReaderService', {
-      readAsTextFromFile: of(fileContent),
-      readAsTextFromPath: of(fileContent),
-    });
+    fileReaderSpy = {
+      readAsTextFromFile: vi.fn().mockName('FileReaderService.readAsTextFromFile').mockReturnValue(of(fileContent)),
+      readAsTextFromPath: vi.fn().mockName('FileReaderService.readAsTextFromPath').mockReturnValue(of(fileContent))
+    } as unknown as MockedObject<FileReaderService>;
 
     TestBed.configureTestingModule({
       imports: [],
@@ -171,7 +172,7 @@ describe('TertiaryToMultiService', () => {
 
     it('returns error when file could not be processed', () => {
       const errMsg = 'File could not be read';
-      fileReaderSpy.readAsTextFromFile.and.returnValue(throwError(() => errMsg));
+      fileReaderSpy.readAsTextFromFile.mockReturnValue(throwError(() => errMsg));
 
       service.calculate(mockParams, mockContent).subscribe({
         error: (data: string) => {
@@ -221,7 +222,7 @@ describe('TertiaryToMultiService', () => {
 
     it('returns error when example could not be processed', () => {
       const errMsg = 'Example could not be found';
-      fileReaderSpy.readAsTextFromPath.and.returnValue(throwError(() => errMsg));
+      fileReaderSpy.readAsTextFromPath.mockReturnValue(throwError(() => errMsg));
 
       service.calculate(mockParams, mockContent).subscribe({
         error: (data: string) => {

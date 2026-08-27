@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it } from 'vitest';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Result } from 'src/app/shared/models/calculation/calculation.model';
@@ -136,34 +137,34 @@ describe('TertiaryResultComponent', () => {
       item.set(true);
     });
 
-    expect(component.value.isSelectedOrUnactive()).toBeTrue();
-    expect(component.isSelected()).toBeTrue();
+    expect(component.value.isSelectedOrUnactive()).toBe(true);
+    expect(component.isSelected()).toBe(true);
   });
 
   it('is selected select clicked', () => {
     component.select();
-    expect(component.value.isSelectedOrUnactive()).toBeTrue();
-    expect(component.isSelected()).toBeTrue();
+    expect(component.value.isSelectedOrUnactive()).toBe(true);
+    expect(component.isSelected()).toBe(true);
   });
 
   it('is not fully selected when select clicked and some options unselected', () => {
     component.select();
     component.value.fields[0].set(false);
-    expect(component.value.isSelectedOrUnactive()).toBeFalse();
-    expect(component.isSelected()).toBeFalse();
+    expect(component.value.isSelectedOrUnactive()).toBe(false);
+    expect(component.isSelected()).toBe(false);
   });
 
   it('is not fully selected when only few options selected', () => {
     component.value.set(false);
     component.value.fields[0].set(true);
-    expect(component.value.isSelectedOrUnactive()).toBeFalse();
-    expect(component.isSelected()).toBeFalse();
+    expect(component.value.isSelectedOrUnactive()).toBe(false);
+    expect(component.isSelected()).toBe(false);
   });
 
   it('is not fully selected when select and then unselect clicked', () => {
     component.select();
     component.select();
-    expect(component.value.isSelectedOrUnactive()).toBeFalse();
-    expect(component.isSelected()).toBeFalse();
+    expect(component.value.isSelectedOrUnactive()).toBe(false);
+    expect(component.isSelected()).toBe(false);
   });
 });

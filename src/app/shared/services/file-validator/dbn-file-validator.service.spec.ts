@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it } from 'vitest';
 import { DbnFileValidatorService } from './dbn-file-validator.service';
 
 describe('DbnFileValidatorService', () => {
@@ -9,7 +10,7 @@ describe('DbnFileValidatorService', () => {
 
   it('invalidates when regex dont match', () => {
     const fileContent = ['ABCD', '>XYZ'];
-    expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+    expect(service.validator(fileContent)).toEqual(expect.objectContaining({
       valid: false,
     }));
   });
@@ -20,7 +21,7 @@ describe('DbnFileValidatorService', () => {
       '>gCGGAUUUAgCUCAGuuGGGAGAGCgCCAGAcUgAAgAucUGGAGgUCcUGUGuuCGaUCCACAGAAUUCGCACCA',
       '(((((((..((((.....[..)))).((((.........)))).....(((((..]....))))))))))))....',
     ];
-    expect(service.validator(fileContent)).toEqual(jasmine.objectContaining({
+    expect(service.validator(fileContent)).toEqual(expect.objectContaining({
       valid: true,
     }));
   });

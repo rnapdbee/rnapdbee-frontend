@@ -33,15 +33,23 @@ a, a:hover, a:active, a:visited { text-decoration: none; color: inherit; }
   width: 100%;
 }
 
-// Angular Material v15+ (MDC) form controls reserve a 40px state layer per
-// option, roughly doubling each row's height compared to the legacy (pre-v15)
-// components this app was styled for. Shrink the state layers so the layout
-// stays compact. Touch targets are absolutely positioned, so they still
-// capture clicks without adding to the layout height.
+// Angular Material v15+ (MDC) form controls reserve large state layers and
+// fixed heights per control, inflating row heights compared to the legacy
+// (pre-v15) components this app was styled for:
+//   - radio/checkbox: 40px state layer padding around the icon
+//   - text buttons (mat-button): forced 40px container height, breaking the
+//     app's inline link-style buttons ("page address", show/hide toggles)
+// Touch targets are absolutely positioned, so they still capture clicks
+// without adding to the layout height.
 .mat-mdc-radio-button {
   --mat-radio-state-layer-size: 20px;
 }
 
 .mat-mdc-checkbox {
   --mat-checkbox-state-layer-size: 18px;
+}
+
+.mat-mdc-button {
+  --mat-button-text-container-height: 20px;
+  --mat-button-text-touch-target-size: 20px;
 }

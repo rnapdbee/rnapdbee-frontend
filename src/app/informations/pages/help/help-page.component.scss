@@ -1,7 +1,12 @@
 @use "src/variables" as *;
 
 :host {
+  display: block;
+
   .page {
+    max-width: 1150px;
+    width: 100%;
+    margin: 0 auto;
     padding: 2.5rem 3rem;
     display: flex;
     flex-direction: column;
@@ -13,9 +18,6 @@
     .container {
       display: flex;
       @include raised;
-      max-width: 1150px;
-      width: 100%;
-      margin: 0 auto;
 
       .sidebar {
         @include card-l;

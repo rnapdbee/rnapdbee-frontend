@@ -55,6 +55,9 @@
               "./node_modules/leaflet/dist/leaflet.js"
             ],
             "browser": "src/main.ts",
+            "allowedCommonJsDependencies": [
+              "leaflet"
+            ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "."

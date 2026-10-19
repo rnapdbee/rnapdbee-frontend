@@ -32,6 +32,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 To get prism Docker image use `docker pull stoplight/prism`.
 
 Then, You can run the Prism mocks via command:
- - on BASH terminal: `docker run -v $(pwd)/api/api-spec-mock.yaml:/api-spec.yaml -p 4010:4010 stoplight/prism mock -h 0.0.0.0 "/api-spec.yaml"`
- - on POWERSHELL terminal: `docker run -v ${pwd}/api/api-spec-mock.yaml:/api-spec.yaml -p 4010:4010 stoplight/prism mock -h 0.0.0.0 "/api-spec.yaml"`
- - on CMD terminal: `docker run -v %cd%/api/api-spec-mock.yaml:/api-spec.yaml -p 4010:4010 stoplight/prism mock -h 0.0.0.0 "/api-spec.yaml"`
+
+- on BASH terminal: `docker run -v $(pwd)/api/api-spec-mock.yaml:/api-spec.yaml -p 4010:4010 stoplight/prism mock -h 0.0.0.0 "/api-spec.yaml"`
+- on POWERSHELL terminal: `docker run -v ${pwd}/api/api-spec-mock.yaml:/api-spec.yaml -p 4010:4010 stoplight/prism mock -h 0.0.0.0 "/api-spec.yaml"`
+- on CMD terminal: `docker run -v %cd%/api/api-spec-mock.yaml:/api-spec.yaml -p 4010:4010 stoplight/prism mock -h 0.0.0.0 "/api-spec.yaml"`
+
+## Funding
+
+This work was supported by the National Science Centre, Poland (Narodowe Centrum Nauki) under grant No. 2023/51/D/ST6/01207, "Exploring Multiple Loop Motifs in RNA Structures".

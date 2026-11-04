@@ -7,6 +7,29 @@ updates:
     open-pull-requests-limit: 10
     commit-message:
       prefix: "build"
+    groups:
+      # Angular framework, CLI/build tooling and ESLint packages are released
+      # in lockstep, so bump them in a single PR.
+      angular:
+        applies-to: version-updates
+        patterns:
+          - "@angular/*"
+          - "@angular-eslint/*"
+          - "angular-eslint"
+        update-types:
+          - "minor"
+          - "patch"
+      # Everything else: one PR for minor/patch bumps. Major updates are left
+      # out of the group so they still arrive individually for review.
+      minor-and-patch:
+        applies-to: version-updates
+        update-types:
+          - "minor"
+          - "patch"
+        exclude-patterns:
+          - "@angular/*"
+          - "@angular-eslint/*"
+          - "angular-eslint"
 
   - package-ecosystem: "docker"
     directory: "/"
@@ -15,6 +38,12 @@ updates:
     open-pull-requests-limit: 10
     commit-message:
       prefix: "build"
+    groups:
+      minor-and-patch:
+        applies-to: version-updates
+        update-types:
+          - "minor"
+          - "patch"
 
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -23,3 +52,9 @@ updates:
     open-pull-requests-limit: 10
     commit-message:
       prefix: "build"
+    groups:
+      minor-and-patch:
+        applies-to: version-updates
+        update-types:
+          - "minor"
+          - "patch"

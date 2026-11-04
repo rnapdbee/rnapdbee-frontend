@@ -1,7 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 /* eslint-disable @typescript-eslint/unbound-method */
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
@@ -11,6 +10,7 @@ import { UploadMethodType } from 'src/app/shared/models/upload/upload-type.model
 import { ValidationPayload } from 'src/app/shared/models/upload/validation-payload.model';
 import { FileValidatorService } from 'src/app/shared/services/file-validator/file-validator.service';
 import { TertiaryUploadFormComponent } from './tertiary-upload-form.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 describe('TertiaryUploadFormComponent', () => {
   let fixture: ComponentFixture<TertiaryUploadFormComponent>;
@@ -18,9 +18,7 @@ describe('TertiaryUploadFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TertiaryUploadFormComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-      imports: [],
+      imports: [SharedModule],
       providers: [provideHttpClient(withXhr(), withInterceptorsFromDi())],
     }).compileComponents();
 

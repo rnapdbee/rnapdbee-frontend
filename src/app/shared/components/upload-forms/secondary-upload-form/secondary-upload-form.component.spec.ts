@@ -11,6 +11,7 @@ import { UploadMethodType } from 'src/app/shared/models/upload/upload-type.model
 import { ValidationPayload } from 'src/app/shared/models/upload/validation-payload.model';
 import { FileValidatorService } from 'src/app/shared/services/file-validator/file-validator.service';
 import { ExampleType, SecondaryUploadFormComponent } from './secondary-upload-form.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 describe('SecondaryUploadFormComponent', () => {
   let fixture: ComponentFixture<SecondaryUploadFormComponent>;
@@ -18,9 +19,7 @@ describe('SecondaryUploadFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SecondaryUploadFormComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-      imports: [],
+      imports: [SharedModule],
       providers: [provideHttpClient(withXhr(), withInterceptorsFromDi())],
     }).compileComponents();
 
